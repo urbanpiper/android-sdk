@@ -1,10 +1,7 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.BuildConfig
-import com.urbanpiper.upsdk.model.networkResponse.AllStoresResponse
-import com.urbanpiper.upsdk.model.networkResponse.AppVersionCheckResponse
-import com.urbanpiper.upsdk.model.networkResponse.BannerResponse
-import com.urbanpiper.upsdk.model.networkResponse.StoreLocationResponse
+import com.urbanpiper.upsdk.model.networkresponse.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,6 +18,7 @@ class UPClientDefault(
 
     private val generalService: GeneralServiceDefault
     private val storeService: StoreServiceDefault
+    private val orderingService: OrderingServiceDefault
 
     init {
         val authToken = String.format("apikey %s:%s", apiUsername, apiKey)
@@ -35,7 +33,7 @@ class UPClientDefault(
                 val request: Request = original.newBuilder()
                     .addHeader("X-App-Version", BuildConfig.VERSION_NAME)
                     .addHeader("X-BID", bizId)
-                    .addHeader("X-App-Src", "android")
+                    .addHeader("X-App-Src", "android-sdk")
                     .addHeader("X-Use-Lang", language)
                     .method(original.method(), original.body())
                     .build()
@@ -51,7 +49,8 @@ class UPClientDefault(
 
         generalService = GeneralServiceDefault(authToken, bizId, retrofit)
         storeService = StoreServiceDefault(authToken, bizId, retrofit)
-
+        orderingService = OrderingServiceDefault(authToken, bizId, retrofit)
+3
     }
 
     // ----------------------  BASIC DETAILS ------------------------------------
@@ -74,28 +73,62 @@ class UPClientDefault(
 
     // -------------------------- GENERAL SERVICE -------------------------------
 
-    override fun getBanners(callback: Callback<BannerResponse>) {
-        generalService.getBanners(callback)
+    override fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
+        return generalService.getBanners(callback)
     }
 
-    override fun appVersionCheck(username: String, version: String, callback: Callback<AppVersionCheckResponse>) {
-        generalService.appVersionCheck(username, version, callback)
+    override fun appVersionCheck(
+        username: String, version: String, callback: Callback<AppVersionCheckResponse>): CancellableTask {
+        return generalService.appVersionCheck(username, version, callback)
     }
 
-    override fun registerDeviceForFCM(fcmRegistrationToken: String, deviceId: String, callback: Callback<Void>) {
-        generalService.registerDeviceForFCM(fcmRegistrationToken, deviceId, callback)
+    override fun registerDeviceForFCM(fcmRegistrationToken: String, deviceId: String, callback: Callback<Void>): CancellableTask {
+       return generalService.registerDeviceForFCM(fcmRegistrationToken, deviceId, callback)
     }
 
-    // -------------------------- STORE SERVICE -------------------------------
+    // -------------------------- STORE SERVICE ----------------------------------
 
-    override fun getNearestStore(latitude: Double, longitude: Double, callback: Callback<StoreLocationResponse>) {
-        storeService.getNearestStore(latitude, longitude, callback)
+    override fun getNearestStore(latitude: Double, longitude: Double, callback: Callback<StoreLocationResponse>) : CancellableTask{
+       return storeService.getNearestStore(latitude, longitude, callback)
     }
 
-    override fun getAllStores(callback: Callback<AllStoresResponse>) {
-        storeService.getAllStores(callback)
+    override fun getAllStores(callback: Callback<AllStoresResponse>) : CancellableTask{
+      return storeService.getAllStores(callback)
     }
 
+    // --------------------------- ORDERING SERVICE -------------------------------
+
+    override fun getCategories(locationId: Int, callback: Callback<OrderCategoriesResponse>): CancellableTask {
+        return orderingService.getCategories(locationId,callback)
+    }
+
+    override fun getItems(categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CartItemResponse>): CancellableTask {
+        return orderingService.getItems(categoryId, locationId, offset, limit, callback)
+    }
+
+    override fun getFilterAndSortOptions(categoryId: Int, callback: Callback<FilterAndSortOptionsResponse>): CancellableTask {
+        return orderingService.getFilterAndSortOptions(categoryId, callback)
+    }
+
+    override fun getFilteredItems(categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int, callback: Callback<CartItemResponse>): CancellableTask {
+        return orderingService.getFilteredItems(categoryId, locationId, filterBy, offset, limit, callback)
+    }
+
+    override fun getSortByItems(categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int, callback: Callback<CartItemResponse>): CancellableTask {
+        return orderingService.getSortByItems(categoryId, locationId, sortBy, offset, limit, callback)
+    }
+
+    override fun getFeaturedItems(locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
+        return orderingService.getFeaturedItems(locationId, callback)
+    }
+
+    override fun getRecommendedItems(itemId: String, locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
+        return orderingService.getRecommendedItems(itemId, locationId, callback)
+    }
+
+    override fun getItemDetails(itemId: Int, locationId: Int, cacheBuster: Long, callback: Callback<OrderItemResponse>): CancellableTask {
+        return orderingService.getItemDetails(itemId, locationId, cacheBuster, callback)
+    }
 
 
 

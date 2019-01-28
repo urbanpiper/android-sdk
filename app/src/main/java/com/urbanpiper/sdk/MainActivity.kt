@@ -1,12 +1,10 @@
 package com.urbanpiper.sdk
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.urbanpiper.upsdk.model.FCMRegistrationBody
-import com.urbanpiper.upsdk.model.networkResponse.BannerResponse
+import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
 
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -43,6 +41,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<BannerResponse>, t: Throwable) {
+                if(call.isCanceled){
+                    Log.e("Cancelled", "Retrofit call failed", t)
+                }
+
                 Log.e("failure", "Retrofit call failed", t)
             }
         })

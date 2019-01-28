@@ -2,9 +2,10 @@ package com.urbanpiper.sdk
 
 import android.app.Application
 import android.util.Log
+import com.urbanpiper.upsdk.dataprovider.CancellableTask
 import com.urbanpiper.upsdk.dataprovider.UPClientDefault
-import com.urbanpiper.upsdk.model.networkResponse.AppVersionCheckResponse
-import com.urbanpiper.upsdk.model.networkResponse.BannerResponse
+import com.urbanpiper.upsdk.model.networkresponse.AppVersionCheckResponse
+import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
 import retrofit2.Callback
 
 class MyApp : Application() {
@@ -24,7 +25,8 @@ class MyApp : Application() {
     }
 
     fun getBanners(callback: Callback<BannerResponse>) {
-        MyApp.Singleton.upClient.getBanners(callback)
+        val task: CancellableTask = MyApp.Singleton.upClient.getBanners(callback)
+        task.cancel()
     }
 
     fun getVersionCheck(username: String, version: String, callback: Callback<AppVersionCheckResponse>) {

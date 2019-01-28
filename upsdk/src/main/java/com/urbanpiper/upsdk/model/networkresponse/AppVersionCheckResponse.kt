@@ -1,4 +1,4 @@
-package com.urbanpiper.upsdk.model.networkResponse
+package com.urbanpiper.upsdk.model.networkresponse
 
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName

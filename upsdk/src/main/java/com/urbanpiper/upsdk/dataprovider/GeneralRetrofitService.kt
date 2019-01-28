@@ -1,9 +1,9 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.model.FCMRegistrationBody
-import com.urbanpiper.upsdk.model.networkResponse.AppVersionCheckResponse
+import com.urbanpiper.upsdk.model.networkresponse.AppVersionCheckResponse
 import retrofit2.Call
-import com.urbanpiper.upsdk.model.networkResponse.BannerResponse
+import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
 import retrofit2.http.*
 
 

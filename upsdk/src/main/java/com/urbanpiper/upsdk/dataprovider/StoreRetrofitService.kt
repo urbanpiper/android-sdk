@@ -1,11 +1,10 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import retrofit2.Callback
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
-import com.urbanpiper.upsdk.model.networkResponse.StoreLocationResponse
-import com.urbanpiper.upsdk.model.networkResponse.AllStoresResponse
+import com.urbanpiper.upsdk.model.networkresponse.StoreLocationResponse
+import com.urbanpiper.upsdk.model.networkresponse.AllStoresResponse
 import retrofit2.Call
 
 interface StoreRetrofitService {
