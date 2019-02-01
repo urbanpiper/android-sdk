@@ -1,6 +1,8 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.BuildConfig
+import com.urbanpiper.upsdk.model.JWTAuthLoginBody
+import com.urbanpiper.upsdk.model.JWTRefreshTokenBody
 import com.urbanpiper.upsdk.model.networkresponse.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -9,25 +11,24 @@ import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class UPClientDefault(
+private class UPClientDefault(
     private val bizId: String
     , private val apiUsername: String
     , private val apiKey: String
-    , private val language: String
+    , private var language: String
 ) : UPClient {
 
+    // Member variables
     private val generalService: GeneralServiceDefault
     private val storeService: StoreServiceDefault
     private val orderingService: OrderingServiceDefault
+    private val authService: AuthServiceDefault
 
+    // Initialization block
     init {
         val authToken = String.format("apikey %s:%s", apiUsername, apiKey)
 
         val client: OkHttpClient = OkHttpClient().newBuilder()
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
-                else HttpLoggingInterceptor.Level.NONE
-            })
             .addInterceptor { chain ->
                 val original = chain.request()
                 val request: Request = original.newBuilder()
@@ -39,6 +40,10 @@ class UPClientDefault(
                     .build()
                 chain.proceed(request)
             }
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+                else HttpLoggingInterceptor.Level.NONE
+            })
             .build()
 
         val retrofit: Retrofit = Retrofit.Builder()
@@ -50,7 +55,7 @@ class UPClientDefault(
         generalService = GeneralServiceDefault(authToken, bizId, retrofit)
         storeService = StoreServiceDefault(authToken, bizId, retrofit)
         orderingService = OrderingServiceDefault(authToken, bizId, retrofit)
-3
+        authService = AuthServiceDefault(authToken, bizId, retrofit)
     }
 
     // ----------------------  BASIC DETAILS ------------------------------------
@@ -71,6 +76,10 @@ class UPClientDefault(
         return language
     }
 
+    override fun changeLanguage(language: String) {
+        this.language = language
+    }
+
     // -------------------------- GENERAL SERVICE -------------------------------
 
     override fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
@@ -83,17 +92,17 @@ class UPClientDefault(
     }
 
     override fun registerDeviceForFCM(fcmRegistrationToken: String, deviceId: String, callback: Callback<Void>): CancellableTask {
-       return generalService.registerDeviceForFCM(fcmRegistrationToken, deviceId, callback)
+        return generalService.registerDeviceForFCM(fcmRegistrationToken, deviceId, callback)
     }
 
     // -------------------------- STORE SERVICE ----------------------------------
 
     override fun getNearestStore(latitude: Double, longitude: Double, callback: Callback<StoreLocationResponse>) : CancellableTask{
-       return storeService.getNearestStore(latitude, longitude, callback)
+        return storeService.getNearestStore(latitude, longitude, callback)
     }
 
     override fun getAllStores(callback: Callback<AllStoresResponse>) : CancellableTask{
-      return storeService.getAllStores(callback)
+        return storeService.getAllStores(callback)
     }
 
     // --------------------------- ORDERING SERVICE -------------------------------
@@ -129,6 +138,22 @@ class UPClientDefault(
     override fun getItemDetails(itemId: Int, locationId: Int, cacheBuster: Long, callback: Callback<OrderItemResponse>): CancellableTask {
         return orderingService.getItemDetails(itemId, locationId, cacheBuster, callback)
     }
+
+    override fun searchItems(keyword: String, locationId: Int, callback: Callback<OrderItemsSearchResponse>): CancellableTask {
+        return orderingService.searchItems(keyword, locationId, callback)
+    }
+
+    // ------------------------------- AUTH SERVICE --------------------------------
+
+    override fun login(body: JWTAuthLoginBody, callback: Callback<AuthSuccessResponse>): CancellableTask {
+        return authService.login(body, callback)
+    }
+
+    override fun refreshToken(body: JWTRefreshTokenBody, callback: Callback<AuthSuccessResponse>): CancellableTask {
+        return authService.refreshToken(body, callback)
+    }
+
+
 
 
 

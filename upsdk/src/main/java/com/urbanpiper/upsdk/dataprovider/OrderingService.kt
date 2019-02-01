@@ -45,4 +45,8 @@ interface OrderingService {
      */
     fun getItemDetails(itemId: Int, locationId: Int, cacheBuster: Long, callback: Callback<OrderItemResponse>): CancellableTask
 
+    /**
+     * Search for items
+     */
+    fun searchItems(keyword: String, locationId: Int, callback: Callback<OrderItemsSearchResponse>): CancellableTask
 }

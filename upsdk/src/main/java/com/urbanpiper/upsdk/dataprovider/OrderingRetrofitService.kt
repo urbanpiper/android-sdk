@@ -2,9 +2,7 @@ package com.urbanpiper.upsdk.dataprovider
 
 import retrofit2.Call
 import retrofit2.http.*
-import com.google.gson.annotations.SerializedName
 import com.urbanpiper.upsdk.model.networkresponse.*
-
 
 interface OrderingRetrofitService {
 
@@ -30,7 +28,7 @@ interface OrderingRetrofitService {
      *
      * @param categoryId - Category Id
      * @param bizId - Business id biz Id
-     * @param authToken - Authentication
+     * @param authToken -getProducts Authentication
      * @param offset - offset
      * @param limit - limit
      */
@@ -141,7 +139,46 @@ interface OrderingRetrofitService {
         , @Query("cb") cacheBuster: Long
     ): Call<OrderItemResponse>
 
+    /**
+     * Retrieves order items based on search items
+     * ordering.
+     *
+     * @param query
+     * @param authToken
+     */
+    @GET("/api/v2/search/items/")
+    fun searchItems(
+        @Header("Authorization") authToken: String,
+        @Query("keyword") query: String,
+        @Query("location_id") location: Int
+    ): Call<OrderItemsSearchResponse>
 
+//    /**
+//     * Sends the order details to the server for pre-processing.
+//     *
+//     * @param order
+//     * @param bizId
+//     * @param preProcOpt
+//     * @param authToken
+//     */
+//    @POST("/api/v1/order/")
+//    fun preProcessOrder(
+//        @Body order: Order
+//        , @Header("Authorization") authToken: String
+//        , @Query("pre_proc") preProcOpt: Int
+//        , @Query("biz_id") bizId: String
+//    ): Call<PreProcessOrderResponse>
+
+//    /**
+//     * Fetches the summary data for orders placed in the past by a
+//     * user.
+//     *
+//     * @param authToken - Authorization token
+//     */
+//    @GET("/api/v2/orders/")
+//    fun fetchOrderHistory(
+//        @Header("Authorization") authToken: String
+//    ): Call<OrderHistoryResponse>
 //    /**
 //     * Sends the order details to the server for persistence.
 //     *
@@ -171,21 +208,6 @@ interface OrderingRetrofitService {
 //        , @Path("coupon_code") couponCode: String
 //    ): Call<OrderValidateCouponResponse>
 //
-//    /**
-//     * Sends the order details to the server for pre-processing.
-//     *
-//     * @param order
-//     * @param bizId
-//     * @param preProcOpt
-//     * @param authToken
-//     */
-//    @POST("/api/v1/order/")
-//    fun preProcessOrder(
-//        @Body order: Order
-//        , @Header("Authorization") authToken: String
-//        , @Query("pre_proc") preProcOpt: Int
-//        , @Query("biz_id") bizId: String
-//    ): Call<PreProcessOrderResponse>
 //
 //    /**
 //     * For saving a user's address for order delivery.
@@ -250,20 +272,6 @@ interface OrderingRetrofitService {
 //    ): Call<PointsOfDeliveryResponse>
 //
 //    /**
-//     * Retrieves order items based on search items
-//     * ordering.
-//     *
-//     * @param query
-//     * @param authToken
-//     */
-//    @GET("/api/v2/search/items/")
-//    fun searchOrderItems(
-//        @Header("Authorization") authToken: String,
-//        @Query("keyword") query: String,
-//        @Query("location_id") location: String
-//    ): Call<OrderItemsSeachResponse>
-//
-//    /**
 //     * re-order api
 //     *
 //     * @param authToken - Authorization token
@@ -280,17 +288,6 @@ interface OrderingRetrofitService {
 //        @Query("lat") lat: String,
 //        @Query("lng") lng: String
 //    ): Call<ReOrderResponse>
-//
-//    /**
-//     * Fetches the summary data for orders placed in the past by a
-//     * user.
-//     *
-//     * @param authToken - Authorization token
-//     */
-//    @GET("/api/v2/orders/")
-//    fun fetchOrderHistoryV2(
-//        @Header("Authorization") authToken: String
-//    ): Call<OrderHistoryV2Response>
 //
 //    /**
 //     * Fetches the summary data for orders placed in the past by a

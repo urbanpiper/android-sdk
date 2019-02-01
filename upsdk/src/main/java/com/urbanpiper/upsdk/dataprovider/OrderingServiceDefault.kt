@@ -74,6 +74,13 @@ class OrderingServiceDefault(private val authToken: String, private val bizId: S
         return CancellableTaskWrapper(itemDetailsCall)
     }
 
+    override fun searchItems(
+        keyword: String, locationId: Int, callback: Callback<OrderItemsSearchResponse>
+    ): CancellableTask {
+        val searchItems = orderingRetrofitService.searchItems(authToken, keyword, locationId)
+        searchItems.clone().enqueue(callback)
+        return CancellableTaskWrapper(searchItems)
+    }
 
 
 }

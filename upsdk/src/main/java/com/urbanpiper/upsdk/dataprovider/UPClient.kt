@@ -1,6 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
-interface UPClient : GeneralService, StoreService, OrderingService {
+interface UPClient : GeneralService, StoreService, OrderingService, AuthService {
 
     fun getBizId(): String
 
@@ -9,5 +9,7 @@ interface UPClient : GeneralService, StoreService, OrderingService {
     fun getAPIKey(): String
 
     fun getBizLanguage(): String
+
+    fun changeLanguage(language: String)
 
 }

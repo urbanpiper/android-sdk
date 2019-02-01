@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class OrderItemResponse(
@@ -50,4 +51,8 @@ data class OrderItemResponse(
         @SerializedName("sort_order")
         val sortOrder: Int
     )
+
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
 }
