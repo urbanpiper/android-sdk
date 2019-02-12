@@ -3,7 +3,7 @@ package com.urbanpiper.upsdk.dataprovider
 import com.urbanpiper.upsdk.model.networkresponse.*
 import retrofit2.Callback
 
-interface OrderingService {
+interface CatalogueService {
 
     /**
      * Get all the categories

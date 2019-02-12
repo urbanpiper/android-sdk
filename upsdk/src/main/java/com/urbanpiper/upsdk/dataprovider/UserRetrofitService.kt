@@ -8,7 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
 
-interface AuthRetrofitService {
+interface UserRetrofitService {
 
     /**
      * Call to login with JWT authentication

@@ -5,7 +5,7 @@ import com.urbanpiper.upsdk.model.JWTRefreshTokenBody
 import com.urbanpiper.upsdk.model.networkresponse.AuthSuccessResponse
 import retrofit2.Callback
 
-interface AuthService {
+interface UserService {
 
     fun login(body: JWTAuthLoginBody, callback: Callback<AuthSuccessResponse>): CancellableTask
 

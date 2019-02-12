@@ -21,8 +21,8 @@ private class UPClientDefault(
     // Member variables
     private val generalService: GeneralServiceDefault
     private val storeService: StoreServiceDefault
-    private val orderingService: OrderingServiceDefault
-    private val authService: AuthServiceDefault
+    private val orderingService: CatalogueServiceDefault
+    private val authService: UserServiceDefault
 
     // Initialization block
     init {
@@ -54,8 +54,8 @@ private class UPClientDefault(
 
         generalService = GeneralServiceDefault(authToken, bizId, retrofit)
         storeService = StoreServiceDefault(authToken, bizId, retrofit)
-        orderingService = OrderingServiceDefault(authToken, bizId, retrofit)
-        authService = AuthServiceDefault(authToken, bizId, retrofit)
+        orderingService = CatalogueServiceDefault(authToken, bizId, retrofit)
+        authService = UserServiceDefault(authToken, bizId, retrofit)
     }
 
     // ----------------------  BASIC DETAILS ------------------------------------

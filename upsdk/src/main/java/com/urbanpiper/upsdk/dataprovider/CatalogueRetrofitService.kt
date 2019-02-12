@@ -4,7 +4,7 @@ import retrofit2.Call
 import retrofit2.http.*
 import com.urbanpiper.upsdk.model.networkresponse.*
 
-interface OrderingRetrofitService {
+interface CatalogueRetrofitService {
 
     /**
      * Retrieves all the available categories available for

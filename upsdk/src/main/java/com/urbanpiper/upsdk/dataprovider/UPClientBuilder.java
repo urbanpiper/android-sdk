@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 /**
  *
- *  Written in java for now, will make final call later.
+ *  Written in java for now
  *
  *  It would be easier to create the UPClient object if the builder was written in java
  *  for third party dev's who might use java to build the android application

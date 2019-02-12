@@ -6,10 +6,10 @@ import com.urbanpiper.upsdk.model.networkresponse.AuthSuccessResponse
 import retrofit2.Callback
 import retrofit2.Retrofit
 
-class AuthServiceDefault(private val authToken: String, private val bizId: String, retrofit: Retrofit) : AuthService {
+class UserServiceDefault(private val authToken: String, private val bizId: String, retrofit: Retrofit) : UserService {
 
-    private val authRetrofitService: AuthRetrofitService =
-        retrofit.create(AuthRetrofitService::class.java)
+    private val authRetrofitService: UserRetrofitService =
+        retrofit.create(UserRetrofitService::class.java)
 
     override fun login(body: JWTAuthLoginBody, callback: Callback<AuthSuccessResponse>): CancellableTask {
         val loginCall = authRetrofitService.login(authToken, body)

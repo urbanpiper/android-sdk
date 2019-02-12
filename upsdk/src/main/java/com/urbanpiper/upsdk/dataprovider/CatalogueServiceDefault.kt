@@ -4,11 +4,11 @@ import com.urbanpiper.upsdk.model.networkresponse.*
 import retrofit2.Callback
 import retrofit2.Retrofit
 
-class OrderingServiceDefault(private val authToken: String, private val bizId: String, retrofit: Retrofit) :
-    OrderingService {
+class CatalogueServiceDefault(private val authToken: String, private val bizId: String, retrofit: Retrofit) :
+    CatalogueService {
 
-    private val orderingRetrofitService: OrderingRetrofitService =
-        retrofit.create(OrderingRetrofitService::class.java)
+    private val orderingRetrofitService: CatalogueRetrofitService =
+        retrofit.create(CatalogueRetrofitService::class.java)
 
     override fun getCategories(locationId: Int, callback: Callback<OrderCategoriesResponse>): CancellableTask {
         val getCategoriesCall = orderingRetrofitService.getCategories(authToken, "no-cache", bizId, locationId)
