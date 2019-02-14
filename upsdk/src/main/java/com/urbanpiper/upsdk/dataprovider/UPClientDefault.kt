@@ -20,9 +20,9 @@ private class UPClientDefault(
 
     // Member variables
     private val generalService: GeneralServiceDefault
-    private val storeService: StoreServiceDefault
-    private val orderingService: CatalogueServiceDefault
-    private val authService: UserServiceDefault
+    private val catalogueService: CatalogueServiceDefault
+    private val userService: UserServiceDefault
+    private val promotionsService: PromotionsServiceDefault
 
     // Initialization block
     init {
@@ -53,9 +53,9 @@ private class UPClientDefault(
             .build()
 
         generalService = GeneralServiceDefault(authToken, bizId, retrofit)
-        storeService = StoreServiceDefault(authToken, bizId, retrofit)
-        orderingService = CatalogueServiceDefault(authToken, bizId, retrofit)
-        authService = UserServiceDefault(authToken, bizId, retrofit)
+        catalogueService = CatalogueServiceDefault(authToken, bizId, retrofit)
+        userService = UserServiceDefault(authToken, bizId, retrofit)
+        promotionsService = PromotionsServiceDefault(authToken, bizId, retrofit)
     }
 
     // ----------------------  BASIC DETAILS ------------------------------------
@@ -82,12 +82,7 @@ private class UPClientDefault(
 
     // -------------------------- GENERAL SERVICE -------------------------------
 
-    override fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
-        return generalService.getBanners(callback)
-    }
-
-    override fun appVersionCheck(
-        username: String, version: String, callback: Callback<AppVersionCheckResponse>): CancellableTask {
+    override fun appVersionCheck(username: String, version: String, callback: Callback<AppVersionCheckResponse>): CancellableTask {
         return generalService.appVersionCheck(username, version, callback)
     }
 
@@ -95,66 +90,67 @@ private class UPClientDefault(
         return generalService.registerDeviceForFCM(fcmRegistrationToken, deviceId, callback)
     }
 
-    // -------------------------- STORE SERVICE ----------------------------------
-
-    override fun getNearestStore(latitude: Double, longitude: Double, callback: Callback<StoreLocationResponse>) : CancellableTask{
-        return storeService.getNearestStore(latitude, longitude, callback)
+    override fun getNearestStore(latitude: Double, longitude: Double, callback: Callback<StoreLocationResponse>): CancellableTask {
+        return generalService.getNearestStore(latitude, longitude, callback)
     }
 
-    override fun getAllStores(callback: Callback<AllStoresResponse>) : CancellableTask{
-        return storeService.getAllStores(callback)
+    override fun getAllStores(callback: Callback<AllStoresResponse>): CancellableTask {
+        return generalService.getAllStores(callback)
     }
 
-    // --------------------------- ORDERING SERVICE -------------------------------
+    // --------------------------- CATALOGUE SERVICE -------------------------------
 
     override fun getCategories(locationId: Int, callback: Callback<OrderCategoriesResponse>): CancellableTask {
-        return orderingService.getCategories(locationId,callback)
+        return catalogueService.getCategories(locationId, callback)
     }
 
     override fun getItems(categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CartItemResponse>): CancellableTask {
-        return orderingService.getItems(categoryId, locationId, offset, limit, callback)
+        return catalogueService.getItems(categoryId, locationId, offset, limit, callback)
     }
 
     override fun getFilterAndSortOptions(categoryId: Int, callback: Callback<FilterAndSortOptionsResponse>): CancellableTask {
-        return orderingService.getFilterAndSortOptions(categoryId, callback)
+        return catalogueService.getFilterAndSortOptions(categoryId, callback)
     }
 
     override fun getFilteredItems(categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int, callback: Callback<CartItemResponse>): CancellableTask {
-        return orderingService.getFilteredItems(categoryId, locationId, filterBy, offset, limit, callback)
+        return catalogueService.getFilteredItems(categoryId, locationId, filterBy, offset, limit, callback)
     }
 
     override fun getSortByItems(categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int, callback: Callback<CartItemResponse>): CancellableTask {
-        return orderingService.getSortByItems(categoryId, locationId, sortBy, offset, limit, callback)
+        return catalogueService.getSortByItems(categoryId, locationId, sortBy, offset, limit, callback)
     }
 
     override fun getFeaturedItems(locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
-        return orderingService.getFeaturedItems(locationId, callback)
+        return catalogueService.getFeaturedItems(locationId, callback)
     }
 
     override fun getRecommendedItems(itemId: String, locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
-        return orderingService.getRecommendedItems(itemId, locationId, callback)
+        return catalogueService.getRecommendedItems(itemId, locationId, callback)
     }
 
     override fun getItemDetails(itemId: Int, locationId: Int, cacheBuster: Long, callback: Callback<OrderItemResponse>): CancellableTask {
-        return orderingService.getItemDetails(itemId, locationId, cacheBuster, callback)
+        return catalogueService.getItemDetails(itemId, locationId, cacheBuster, callback)
     }
 
     override fun searchItems(keyword: String, locationId: Int, callback: Callback<OrderItemsSearchResponse>): CancellableTask {
-        return orderingService.searchItems(keyword, locationId, callback)
+        return catalogueService.searchItems(keyword, locationId, callback)
     }
 
-    // ------------------------------- AUTH SERVICE --------------------------------
+    // ------------------------------- USER SERVICE --------------------------------
 
     override fun login(body: JWTAuthLoginBody, callback: Callback<AuthSuccessResponse>): CancellableTask {
-        return authService.login(body, callback)
+        return userService.login(body, callback)
     }
 
     override fun refreshToken(body: JWTRefreshTokenBody, callback: Callback<AuthSuccessResponse>): CancellableTask {
-        return authService.refreshToken(body, callback)
+        return userService.refreshToken(body, callback)
     }
 
+    // ------------------------ PROMOTIONS SERVICE -------------------------------
 
-
+    override fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
+        return promotionsService.getBanners(callback)
+    }
 
 
 }

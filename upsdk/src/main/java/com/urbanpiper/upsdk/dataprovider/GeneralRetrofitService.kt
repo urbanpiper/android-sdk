@@ -1,9 +1,11 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.model.FCMRegistrationBody
+import com.urbanpiper.upsdk.model.networkresponse.AllStoresResponse
 import com.urbanpiper.upsdk.model.networkresponse.AppVersionCheckResponse
 import retrofit2.Call
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
+import com.urbanpiper.upsdk.model.networkresponse.StoreLocationResponse
 import retrofit2.http.*
 
 
@@ -11,16 +13,6 @@ import retrofit2.http.*
  * Defines the general interactions to be made with the server
  */
 interface GeneralRetrofitService {
-
-    /**
-     * Get the banners from the server
-     */
-    @GET("/api/v1/galleries/")
-    fun getBanners(
-        @Header("Authorization") authToken: String,
-        @Query("type") type: String = "app_banner"
-    ): Call<BannerResponse>
-
 
     /**
      * Determines the latest version of the android app
@@ -42,5 +34,31 @@ interface GeneralRetrofitService {
         @Body fcmRegistrationBody: FCMRegistrationBody,
         @Header("Authorization") authToken: String
     ): Call<Void>
+
+    /**
+     * Returns the nearest store for the latitude and longitude
+     *
+     * @param authToken - Authorization token, login not needed
+     * @param latitude - User's latitude
+     * @param longitude - User's longitude
+     */
+    @GET("/api/v1/stores/")
+    fun getNearestStore(
+        @Header("Authorization") authToken: String,
+        @Query("lat") latitude: Double,
+        @Query("lng") longitude: Double,
+        @Query("biz_id") bizId: String
+    ): Call<StoreLocationResponse>
+
+
+    /**
+     * Returns a list of all the stores
+     *
+     * @param authToken - Authorization token, login not needed
+     */
+    @GET("/api/v1/stores/")
+    fun getAllStores(
+        @Header("Authorization") authToken: String
+    ): Call<AllStoresResponse>
 }
 
