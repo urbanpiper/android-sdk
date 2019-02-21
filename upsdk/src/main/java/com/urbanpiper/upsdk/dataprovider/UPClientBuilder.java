@@ -67,19 +67,19 @@ public final class UPClientBuilder {
      * @return - The UPClient object
      */
     public UPClient build() {
-        if (TextUtils.isEmpty(bizId)) {
+        if (bizId.length() == 0) {
             throw new IllegalArgumentException("Biz id is a required param ");
         }
 
-        if (TextUtils.isEmpty(apiUserName)) {
+        if (apiUserName.length() == 0) {
             throw new IllegalArgumentException("API Username is a required param ");
         }
 
-        if (TextUtils.isEmpty(apiKey)) {
+        if (apiKey.length() == 0) {
             throw new IllegalArgumentException("API key is a required param ");
         }
 
-        if (TextUtils.isEmpty(language)) {
+        if (language.length() == 0) {
             throw new IllegalArgumentException("Language is a required param ");
         }
 

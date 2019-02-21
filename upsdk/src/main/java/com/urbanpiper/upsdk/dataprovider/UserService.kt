@@ -9,6 +9,6 @@ interface UserService {
 
     fun login(body: JWTAuthLoginBody, callback: Callback<AuthSuccessResponse>): CancellableTask
 
-    fun refreshToken(body: JWTRefreshTokenBody, callback: Callback<AuthSuccessResponse>) : CancellableTask
+    fun refreshToken(body: JWTRefreshTokenBody, callback: Callback<AuthSuccessResponse>): CancellableTask
 
 }
