@@ -4,11 +4,13 @@ import com.urbanpiper.upsdk.BuildConfig
 import com.urbanpiper.upsdk.model.JWTAuthLoginBody
 import com.urbanpiper.upsdk.model.JWTRefreshTokenBody
 import com.urbanpiper.upsdk.model.networkresponse.*
+import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Callback
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 private class UPClientDefault(
@@ -17,6 +19,7 @@ private class UPClientDefault(
     , private val apiKey: String
     , private var language: String
 ) : UPClient {
+
 
     // Member variables
     private val generalService: GeneralServiceDefault
@@ -49,6 +52,7 @@ private class UPClientDefault(
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://api.urbanpiper.com/")
             .client(client)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -148,8 +152,18 @@ private class UPClientDefault(
 
     // ------------------------ PROMOTIONS SERVICE -------------------------------
 
+    /**
+     * Returns Banners from the server using a callback
+     */
     override fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
         return promotionsService.getBanners(callback)
+    }
+
+    /**
+     * Returns banners from the server using an Observable
+     */
+    override fun getBanners(): Observable<BannerResponse> {
+        return promotionsService.getBanners()
     }
 
 //    override fun getBanners(callback: com.urbanpiper.upsdk.dataprovider.Callback<BannerResponse>): CancellableTask {

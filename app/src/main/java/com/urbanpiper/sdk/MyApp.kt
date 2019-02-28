@@ -9,6 +9,7 @@ import com.urbanpiper.upsdk.dataprovider.UPClientBuilder
 import com.urbanpiper.upsdk.model.networkresponse.AppVersionCheckResponse
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
 import retrofit2.Callback
+import io.reactivex.Observable
 
 class MyApp : Application() {
 
@@ -34,6 +35,10 @@ class MyApp : Application() {
 
     fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
         return upClient.getBanners(callback)
+    }
+
+    fun getBanners(): Observable<BannerResponse> {
+        return upClient.getBanners()
     }
 
     fun getVersionCheck(username: String, version: String, callback: Callback<AppVersionCheckResponse>): CancellableTask {

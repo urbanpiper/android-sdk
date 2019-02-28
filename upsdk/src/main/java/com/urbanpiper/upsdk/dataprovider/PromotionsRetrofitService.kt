@@ -1,6 +1,7 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
+import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -17,5 +18,11 @@ interface PromotionsRetrofitService {
         @Query("type") type: String = "app_banner"
     ): Call<BannerResponse>
 
+
+    @GET("/api/v1/galleries/")
+    fun getBannersObservable(
+        @Header("Authorization") authToken: String,
+        @Query("type") type: String = "app_banner"
+    ): Observable<BannerResponse>
 
 }
