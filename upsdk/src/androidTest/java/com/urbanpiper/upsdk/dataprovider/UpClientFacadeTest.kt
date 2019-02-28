@@ -1,7 +1,5 @@
-package com.urbanpiper.upsdk
+package com.urbanpiper.upsdk.dataprovider
 
-import com.urbanpiper.upsdk.dataprovider.UPClient
-import com.urbanpiper.upsdk.dataprovider.UPClientBuilder
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Before
 import org.junit.Test
@@ -30,8 +28,14 @@ class UpClientFacadeTest {
         assertNotNull(upClient.getAPIKey())
         assertNotNull(upClient.getBizLanguage())
 
+        assertNotNull(upClient.changeLanguage("en"))
 
     }
 
+    @Test
+    fun changeLanguageFromEn_toHi() {
+        upClient.changeLanguage("hi")
+        assertEquals("hi", upClient.getBizLanguage())
+    }
 
 }

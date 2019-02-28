@@ -37,22 +37,15 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(baseContext, "Response is not successful", Toast.LENGTH_LONG).show()
                 }
-
             }
 
             override fun onFailure(call: Call<BannerResponse>, t: Throwable) {
                 if(call.isCanceled){
                     Log.e("Cancelled", "Retrofit call failed", t)
                 }
-
                 Log.e("failure", "Retrofit call failed", t)
             }
         })
-
-
-
-
-
     }
 
 

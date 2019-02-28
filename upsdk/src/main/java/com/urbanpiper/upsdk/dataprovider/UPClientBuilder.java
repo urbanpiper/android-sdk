@@ -3,12 +3,10 @@ package com.urbanpiper.upsdk.dataprovider;
 import android.text.TextUtils;
 
 /**
+ * Written in java for now
  *
- *  Written in java for now
- *
- *  It would be easier to create the UPClient object if the builder was written in java
- *  for third party dev's who might use java to build the android application
- *
+ * It would be easier to create the UPClient object if the builder was written in java
+ * for third party dev's who might use java to build the android application
  */
 public final class UPClientBuilder {
 
@@ -67,20 +65,20 @@ public final class UPClientBuilder {
      * @return - The UPClient object
      */
     public UPClient build() {
-        if (bizId.length() == 0) {
-            throw new IllegalArgumentException("Biz id is a required param ");
+        if (TextUtils.isEmpty(bizId)) {
+            throw new IllegalArgumentException("Biz id is a required parameter ");
         }
 
-        if (apiUserName.length() == 0) {
-            throw new IllegalArgumentException("API Username is a required param ");
+        if (TextUtils.isEmpty(apiUserName)) {
+            throw new IllegalArgumentException("API Username is a required parameter ");
         }
 
-        if (apiKey.length() == 0) {
-            throw new IllegalArgumentException("API key is a required param ");
+        if (TextUtils.isEmpty(apiKey)) {
+            throw new IllegalArgumentException("API key is a required parameter ");
         }
 
-        if (language.length() == 0) {
-            throw new IllegalArgumentException("Language is a required param ");
+        if (TextUtils.isEmpty(language)) {
+            throw new IllegalArgumentException("Language is a required parameter ");
         }
 
         return new UPClientDefault(bizId

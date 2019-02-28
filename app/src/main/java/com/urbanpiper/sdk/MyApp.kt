@@ -17,7 +17,7 @@ class MyApp : Application() {
             .setBizId("76720224")
             .setApiUserName("biz_adm_clients_yjXwAgQzHqYM")
             .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe232d8fa8")
-//            .setLanguage("en")
+            .setLanguage("en")
             .build()
     }
 
@@ -32,14 +32,12 @@ class MyApp : Application() {
         Log.d("Application created ", " Lang ${upClient.getBizLanguage()}")
     }
 
-    fun getBanners(callback: Callback<BannerResponse>) {
-        val task: CancellableTask = MyApp.Singleton.upClient.getBanners(callback)
-        task.cancel()
+    fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
+        return upClient.getBanners(callback)
     }
 
-    fun getVersionCheck(username: String, version: String, callback: Callback<AppVersionCheckResponse>) {
-        MyApp.Singleton.upClient.appVersionCheck(username, version, callback)
+    fun getVersionCheck(username: String, version: String, callback: Callback<AppVersionCheckResponse>): CancellableTask {
+        return upClient.appVersionCheck(username, version, callback)
     }
-
 
 }

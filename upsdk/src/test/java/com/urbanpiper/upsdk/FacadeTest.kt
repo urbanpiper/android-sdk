@@ -34,14 +34,16 @@ class FacadeTest {
         assertNotNull(upClient.getAPIKey())
         assertNotNull(upClient.getBizLanguage())
 
-//        upClient.getBanners(object : Callback<BannerResponse> {
-//            override fun onResponse(call: Call<BannerResponse>, response: Response<BannerResponse>) {
-//                assertEquals(true, response.isSuccessful)
-//            }
-//
-//            override fun onFailure(call: Call<BannerResponse>, t: Throwable) {
-//            }
-//        })
+        assertNotNull(upClient.changeLanguage("en"))
+
+        upClient.getBanners(object : Callback<BannerResponse> {
+            override fun onResponse(call: Call<BannerResponse>, response: Response<BannerResponse>) {
+                assertEquals(true, response.isSuccessful)
+            }
+
+            override fun onFailure(call: Call<BannerResponse>, t: Throwable) {
+            }
+        })
 
 
     }

@@ -152,5 +152,8 @@ private class UPClientDefault(
         return promotionsService.getBanners(callback)
     }
 
+//    override fun getBanners(callback: com.urbanpiper.upsdk.dataprovider.Callback<BannerResponse>): CancellableTask {
+//        return promotionsService.getBanners(callback)
+//    }
 
 }

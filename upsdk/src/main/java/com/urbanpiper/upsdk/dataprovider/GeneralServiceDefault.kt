@@ -15,7 +15,6 @@ class GeneralServiceDefault(private val authToken: String, private val bizId: St
     private val generalRetrofitService: GeneralRetrofitService =
         retrofit.create(GeneralRetrofitService::class.java)
 
-
     override fun appVersionCheck(username: String, version: String, callback: Callback<AppVersionCheckResponse>): CancellableTask {
         val appVersionCheck = generalRetrofitService.appVersionCheck(authToken, bizId, username, version)
         appVersionCheck.clone().enqueue(callback)
