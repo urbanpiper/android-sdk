@@ -3,15 +3,28 @@ package com.urbanpiper.upsdk.model.networkresponse
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
-data class OrderItemsSearchResponse(
+data class CategoryItemResponse(
     @SerializedName("combos")
     val combos: List<Any>,
-    @SerializedName("items")
-    val items: List<Item>,
     @SerializedName("meta")
-    val meta: Meta
+    val meta: Meta,
+    @SerializedName("objects")
+    val objects: List<Object>
 ) {
-    data class Item(
+    data class Meta(
+        @SerializedName("limit")
+        val limit: Int,
+        @SerializedName("next")
+        val next: Any,
+        @SerializedName("offset")
+        val offset: Int,
+        @SerializedName("previous")
+        val previous: Any,
+        @SerializedName("total_count")
+        val totalCount: Int
+    )
+
+    data class Object(
         @SerializedName("category")
         val category: Category,
         @SerializedName("current_stock")
@@ -28,8 +41,6 @@ data class OrderItemsSearchResponse(
         val imageLandscapeUrl: String,
         @SerializedName("image_url")
         val imageUrl: String,
-        @SerializedName("item_category")
-        val itemCategory: ItemCategory,
         @SerializedName("item_desc")
         val itemDesc: String,
         @SerializedName("item_price")
@@ -38,14 +49,14 @@ data class OrderItemsSearchResponse(
         val itemTitle: String,
         @SerializedName("likes")
         val likes: Int,
-        @SerializedName("merchant_ref_id")
-        val merchantRefId: String,
         @SerializedName("option_groups")
         val optionGroups: List<Any>,
         @SerializedName("price_descriptor")
         val priceDescriptor: Any,
         @SerializedName("service_tax_rate")
         val serviceTaxRate: Int,
+        @SerializedName("slug")
+        val slug: String,
         @SerializedName("sort_order")
         val sortOrder: Int,
         @SerializedName("tags")
@@ -57,29 +68,11 @@ data class OrderItemsSearchResponse(
             @SerializedName("id")
             val id: Int,
             @SerializedName("name")
-            val name: String
-        )
-
-        data class ItemCategory(
-            @SerializedName("id")
-            val id: Int,
-            @SerializedName("name")
-            val name: String
+            val name: String,
+            @SerializedName("sort_order")
+            val sortOrder: Int
         )
     }
-
-    data class Meta(
-        @SerializedName("limit")
-        val limit: Int,
-        @SerializedName("next")
-        val next: Any,
-        @SerializedName("offset")
-        val offset: Int,
-        @SerializedName("previous")
-        val previous: Any,
-        @SerializedName("total_count")
-        val totalCount: Int
-    )
 
     fun toJson(): String {
         return Gson().toJson(this)

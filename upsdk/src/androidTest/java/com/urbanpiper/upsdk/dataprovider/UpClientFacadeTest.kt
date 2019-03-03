@@ -9,7 +9,7 @@ import org.junit.Assert.*
 @RunWith(AndroidJUnit4::class)
 class UpClientFacadeTest {
 
-    private lateinit var upClient: UPClient
+    lateinit var upClient: UPClient
 
     @Before
     fun setUp() {
@@ -29,6 +29,9 @@ class UpClientFacadeTest {
         assertNotNull(upClient.getBizLanguage())
 
         assertNotNull(upClient.changeLanguage("en"))
+
+        assertNotNull(upClient.getBanners())
+
 
     }
 

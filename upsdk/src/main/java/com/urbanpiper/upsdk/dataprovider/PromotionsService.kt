@@ -1,25 +1,40 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
+import com.urbanpiper.upsdk.model.networkresponse.OffersResponse
+import com.urbanpiper.upsdk.model.networkresponse.RewardsResponse
 import io.reactivex.Observable
 import retrofit2.Callback
 
 interface PromotionsService {
 
+    /**
+     * Retrieves a list of banners
+     *
+     * @return - Observable - The api response is returned as an RxJava Observable
+     */
+    fun getBanners(): Observable<BannerResponse>
+
 
     /**
-     * Get banners from the server
+     * Retrieves a list of banners
      *
-     * @return - CancellableTask - The api request can be cancelled using this task
+     * @return - CancellableTask - The response can be cancelled
      */
     fun getBanners(callback: Callback<BannerResponse>): CancellableTask
 
 
     /**
-     * Get banners from the server
+     * Retrieves a list of offers
      *
-     * @return - Observable - The api response is returned as an RxJava Observable
      */
-    fun getBanners(): Observable<BannerResponse>
+    fun getOffers(callback: Callback<OffersResponse>): CancellableTask
+
+
+    /**
+     * Retrieves a list of rewards
+     *
+     */
+    fun getRewards(callback: Callback<RewardsResponse>): CancellableTask
 
 }

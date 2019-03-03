@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -52,14 +53,31 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        })
 
+//        compositeDisposable.add(
+//            MyApp().getBanners()
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe { result ->
+//                    if (result != null) {
+//                        val banners: BannerResponse = result
+//
+//                        if (!banners.images.isNullOrEmpty()) {
+//                            for (i in 0 until banners.images.size) {
+//                                Log.d("Success ", "Banner Name ${banners.images[0].image}")
+//                                text.text = "Banner Name ${banners.images[0].image}"
+//                            }
+//                        }
+//                    }
+//                })
+
+
         compositeDisposable.add(
             MyApp().getBanners()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe { result ->
+                .subscribe({ result ->
                     if (result != null) {
                         val banners: BannerResponse = result
-
 
                         if (!banners.images.isNullOrEmpty()) {
                             for (i in 0 until banners.images.size) {
@@ -67,10 +85,10 @@ class MainActivity : AppCompatActivity() {
                                 text.text = "Banner Name ${banners.images[0].image}"
                             }
                         }
-
                     }
-
-                }
+                }, { error ->
+                    Log.e("Main Activity" , "api error response " , error)
+                })
         )
 
 

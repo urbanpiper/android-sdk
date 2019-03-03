@@ -8,12 +8,12 @@ interface CatalogueService {
     /**
      * Get all the categories
      */
-    fun getCategories(locationId: Int, callback: Callback<OrderCategoriesResponse>): CancellableTask
+    fun getCategories(locationId: Int, callback: Callback<CategoriesResponse>): CancellableTask
 
     /**
      * Get items for a particular category
      */
-    fun getItems(categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CartItemResponse>): CancellableTask
+    fun getCategoryItems(categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask
 
     /**
      * Get filter and sort options for a particular category
@@ -23,30 +23,30 @@ interface CatalogueService {
     /**
      * Get filtered items for a particular category
      */
-    fun getFilteredItems(categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int, callback: Callback<CartItemResponse>): CancellableTask
+    fun getFilteredItems(categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask
 
     /**
      * Get sorted items for a particular category
      */
-    fun getSortByItems(categoryId: Int, locationId: String, sortBy: String ,offset: Int, limit: Int, callback: Callback<CartItemResponse>): CancellableTask
+    fun getSortByItems(categoryId: Int, locationId: String, sortBy: String ,offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask
 
     /**
-     * Get featured items
+     * Get recommended items
      */
-    fun getFeaturedItems(locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask
+    fun getRecommendedItems(locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask
 
     /**
-     * Get Recommended items
+     * Get Related items
      */
-    fun getRecommendedItems(itemId: String, locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask
+    fun getRelatedItems(itemId: String, locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask
 
     /**
      * Get Item Details
      */
-    fun getItemDetails(itemId: Int, locationId: Int, cacheBuster: Long, callback: Callback<OrderItemResponse>): CancellableTask
+    fun getItemDetails(itemId: Int, locationId: Int, callback: Callback<ItemDetailsResponse>): CancellableTask
 
     /**
      * Search for items
      */
-    fun searchItems(keyword: String, locationId: Int, callback: Callback<OrderItemsSearchResponse>): CancellableTask
+    fun searchItems(query: String, locationId: Int, callback: Callback<CategorySearchResponse>): CancellableTask
 }

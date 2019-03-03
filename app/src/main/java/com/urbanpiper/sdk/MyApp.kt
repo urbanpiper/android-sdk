@@ -6,7 +6,7 @@ import com.urbanpiper.sdk.MyApp.Singleton.upClient
 import com.urbanpiper.upsdk.dataprovider.CancellableTask
 import com.urbanpiper.upsdk.dataprovider.UPClient
 import com.urbanpiper.upsdk.dataprovider.UPClientBuilder
-import com.urbanpiper.upsdk.model.networkresponse.AppVersionCheckResponse
+import com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
 import retrofit2.Callback
 import io.reactivex.Observable
@@ -26,23 +26,19 @@ class MyApp : Application() {
         super.onCreate()
         Log.d("Application created ", " UP client init")
 
-        Log.d("Application created ", " Lang ${upClient.getBizLanguage()}")
-
         upClient.changeLanguage("hi")
-
-        Log.d("Application created ", " Lang ${upClient.getBizLanguage()}")
     }
 
-    fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
-        return upClient.getBanners(callback)
-    }
+//    fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
+//        return upClient.getBanners(callback)
+//    }
 
     fun getBanners(): Observable<BannerResponse> {
         return upClient.getBanners()
     }
 
-    fun getVersionCheck(username: String, version: String, callback: Callback<AppVersionCheckResponse>): CancellableTask {
-        return upClient.appVersionCheck(username, version, callback)
+    fun getVersionCheck(username: String, version: String, callback: Callback<VersionCheckResponse>): CancellableTask {
+        return upClient.checkAppVersion(username, version, callback)
     }
 
 }

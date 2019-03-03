@@ -10,14 +10,14 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
     private val orderingRetrofitService: CatalogueRetrofitService =
         retrofit.create(CatalogueRetrofitService::class.java)
 
-    override fun getCategories(locationId: Int, callback: Callback<OrderCategoriesResponse>): CancellableTask {
+    override fun getCategories(locationId: Int, callback: Callback<CategoriesResponse>): CancellableTask {
         val getCategoriesCall = orderingRetrofitService.getCategories(authToken, "no-cache", bizId, locationId)
         getCategoriesCall.clone().enqueue(callback)
         return CancellableTaskWrapper(getCategoriesCall)
     }
 
-    override fun getItems(
-        categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CartItemResponse>
+    override fun getCategoryItems(
+        categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>
     ): CancellableTask {
         val getItemsCall = orderingRetrofitService.getItems(authToken, categoryId, locationId, bizId, offset, limit)
         getItemsCall.clone().enqueue(callback)
@@ -34,7 +34,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
 
     override fun getFilteredItems(
         categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int
-        , callback: Callback<CartItemResponse>
+        , callback: Callback<CategoryItemResponse>
     ): CancellableTask {
         val getFilteredItemsCall =
             orderingRetrofitService.getFilteredItems(authToken, categoryId, locationId, filterBy, bizId, offset, limit)
@@ -44,7 +44,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
 
     override fun getSortByItems(
         categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int
-        , callback: Callback<CartItemResponse>
+        , callback: Callback<CategoryItemResponse>
     ): CancellableTask {
         val getFilteredItemsCall =
             orderingRetrofitService.getSortedItems(authToken, categoryId, locationId, sortBy, bizId, offset, limit)
@@ -52,13 +52,13 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
         return CancellableTaskWrapper(getFilteredItemsCall)
     }
 
-    override fun getFeaturedItems(locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
+    override fun getRecommendedItems(locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
         val featuredItems = orderingRetrofitService.getFeaturedItems(authToken, locationId)
         featuredItems.clone().enqueue(callback)
         return CancellableTaskWrapper(featuredItems)
     }
 
-    override fun getRecommendedItems(
+    override fun getRelatedItems(
         itemId: String, locationId: Int, callback: Callback<RecommendedItemResponse>
     ): CancellableTask {
         val recommendedItems = orderingRetrofitService.getRecommendedItems(authToken, itemId, locationId)
@@ -67,17 +67,17 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
     }
 
     override fun getItemDetails(
-        itemId: Int, locationId: Int, cacheBuster: Long, callback: Callback<OrderItemResponse>
+        itemId: Int, locationId: Int, callback: Callback<ItemDetailsResponse>
     ): CancellableTask {
-        val itemDetailsCall = orderingRetrofitService.getItemDetails(authToken, itemId, locationId, cacheBuster)
+        val itemDetailsCall = orderingRetrofitService.getItemDetails(authToken, itemId, locationId)
         itemDetailsCall.clone().enqueue(callback)
         return CancellableTaskWrapper(itemDetailsCall)
     }
 
     override fun searchItems(
-        keyword: String, locationId: Int, callback: Callback<OrderItemsSearchResponse>
+        query: String, locationId: Int, callback: Callback<CategorySearchResponse>
     ): CancellableTask {
-        val searchItems = orderingRetrofitService.searchItems(authToken, keyword, locationId)
+        val searchItems = orderingRetrofitService.searchItems(authToken, query, locationId)
         searchItems.clone().enqueue(callback)
         return CancellableTaskWrapper(searchItems)
     }

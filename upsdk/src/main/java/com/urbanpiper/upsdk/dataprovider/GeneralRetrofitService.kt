@@ -1,11 +1,10 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.model.FCMRegistrationBody
-import com.urbanpiper.upsdk.model.networkresponse.AllStoresResponse
-import com.urbanpiper.upsdk.model.networkresponse.AppVersionCheckResponse
+import com.urbanpiper.upsdk.model.networkresponse.StoreListResponse
+import com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse
 import retrofit2.Call
-import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
-import com.urbanpiper.upsdk.model.networkresponse.StoreLocationResponse
+import com.urbanpiper.upsdk.model.networkresponse.StoreReponse
 import retrofit2.http.*
 
 
@@ -24,7 +23,7 @@ interface GeneralRetrofitService {
         @Query("biz_id") bizId: String,
         @Query("user") username: String,
         @Query("ver") version: String
-    ): Call<AppVersionCheckResponse>
+    ): Call<VersionCheckResponse>
 
     /**
      * Registers device for fcm
@@ -48,7 +47,7 @@ interface GeneralRetrofitService {
         @Query("lat") latitude: Double,
         @Query("lng") longitude: Double,
         @Query("biz_id") bizId: String
-    ): Call<StoreLocationResponse>
+    ): Call<StoreReponse>
 
 
     /**
@@ -59,6 +58,6 @@ interface GeneralRetrofitService {
     @GET("/api/v1/stores/")
     fun getAllStores(
         @Header("Authorization") authToken: String
-    ): Call<AllStoresResponse>
+    ): Call<StoreListResponse>
 }
 

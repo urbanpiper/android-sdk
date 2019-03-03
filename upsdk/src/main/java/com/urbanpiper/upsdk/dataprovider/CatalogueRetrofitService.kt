@@ -21,7 +21,7 @@ interface CatalogueRetrofitService {
         , @Header("cache-control") cacheControl: String = "no-cache"
         , @Query("biz_id") bizId: String
         , @Query("location_id") locationId: Int
-    ): Call<OrderCategoriesResponse>
+    ): Call<CategoriesResponse>
 
     /**
      * Retrieves the list of items available under a particular category.
@@ -40,7 +40,7 @@ interface CatalogueRetrofitService {
         , @Query("biz_id") bizId: String
         , @Query("offset") offset: Int
         , @Query("limit") limit: Int
-    ): Call<CartItemResponse>
+    ): Call<CategoryItemResponse>
 
     /**
      * Get the filter and sort options for a particular category
@@ -74,7 +74,7 @@ interface CatalogueRetrofitService {
         , @Query("biz_id") bizId: String
         , @Query("offset") offset: Int
         , @Query("limit") limit: Int
-    ): Call<CartItemResponse>
+    ): Call<CategoryItemResponse>
 
     /**
      * Retrieves a list of items sorted by the sort option selected
@@ -96,7 +96,7 @@ interface CatalogueRetrofitService {
         , @Query("biz_id") bizId: String
         , @Query("offset") offset: Int
         , @Query("limit") limit: Int
-    ): Call<CartItemResponse>
+    ): Call<CategoryItemResponse>
 
     /**
      * Get the featured items from the server
@@ -136,8 +136,7 @@ interface CatalogueRetrofitService {
         @Header("Authorization") authToken: String
         , @Path("item_id") itemId: Int
         , @Query("location_id") locationId: Int
-        , @Query("cb") cacheBuster: Long
-    ): Call<OrderItemResponse>
+    ): Call<ItemDetailsResponse>
 
     /**
      * Retrieves order items based on search items
@@ -151,5 +150,5 @@ interface CatalogueRetrofitService {
         @Header("Authorization") authToken: String,
         @Query("keyword") query: String,
         @Query("location_id") location: Int
-    ): Call<OrderItemsSearchResponse>
+    ): Call<CategorySearchResponse>
 }

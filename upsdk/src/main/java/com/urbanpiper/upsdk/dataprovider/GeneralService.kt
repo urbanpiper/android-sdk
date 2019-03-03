@@ -1,9 +1,8 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import com.urbanpiper.upsdk.model.networkresponse.AllStoresResponse
-import com.urbanpiper.upsdk.model.networkresponse.AppVersionCheckResponse
-import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
-import com.urbanpiper.upsdk.model.networkresponse.StoreLocationResponse
+import com.urbanpiper.upsdk.model.networkresponse.StoreListResponse
+import com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse
+import com.urbanpiper.upsdk.model.networkresponse.StoreReponse
 import retrofit2.Callback
 
 interface GeneralService {
@@ -12,14 +11,22 @@ interface GeneralService {
     /**
      * App version check
      */
-    fun appVersionCheck(username: String, version: String, callback: Callback<AppVersionCheckResponse>): CancellableTask
+    fun checkAppVersion(username: String, version: String, callback: Callback<VersionCheckResponse>): CancellableTask
 
     /**
      * Register the device for FCM
+     *
+     * This should return a generic response in the callback
      */
-    fun registerDeviceForFCM(fcmRegistrationToken: String, deviceId: String, callback: Callback<Void>): CancellableTask
+    fun registerFCMToken(token: String, deviceId: String, callback: Callback<Void>): CancellableTask
 
-    fun getNearestStore(latitude: Double, longitude: Double, callback: Callback<StoreLocationResponse>): CancellableTask
+    /**
+     * Returns the nearest store based on lat/ lng
+     */
+    fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreReponse>): CancellableTask
 
-    fun getAllStores(callback: Callback<AllStoresResponse>): CancellableTask
+    /**
+     * Returns all the stores for the biz
+     */
+    fun getAllStores(callback: Callback<StoreListResponse>): CancellableTask
 }
