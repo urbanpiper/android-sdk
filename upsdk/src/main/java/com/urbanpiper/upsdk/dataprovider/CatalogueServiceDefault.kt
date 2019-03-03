@@ -33,8 +33,8 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
     }
 
     override fun getFilteredItems(
-        categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int
-        , callback: Callback<CategoryItemResponse>
+        categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int,
+        callback: Callback<CategoryItemResponse>
     ): CancellableTask {
         val getFilteredItemsCall =
             orderingRetrofitService.getFilteredItems(authToken, categoryId, locationId, filterBy, bizId, offset, limit)
@@ -42,9 +42,9 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
         return CancellableTaskWrapper(getFilteredItemsCall)
     }
 
-    override fun getSortByItems(
-        categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int
-        , callback: Callback<CategoryItemResponse>
+    override fun getSortedItems(
+        categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int,
+        callback: Callback<CategoryItemResponse>
     ): CancellableTask {
         val getFilteredItemsCall =
             orderingRetrofitService.getSortedItems(authToken, categoryId, locationId, sortBy, bizId, offset, limit)

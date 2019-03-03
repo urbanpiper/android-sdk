@@ -28,7 +28,7 @@ interface CatalogueService {
     /**
      * Get sorted items for a particular category
      */
-    fun getSortByItems(categoryId: Int, locationId: String, sortBy: String ,offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask
+    fun getSortedItems(categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask
 
     /**
      * Get recommended items

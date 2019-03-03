@@ -119,8 +119,8 @@ private class UPClientDefault(
         return catalogueService.getFilteredItems(categoryId, locationId, filterBy, offset, limit, callback)
     }
 
-    override fun getSortByItems(categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask {
-        return catalogueService.getSortByItems(categoryId, locationId, sortBy, offset, limit, callback)
+    override fun getSortedItems(categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask {
+        return catalogueService.getSortedItems(categoryId, locationId, sortBy, offset, limit, callback)
     }
 
     override fun getRecommendedItems(locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
