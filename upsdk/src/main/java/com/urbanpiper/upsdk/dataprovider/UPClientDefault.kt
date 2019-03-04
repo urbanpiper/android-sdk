@@ -8,7 +8,6 @@ import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -88,7 +87,7 @@ private class UPClientDefault(
     /**
      * App version check
      */
-    override fun checkAppVersion(username: String, version: String, callback: com.urbanpiper.upsdk.dataprovider.Callback<VersionCheckResponse>): CancellableTask {
+    override fun checkAppVersion(username: String, version: String, callback: Callback<VersionCheckResponse>): CancellableTask {
         return generalService.checkAppVersion(username, version, callback)
     }
 
@@ -104,7 +103,7 @@ private class UPClientDefault(
      *
      * This should return a generic response in the callback
      */
-    override fun registerFCMToken(token: String, deviceId: String, callback: com.urbanpiper.upsdk.dataprovider.Callback<Void>): CancellableTask {
+    override fun registerFCMToken(token: String, deviceId: String, callback: Callback<Void>): CancellableTask {
         return generalService.registerFCMToken(token, deviceId, callback)
     }
 
@@ -120,7 +119,7 @@ private class UPClientDefault(
     /**
      * Returns the nearest store based on lat/ lng
      */
-    override fun getNearestStore(lat: Double, lng: Double, callback: com.urbanpiper.upsdk.dataprovider.Callback<StoreReponse>): CancellableTask {
+    override fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreReponse>): CancellableTask {
         return generalService.getNearestStore(lat, lng, callback)
     }
 
@@ -134,7 +133,7 @@ private class UPClientDefault(
     /**
      * Returns all the stores for the biz
      */
-    override fun getAllStores(callback: com.urbanpiper.upsdk.dataprovider.Callback<StoreListResponse>): CancellableTask {
+    override fun getAllStores(callback: Callback<StoreListResponse>): CancellableTask {
         return generalService.getAllStores(callback)
     }
 
@@ -147,40 +146,130 @@ private class UPClientDefault(
 
     // --------------------------- CATALOGUE SERVICE -------------------------------
 
+    /**
+     * Get all the categories
+     */
     override fun getCategories(locationId: Int, callback: Callback<CategoriesResponse>): CancellableTask {
-        return catalogueService.getCategories(locationId, callback)
+        return catalogueService.getCategories(locationId,callback)
     }
 
+    /**
+     * Get all the categories
+     */
+    override fun getCategories(locationId: Int): Observable<CategoriesResponse> {
+        return catalogueService.getCategories(locationId)
+    }
+
+    /**
+     * Get items for a particular category
+     */
     override fun getCategoryItems(categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask {
         return catalogueService.getCategoryItems(categoryId, locationId, offset, limit, callback)
     }
 
+    /**
+     * Get items for a particular category
+     */
+    override fun getCategoryItems(categoryId: Int, locationId: String, offset: Int, limit: Int): Observable<CategoryItemResponse> {
+        return catalogueService.getCategoryItems(categoryId, locationId, offset, limit)
+    }
+
+    /**
+     * Get filter and sort options for a particular category
+     */
     override fun getFilterAndSortOptions(categoryId: Int, callback: Callback<FilterAndSortOptionsResponse>): CancellableTask {
         return catalogueService.getFilterAndSortOptions(categoryId, callback)
     }
 
+    /**
+     * Get filter and sort options for a particular category
+     */
+    override fun getFilterAndSortOptions(categoryId: Int): Observable<FilterAndSortOptionsResponse> {
+        return catalogueService.getFilterAndSortOptions(categoryId)
+    }
+
+    /**
+     * Get filtered items for a particular category
+     */
     override fun getFilteredItems(categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask {
         return catalogueService.getFilteredItems(categoryId, locationId, filterBy, offset, limit, callback)
     }
 
+    /**
+     * Get filtered items for a particular category
+     */
+    override fun getFilteredItems(categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int): Observable<CategoryItemResponse> {
+        return catalogueService.getFilteredItems(categoryId, locationId, filterBy, offset, limit)
+    }
+
+    /**
+     * Get sorted items for a particular category
+     */
     override fun getSortedItems(categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask {
         return catalogueService.getSortedItems(categoryId, locationId, sortBy, offset, limit, callback)
     }
 
+    /**
+     * Get sorted items for a particular category
+     */
+    override fun getSortedItems(categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int): Observable<CategoryItemResponse> {
+        return catalogueService.getSortedItems(categoryId, locationId, sortBy, offset, limit)
+    }
+
+    /**
+     * Get recommended items
+     */
     override fun getRecommendedItems(locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
         return catalogueService.getRecommendedItems(locationId, callback)
     }
 
+    /**
+     * Get recommended items
+     */
+    override fun getRecommendedItems(locationId: Int): Observable<RecommendedItemResponse> {
+        return catalogueService.getRecommendedItems(locationId)
+    }
+
+    /**
+     * Get Related items
+     */
     override fun getRelatedItems(itemId: String, locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
         return catalogueService.getRelatedItems(itemId, locationId, callback)
     }
 
+    /**
+     * Get Related items
+     */
+    override fun getRelatedItems(itemId: String, locationId: Int): Observable<RecommendedItemResponse> {
+        return catalogueService.getRelatedItems(itemId, locationId)
+    }
+
+    /**
+     * Get Item Details
+     */
     override fun getItemDetails(itemId: Int, locationId: Int, callback: Callback<ItemDetailsResponse>): CancellableTask {
         return catalogueService.getItemDetails(itemId, locationId, callback)
     }
 
+    /**
+     * Get Item Details
+     */
+    override fun getItemDetails(itemId: Int, locationId: Int): Observable<ItemDetailsResponse> {
+        return catalogueService.getItemDetails(itemId, locationId)
+    }
+
+    /**
+     * Search for items
+     */
     override fun searchItems(query: String, locationId: Int, callback: Callback<CategorySearchResponse>): CancellableTask {
         return catalogueService.searchItems(query, locationId, callback)
+    }
+
+    /**
+     * Search for items
+     */
+    override fun searchItems(query: String, locationId: Int): Observable<CategorySearchResponse> {
+        return catalogueService.searchItems(query, locationId)
     }
 
     // ------------------------------- USER SERVICE --------------------------------
@@ -189,8 +278,16 @@ private class UPClientDefault(
         return userService.login(body, callback)
     }
 
+    override fun login(body: JWTAuthLoginBody): Observable<AuthSuccessResponse> {
+        return userService.login(body)
+    }
+
     override fun refreshToken(body: JWTRefreshTokenBody, callback: Callback<AuthSuccessResponse>): CancellableTask {
         return userService.refreshToken(body, callback)
+    }
+
+    override fun refreshToken(body: JWTRefreshTokenBody): Observable<AuthSuccessResponse> {
+        return userService.refreshToken(body)
     }
 
     // ------------------------ PROMOTIONS SERVICE -------------------------------
@@ -198,7 +295,7 @@ private class UPClientDefault(
     /**
      *
      */
-    override fun getBanners(callback: com.urbanpiper.upsdk.dataprovider.Callback<BannerResponse>): CancellableTask {
+    override fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
         return promotionsService.getBanners(callback)
     }
 
@@ -212,7 +309,7 @@ private class UPClientDefault(
     /**
      *
      */
-    override fun getOffers(callback: com.urbanpiper.upsdk.dataprovider.Callback<OffersResponse>): CancellableTask {
+    override fun getOffers(callback: Callback<OffersResponse>): CancellableTask {
         return promotionsService.getOffers(callback)
     }
 
@@ -226,7 +323,7 @@ private class UPClientDefault(
     /**
      *
      */
-    override fun getRewards(callback: com.urbanpiper.upsdk.dataprovider.Callback<RewardsResponse>): CancellableTask {
+    override fun getRewards(callback: Callback<RewardsResponse>): CancellableTask {
         return promotionsService.getRewards(callback)
     }
 

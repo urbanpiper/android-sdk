@@ -1,8 +1,8 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import retrofit2.Call
 import retrofit2.http.*
 import com.urbanpiper.upsdk.model.networkresponse.*
+import io.reactivex.Observable
 
 interface CatalogueRetrofitService {
 
@@ -21,7 +21,7 @@ interface CatalogueRetrofitService {
         , @Header("cache-control") cacheControl: String = "no-cache"
         , @Query("biz_id") bizId: String
         , @Query("location_id") locationId: Int
-    ): Call<CategoriesResponse>
+    ): Observable<CategoriesResponse>
 
     /**
      * Retrieves the list of items available under a particular category.
@@ -33,14 +33,14 @@ interface CatalogueRetrofitService {
      * @param limit - limit
      */
     @GET("/api/v1/order/categories/{category_id}/items/")
-    fun getItems(
+    fun getCategoryItems(
         @Header("Authorization") authToken: String
         , @Path("category_id") categoryId: Int
         , @Query("location_id") locationId: String
         , @Query("biz_id") bizId: String
         , @Query("offset") offset: Int
         , @Query("limit") limit: Int
-    ): Call<CategoryItemResponse>
+    ): Observable<CategoryItemResponse>
 
     /**
      * Get the filter and sort options for a particular category
@@ -52,7 +52,7 @@ interface CatalogueRetrofitService {
     fun getFilterSortOptions(
         @Header("Authorization") authToken: String
         , @Path("category_id") categoryId: Int
-    ): Call<FilterAndSortOptionsResponse>
+    ): Observable<FilterAndSortOptionsResponse>
 
     /**
      * Retrieves the list of items available under a particular category with filters applied.
@@ -74,7 +74,7 @@ interface CatalogueRetrofitService {
         , @Query("biz_id") bizId: String
         , @Query("offset") offset: Int
         , @Query("limit") limit: Int
-    ): Call<CategoryItemResponse>
+    ): Observable<CategoryItemResponse>
 
     /**
      * Retrieves a list of items sorted by the sort option selected
@@ -96,7 +96,7 @@ interface CatalogueRetrofitService {
         , @Query("biz_id") bizId: String
         , @Query("offset") offset: Int
         , @Query("limit") limit: Int
-    ): Call<CategoryItemResponse>
+    ): Observable<CategoryItemResponse>
 
     /**
      * Get the featured items from the server
@@ -105,10 +105,10 @@ interface CatalogueRetrofitService {
      * @param authToken  - Auth token
      */
     @GET("/api/v2/items/0/recommendations/")
-    fun getFeaturedItems(
+    fun getRecommendedItems(
         @Header("Authorization") authToken: String
         , @Query("location_id") locationId: Int
-    ): Call<RecommendedItemResponse>
+    ): Observable<RecommendedItemResponse>
 
     /**
      * Get the recommended items from the server. The items returned are based on a particular item
@@ -119,11 +119,11 @@ interface CatalogueRetrofitService {
      * @param authToken  - Auth token
      */
     @GET("/api/v2/items/{item_id}/recommendations/")
-    fun getRecommendedItems(
+    fun getRelatedItems(
         @Header("Authorization") authToken: String
         , @Path("item_id") itemId: String
         , @Query("location_id") locationId: Int
-    ): Call<RecommendedItemResponse>
+    ): Observable<RecommendedItemResponse>
 
     /**
      * Retrieves the item details for item.
@@ -136,7 +136,7 @@ interface CatalogueRetrofitService {
         @Header("Authorization") authToken: String
         , @Path("item_id") itemId: Int
         , @Query("location_id") locationId: Int
-    ): Call<ItemDetailsResponse>
+    ): Observable<ItemDetailsResponse>
 
     /**
      * Retrieves order items based on search items
@@ -150,5 +150,5 @@ interface CatalogueRetrofitService {
         @Header("Authorization") authToken: String,
         @Query("keyword") query: String,
         @Query("location_id") location: Int
-    ): Call<CategorySearchResponse>
+    ): Observable<CategorySearchResponse>
 }
