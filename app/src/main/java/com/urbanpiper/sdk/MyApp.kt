@@ -3,12 +3,11 @@ package com.urbanpiper.sdk
 import android.app.Application
 import android.util.Log
 import com.urbanpiper.sdk.MyApp.Singleton.upClient
+import com.urbanpiper.upsdk.dataprovider.Callback
 import com.urbanpiper.upsdk.dataprovider.CancellableTask
 import com.urbanpiper.upsdk.dataprovider.UPClient
 import com.urbanpiper.upsdk.dataprovider.UPClientBuilder
-import com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
-import retrofit2.Callback
 import io.reactivex.Observable
 
 class MyApp : Application() {
@@ -29,16 +28,12 @@ class MyApp : Application() {
         upClient.changeLanguage("hi")
     }
 
-//    fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
-//        return upClient.getBanners(callback)
-//    }
+    fun getBanners( callback: Callback<BannerResponse>): CancellableTask{
+        return upClient.getBanners(callback)
+    }
 
     fun getBanners(): Observable<BannerResponse> {
         return upClient.getBanners()
-    }
-
-    fun getVersionCheck(username: String, version: String, callback: Callback<VersionCheckResponse>): CancellableTask {
-        return upClient.checkAppVersion(username, version, callback)
     }
 
 }

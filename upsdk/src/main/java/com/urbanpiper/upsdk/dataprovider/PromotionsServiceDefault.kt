@@ -4,8 +4,10 @@ import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
 import com.urbanpiper.upsdk.model.networkresponse.OffersResponse
 import com.urbanpiper.upsdk.model.networkresponse.RewardsResponse
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
-import retrofit2.Callback
 
 class PromotionsServiceDefault(
     private val authToken: String, private val bizId: String, retrofit: Retrofit
@@ -15,25 +17,66 @@ class PromotionsServiceDefault(
         retrofit.create(PromotionsRetrofitService::class.java)
 
     override fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
-        val bannersCall = promotionsRetrofitService.getBanners(authToken)
-        bannersCall.clone().enqueue(callback)
-        return CancellableTaskWrapper(bannersCall)
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            getBanners()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+
+        return CancellableTaskDisposableWrapper(compositeDisposable)
     }
 
     override fun getBanners(): Observable<BannerResponse> {
-        return promotionsRetrofitService.getBannersObservable(authToken)
+        return promotionsRetrofitService.getBanners(authToken)
     }
 
     override fun getOffers(callback: Callback<OffersResponse>): CancellableTask {
-        val offersCall = promotionsRetrofitService.getOffers(authToken, bizId)
-        offersCall.clone().enqueue(callback)
-        return CancellableTaskWrapper(offersCall)
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            getOffers()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    override fun getOffers(): Observable<OffersResponse> {
+        return promotionsRetrofitService.getOffers(authToken, bizId)
     }
 
     override fun getRewards(callback: Callback<RewardsResponse>): CancellableTask {
-        val rewardsCall = promotionsRetrofitService.getRewards(authToken, bizId)
-        rewardsCall.clone().enqueue(callback)
-        return CancellableTaskWrapper(rewardsCall)
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            getRewards()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    override fun getRewards(): Observable<RewardsResponse> {
+        return promotionsRetrofitService.getRewards(authToken, bizId)
     }
 
 }

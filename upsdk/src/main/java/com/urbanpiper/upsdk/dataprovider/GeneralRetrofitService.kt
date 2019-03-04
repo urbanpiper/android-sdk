@@ -6,7 +6,7 @@ import com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse
 import retrofit2.Call
 import com.urbanpiper.upsdk.model.networkresponse.StoreReponse
 import retrofit2.http.*
-
+import io.reactivex.Observable
 
 /**
  * Defines the general interactions to be made with the server
@@ -23,7 +23,7 @@ interface GeneralRetrofitService {
         @Query("biz_id") bizId: String,
         @Query("user") username: String,
         @Query("ver") version: String
-    ): Call<VersionCheckResponse>
+    ): Observable<VersionCheckResponse>
 
     /**
      * Registers device for fcm
@@ -32,7 +32,7 @@ interface GeneralRetrofitService {
     fun registerDeviceForFCM(
         @Body fcmRegistrationBody: FCMRegistrationBody,
         @Header("Authorization") authToken: String
-    ): Call<Void>
+    ): Observable<Void>
 
     /**
      * Returns the nearest store for the latitude and longitude
@@ -47,7 +47,7 @@ interface GeneralRetrofitService {
         @Query("lat") latitude: Double,
         @Query("lng") longitude: Double,
         @Query("biz_id") bizId: String
-    ): Call<StoreReponse>
+    ): Observable<StoreReponse>
 
 
     /**
@@ -58,6 +58,6 @@ interface GeneralRetrofitService {
     @GET("/api/v1/stores/")
     fun getAllStores(
         @Header("Authorization") authToken: String
-    ): Call<StoreListResponse>
+    ): Observable<StoreListResponse>
 }
 

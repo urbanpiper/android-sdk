@@ -85,20 +85,64 @@ private class UPClientDefault(
 
     // -------------------------- GENERAL SERVICE -------------------------------
 
-    override fun checkAppVersion(username: String, version: String, callback: Callback<VersionCheckResponse>): CancellableTask {
+    /**
+     * App version check
+     */
+    override fun checkAppVersion(username: String, version: String, callback: com.urbanpiper.upsdk.dataprovider.Callback<VersionCheckResponse>): CancellableTask {
         return generalService.checkAppVersion(username, version, callback)
     }
 
-    override fun registerFCMToken(token: String, deviceId: String, callback: Callback<Void>): CancellableTask {
+    /**
+     * App version check
+     */
+    override fun checkAppVersion(username: String, version: String): Observable<VersionCheckResponse> {
+        return generalService.checkAppVersion(username, version)
+    }
+
+    /**
+     * Register the device for FCM
+     *
+     * This should return a generic response in the callback
+     */
+    override fun registerFCMToken(token: String, deviceId: String, callback: com.urbanpiper.upsdk.dataprovider.Callback<Void>): CancellableTask {
         return generalService.registerFCMToken(token, deviceId, callback)
     }
 
-    override fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreReponse>): CancellableTask {
+    /**
+     * Register the device for FCM
+     *
+     * This should return a generic response in the callback
+     */
+    override fun registerFCMToken(token: String, deviceId: String): Observable<Void> {
+        return generalService.registerFCMToken(token, deviceId)
+    }
+
+    /**
+     * Returns the nearest store based on lat/ lng
+     */
+    override fun getNearestStore(lat: Double, lng: Double, callback: com.urbanpiper.upsdk.dataprovider.Callback<StoreReponse>): CancellableTask {
         return generalService.getNearestStore(lat, lng, callback)
     }
 
-    override fun getAllStores(callback: Callback<StoreListResponse>): CancellableTask {
+    /**
+     * Returns the nearest store based on lat/ lng
+     */
+    override fun getNearestStore(lat: Double, lng: Double): Observable<StoreReponse> {
+        return generalService.getNearestStore(lat, lng)
+    }
+
+    /**
+     * Returns all the stores for the biz
+     */
+    override fun getAllStores(callback: com.urbanpiper.upsdk.dataprovider.Callback<StoreListResponse>): CancellableTask {
         return generalService.getAllStores(callback)
+    }
+
+    /**
+     * Returns all the stores for the biz
+     */
+    override fun getAllStores(): Observable<StoreListResponse> {
+       return generalService.getAllStores()
     }
 
     // --------------------------- CATALOGUE SERVICE -------------------------------
@@ -152,9 +196,9 @@ private class UPClientDefault(
     // ------------------------ PROMOTIONS SERVICE -------------------------------
 
     /**
-     * Returns Banners from the server using a callback
+     *
      */
-    override fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
+    override fun getBanners(callback: com.urbanpiper.upsdk.dataprovider.Callback<BannerResponse>): CancellableTask {
         return promotionsService.getBanners(callback)
     }
 
@@ -165,13 +209,32 @@ private class UPClientDefault(
         return promotionsService.getBanners()
     }
 
-    override fun getOffers(callback: Callback<OffersResponse>): CancellableTask {
+    /**
+     *
+     */
+    override fun getOffers(callback: com.urbanpiper.upsdk.dataprovider.Callback<OffersResponse>): CancellableTask {
         return promotionsService.getOffers(callback)
     }
 
-    override fun getRewards(callback: Callback<RewardsResponse>): CancellableTask {
+    /**
+     * Returns offers from the server using an Observable
+     */
+    override fun getOffers(): Observable<OffersResponse> {
+        return promotionsService.getOffers()
+    }
+
+    /**
+     *
+     */
+    override fun getRewards(callback: com.urbanpiper.upsdk.dataprovider.Callback<RewardsResponse>): CancellableTask {
         return promotionsService.getRewards(callback)
     }
 
+    /**
+     * Returns rewards from the server using on observable
+     */
+    override fun getRewards(): Observable<RewardsResponse> {
+        return promotionsService.getRewards()
+    }
 
 }

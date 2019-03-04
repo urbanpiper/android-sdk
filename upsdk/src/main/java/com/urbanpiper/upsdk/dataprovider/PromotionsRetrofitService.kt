@@ -11,32 +11,24 @@ import retrofit2.http.Query
 
 interface PromotionsRetrofitService {
 
-    /**
-     * Get the banners from the server
-     */
     @GET("/api/v1/galleries/")
     fun getBanners(
         @Header("Authorization") authToken: String,
         @Query("type") type: String = "app_banner"
-    ): Call<BannerResponse>
-
-
-    @GET("/api/v1/galleries/")
-    fun getBannersObservable(
-        @Header("Authorization") authToken: String,
-        @Query("type") type: String = "app_banner"
     ): Observable<BannerResponse>
+
 
     @GET("/api/v1/coupons/")
     fun getOffers(
         @Header("Authorization") authToken: String,
         @Query("biz_id") bizId: String
-    ): Call<OffersResponse>
+    ): Observable<OffersResponse>
+
 
     @GET("/api/v2/rewards/")
     fun getRewards(
         @Header("Authorization") apiAuth: String,
         @Query("biz_id") bizId: String
-    ): Call<RewardsResponse>
+    ): Observable<RewardsResponse>
 
 }
