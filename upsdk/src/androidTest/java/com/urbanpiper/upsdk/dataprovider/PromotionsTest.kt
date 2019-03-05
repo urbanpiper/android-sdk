@@ -19,15 +19,6 @@ class PromotionsTest {
     @Test
     fun testBanners() {
 
-        val promotionsRetrofitService: PromotionsRetrofitService =
-            mock(PromotionsRetrofitService::class.java)
-
-        `when`(
-            promotionsRetrofitService.getBanners(
-                Mockito.anyString(),
-                Mockito.anyString()
-            )
-        ).thenReturn(mockCall)
     }
 
 }

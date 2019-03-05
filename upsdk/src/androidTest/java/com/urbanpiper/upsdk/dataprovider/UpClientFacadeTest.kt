@@ -5,6 +5,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Assert.*
+import org.mockito.ArgumentMatchers.*
 
 @RunWith(AndroidJUnit4::class)
 class UpClientFacadeTest {
@@ -28,9 +29,35 @@ class UpClientFacadeTest {
         assertNotNull(upClient.getAPIKey())
         assertNotNull(upClient.getBizLanguage())
 
+        // Method to change language
         assertNotNull(upClient.changeLanguage("en"))
 
+        // Promotions
         assertNotNull(upClient.getBanners())
+        assertNotNull(upClient.getBanners())
+        assertNotNull(upClient.getRewards())
+
+        // General
+        assertNotNull(upClient.checkAppVersion(anyString(), anyString()))
+        assertNotNull(upClient.registerFCMToken(anyString(), anyString()))
+        assertNotNull(upClient.getNearestStore(anyDouble(), anyDouble()))
+        assertNotNull(upClient.getAllStores())
+
+        // Catalogue
+        assertNotNull(upClient.getCategories(anyInt()))
+        assertNotNull(upClient.getCategoryItems(anyInt(), anyString(), anyInt(), anyInt()))
+        assertNotNull(upClient.getFilterAndSortOptions(anyInt()))
+        assertNotNull(upClient.getFilteredItems(anyInt(), anyString(), anyString(), anyInt(), anyInt()))
+        assertNotNull(upClient.getSortedItems(anyInt(), anyString(), anyString(), anyInt(), anyInt()))
+        assertNotNull(upClient.getRecommendedItems(anyInt()))
+        assertNotNull(upClient.getRelatedItems(anyString(), anyInt()))
+        assertNotNull(upClient.getItemDetails(anyInt(), anyInt()))
+        assertNotNull(upClient.searchItems(anyString(), anyInt()))
+
+        // User
+
+
+        // Cart
 
 
     }

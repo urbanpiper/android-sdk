@@ -22,14 +22,6 @@ interface PromotionsService {
      */
     fun getBanners(callback: Callback<BannerResponse>): CancellableTask
 
-
-//    /**
-//     * Retrieves a list of banners
-//     *
-//     * @return - CancellableTask - The response can be cancelled
-//     */
-//    fun getBanners(callback: Callback<BannerResponse>): CancellableTask
-
     /**
      * Retrieves a list of offers
      *
