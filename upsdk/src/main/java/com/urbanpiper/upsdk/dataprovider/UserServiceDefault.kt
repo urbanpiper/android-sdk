@@ -3,6 +3,8 @@ package com.urbanpiper.upsdk.dataprovider
 import com.urbanpiper.upsdk.model.JWTAuthLoginBody
 import com.urbanpiper.upsdk.model.JWTRefreshTokenBody
 import com.urbanpiper.upsdk.model.networkresponse.AuthSuccessResponse
+import com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse
+import com.urbanpiper.upsdk.model.networkresponse.UserInfoResponse
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -11,14 +13,18 @@ import retrofit2.Retrofit
 
 class UserServiceDefault(private val authToken: String, private val bizId: String, retrofit: Retrofit) : UserService {
 
-    private val authRetrofitService: UserRetrofitService =
+
+    private val userRetrofitService: UserRetrofitService =
         retrofit.create(UserRetrofitService::class.java)
 
-    override fun login(body: JWTAuthLoginBody, callback: Callback<AuthSuccessResponse>): CancellableTask {
+    /**
+     *  Login - The result is returned in a callback
+     */
+    override fun login(phone: String, password: String, callback: Callback<AuthSuccessResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            login(body)
+            login(phone, password)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -30,15 +36,22 @@ class UserServiceDefault(private val authToken: String, private val bizId: Strin
         return CancellableTaskDisposableWrapper(compositeDisposable)
     }
 
-    override fun login(body: JWTAuthLoginBody): Observable<AuthSuccessResponse> {
-        return authRetrofitService.login(authToken, body)
+    /**
+     *  Login - The result is returned as an Observable
+     */
+    override fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
+        val body = JWTAuthLoginBody(phone, password)
+        return userRetrofitService.login(authToken, body)
     }
 
-    override fun refreshToken(body: JWTRefreshTokenBody, callback: Callback<AuthSuccessResponse>): CancellableTask {
+    /**
+     * Refresh Token - the result is returned as a callback
+     */
+    override fun refreshToken(token: String, callback: Callback<AuthSuccessResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            refreshToken(body)
+            refreshToken(token)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -50,7 +63,77 @@ class UserServiceDefault(private val authToken: String, private val bizId: Strin
         return CancellableTaskDisposableWrapper(compositeDisposable)
     }
 
-    override fun refreshToken(body: JWTRefreshTokenBody): Observable<AuthSuccessResponse> {
-        return authRetrofitService.refreshToken(authToken, body)
+    /**
+     * refresh token - The result is returned as an observable
+     */
+    override fun refreshToken(token: String): Observable<AuthSuccessResponse> {
+        val body = JWTRefreshTokenBody(token)
+        return userRetrofitService.refreshToken(authToken, body)
     }
+
+    /**
+     * Social login - the result is returned as a callback
+     *
+     */
+    override fun socialLoginOTP(
+        email: String, provider: String, accessToken: String, action: String, phone: String, otp: String,
+        callback: Callback<SocialAuthResponse>
+    ): CancellableTask {
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            socialLoginOTP(email, provider, accessToken, phone, action, otp)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    /**
+     * Social login - The result is returned as an observable
+     *
+     */
+    override fun socialLoginOTP(
+        email: String, provider: String, accessToken: String, action: String, phone: String, otp: String
+    ): Observable<SocialAuthResponse> {
+        return userRetrofitService.socialLogin(
+            authToken, bizId, email, provider, accessToken, phone, action, otp
+        )
+    }
+
+
+    /**
+     *  Refresh user info - The result is returned as a callback
+     */
+    override fun refreshUserInfo(phone: String, callback: Callback<UserInfoResponse>): CancellableTask {
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            refreshUserInfo(phone)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    /**
+     *  Refresh user info - The result is returned as a Observable
+     */
+    override fun refreshUserInfo(phone: String): Observable<UserInfoResponse> {
+        return userRetrofitService.refreshUserInfo(authToken, phone)
+    }
+
+
+
+
 }

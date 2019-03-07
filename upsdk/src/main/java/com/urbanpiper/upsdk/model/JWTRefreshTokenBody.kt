@@ -1,4 +1,3 @@
 package com.urbanpiper.upsdk.model
 
-class JWTRefreshTokenBody {
-}
+data class JWTRefreshTokenBody(val token: String)

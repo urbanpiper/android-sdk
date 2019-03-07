@@ -274,22 +274,68 @@ private class UPClientDefault(
 
     // ------------------------------- USER SERVICE --------------------------------
 
-    override fun login(body: JWTAuthLoginBody, callback: Callback<AuthSuccessResponse>): CancellableTask {
-        return userService.login(body, callback)
+    /**
+     *  Login - The result is returned in a callback
+     */
+    override fun login(phone: String, password: String, callback: Callback<AuthSuccessResponse>): CancellableTask {
+        return userService.login(phone, password, callback)
     }
 
-    override fun login(body: JWTAuthLoginBody): Observable<AuthSuccessResponse> {
-        return userService.login(body)
+    /**
+     *  Login - The result is returned as an Observable
+     */
+    override fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
+        return userService.login(phone, password)
     }
 
-    override fun refreshToken(body: JWTRefreshTokenBody, callback: Callback<AuthSuccessResponse>): CancellableTask {
-        return userService.refreshToken(body, callback)
+    /**
+     * Refresh Token - the result is returned as a callback
+     */
+    override fun refreshToken(token: String, callback: Callback<AuthSuccessResponse>): CancellableTask {
+        return userService.refreshToken(token, callback)
     }
 
-    override fun refreshToken(body: JWTRefreshTokenBody): Observable<AuthSuccessResponse> {
-        return userService.refreshToken(body)
+    /**
+     * refresh token - The result is returned as an observable
+     */
+    override fun refreshToken(token: String): Observable<AuthSuccessResponse> {
+        return userService.refreshToken(token)
     }
 
+    /**
+     * Social login - the result is returned as a callback
+     *
+     */
+    override fun socialLoginOTP(
+        email: String, provider: String, accessToken: String, action: String, phone: String, otp: String,
+        callback: Callback<SocialAuthResponse>
+    ): CancellableTask {
+        return userService.socialLoginOTP(email, provider, accessToken, action, phone, otp, callback)
+    }
+
+    /**
+     * Social login - The result is returned as an observable
+     *
+     */
+    override fun socialLoginOTP(
+        email: String, provider: String, accessToken: String, action: String, phone: String, otp: String
+    ): Observable<SocialAuthResponse> {
+        return userService.socialLoginOTP(email, provider, accessToken, action, phone, otp)
+    }
+
+    /**
+     *  Refresh user info - The result is returned as a callback
+     */
+    override fun refreshUserInfo(phone: String, callback: Callback<UserInfoResponse>): CancellableTask {
+        return userService.refreshUserInfo(phone, callback)
+    }
+
+    /**
+     *  Refresh user info - The result is returned as a Observable
+     */
+    override fun refreshUserInfo(phone: String): Observable<UserInfoResponse> {
+        return userService.refreshUserInfo(phone)
+    }
     // ------------------------ PROMOTIONS SERVICE -------------------------------
 
     /**
