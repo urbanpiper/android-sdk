@@ -1,6 +1,9 @@
-package com.urbanpiper.upsdk.model.networkresponse
+package com.urbanpiper.upsdk.model
 
 import com.google.gson.annotations.SerializedName
+import com.urbanpiper.upsdk.model.networkresponse.Discount
+import com.urbanpiper.upsdk.model.networkresponse.OrderItem
+import com.urbanpiper.upsdk.model.networkresponse.Store
 import java.util.*
 
 data class Order(

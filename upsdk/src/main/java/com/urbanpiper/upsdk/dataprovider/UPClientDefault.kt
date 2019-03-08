@@ -1,9 +1,7 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.BuildConfig
-import com.urbanpiper.upsdk.model.JWTAuthLoginBody
-import com.urbanpiper.upsdk.model.JWTRefreshTokenBody
-import com.urbanpiper.upsdk.model.UpdateUserInfoBody
+import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
@@ -25,6 +23,7 @@ private class UPClientDefault(
     private val catalogueService: CatalogueService
     private val userService: UserService
     private val promotionsService: PromotionsService
+    private val cartService: CartService
 
     // Initialization block
     init {
@@ -59,6 +58,7 @@ private class UPClientDefault(
         catalogueService = CatalogueServiceDefault(authToken, bizId, retrofit)
         userService = UserServiceDefault(authToken, bizId, retrofit)
         promotionsService = PromotionsServiceDefault(authToken, bizId, retrofit)
+        cartService = CartServiceDefault(authToken, bizId, retrofit)
     }
 
     // ----------------------  BASIC DETAILS ------------------------------------
@@ -709,5 +709,146 @@ private class UPClientDefault(
     override fun getRewards(): Observable<RewardsResponse> {
         return promotionsService.getRewards()
     }
+    // ------------------------ CART SERVICE -------------------------------
 
+    /**
+     * re-order api
+     */
+    override fun reOrder(
+        orderId: String,
+        locationId: String,
+        lat: String,
+        lng: String,
+        callback: Callback<ReOrderResponse>
+    ): CancellableTask {
+        return cartService.reOrder(orderId, locationId, lat, lng, callback)
+    }
+
+    /**
+     * re-order api
+     */
+    override fun reOrder(orderId: String, locationId: String, lat: String, lng: String): Observable<ReOrderResponse> {
+        return cartService.reOrder(orderId, locationId, lat, lng)
+    }
+
+    /**
+     * Get the recommended items from the server. The items returned are based on a particular item
+     * in details or checkout page.
+     */
+    override fun getCartRelatedItems(
+        itemIds: String,
+        locationId: Int,
+        callback: Callback<RecommendedItemResponse>
+    ): CancellableTask {
+        return cartService.getCartRelatedItems(itemIds, locationId, callback)
+    }
+
+    /**
+     * Get the recommended items from the server. The items returned are based on a particular item
+     * in details or checkout page.
+     */
+    override fun getCartRelatedItems(itemIds: String, locationId: Int): Observable<RecommendedItemResponse> {
+        return cartService.getCartRelatedItems(itemIds, locationId)
+    }
+
+    /**
+     * Sends the order details to the server for validation.
+     */
+    override fun validateCart(order: Order, callback: Callback<PreProcessOrderResponse>): CancellableTask {
+        return cartService.validateCart(order, callback)
+    }
+
+    /**
+     * Sends the order details to the server for validation.
+     */
+    override fun validateCart(order: Order): Observable<PreProcessOrderResponse> {
+        return cartService.validateCart(order)
+    }
+
+    /**
+     * Advanced version of coupon validation - takes in the complete
+     * order data as request body.
+     */
+    override fun validateCoupon(
+        couponCode: String,
+        body: ValidateCouponBody,
+        callback: Callback<OrderValidateCouponResponse>
+    ): CancellableTask {
+        return cartService.validateCoupon(couponCode, body, callback)
+    }
+
+    /**
+     * Advanced version of coupon validation - takes in the complete
+     * order data as request body.
+     */
+    override fun validateCoupon(couponCode: String, body: ValidateCouponBody): Observable<OrderValidateCouponResponse> {
+        return cartService.validateCoupon(couponCode, body)
+    }
+
+    /**
+     * Initiates a payment for the particular biz's store. This is useful if the biz is
+     * using a franchisee model.
+     *
+     */
+    override fun initPayment(
+        storeId: Int,
+        amount: Int,
+        purpose: String,
+        redirectUrl: String,
+        paytm: String,
+        simpl: String,
+        callback: Callback<PaymentInitResponse>
+    ): CancellableTask {
+        return cartService.initPayment(storeId, amount, purpose, redirectUrl, paytm, simpl, callback)
+    }
+
+    /**
+     * Initiates a payment for the particular biz's store. This is useful if the biz is
+     * using a franchisee model.
+     *
+     */
+    override fun initPayment(
+        storeId: Int, amount: Int, purpose: String, redirectUrl: String, paytm: String, simpl: String
+    ): Observable<PaymentInitResponse> {
+        return cartService.initPayment(storeId, amount, purpose, redirectUrl, paytm, simpl)
+    }
+
+    /**
+     * Sends the order details to the server for persistence.
+     */
+    override fun placeOrder(body: Order, callback: Callback<OrderSaveResponse>): CancellableTask {
+        return cartService.placeOrder(body, callback)
+    }
+
+    /**
+     * Sends the order details to the server for persistence.
+     */
+    override fun placeOrder(body: Order): Observable<OrderSaveResponse> {
+        return cartService.placeOrder(body)
+    }
+
+    /**
+     * Marks the completion of a transaction.
+     *
+     */
+    override fun verifyPayment(
+        transactionId: String,
+        gwTxnId: String,
+        failed: Int,
+        callback: Callback<PaymentCallbackResponse>
+    ): CancellableTask {
+        return cartService.verifyPayment(transactionId, gwTxnId, failed, callback)
+    }
+
+    /**
+     * Marks the completion of a transaction.
+     *
+     */
+    override fun verifyPayment(
+        transactionId: String,
+        gwTxnId: String,
+        failed: Int
+    ): Observable<PaymentCallbackResponse> {
+        return cartService.verifyPayment(transactionId, gwTxnId, failed)
+    }
 }

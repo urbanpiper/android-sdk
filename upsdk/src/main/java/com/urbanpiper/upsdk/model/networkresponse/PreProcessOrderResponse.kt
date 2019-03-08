@@ -1,6 +1,7 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
 import com.google.gson.annotations.SerializedName
+import com.urbanpiper.upsdk.model.Order
 
 data class PreProcessOrderResponse(
     @SerializedName("order")

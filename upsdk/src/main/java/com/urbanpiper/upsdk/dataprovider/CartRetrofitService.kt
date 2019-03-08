@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
+import com.urbanpiper.upsdk.model.Order
 import com.urbanpiper.upsdk.model.ValidateCouponBody
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
@@ -25,7 +26,6 @@ interface CartRetrofitService {
         @Query("lng") lng: String
     ): Observable<ReOrderResponse>
 
-
     /**
      * Get the recommended items from the server. The items returned are based on a particular item
      * in details or checkout page.
@@ -35,7 +35,7 @@ interface CartRetrofitService {
      * @param authToken  - Auth token
      */
     @GET("/api/v2/items/{item_id}/recommendations/")
-    fun getRelatedItems(
+    fun getCartRelatedItems(
         @Header("Authorization") authToken: String
         , @Path("item_id") itemId: String
         , @Query("location_id") locationId: Int
@@ -50,7 +50,7 @@ interface CartRetrofitService {
      * @param authToken
      */
     @POST("/api/v1/order/")
-    fun preProcessOrder(
+    fun validateCart(
         @Header("Authorization") authToken: String,
         @Query("biz_id") bizId: String,
         @Query("pre_proc") preProcessOutput: Int,
@@ -83,7 +83,7 @@ interface CartRetrofitService {
      * @param purpose - can be either or `ordering`/`reload`
      */
     @GET("/payments/init/{biz_id}/{store_id}/?channel=app_android")
-    fun initiatePaymentForStore(
+    fun initPayment(
         @Header("Authorization") authToken: String,
         @Path("biz_id") bizId: String,
         @Path("store_id") storeId: Int,
@@ -103,7 +103,7 @@ interface CartRetrofitService {
      * @param cb
      */
     @POST("/api/v1/order/")
-    fun saveOrder(
+    fun placeOrder(
         @Header("Authorization") authToken: String,
         @Query("biz_id") bizId: String,
         @Body order: Order
@@ -119,7 +119,7 @@ interface CartRetrofitService {
      * @param cb
      */
     @GET("/payments/callback/{txn_id}")
-    fun completePayment(
+    fun verifyPayment(
         @Header("Authorization") authToken: String,
         @Path("txn_id") transactionId: String,
         @Query("gateway_txn_id") gwTxnId: String,
