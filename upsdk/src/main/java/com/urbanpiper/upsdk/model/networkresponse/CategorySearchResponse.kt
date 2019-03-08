@@ -53,19 +53,8 @@ data class CategorySearchResponse(
         @SerializedName("vat_rate")
         val vatRate: Int
     ) {
-        data class Category(
-            @SerializedName("id")
-            val id: Int,
-            @SerializedName("name")
-            val name: String
-        )
 
-        data class ItemCategory(
-            @SerializedName("id")
-            val id: Int,
-            @SerializedName("name")
-            val name: String
-        )
+
     }
 
     data class Meta(

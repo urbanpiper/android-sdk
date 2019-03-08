@@ -55,5 +55,15 @@ interface UserService {
      */
     fun refreshUserInfo(phone: String): Observable<UserInfoResponse>
 
+    /**
+     * Social login - the result is returned as a callback
+     */
+    fun socialLogin(email: String, provider: String, accessToken: String,
+        callback: Callback<SocialAuthResponse>
+    ): CancellableTask
 
+    /**
+     * Social login - The result is returned as an observable
+     */
+    fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse>
 }

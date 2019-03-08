@@ -134,6 +134,33 @@ class UserServiceDefault(private val authToken: String, private val bizId: Strin
     }
 
 
+    /**
+     * Social login - the result is returned as a callback
+     */
+    override fun socialLogin(
+        email: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
+    ): CancellableTask {
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            socialLogin(email, provider, accessToken)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    /**
+     * Social login - The result is returned as an observable
+     */
+    override fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse> {
+        return userRetrofitService.socialLogin(authToken, bizId, email, provider, accessToken)
+    }
 
 
 }

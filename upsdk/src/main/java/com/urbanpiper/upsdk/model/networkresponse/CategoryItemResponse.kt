@@ -64,14 +64,7 @@ data class CategoryItemResponse(
         @SerializedName("vat_rate")
         val vatRate: Int
     ) {
-        data class Category(
-            @SerializedName("id")
-            val id: Int,
-            @SerializedName("name")
-            val name: String,
-            @SerializedName("sort_order")
-            val sortOrder: Int
-        )
+
     }
 
     fun toJson(): String {
