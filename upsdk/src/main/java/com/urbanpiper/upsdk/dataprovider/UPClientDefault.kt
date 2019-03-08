@@ -3,6 +3,7 @@ package com.urbanpiper.upsdk.dataprovider
 import com.urbanpiper.upsdk.BuildConfig
 import com.urbanpiper.upsdk.model.JWTAuthLoginBody
 import com.urbanpiper.upsdk.model.JWTRefreshTokenBody
+import com.urbanpiper.upsdk.model.UpdateUserInfoBody
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
@@ -87,7 +88,11 @@ private class UPClientDefault(
     /**
      * App version check
      */
-    override fun checkAppVersion(username: String, version: String, callback: Callback<VersionCheckResponse>): CancellableTask {
+    override fun checkAppVersion(
+        username: String,
+        version: String,
+        callback: Callback<VersionCheckResponse>
+    ): CancellableTask {
         return generalService.checkAppVersion(username, version, callback)
     }
 
@@ -141,7 +146,7 @@ private class UPClientDefault(
      * Returns all the stores for the biz
      */
     override fun getAllStores(): Observable<StoreListResponse> {
-       return generalService.getAllStores()
+        return generalService.getAllStores()
     }
 
     // --------------------------- CATALOGUE SERVICE -------------------------------
@@ -150,7 +155,7 @@ private class UPClientDefault(
      * Get all the categories
      */
     override fun getCategories(locationId: Int, callback: Callback<CategoriesResponse>): CancellableTask {
-        return catalogueService.getCategories(locationId,callback)
+        return catalogueService.getCategories(locationId, callback)
     }
 
     /**
@@ -163,21 +168,35 @@ private class UPClientDefault(
     /**
      * Get items for a particular category
      */
-    override fun getCategoryItems(categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask {
+    override fun getCategoryItems(
+        categoryId: Int,
+        locationId: String,
+        offset: Int,
+        limit: Int,
+        callback: Callback<CategoryItemResponse>
+    ): CancellableTask {
         return catalogueService.getCategoryItems(categoryId, locationId, offset, limit, callback)
     }
 
     /**
      * Get items for a particular category
      */
-    override fun getCategoryItems(categoryId: Int, locationId: String, offset: Int, limit: Int): Observable<CategoryItemResponse> {
+    override fun getCategoryItems(
+        categoryId: Int,
+        locationId: String,
+        offset: Int,
+        limit: Int
+    ): Observable<CategoryItemResponse> {
         return catalogueService.getCategoryItems(categoryId, locationId, offset, limit)
     }
 
     /**
      * Get filter and sort options for a particular category
      */
-    override fun getFilterAndSortOptions(categoryId: Int, callback: Callback<FilterAndSortOptionsResponse>): CancellableTask {
+    override fun getFilterAndSortOptions(
+        categoryId: Int,
+        callback: Callback<FilterAndSortOptionsResponse>
+    ): CancellableTask {
         return catalogueService.getFilterAndSortOptions(categoryId, callback)
     }
 
@@ -191,28 +210,54 @@ private class UPClientDefault(
     /**
      * Get filtered items for a particular category
      */
-    override fun getFilteredItems(categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask {
+    override fun getFilteredItems(
+        categoryId: Int,
+        locationId: String,
+        filterBy: String,
+        offset: Int,
+        limit: Int,
+        callback: Callback<CategoryItemResponse>
+    ): CancellableTask {
         return catalogueService.getFilteredItems(categoryId, locationId, filterBy, offset, limit, callback)
     }
 
     /**
      * Get filtered items for a particular category
      */
-    override fun getFilteredItems(categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int): Observable<CategoryItemResponse> {
+    override fun getFilteredItems(
+        categoryId: Int,
+        locationId: String,
+        filterBy: String,
+        offset: Int,
+        limit: Int
+    ): Observable<CategoryItemResponse> {
         return catalogueService.getFilteredItems(categoryId, locationId, filterBy, offset, limit)
     }
 
     /**
      * Get sorted items for a particular category
      */
-    override fun getSortedItems(categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>): CancellableTask {
+    override fun getSortedItems(
+        categoryId: Int,
+        locationId: String,
+        sortBy: String,
+        offset: Int,
+        limit: Int,
+        callback: Callback<CategoryItemResponse>
+    ): CancellableTask {
         return catalogueService.getSortedItems(categoryId, locationId, sortBy, offset, limit, callback)
     }
 
     /**
      * Get sorted items for a particular category
      */
-    override fun getSortedItems(categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int): Observable<CategoryItemResponse> {
+    override fun getSortedItems(
+        categoryId: Int,
+        locationId: String,
+        sortBy: String,
+        offset: Int,
+        limit: Int
+    ): Observable<CategoryItemResponse> {
         return catalogueService.getSortedItems(categoryId, locationId, sortBy, offset, limit)
     }
 
@@ -233,7 +278,11 @@ private class UPClientDefault(
     /**
      * Get Related items
      */
-    override fun getRelatedItems(itemId: String, locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
+    override fun getRelatedItems(
+        itemId: String,
+        locationId: Int,
+        callback: Callback<RecommendedItemResponse>
+    ): CancellableTask {
         return catalogueService.getRelatedItems(itemId, locationId, callback)
     }
 
@@ -247,7 +296,11 @@ private class UPClientDefault(
     /**
      * Get Item Details
      */
-    override fun getItemDetails(itemId: Int, locationId: Int, callback: Callback<ItemDetailsResponse>): CancellableTask {
+    override fun getItemDetails(
+        itemId: Int,
+        locationId: Int,
+        callback: Callback<ItemDetailsResponse>
+    ): CancellableTask {
         return catalogueService.getItemDetails(itemId, locationId, callback)
     }
 
@@ -261,7 +314,11 @@ private class UPClientDefault(
     /**
      * Search for items
      */
-    override fun searchItems(query: String, locationId: Int, callback: Callback<CategorySearchResponse>): CancellableTask {
+    override fun searchItems(
+        query: String,
+        locationId: Int,
+        callback: Callback<CategorySearchResponse>
+    ): CancellableTask {
         return catalogueService.searchItems(query, locationId, callback)
     }
 
@@ -336,6 +393,279 @@ private class UPClientDefault(
     override fun refreshUserInfo(phone: String): Observable<UserInfoResponse> {
         return userService.refreshUserInfo(phone)
     }
+
+    /**
+     * Social login - the result is returned as a callback
+     */
+    override fun socialLogin(
+        email: String,
+        provider: String,
+        accessToken: String,
+        callback: Callback<SocialAuthResponse>
+    ): CancellableTask {
+        return userService.socialLogin(email, provider, accessToken, callback)
+    }
+
+    /**
+     * Social login - The result is returned as an observable
+     */
+    override fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse> {
+        return userService.socialLogin(email, provider, accessToken)
+    }
+
+    /**
+     * Update user info - The result is returned as a callback
+     */
+    override fun updateUserInfo(
+        phone: String,
+        body: UpdateUserInfoBody,
+        callback: Callback<UpdateUserInfoResponse>
+    ): CancellableTask {
+        return userService.updateUserInfo(phone, body, callback)
+    }
+
+    /**
+     * Update user info - the result is returned as a observable
+     */
+    override fun updateUserInfo(phone: String, body: UpdateUserInfoBody): Observable<UpdateUserInfoResponse> {
+        return userService.updateUserInfo(phone, body)
+    }
+
+    /**
+     * Refresh User Biz info - The result is returned as a callback
+     */
+    override fun refreshUserBizInfo(callback: Callback<UserBizInfoResponse>): CancellableTask {
+        return userService.refreshUserBizInfo(callback)
+    }
+
+    /**
+     * Refresh User Biz info - the result is returned as a observable
+     */
+    override fun refreshUserBizInfo(): Observable<UserBizInfoResponse> {
+        return userService.refreshUserBizInfo()
+    }
+
+    /**
+     * change the password - The result is returned as a callback
+     */
+    override fun changePassword(
+        oldPassword: String,
+        newPassword: String,
+        confirmPassword: String,
+        phone: String,
+        callback: Callback<GenericResponse>
+    ): CancellableTask {
+        return userService.changePassword(oldPassword, newPassword, confirmPassword, phone, callback)
+    }
+
+    /**
+     * change the password - The result tis returned as an Observable
+     */
+    override fun changePassword(
+        oldPassword: String,
+        newPassword: String,
+        confirmPassword: String,
+        phone: String
+    ): Observable<GenericResponse> {
+        return userService.changePassword(oldPassword, newPassword, confirmPassword, phone)
+    }
+
+    /**
+     * get Deliverable address - The result is returned as a callback
+     */
+    override fun getDeliverableAddresses(
+        locationId: String,
+        callback: Callback<DeliverableAddressResponse>
+    ): CancellableTask {
+        return userService.getDeliverableAddresses(locationId, callback)
+    }
+
+    /**
+     * get Deliverable address - The result is returned as a observable
+     */
+    override fun getDeliverableAddresses(locationId: String): Observable<DeliverableAddressResponse> {
+        return userService.getDeliverableAddresses(locationId)
+    }
+
+    /**
+     * Add an address - The result is a callback
+     */
+    override fun addAddress(userAddress: UserAddress, callback: Callback<UserAddressSaveResponse>): CancellableTask {
+        return userService.addAddress(userAddress, callback)
+    }
+
+    /**
+     * add an address
+     */
+    override fun addAddress(userAddress: UserAddress): Observable<UserAddressSaveResponse> {
+        return userService.addAddress(userAddress)
+    }
+
+    /**
+     * Update an address
+     */
+    override fun updateAddress(userAddress: UserAddress, callback: Callback<UserAddressSaveResponse>): CancellableTask {
+        return userService.updateAddress(userAddress, callback)
+    }
+
+    /**
+     * Update an existing address
+     */
+    override fun updateAddress(userAddress: UserAddress): Observable<UserAddressSaveResponse> {
+        return userService.updateAddress(userAddress)
+    }
+
+    /**
+     * Delete an existing address
+     */
+    override fun deleteAddress(addressId: String, callback: Callback<UserAddressSaveResponse>): CancellableTask {
+        return userService.deleteAddress(addressId, callback)
+    }
+
+    /**
+     * Delete an existing address
+     */
+    override fun deleteAddress(addressId: String): Observable<UserAddressSaveResponse> {
+        return userService.deleteAddress(addressId)
+    }
+
+    /**
+     *  Returns wallet transaction's of the user
+     */
+    override fun getWalletTransactions(
+        limit: String,
+        offset: String,
+        callback: Callback<TransactionsResponse>
+    ): CancellableTask {
+        return userService.getWalletTransactions(limit, offset, callback)
+    }
+
+    /**
+     *  Returns wallet transaction's of the user
+     */
+    override fun getWalletTransactions(limit: String, offset: String): Observable<TransactionsResponse> {
+        return userService.getWalletTransactions(limit, offset)
+    }
+
+    /**
+     * Fetches the summary data for orders placed in the past by a
+     * user.
+     */
+    override fun getPastOrders(callback: Callback<OrderHistoryV2Response>): CancellableTask {
+        return userService.getPastOrders(callback)
+    }
+
+    /**
+     * Fetches the summary data for orders placed in the past by a
+     * user.
+     */
+    override fun getPastOrders(): Observable<OrderHistoryV2Response> {
+        return userService.getPastOrders()
+    }
+
+    /**
+     * Fetches the summary data for orders placed in the past by a
+     * user
+     */
+    override fun getPastOrderDetails(orderId: Int, callback: Callback<OrderDetailResponse>): CancellableTask {
+        return userService.getPastOrderDetails(orderId, callback)
+    }
+
+    /**
+     * Fetches the summary data for orders placed in the past by a
+     * user
+     */
+    override fun getPastOrderDetails(orderId: Int): Observable<OrderDetailResponse> {
+        return userService.getPastOrderDetails(orderId)
+    }
+
+    /**
+     * Redeem a reward
+     */
+    override fun redeemReward(rewardId: Int, callback: Callback<RedeemRewardResponse>): CancellableTask {
+        return userService.redeemReward(rewardId, callback)
+    }
+
+    /**
+     * Redeem a reward
+     */
+    override fun redeemReward(rewardId: Int): Observable<RedeemRewardResponse> {
+        return userService.redeemReward(rewardId)
+    }
+
+    /**
+     *  Retrieves the list of notifications available for
+     * the user.
+     */
+    override fun getNotifications(callback: Callback<UserbizNotificationsResponse>): CancellableTask {
+        return userService.getNotifications(callback)
+    }
+
+    /**
+     *  Retrieves the list of notifications available for
+     * the user.
+     */
+    override fun getNotifications(): Observable<UserbizNotificationsResponse> {
+        return userService.getNotifications()
+    }
+
+    /**
+     * For saving the feedback associated with an order.
+     */
+    override fun submitFeedback(feedback: UserFeedback, callback: Callback<SimpleResponse>): CancellableTask {
+        return userService.submitFeedback(feedback, callback)
+    }
+
+    /**
+     * For saving the feedback associated with an order.
+     */
+    override fun submitFeedback(feedback: UserFeedback): Observable<SimpleResponse> {
+        return userService.submitFeedback(feedback)
+    }
+
+    /**
+     * For getting list of likes
+     */
+    override fun getUserLikes(ids: String, callback: Callback<UserLikesResponse>): CancellableTask {
+        return userService.getUserLikes(ids, callback)
+    }
+
+    /**
+     * For getting list of likes
+     */
+    override fun getUserLikes(ids: String): Observable<UserLikesResponse> {
+        return userService.getUserLikes(ids)
+    }
+
+    /**
+     * like item
+     */
+    override fun likeItem(itemId: Int, callback: Callback<Like>): CancellableTask {
+        return userService.likeItem(itemId, callback)
+    }
+
+    /**
+     * like item
+     */
+    override fun likeItem(itemId: Int): Observable<Like> {
+        return userService.likeItem(itemId)
+    }
+
+    /**
+     * unlike item
+     */
+    override fun unLikeItem(itemId: Int, callback: Callback<Like>): CancellableTask {
+        return userService.unLikeItem(itemId, callback)
+    }
+
+    /**
+     * unlike item
+     */
+    override fun unLikeItem(itemId: Int): Observable<Like> {
+        return userService.unLikeItem(itemId)
+    }
+
+
     // ------------------------ PROMOTIONS SERVICE -------------------------------
 
     /**

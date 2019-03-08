@@ -11,10 +11,10 @@ interface CartRetrofitService {
      * re-order api
      *
      * @param authToken - Authorization token
-     * @param orderID
-     * @param lat
-     * @param lng
-     * @param location_id
+     * @param orderID - Order id
+     * @param lat - latitude
+     * @param lng - longitude
+     * @param location_id - id of the location(store)
      */
     @GET("/api/v2/order/{id}/reorder/")
     fun reOrder(
@@ -46,7 +46,7 @@ interface CartRetrofitService {
      *
      * @param order
      * @param bizId
-     * @param preProcOpt
+     * @param preProcessOutput
      * @param authToken
      */
     @POST("/api/v1/order/")

@@ -3,6 +3,7 @@ package com.urbanpiper.upsdk.dataprovider
 import com.urbanpiper.upsdk.model.ChangePasswordBody
 import com.urbanpiper.upsdk.model.JWTAuthLoginBody
 import com.urbanpiper.upsdk.model.JWTRefreshTokenBody
+import com.urbanpiper.upsdk.model.UpdateUserInfoBody
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -97,7 +98,7 @@ interface UserRetrofitService {
      * @param body - Object of type UserInfoUpdateBody
      */
     @PUT("/api/v1/user/profile/")
-    fun updateUserSettings(
+    fun updateUserInfo(
         @Header("Authorization") authToken: String,
         @Query("customer_phone") phone: String,
         @Body body: UpdateUserInfoBody
@@ -110,20 +111,20 @@ interface UserRetrofitService {
      */
     @GET("/api/v1/userbizinfo/")
     fun refreshUserBizInfo(
-        @Query("biz_id") bizId: String,
-        @Header("Authorization") authToken: String
+        @Header("Authorization") authToken: String,
+        @Query("biz_id") bizId: String
     ): Observable<UserBizInfoResponse>
 
     /**
-     * Update the password
-     *
+     * change the password
      */
     @PUT("/api/v1/user/password/")
     fun changePassword(
-        @Header("Authorization") apiAuth: String,
+        @Header("Authorization") authToken: String,
         @Body body: ChangePasswordBody
     ): Observable<GenericResponse>
 
+    // ---------- Address related endpoints ----------
     /**
      * Gets a list of addresses for the user. Each address has a field deliverable which
      * will be true/false based on the current location id.
@@ -134,10 +135,9 @@ interface UserRetrofitService {
     @GET("/api/v1/user/address/")
     fun getDeliverableAddress(
         @Header("Authorization") authToken: String,
-        @Query("location_id") location: String
+        @Query("location_id") locationId: String
     ): Observable<DeliverableAddressResponse>
 
-    // ---------- Address related endpoints ----------
     /**
      * For saving a user's address for order delivery.
      *
@@ -146,7 +146,7 @@ interface UserRetrofitService {
     @POST("/api/v1/user/address/?format=json")
     fun addAddress(
         @Header("Authorization") authToken: String,
-        @Body address: UserAddress
+        @Body body: UserAddress
     ): Observable<UserAddressSaveResponse>
 
     /**
@@ -157,7 +157,7 @@ interface UserRetrofitService {
     @POST("/api/v1/user/address/?format=json")
     fun updateAddress(
         @Header("Authorization") authToken: String,
-        @Body address: UserAddress
+        @Body body: UserAddress
     ): Observable<UserAddressSaveResponse>
 
     /**
@@ -189,7 +189,6 @@ interface UserRetrofitService {
         @Query("offset") offset: String
     ): Observable<TransactionsResponse>
 
-
     /**
      * Fetches the summary data for orders placed in the past by a
      * user.
@@ -213,7 +212,9 @@ interface UserRetrofitService {
         @Path("order_id") orderId: Int
     ): Observable<OrderDetailResponse>
 
-
+    /**
+     * Redeem a reward
+     */
     @POST("/api/v2/rewards/{rewards_id}/redeem/")
     fun redeemReward(
         @Header("Authorization") authToken: String,
@@ -245,39 +246,39 @@ interface UserRetrofitService {
         @Body feedback: UserFeedback
     ) : Observable<SimpleResponse>
 
-    /** For getting list of likes
+    /**
+     * For getting list of likes
      *
-     * @param apiAuth
+     * @param authToken
      * @param cb
      */
     @GET("/api/v1/user/item/likes/")
     fun getUserLikes(
-        @Header("Authorization") apiAuth: String,
+        @Header("Authorization") authToken: String,
         @Query( "item_ids") ids: String
     ) : Observable<UserLikesResponse>
-
 
     /**
      * Like item.
      * Retrofit will throw you error if you send post request without Body.
      *
-     * @param apiAuth
+     * @param authToken
      */
     @POST("/api/v1/user/item/{item_id}/like/")
     fun likeItem(
-        @Header("Authorization") apiAuth: String,
+        @Header("Authorization") authToken: String,
         @Path("item_id") itemId: Int,
-        @Body hello: String
+        @Body blank: String
     ): Observable<Like>
 
     /**
      * Unlike the item.
      *
-     * @param apiAuth
+     * @param authToken
      */
     @DELETE("/api/v1/user/item/{item_id}/like/")
     fun unLikeItem(
-        @Header("Authorization") apiAuth: String,
+        @Header("Authorization") authToken: String,
         @Path("item_id") itemId: Int
     ): Observable<Like>
 }
