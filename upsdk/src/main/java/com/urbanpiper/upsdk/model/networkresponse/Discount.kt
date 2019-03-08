@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Discount (
     @SerializedName("msg")
-    var msg: String? = null,
+    var msg: String,
 
     @SerializedName("success")
     var success: Boolean = false,

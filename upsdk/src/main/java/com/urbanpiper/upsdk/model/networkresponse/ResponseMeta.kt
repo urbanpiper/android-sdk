@@ -4,12 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 import java.io.Serializable
 
-/**
- * The meta information associated with a response.
- *
- *
- * Created by anirvan on 28/08/14.
- */
 data class ResponseMeta(
     @SerializedName("limit")
     var limit: Int = 0,

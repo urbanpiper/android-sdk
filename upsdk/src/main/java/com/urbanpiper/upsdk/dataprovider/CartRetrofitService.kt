@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
+import com.urbanpiper.upsdk.model.ValidateCouponBody
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -68,7 +69,7 @@ interface CartRetrofitService {
     fun validateCoupon(
         @Header("Authorization") authToken: String,
         @Path("coupon_code") couponCode: String,
-        @Body body: ValidateCouponPayload
+        @Body body: ValidateCouponBody
     ) : Observable<OrderValidateCouponResponse>
 
     /**

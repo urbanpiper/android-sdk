@@ -43,8 +43,6 @@ data class ItemDetailsResponse(
     @SerializedName("vat_rate")
     val vatRate: Int
 ) {
-
-
     fun toJson(): String {
         return Gson().toJson(this)
     }

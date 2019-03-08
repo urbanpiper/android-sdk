@@ -11,17 +11,17 @@ import java.util.ArrayList
 
 data class RewardsResponse(
     @SerializedName("meta")
-    var meta: ResponseMeta? = null,
+    var meta: ResponseMeta,
     @SerializedName("in_store_coupon_rewards")
-    var inStoreCouponRewards: List<Reward>? = null,
+    var inStoreCouponRewards: List<Reward>,
     @SerializedName("locked")
-    var locked: List<Reward>? = null,
+    var locked: List<Reward>,
     @SerializedName("unlocked")
-    var unlocked: List<Reward>? = null,
+    var unlocked: List<Reward>,
     @SerializedName("claimed")
-    var claimed: List<Reward>? = null,
+    var claimed: List<Reward>,
     @SerializedName("redeemed")
-    var redeemedButNotClaimed: List<Reward>? = null,
+    var redeemedButNotClaimed: List<Reward>,
     @SerializedName("allRewards")
     var allRewards: List<Reward> = ArrayList()
 ) {
@@ -30,13 +30,13 @@ data class RewardsResponse(
         @SerializedName("locked")
         var locked: Boolean = false,
         @SerializedName("description")
-        var description: String? = null,
+        var description: String,
         @SerializedName("title")
-        var title: String? = null,
+        var title: String,
         @SerializedName("img_link")
-        var imgLink: String? = null,
+        var imgLink: String,
         @SerializedName("value")
-        var value: String? = null,
+        var value: String,
         @SerializedName("points")
         var points: Int = 0,
         @SerializedName("redeemable")
@@ -52,14 +52,14 @@ data class RewardsResponse(
         @SerializedName("expires_on")
         var expiresOn: Long = 0,
         @SerializedName("redemption_codes")
-        var redeemCodes: List<RewardRedemption>? = null,
+        var redeemCodes: List<RewardRedemption>,
         @SerializedName("previous_claims")
-        var previousClaims: List<PreviousClaims>? = null
+        var previousClaims: List<PreviousClaims>
     )
 
     data class RewardRedemption(
         @SerializedName("redemption_code")
-        var redeemCode: String? = null,
+        var redeemCode: String,
         @SerializedName("expires_in")
         var expiresOn: Long = 0
     )
@@ -68,7 +68,7 @@ data class RewardsResponse(
         @SerializedName("claimed_on")
         var claimedOn: Long = 0,
         @SerializedName("redemption_code")
-        var redeemCode: String? = null
+        var redeemCode: String
     )
 }
 

@@ -5,7 +5,9 @@ import java.util.ArrayList
 
 data class UserBizInfoResponse(
 
+    @SerializedName("meta")
     val meta: ResponseMeta,
+
     @SerializedName("objects")
     val userBizInfoList: ArrayList<UserBizInfo>
 )

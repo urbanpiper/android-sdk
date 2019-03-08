@@ -5,10 +5,12 @@ import com.google.gson.annotations.SerializedName
 
 
 data class BannerResponse(
+
     @SerializedName("images")
     val images: List<Image>,
+
     @SerializedName("meta")
-    val meta: Meta
+    val meta: ResponseMeta
 ) {
     data class Image(
         @SerializedName("created")
@@ -21,15 +23,6 @@ data class BannerResponse(
         val imgType: String,
         @SerializedName("markups")
         val markups: String
-    )
-
-    data class Meta(
-        @SerializedName("limit")
-        val limit: Int,
-        @SerializedName("offset")
-        val offset: Int,
-        @SerializedName("total_count")
-        val totalCount: Int
     )
 
     fun toJson(): String {

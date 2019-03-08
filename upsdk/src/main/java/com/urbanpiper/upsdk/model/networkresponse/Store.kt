@@ -32,7 +32,7 @@ data class Store(
     @SerializedName("on_close_msg")
     val onCloseMsg: String,
     @SerializedName("on_select_msg")
-    val onSelectMsg: Any,
+    val onSelectMsg: String,
     @SerializedName("opening_time")
     val openingTime: String,
     @SerializedName("packaging_charge")
@@ -50,5 +50,5 @@ data class Store(
     @SerializedName("temporarily_closed")
     val temporarilyClosed: Boolean,
     @SerializedName("time_slots")
-    val timeSlots: List<Any>
+    var timeSlots: List<TimeSlot>
 )

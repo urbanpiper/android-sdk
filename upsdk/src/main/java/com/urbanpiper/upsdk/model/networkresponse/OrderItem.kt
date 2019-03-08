@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName
 import java.util.ArrayList
 
 data class OrderItem(
-
     @SerializedName("id")
     var id: Int = 0,
 
@@ -39,7 +38,7 @@ data class OrderItem(
     var optionGroups: ArrayList<OrderItemOptionGroup>,
 
     @SerializedName("options")
-    val options: List<FilterAndSortOptionsResponse.Filter.Option>,
+    var optionsSelectedForOrdering: ArrayList<OrderItemOption>,
 
     @SerializedName("options_to_remove")
     var optionsSelectedForRemoval: ArrayList<OrderItemOption>,
@@ -57,13 +56,13 @@ data class OrderItem(
     var discountedPrice: Float = 0f,
 
     @SerializedName("item_category")
-    var itemCategory: ItemCategory,
+    var itemCategory: OrderCategory,
 
     @SerializedName("category")
-    var category: Category,
+    var category: OrderCategory,
 
     @SerializedName("sub_category")
-    var subCategory: SubCategory,
+    var subCategory: OrderCategory,
 
     @SerializedName("fulfillment_modes")
     var fulfillmentModes: Array<String>,

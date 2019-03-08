@@ -5,26 +5,26 @@ import java.util.ArrayList
 
 data class ReOrderResponse(
     @SerializedName("delivery_charge")
-    var deliveryCharge: Double? = null,
+    var deliveryCharge: Double,
 
     @SerializedName("items_available")
-    var itemsAvailable: List<OrderItem> = ArrayList<OrderItem>(),
+    var itemsAvailable: List<OrderItem> = ArrayList(),
 
     @SerializedName("items_not_available")
-    var itemsNotAvailable: List<OrderItem> = ArrayList<OrderItem>(),
+    var itemsNotAvailable: List<OrderItem> = ArrayList(),
 
     @SerializedName("order_item_taxes")
-    var orderItemTaxes: Double? = null,
+    var orderItemTaxes: Double,
 
     @SerializedName("order_subtotal")
-    var orderSubtotal: Double? = null,
+    var orderSubtotal: Double,
 
     @SerializedName("order_total")
-    var orderTotal: Double? = null,
+    var orderTotal: Double,
 
     @SerializedName("packaging_charge")
-    var packagingCharge: Double? = null,
+    var packagingCharge: Double,
 
     @SerializedName("biz_location")
-    var store: Store? = null
+    var store: Store
 )

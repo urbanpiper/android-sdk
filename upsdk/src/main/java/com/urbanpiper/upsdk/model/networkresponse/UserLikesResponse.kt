@@ -8,7 +8,5 @@ data class UserLikesResponse(
     var likes: ArrayList<Like>,
 
     @SerializedName("meta")
-var meta: ResponseMeta
-) {
-
-}
+    var meta: ResponseMeta
+)
