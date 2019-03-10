@@ -1,19 +1,28 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.urbanpiper.upsdk.model.UpdateUserInfoBody
+import com.urbanpiper.upsdk.model.networkresponse.UserAddress
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Assert.*
 import org.mockito.ArgumentMatchers.*
+import org.mockito.Mockito
 
 @RunWith(AndroidJUnit4::class)
 class UpClientFacadeTest {
 
     lateinit var upClient: UPClient
 
+    lateinit var updateUserInfoBody: UpdateUserInfoBody
+
+    lateinit var userAddress: UserAddress
+
     @Before
     fun setUp() {
+        Mockito.mock(updateUserInfoBody::class.java)
+
         upClient = UPClientBuilder()
             .setBizId("76720224")
             .setApiUserName("biz_adm_clients_yjXwAgQzHqYM")
@@ -55,6 +64,20 @@ class UpClientFacadeTest {
         assertNotNull(upClient.searchItems(anyString(), anyInt()))
 
         // User
+        assertNotNull(upClient.login(anyString(), anyString()))
+        assertNotNull(upClient.refreshToken(anyString()))
+        assertNotNull(upClient.socialLoginOTP(anyString(), anyString(), anyString(), anyString(), anyString(), anyString()))
+        assertNotNull(upClient.socialLogin(anyString(), anyString(), anyString()))
+        assertNotNull(upClient.refreshUserInfo(anyString()))
+        assertNotNull(upClient.refreshUserBizInfo())
+//        assertNotNull(upClient.updateUserInfo(anyString(), updateUserInfoBody))
+        assertNotNull(upClient.changePassword(anyString(), anyString(), anyString(), anyString()))
+        assertNotNull(upClient.getDeliverableAddresses(anyString()))
+
+
+
+
+
 
 
         // Cart
