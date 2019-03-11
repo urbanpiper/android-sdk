@@ -136,13 +136,13 @@ class CartServiceDefault(private val authToken: String, private val bizId: Strin
      *
      */
     override fun initPayment(
-        storeId: Int, amount: Int, purpose: String, redirectUrl: String, paytm: String, simpl: String,
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            initPayment(storeId, amount, purpose, redirectUrl, paytm, simpl)
+            initPayment(storeId, amount, redirectUrl, paytm, simpl)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -160,9 +160,40 @@ class CartServiceDefault(private val authToken: String, private val bizId: Strin
      *
      */
     override fun initPayment(
-        storeId: Int, amount: Int, purpose: String, redirectUrl: String, paytm: String, simpl: String
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
     ): Observable<PaymentInitResponse> {
-        return cartService.initPayment(authToken, bizId, storeId, amount, purpose, redirectUrl, paytm, simpl)
+        return cartService.initPayment(authToken, bizId, storeId, amount, "ordering", redirectUrl, paytm, simpl)
+    }
+
+    /**
+     * Init wallet reload
+     */
+    override fun initWalletReload(
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
+        callback: Callback<PaymentInitResponse>
+    ): CancellableTask {
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            initPayment(storeId, amount, redirectUrl, paytm, simpl)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    /**
+     * Init wallet reload
+     */
+    override fun initWalletReload(
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
+    ): Observable<PaymentInitResponse> {
+        return cartService.initPayment(authToken, bizId, storeId, amount, "reload", redirectUrl, paytm, simpl)
     }
 
     /**

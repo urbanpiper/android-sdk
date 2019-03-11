@@ -60,22 +60,35 @@ interface CartService {
     ): Observable<OrderValidateCouponResponse>
 
     /**
-     * Initiates a payment for the particular biz's store. This is useful if the biz is
-     * using a franchisee model.
+     * Initiates a payment for the particular biz's store.
      *
      */
     fun initPayment(
-        storeId: Int, amount: Int, purpose: String, redirectUrl: String, paytm: String, simpl: String,
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask
 
     /**
-     * Initiates a payment for the particular biz's store. This is useful if the biz is
-     * using a franchisee model.
+     * Initiates a payment for the particular biz's store.
      *
      */
     fun initPayment(
-        storeId: Int, amount: Int, purpose: String, redirectUrl: String, paytm: String, simpl: String
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
+    ): Observable<PaymentInitResponse>
+
+    /**
+     * Init wallet reload
+     */
+    fun initWalletReload(
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
+        callback: Callback<PaymentInitResponse>
+    ): CancellableTask
+
+    /**
+     * Init wallet reload
+     */
+    fun initWalletReload(
+        storeId: Int, amount: Int,  redirectUrl: String, paytm: String, simpl: String
     ): Observable<PaymentInitResponse>
 
     /**
