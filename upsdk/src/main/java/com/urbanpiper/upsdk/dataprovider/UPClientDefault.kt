@@ -60,7 +60,6 @@ private class UPClientDefault(
         promotionsService = PromotionsServiceDefault(authToken, bizId, retrofit)
         cartService = CartServiceDefault(authToken, bizId, retrofit)
     }
-
     // ----------------------  BASIC DETAILS ------------------------------------
 
     override fun getBizId(): String {
@@ -850,5 +849,12 @@ private class UPClientDefault(
         failed: Int
     ): Observable<PaymentCallbackResponse> {
         return cartService.verifyPayment(transactionId, gwTxnId, failed)
+    }
+
+    /**
+     * Returns an instance of the cart
+     */
+    override fun getCartInstance(): Cart {
+        return cartService.getCartInstance()
     }
 }

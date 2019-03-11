@@ -14,6 +14,7 @@ public final class UPClientBuilder {
     private String apiUserName;
     private String apiKey;
     private String language;
+//    private String callback;
 
     /**
      * Biz id - It identifies your business on the UrbanPiper platform
@@ -62,6 +63,17 @@ public final class UPClientBuilder {
     }
 
     /**
+     * Callback that returns user information
+     *
+     * @param callback
+     * @return
+     */
+//    public UPClientBuilder setCallback(String callback){
+//        this.callback = callback;
+//        return this;
+//    }
+
+    /**
      * @return - The UPClient object
      */
     public UPClient build() {
@@ -80,6 +92,10 @@ public final class UPClientBuilder {
         if (TextUtils.isEmpty(language)) {
             throw new IllegalArgumentException("Language is a required parameter ");
         }
+
+//        if (TextUtils.isEmpty(callback)){
+//            throw new IllegalArgumentException("Callback is a required parameter ");
+//        }
 
         return new UPClientDefault(bizId
                 , apiUserName

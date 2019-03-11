@@ -104,6 +104,8 @@ interface CartService {
         transactionId: String, gwTxnId: String, failed: Int
     ): Observable<PaymentCallbackResponse>
 
+    fun getCartInstance(): Cart
+
 }
 
 

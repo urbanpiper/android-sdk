@@ -14,6 +14,8 @@ class CartServiceDefault(private val authToken: String, private val bizId: Strin
     private val cartService: CartRetrofitService =
         retrofit.create(CartRetrofitService::class.java)
 
+    private val cart: Cart = Cart()
+
     /**
      * re-order api
      */
@@ -221,5 +223,7 @@ class CartServiceDefault(private val authToken: String, private val bizId: Strin
         return cartService.verifyPayment(authToken, transactionId, gwTxnId, failed)
     }
 
-
+    override fun getCartInstance(): Cart {
+        return cart.getInstance()
+    }
 }
