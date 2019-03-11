@@ -168,11 +168,7 @@ private class UPClientDefault(
      * Get items for a particular category
      */
     override fun getCategoryItems(
-        categoryId: Int,
-        locationId: String,
-        offset: Int,
-        limit: Int,
-        callback: Callback<CategoryItemResponse>
+        categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>
     ): CancellableTask {
         return catalogueService.getCategoryItems(categoryId, locationId, offset, limit, callback)
     }
@@ -181,10 +177,7 @@ private class UPClientDefault(
      * Get items for a particular category
      */
     override fun getCategoryItems(
-        categoryId: Int,
-        locationId: String,
-        offset: Int,
-        limit: Int
+        categoryId: Int, locationId: String, offset: Int, limit: Int
     ): Observable<CategoryItemResponse> {
         return catalogueService.getCategoryItems(categoryId, locationId, offset, limit)
     }
@@ -210,11 +203,7 @@ private class UPClientDefault(
      * Get filtered items for a particular category
      */
     override fun getFilteredItems(
-        categoryId: Int,
-        locationId: String,
-        filterBy: String,
-        offset: Int,
-        limit: Int,
+        categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int,
         callback: Callback<CategoryItemResponse>
     ): CancellableTask {
         return catalogueService.getFilteredItems(categoryId, locationId, filterBy, offset, limit, callback)
@@ -224,11 +213,7 @@ private class UPClientDefault(
      * Get filtered items for a particular category
      */
     override fun getFilteredItems(
-        categoryId: Int,
-        locationId: String,
-        filterBy: String,
-        offset: Int,
-        limit: Int
+        categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int
     ): Observable<CategoryItemResponse> {
         return catalogueService.getFilteredItems(categoryId, locationId, filterBy, offset, limit)
     }
@@ -237,11 +222,7 @@ private class UPClientDefault(
      * Get sorted items for a particular category
      */
     override fun getSortedItems(
-        categoryId: Int,
-        locationId: String,
-        sortBy: String,
-        offset: Int,
-        limit: Int,
+        categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int,
         callback: Callback<CategoryItemResponse>
     ): CancellableTask {
         return catalogueService.getSortedItems(categoryId, locationId, sortBy, offset, limit, callback)
@@ -251,11 +232,7 @@ private class UPClientDefault(
      * Get sorted items for a particular category
      */
     override fun getSortedItems(
-        categoryId: Int,
-        locationId: String,
-        sortBy: String,
-        offset: Int,
-        limit: Int
+        categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int
     ): Observable<CategoryItemResponse> {
         return catalogueService.getSortedItems(categoryId, locationId, sortBy, offset, limit)
     }
@@ -278,9 +255,7 @@ private class UPClientDefault(
      * Get Related items
      */
     override fun getRelatedItems(
-        itemId: String,
-        locationId: Int,
-        callback: Callback<RecommendedItemResponse>
+        itemId: String, locationId: Int, callback: Callback<RecommendedItemResponse>
     ): CancellableTask {
         return catalogueService.getRelatedItems(itemId, locationId, callback)
     }
@@ -296,9 +271,7 @@ private class UPClientDefault(
      * Get Item Details
      */
     override fun getItemDetails(
-        itemId: Int,
-        locationId: Int,
-        callback: Callback<ItemDetailsResponse>
+        itemId: Int, locationId: Int, callback: Callback<ItemDetailsResponse>
     ): CancellableTask {
         return catalogueService.getItemDetails(itemId, locationId, callback)
     }
@@ -314,9 +287,7 @@ private class UPClientDefault(
      * Search for items
      */
     override fun searchItems(
-        query: String,
-        locationId: Int,
-        callback: Callback<CategorySearchResponse>
+        query: String, locationId: Int, callback: Callback<CategorySearchResponse>
     ): CancellableTask {
         return catalogueService.searchItems(query, locationId, callback)
     }
@@ -397,10 +368,7 @@ private class UPClientDefault(
      * Social login - the result is returned as a callback
      */
     override fun socialLogin(
-        email: String,
-        provider: String,
-        accessToken: String,
-        callback: Callback<SocialAuthResponse>
+        email: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
     ): CancellableTask {
         return userService.socialLogin(email, provider, accessToken, callback)
     }
@@ -416,9 +384,7 @@ private class UPClientDefault(
      * Update user info - The result is returned as a callback
      */
     override fun updateUserInfo(
-        phone: String,
-        body: UpdateUserInfoBody,
-        callback: Callback<UpdateUserInfoResponse>
+        phone: String, body: UpdateUserInfoBody, callback: Callback<UpdateUserInfoResponse>
     ): CancellableTask {
         return userService.updateUserInfo(phone, body, callback)
     }
@@ -448,10 +414,7 @@ private class UPClientDefault(
      * change the password - The result is returned as a callback
      */
     override fun changePassword(
-        oldPassword: String,
-        newPassword: String,
-        confirmPassword: String,
-        phone: String,
+        oldPassword: String, newPassword: String, confirmPassword: String, phone: String,
         callback: Callback<GenericResponse>
     ): CancellableTask {
         return userService.changePassword(oldPassword, newPassword, confirmPassword, phone, callback)
@@ -461,10 +424,7 @@ private class UPClientDefault(
      * change the password - The result tis returned as an Observable
      */
     override fun changePassword(
-        oldPassword: String,
-        newPassword: String,
-        confirmPassword: String,
-        phone: String
+        oldPassword: String, newPassword: String, confirmPassword: String, phone: String
     ): Observable<GenericResponse> {
         return userService.changePassword(oldPassword, newPassword, confirmPassword, phone)
     }
@@ -473,8 +433,7 @@ private class UPClientDefault(
      * get Deliverable address - The result is returned as a callback
      */
     override fun getDeliverableAddresses(
-        locationId: String,
-        callback: Callback<DeliverableAddressResponse>
+        locationId: String, callback: Callback<DeliverableAddressResponse>
     ): CancellableTask {
         return userService.getDeliverableAddresses(locationId, callback)
     }
@@ -532,9 +491,7 @@ private class UPClientDefault(
      *  Returns wallet transaction's of the user
      */
     override fun getWalletTransactions(
-        limit: String,
-        offset: String,
-        callback: Callback<TransactionsResponse>
+        limit: String, offset: String, callback: Callback<TransactionsResponse>
     ): CancellableTask {
         return userService.getWalletTransactions(limit, offset, callback)
     }
@@ -714,11 +671,7 @@ private class UPClientDefault(
      * re-order api
      */
     override fun reOrder(
-        orderId: String,
-        locationId: String,
-        lat: String,
-        lng: String,
-        callback: Callback<ReOrderResponse>
+        orderId: String, locationId: String, lat: String, lng: String, callback: Callback<ReOrderResponse>
     ): CancellableTask {
         return cartService.reOrder(orderId, locationId, lat, lng, callback)
     }
@@ -735,9 +688,7 @@ private class UPClientDefault(
      * in details or checkout page.
      */
     override fun getCartRelatedItems(
-        itemIds: String,
-        locationId: Int,
-        callback: Callback<RecommendedItemResponse>
+        itemIds: String, locationId: Int, callback: Callback<RecommendedItemResponse>
     ): CancellableTask {
         return cartService.getCartRelatedItems(itemIds, locationId, callback)
     }
@@ -769,9 +720,7 @@ private class UPClientDefault(
      * order data as request body.
      */
     override fun validateCoupon(
-        couponCode: String,
-        body: ValidateCouponBody,
-        callback: Callback<OrderValidateCouponResponse>
+        couponCode: String, body: ValidateCouponBody, callback: Callback<OrderValidateCouponResponse>
     ): CancellableTask {
         return cartService.validateCoupon(couponCode, body, callback)
     }
@@ -790,15 +739,10 @@ private class UPClientDefault(
      *
      */
     override fun initPayment(
-        storeId: Int,
-        amount: Int,
-        purpose: String,
-        redirectUrl: String,
-        paytm: String,
-        simpl: String,
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask {
-        return cartService.initPayment(storeId, amount, purpose, redirectUrl, paytm, simpl, callback)
+        return cartService.initPayment(storeId, amount, redirectUrl, paytm, simpl, callback)
     }
 
     /**
@@ -807,9 +751,28 @@ private class UPClientDefault(
      *
      */
     override fun initPayment(
-        storeId: Int, amount: Int, purpose: String, redirectUrl: String, paytm: String, simpl: String
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
     ): Observable<PaymentInitResponse> {
-        return cartService.initPayment(storeId, amount, purpose, redirectUrl, paytm, simpl)
+        return cartService.initPayment(storeId, amount, redirectUrl, paytm, simpl)
+    }
+
+    /**
+     * Init wallet reload
+     */
+    override fun initWalletReload(
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
+        callback: Callback<PaymentInitResponse>
+    ): CancellableTask {
+        return cartService.initWalletReload(storeId, amount, redirectUrl, paytm, simpl, callback)
+    }
+
+    /**
+     * Init wallet reload
+     */
+    override fun initWalletReload(
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
+    ): Observable<PaymentInitResponse> {
+        return cartService.initWalletReload(storeId, amount, redirectUrl, paytm, simpl)
     }
 
     /**
@@ -831,9 +794,7 @@ private class UPClientDefault(
      *
      */
     override fun verifyPayment(
-        transactionId: String,
-        gwTxnId: String,
-        failed: Int,
+        transactionId: String, gwTxnId: String, failed: Int,
         callback: Callback<PaymentCallbackResponse>
     ): CancellableTask {
         return cartService.verifyPayment(transactionId, gwTxnId, failed, callback)
@@ -844,9 +805,7 @@ private class UPClientDefault(
      *
      */
     override fun verifyPayment(
-        transactionId: String,
-        gwTxnId: String,
-        failed: Int
+        transactionId: String, gwTxnId: String, failed: Int
     ): Observable<PaymentCallbackResponse> {
         return cartService.verifyPayment(transactionId, gwTxnId, failed)
     }

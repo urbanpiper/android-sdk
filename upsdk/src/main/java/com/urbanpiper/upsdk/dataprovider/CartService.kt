@@ -117,6 +117,9 @@ interface CartService {
         transactionId: String, gwTxnId: String, failed: Int
     ): Observable<PaymentCallbackResponse>
 
+    /**
+     * Returns an instance of the local cart
+     */
     fun getCartInstance(): Cart
 
 }
