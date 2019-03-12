@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
+import android.util.Log
 import com.urbanpiper.upsdk.model.ChangePasswordBody
 import com.urbanpiper.upsdk.model.JWTAuthLoginBody
 import com.urbanpiper.upsdk.model.JWTRefreshTokenBody
@@ -40,7 +41,25 @@ class UserServiceDefault(private val authToken: String, private val bizId: Strin
      */
     override fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
         val body = JWTAuthLoginBody(phone, password)
-        return userRetrofitService.login(authToken, body)
+
+        val lol = userRetrofitService.login(authToken, body)
+
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            lol.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    val response: AuthSuccessResponse = success
+
+                    Log.d("User service ","${response.message}  ${response.token} ${response.status}")
+
+                }, { error ->
+                    Log.d("error" , "Login failed ", error)
+                })
+        )
+
+        return lol
     }
 
     /**

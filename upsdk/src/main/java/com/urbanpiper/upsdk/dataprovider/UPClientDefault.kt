@@ -11,6 +11,15 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * all the possible methods for the UPSDK are available through
+ * this class. This class is a facade
+ *
+ * @property bizId - Business id of the merchant
+ * @property apiUsername - API username of the merchant
+ * @property apiKey -  API key of the merchant
+ * @property language - The default language of the merchant
+ */
 private class UPClientDefault(
     private val bizId: String
     , private val apiUsername: String
@@ -84,8 +93,18 @@ private class UPClientDefault(
 
     // -------------------------- GENERAL SERVICE -------------------------------
 
+
     /**
-     * App version check
+     * returns the latest version of the android app as configured on the server
+     *
+     * This can be used to force update the application. The response has a field that shows if force update
+     * is required. This method should be called when the app is opened and after the user sign's in.
+     *
+     * @param username - username of the user
+     * @param version - version of the application
+     * @param callback - Callback to receive the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun checkAppVersion(
         username: String, version: String, callback: Callback<VersionCheckResponse>
@@ -94,7 +113,15 @@ private class UPClientDefault(
     }
 
     /**
-     * App version check
+     * returns the latest version of the android app as configured on the server
+     *
+     * This can be used to force update the application. The response has a field that shows if force update
+     * is required. This method should be called when the app is opened and after the user sign's in.
+     *
+     * @param username - username of the user
+     * @param version - version of the application
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun checkAppVersion(username: String, version: String): Observable<VersionCheckResponse> {
         return generalService.checkAppVersion(username, version)
@@ -103,7 +130,16 @@ private class UPClientDefault(
     /**
      * Register the device for FCM
      *
-     * This should return a generic response in the callback
+     * This can be used to force update the application. The response has a field that shows if force update
+     * is required. This method should be called when the app is opened and after the user sign's in.
+     *
+     * TODO - This should return a generic response in the callback
+     *
+     * @param token - FCM registration token
+     * @param deviceId - The unique id of the device
+     * @param callback - Callback to receive the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun registerFCMToken(token: String, deviceId: String, callback: Callback<Void>): CancellableTask {
         return generalService.registerFCMToken(token, deviceId, callback)
@@ -112,7 +148,15 @@ private class UPClientDefault(
     /**
      * Register the device for FCM
      *
-     * This should return a generic response in the callback
+     * This method registers a device to receive FCM messages, This should be called when the app
+     * is launched and after the user sign's in to the app
+     *
+     * TODO - This should return a generic response in the callback
+     *
+     * @param token - FCM registration token
+     * @param deviceId - The unique id of the device
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun registerFCMToken(token: String, deviceId: String): Observable<Void> {
         return generalService.registerFCMToken(token, deviceId)
@@ -120,6 +164,17 @@ private class UPClientDefault(
 
     /**
      * Returns the nearest store based on lat/ lng
+     *
+     * This endpoint helps determine the nearest store from which an order can be delivered.
+     * It expects the latitude/longitude information of the location to be delivered to.
+     * Along with the store information, this endpoint also returns the biz related information,
+     * which can be cached for later use.
+     *
+     * @param lat - User's latitude
+     * @param lng - User's longitude
+     * @param callback - Callback to receive the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreReponse>): CancellableTask {
         return generalService.getNearestStore(lat, lng, callback)
@@ -127,20 +182,40 @@ private class UPClientDefault(
 
     /**
      * Returns the nearest store based on lat/ lng
+     *
+     * This endpoint helps determine the nearest store from which an order can be delivered.
+     * It expects the latitude/longitude information of the location to be delivered to.
+     * Along with the store information, this endpoint also returns the biz related information,
+     * which can be cached for later use.
+     *
+     * @param lat - User's latitude
+     * @param lng - User's longitude
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getNearestStore(lat: Double, lng: Double): Observable<StoreReponse> {
         return generalService.getNearestStore(lat, lng)
     }
 
     /**
-     * Returns all the stores for the biz
+     * Returns all the stores for the business
+     *
+     * This method returns all the stores configured for a business.
+     *
+     * @param callback - Callback to receive the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getAllStores(callback: Callback<StoreListResponse>): CancellableTask {
         return generalService.getAllStores(callback)
     }
 
     /**
-     * Returns all the stores for the biz
+     * Returns all the stores for the business
+     *
+     * This method returns all the stores configured for a business.
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getAllStores(): Observable<StoreListResponse> {
         return generalService.getAllStores()
@@ -150,6 +225,12 @@ private class UPClientDefault(
 
     /**
      * Get all the categories
+     */
+    /**
+     * TODO
+     *
+     * @param locationId
+     * @param callback
      */
     override fun getCategories(locationId: Int, callback: Callback<CategoriesResponse>): CancellableTask {
         return catalogueService.getCategories(locationId, callback)

@@ -7,6 +7,7 @@ import com.urbanpiper.upsdk.dataprovider.Callback
 import com.urbanpiper.upsdk.dataprovider.CancellableTask
 import com.urbanpiper.upsdk.dataprovider.UPClient
 import com.urbanpiper.upsdk.dataprovider.UPClientBuilder
+import com.urbanpiper.upsdk.model.networkresponse.AuthSuccessResponse
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
 import io.reactivex.Observable
 
@@ -28,12 +29,16 @@ class MyApp : Application() {
         upClient.changeLanguage("hi")
     }
 
-    fun getBanners( callback: Callback<BannerResponse>): CancellableTask{
+    fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
         return upClient.getBanners(callback)
     }
 
     fun getBanners(): Observable<BannerResponse> {
         return upClient.getBanners()
+    }
+
+    fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
+        return upClient.login(phone, password)
     }
 
 }

@@ -71,49 +71,36 @@ class MainActivity : AppCompatActivity() {
 //                    }
 //                })
 
-
-//        compositeDisposable.add(
-//            MyApp().getBanners()
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(Schedulers.io())
-//                .subscribe({ result ->
-//                    if (result != null) {
-//                        val banners: BannerResponse = result
+//        val cancellableTask = MyApp().getBanners(object : com.urbanpiper.upsdk.dataprovider.Callback<BannerResponse> {
+//            override fun success(response: BannerResponse) {
 //
-//                        if (!banners.images.isNullOrEmpty()) {
-//                            for (i in 0 until banners.images.size) {
-//                                Log.d("Success ", "Banner Name ${banners.images[0].image}")
-//                                text.text = "Banner Name ${banners.images[0].image}"
-//                            }
-//                        }
+//                val banners: BannerResponse = response
+//
+//                if (!banners.images.isNullOrEmpty()) {
+//                    for (i in 0 until banners.images.size) {
+//                        Log.d("Success ", "Banner Name ${banners.images[0].image}")
+//                        text.text = "Banner Name ${banners.images[0].image}"
 //                    }
-//                }, { error ->
-//                    Log.e("Main Activity" , "api error response " , error)
-//                })
-//        )
-
-
-        val cancellableTask = MyApp().getBanners(object : com.urbanpiper.upsdk.dataprovider.Callback<BannerResponse> {
-            override fun success(response: BannerResponse) {
+//                }
 //
-                val banners: BannerResponse = response
+//            }
 
-                if (!banners.images.isNullOrEmpty()) {
-                    for (i in 0 until banners.images.size) {
-                        Log.d("Success ", "Banner Name ${banners.images[0].image}")
-                        text.text = "Banner Name ${banners.images[0].image}"
-                    }
-                }
-
-            }
-
-            override fun failure(upClientError: UpClientError) {
+//            override fun failure(upClientError: UpClientError) {
+//
+//            }
+//        })
 
 
-            }
+        compositeDisposable.add(
+            MyApp().login("9880170805","nikhil12345")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ response ->
+                    Log.d("Main Activity ","${response.message}  ${response.token} ${response.status}")
 
-        })
-
+                }, { error ->
+                    Log.d("error" , "Login failed ", error)
+                }))
 
     }
 

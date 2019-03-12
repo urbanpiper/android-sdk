@@ -71,8 +71,7 @@ interface UserService {
      * Update user info - The result is returned as a callback
      */
     fun updateUserInfo(
-        phone: String, body: UpdateUserInfoBody,
-        callback: Callback<UpdateUserInfoResponse>
+        phone: String, body: UpdateUserInfoBody, callback: Callback<UpdateUserInfoResponse>
     ): CancellableTask
 
     /**
