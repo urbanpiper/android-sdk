@@ -2,7 +2,7 @@ package com.urbanpiper.upsdk.model.networkresponse
 
 import com.google.gson.annotations.SerializedName
 
-class UserAddressSaveResponse (
+data class UserAddressSaveResponse (
     @SerializedName("address_id")
     var addressId: Int,
     @SerializedName("status")

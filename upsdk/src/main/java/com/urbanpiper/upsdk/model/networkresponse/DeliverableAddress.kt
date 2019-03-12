@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class DeliverableAddress(
+data class DeliverableAddress(
     @SerializedName("address_1")
     private var address1: String,
     @SerializedName("landmark")

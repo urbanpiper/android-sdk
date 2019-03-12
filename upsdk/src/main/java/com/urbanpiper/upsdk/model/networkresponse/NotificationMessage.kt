@@ -2,7 +2,7 @@ package com.urbanpiper.upsdk.model.networkresponse
 
 import com.google.gson.annotations.SerializedName
 
-class NotificationMessage (
+data class NotificationMessage (
 
     @SerializedName("id")
     var id: Int = 0,

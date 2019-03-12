@@ -2,7 +2,7 @@ package com.urbanpiper.upsdk.model.networkresponse
 
 import com.google.gson.annotations.SerializedName
 
-class RedeemRewardResponse(
+data class RedeemRewardResponse(
     @SerializedName("expires_in")
     var expireIn: Long = 0,
 

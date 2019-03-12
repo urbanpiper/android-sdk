@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.ArrayList
 
-/**
- * Created by prem on 21/12/2016.
- */
-
 data class RewardsResponse(
     @SerializedName("meta")
     var meta: ResponseMeta,
