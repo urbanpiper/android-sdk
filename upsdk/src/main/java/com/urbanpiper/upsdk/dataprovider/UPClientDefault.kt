@@ -88,9 +88,7 @@ private class UPClientDefault(
      * App version check
      */
     override fun checkAppVersion(
-        username: String,
-        version: String,
-        callback: Callback<VersionCheckResponse>
+        username: String, version: String, callback: Callback<VersionCheckResponse>
     ): CancellableTask {
         return generalService.checkAppVersion(username, version, callback)
     }
@@ -794,8 +792,7 @@ private class UPClientDefault(
      *
      */
     override fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int,
-        callback: Callback<PaymentCallbackResponse>
+        transactionId: String, gwTxnId: String, failed: Int, callback: Callback<PaymentCallbackResponse>
     ): CancellableTask {
         return cartService.verifyPayment(transactionId, gwTxnId, failed, callback)
     }

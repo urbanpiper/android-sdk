@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.dokka-android'
 
 android {
     compileSdkVersion 28
@@ -19,7 +22,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 ext {
@@ -29,6 +31,11 @@ ext {
     testRunner = '1.0.2'
     espressoCore = '3.0.2'
     junit = '4.12'
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$rootDir/javadoc"
 }
 
 dependencies {
