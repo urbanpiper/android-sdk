@@ -625,10 +625,10 @@ class UserServiceDefault(private val authToken: String, private val bizId: Strin
     }
 
     /**
-     * TODO
+     * This method redeems a reward for a user
      *
-     * @param rewardId
-     * @param callback
+     * @param rewardId - Id of the reward
+     * @param callback - Callback to return the result
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
@@ -649,9 +649,9 @@ class UserServiceDefault(private val authToken: String, private val bizId: Strin
     }
 
     /**
-     * TODO
+     * This method redeems a reward for a user
      *
-     * @param rewardId
+     * @param rewardId - Id of the reward
      *
      * @return Observable - the result of the network request is returned as an Observable
      */

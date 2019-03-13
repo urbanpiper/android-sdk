@@ -926,10 +926,10 @@ private class UPClientDefault(
     }
 
     /**
-     * TODO
+     * This method redeems a reward for a user
      *
-     * @param rewardId
-     * @param callback
+     * @param rewardId - Id of the reward
+     * @param callback - Callback to return the result
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
@@ -938,9 +938,9 @@ private class UPClientDefault(
     }
 
     /**
-     * TODO
+     * This method redeems a reward for a user
      *
-     * @param rewardId
+     * @param rewardId - Id of the reward
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
@@ -1061,46 +1061,73 @@ private class UPClientDefault(
         return userService.unLikeItem(itemId)
     }
 
-
     // ------------------------ PROMOTIONS SERVICE -------------------------------
 
     /**
+     * The Gallery method returns the list of images that have been uploaded through the configuration portal.
      *
+     * These images might be used for different visual purposes, such as:
+     * - showing banners in a carousel in the website or app.
+     * - showing a promotional popup.
+     *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
         return promotionsService.getBanners(callback)
     }
 
     /**
-     * Returns banners from the server using an Observable
+     * The Gallery method returns the list of images that have been uploaded through the configuration portal.
+     *
+     * These images might be used for different visual purposes, such as:
+     * - showing banners in a carousel in the website or app.
+     * - showing a promotional popup.
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getBanners(): Observable<BannerResponse> {
         return promotionsService.getBanners()
     }
 
     /**
+     * This method returns a list of offers that can be applied to an order
      *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getOffers(callback: Callback<OffersResponse>): CancellableTask {
         return promotionsService.getOffers(callback)
     }
 
     /**
-     * Returns offers from the server using an Observable
+     * This method returns a list of offers that can be applied to an order
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getOffers(): Observable<OffersResponse> {
         return promotionsService.getOffers()
     }
 
     /**
+     * This endpoint returns the list of rewards that are configured in the system.
+     * Rewards might be in one of the following states for a user
      *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getRewards(callback: Callback<RewardsResponse>): CancellableTask {
         return promotionsService.getRewards(callback)
     }
 
     /**
-     * Returns rewards from the server using on observable
+     * This endpoint returns the list of rewards that are configured in the system.
+     * Rewards might be in one of the following states for a user
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getRewards(): Observable<RewardsResponse> {
         return promotionsService.getRewards()

@@ -8,44 +8,60 @@ import io.reactivex.Observable
 interface PromotionsService {
 
     /**
-     * Retrieves a list of banners
+     * The Gallery method returns the list of images that have been uploaded through the configuration portal.
      *
-     * @return - Observable - The api response is returned as an RxJava Observable
-     */
-    fun getBanners(): Observable<BannerResponse>
-
-
-    /**
-     * Retrieves a list of banners
+     * These images might be used for different visual purposes, such as:
+     * - showing banners in a carousel in the website or app.
+     * - showing a promotional popup.
      *
-     * @return - Observable - The api response is returned as an RxJava Observable
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun getBanners(callback: Callback<BannerResponse>): CancellableTask
 
     /**
-     * Retrieves a list of offers
+     * The Gallery method returns the list of images that have been uploaded through the configuration portal.
      *
+     * These images might be used for different visual purposes, such as:
+     * - showing banners in a carousel in the website or app.
+     * - showing a promotional popup.
+     *
+     * @return Observable - the result of the network request is returned as an Observable
+     */
+    fun getBanners(): Observable<BannerResponse>
+
+    /**
+     * This method returns a list of offers that can be applied to an order
+     *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun getOffers(callback: Callback<OffersResponse>): CancellableTask
 
-
     /**
-     * Retrieves a list of offers
+     * This method returns a list of offers that can be applied to an order
      *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun getOffers(): Observable<OffersResponse>
 
-
     /**
-     * Retrieves a list of rewards
+     * This endpoint returns the list of rewards that are configured in the system.
+     * Rewards might be in one of the following states for a user
      *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun getRewards(callback: Callback<RewardsResponse>): CancellableTask
 
-
     /**
-     * Retrieves a list of rewards
+     * This endpoint returns the list of rewards that are configured in the system.
+     * Rewards might be in one of the following states for a user
      *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun getRewards(): Observable<RewardsResponse>
 
