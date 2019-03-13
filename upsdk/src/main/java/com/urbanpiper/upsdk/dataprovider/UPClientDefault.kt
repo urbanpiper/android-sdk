@@ -12,8 +12,10 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * all the possible methods for the UPSDK are available through
- * this class. This class is a facade
+ * All methods for the UPSDK are available through
+ * this class.
+ *
+ * This class is a facade
  *
  * @property bizId - Business id of the merchant
  * @property apiUsername - API username of the merchant
@@ -224,27 +226,50 @@ private class UPClientDefault(
     // --------------------------- CATALOGUE SERVICE -------------------------------
 
     /**
-     * Get all the categories
-     */
-    /**
-     * TODO
+     * returns a list of active categories of items from which an order can be placed
      *
-     * @param locationId
-     * @param callback
+     * This method returns the list of active categories of items from which an order can be placed.
+     *
+     * @param locationId - Location id is returned from the store
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getCategories(locationId: Int, callback: Callback<CategoriesResponse>): CancellableTask {
         return catalogueService.getCategories(locationId, callback)
     }
 
     /**
-     * Get all the categories
+     * returns a list of active categories of items from which an order can be placed
+     *
+     * This method returns the list of active categories of items from which an order can be placed.
+     *
+     * @param locationId - Location id is returned from the store
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getCategories(locationId: Int): Observable<CategoriesResponse> {
         return catalogueService.getCategories(locationId)
     }
 
     /**
-     * Get items for a particular category
+     * returns a list of active items for a category from which an order can be placed
+     *
+     * This endpoint returns the list of active items belonging to a particular category.
+     * This endpoint can find use in scenarios:
+     * When the entire menu for a restaurant is to be displayed.
+     * When the location specific list of items need to be shown for accepting an order.
+     * In this case, the location_id parameter needs to be passed-in.
+     * This is so because the availability for each of the items need to be determined so that customers
+     * don’t place an order for items which might be out of stock.
+     *
+     * @param categoryId - Category ID
+     * @param locationId - Location ID
+     * @param offset - offset
+     * @param limit - limit
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getCategoryItems(
         categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>
@@ -253,7 +278,22 @@ private class UPClientDefault(
     }
 
     /**
-     * Get items for a particular category
+     * returns a list of active items for a category from which an order can be placed
+     *
+     * This endpoint returns the list of active items belonging to a particular category.
+     * This endpoint can find use in scenarios:
+     * When the entire menu for a restaurant is to be displayed.
+     * When the location specific list of items need to be shown for accepting an order.
+     * In this case, the location_id parameter needs to be passed-in.
+     * This is so because the availability for each of the items need to be determined so that customers
+     * don’t place an order for items which might be out of stock.
+     *
+     * @param categoryId - Category ID
+     * @param locationId - Location ID
+     * @param offset - offset
+     * @param limit - limit
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getCategoryItems(
         categoryId: Int, locationId: String, offset: Int, limit: Int
@@ -262,7 +302,12 @@ private class UPClientDefault(
     }
 
     /**
-     * Get filter and sort options for a particular category
+     * This endpoint handles requests to get available filter and sort options for a category.
+     *
+     * @param categoryId - Category Id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getFilterAndSortOptions(
         categoryId: Int,
@@ -272,14 +317,31 @@ private class UPClientDefault(
     }
 
     /**
-     * Get filter and sort options for a particular category
+     * This endpoint handles requests to get available filter and sort options for a category.
+     *
+     * @param categoryId - Category Id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getFilterAndSortOptions(categoryId: Int): Observable<FilterAndSortOptionsResponse> {
         return catalogueService.getFilterAndSortOptions(categoryId)
     }
 
     /**
-     * Get filtered items for a particular category
+     * returns a list of active items filtered based on the filters passed
+     *
+     * This method returns a list of active items filtered based on filters received
+     * from the getFilterAndSortOptions method for a category from which an order can be placed.
+     * Multiple filters can be sent as comma separated values (eg - filter1,filter2,filter3)
+     *
+     * @param categoryId - Category Id
+     * @param locationId - Location Id
+     * @param filterBy - Filter received from getFilterAndSortOptions methods
+     * @param offset - offset
+     * @param limit - limit
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getFilteredItems(
         categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int,
@@ -289,7 +351,19 @@ private class UPClientDefault(
     }
 
     /**
-     * Get filtered items for a particular category
+     * returns a list of active items filtered based on the filters passed
+     *
+     * This method returns a list of active items filtered based on filters received
+     * from the getFilterAndSortOptions method for a category from which an order can be placed.
+     * Multiple filters can be sent as comma separated values (eg - filter1,filter2,filter3)
+     *
+     * @param categoryId - Category Id
+     * @param locationId - Location Id
+     * @param filterBy - Filter received from getFilterAndSortOptions methods
+     * @param offset - offset
+     * @param limit - limit
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getFilteredItems(
         categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int
@@ -298,7 +372,20 @@ private class UPClientDefault(
     }
 
     /**
-     * Get sorted items for a particular category
+     * returns a list of active items sorted based on the sort option passed
+     *
+     * returns a list of active items sorted based on the sort option received
+     * from the getFilterAndSortOptions method for a category from which an order can be placed.
+     * Only a single sort option can be passed.
+     *
+     * @param categoryId - Category Id
+     * @param locationId - Location Id
+     * @param sortBy - Sort option
+     * @param offset - offset
+     * @param limit - limit
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getSortedItems(
         categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int,
@@ -308,7 +395,19 @@ private class UPClientDefault(
     }
 
     /**
-     * Get sorted items for a particular category
+     * returns a list of active items sorted based on the sort option passed
+     *
+     * returns a list of active items sorted based on the sort option received
+     * from the getFilterAndSortOptions method for a category from which an order can be placed.
+     * Only a single sort option can be passed.
+     *
+     * @param categoryId - Category Id
+     * @param locationId - Location Id
+     * @param sortBy - Sort option
+     * @param offset - offset
+     * @param limit - limit
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getSortedItems(
         categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int
@@ -317,21 +416,37 @@ private class UPClientDefault(
     }
 
     /**
-     * Get recommended items
+     * returns a list of active recommended items which are sent based on the location id (based on the store)
+     *
+     * @param locationId - location id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getRecommendedItems(locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
         return catalogueService.getRecommendedItems(locationId, callback)
     }
 
     /**
-     * Get recommended items
+     * returns a list of active recommended items which are sent based on the location id (based on the store)
+     *
+     * @param locationId - location id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getRecommendedItems(locationId: Int): Observable<RecommendedItemResponse> {
         return catalogueService.getRecommendedItems(locationId)
     }
 
     /**
-     * Get Related items
+     * returns a list of items which are sent based on the location id and other items
+     * Multiple item id's can be passed as comma separated values Eg( id1,id2,id3 )
+     *
+     * @param itemId - Item id
+     * @param locationId - Location id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getRelatedItems(
         itemId: String, locationId: Int, callback: Callback<RecommendedItemResponse>
@@ -340,14 +455,26 @@ private class UPClientDefault(
     }
 
     /**
-     * Get Related items
+     * returns a list of items which are sent based on the location id and other items
+     * Multiple item id's can be passed as comma separated values Eg( id1,id2,id3 )
+     *
+     * @param itemId - Item id
+     * @param locationId - Location id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getRelatedItems(itemId: String, locationId: Int): Observable<RecommendedItemResponse> {
         return catalogueService.getRelatedItems(itemId, locationId)
     }
 
     /**
-     * Get Item Details
+     * This method returns detailed information for a particular ordering item
+     *
+     * @param itemId - Item id
+     * @param locationId - Location id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getItemDetails(
         itemId: Int, locationId: Int, callback: Callback<ItemDetailsResponse>
@@ -356,14 +483,28 @@ private class UPClientDefault(
     }
 
     /**
-     * Get Item Details
+     * This method returns detailed information for a particular ordering item
+     *
+     * @param itemId - Item id
+     * @param locationId - Location id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getItemDetails(itemId: Int, locationId: Int): Observable<ItemDetailsResponse> {
         return catalogueService.getItemDetails(itemId, locationId)
     }
 
     /**
-     * Search for items
+     * This endpoint handles requests made for searching items in the current inventory.
+     *
+     * The text keyword to search is matched against the item’s title,
+     * description and any tags associated with the item.
+     *
+     * @param query - Keyword
+     * @param locationId - Location id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun searchItems(
         query: String, locationId: Int, callback: Callback<CategorySearchResponse>
@@ -372,7 +513,15 @@ private class UPClientDefault(
     }
 
     /**
-     * Search for items
+     * This endpoint handles requests made for searching items in the current inventory.
+     *
+     * The text keyword to search is matched against the item’s title,
+     * description and any tags associated with the item.
+     *
+     * @param query - Keyword
+     * @param locationId - Location id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun searchItems(query: String, locationId: Int): Observable<CategorySearchResponse> {
         return catalogueService.searchItems(query, locationId)
