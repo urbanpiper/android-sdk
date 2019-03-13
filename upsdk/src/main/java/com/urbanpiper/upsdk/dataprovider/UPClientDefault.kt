@@ -73,22 +73,43 @@ class UPClientDefault(
     }
     // ----------------------  BASIC DETAILS ------------------------------------
 
+    /**
+     * Returns biz id
+     *
+     */
     override fun getBizId(): String {
         return bizId
     }
 
+    /**
+     * Returns api username
+     *
+     */
     override fun getApiUserName(): String {
         return apiUsername
     }
 
+    /**
+     * Returns api key
+     *
+     */
     override fun getAPIKey(): String {
         return apiKey
     }
 
+    /**
+     * Returns current language being passed to the SDK
+     *
+     */
     override fun getBizLanguage(): String {
         return language
     }
 
+    /**
+     * This method is used to change the language of the response being passed to the SDK
+     *
+     * @param language
+     */
     override fun changeLanguage(language: String) {
         this.language = language
     }

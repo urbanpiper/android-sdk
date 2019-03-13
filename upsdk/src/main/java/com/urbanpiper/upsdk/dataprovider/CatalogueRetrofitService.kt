@@ -132,7 +132,6 @@ interface CatalogueRetrofitService {
      * Retrieves the item details for item.
      *
      * @param itemId
-     * @param storeId
      */
     @GET("/api/v1/items/{item_id}/")
     fun getItemDetails(
