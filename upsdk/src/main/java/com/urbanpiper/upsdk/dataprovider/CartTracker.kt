@@ -3,6 +3,9 @@ package com.urbanpiper.upsdk.dataprovider
 import com.urbanpiper.upsdk.model.networkresponse.OrderCategory
 import com.urbanpiper.upsdk.model.networkresponse.OrderItem
 
+/**
+ * Helper method for the cart implementation
+ */
 interface CartTracker {
 
     fun addItem(category: OrderCategory, item: OrderItem )

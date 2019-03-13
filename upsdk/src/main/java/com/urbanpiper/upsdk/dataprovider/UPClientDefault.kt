@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @property apiKey -  API key of the merchant
  * @property language - The default language of the merchant
  */
-private class UPClientDefault(
+class UPClientDefault(
     private val bizId: String
     , private val apiUsername: String
     , private val apiKey: String
@@ -1135,7 +1135,16 @@ private class UPClientDefault(
     // ------------------------ CART SERVICE -------------------------------
 
     /**
-     * re-order api
+     * This endpoint validates whether a previously placed order can be re-ordered.
+     * The response indicates which items can be re-ordered and which can’t be.
+     *
+     * @param orderId - Order Id
+     * @param locationId - Location Id
+     * @param lat - user's current latitude
+     * @param lng - user's current longitude
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun reOrder(
         orderId: String, locationId: String, lat: String, lng: String, callback: Callback<ReOrderResponse>
@@ -1144,15 +1153,29 @@ private class UPClientDefault(
     }
 
     /**
-     * re-order api
+     * This endpoint validates whether a previously placed order can be re-ordered.
+     * The response indicates which items can be re-ordered and which can’t be.
+     *
+     * @param orderId - Order Id
+     * @param locationId - Location Id
+     * @param lat - user's current latitude
+     * @param lng - user's current longitude
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun reOrder(orderId: String, locationId: String, lat: String, lng: String): Observable<ReOrderResponse> {
         return cartService.reOrder(orderId, locationId, lat, lng)
     }
 
     /**
-     * Get the recommended items from the server. The items returned are based on a particular item
-     * in details or checkout page.
+     * returns a list of items which are sent based on the location id and other items
+     * Multiple item id's can be passed as comma separated values Eg( id1,id2,id3 )
+     *
+     * @param itemIds - Item id
+     * @param locationId - Location id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getCartRelatedItems(
         itemIds: String, locationId: Int, callback: Callback<RecommendedItemResponse>
@@ -1161,30 +1184,59 @@ private class UPClientDefault(
     }
 
     /**
-     * Get the recommended items from the server. The items returned are based on a particular item
-     * in details or checkout page.
+     * returns a list of items which are sent based on the location id and other items
+     * Multiple item id's can be passed as comma separated values Eg( id1,id2,id3 )
+     *
+     * @param itemIds - Item id
+     * @param locationId - Location id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getCartRelatedItems(itemIds: String, locationId: Int): Observable<RecommendedItemResponse> {
         return cartService.getCartRelatedItems(itemIds, locationId)
     }
 
     /**
-     * Sends the order details to the server for validation.
+     * This is an important method in the flow of placing an order. This endpoint validates the contents
+     * of the cart to return the computational details for the order, like the charges, taxes, total, etc.
+     * We strongly recommend client applications not to perform these complex computations at their end,
+     * since there are many variables that can affect the computations—not all of which are available with
+     * the client application at any time.
+     *
+     * @param order - Order object
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun validateCart(order: Order, callback: Callback<PreProcessOrderResponse>): CancellableTask {
         return cartService.validateCart(order, callback)
     }
 
     /**
-     * Sends the order details to the server for validation.
+     * This is an important method in the flow of placing an order. This endpoint validates the contents
+     * of the cart to return the computational details for the order, like the charges, taxes, total, etc.
+     * We strongly recommend client applications not to perform these complex computations at their end,
+     * since there are many variables that can affect the computations—not all of which are available with
+     * the client application at any time.
+     *
+     * @param order - Order object
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun validateCart(order: Order): Observable<PreProcessOrderResponse> {
         return cartService.validateCart(order)
     }
 
     /**
-     * Advanced version of coupon validation - takes in the complete
-     * order data as request body.
+     * This endpoint accepts a coupon code and the current order data to determine whether the coupon
+     * can be applied, and what the discount value would be. The Order information is required for this
+     * endpoint to function since a coupon’s validity is usually tied to the current order data.
+     *
+     * @param couponCode - Coupon code
+     * @param body - Validate coupon body
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun validateCoupon(
         couponCode: String, body: ValidateCouponBody, callback: Callback<OrderValidateCouponResponse>
@@ -1193,17 +1245,28 @@ private class UPClientDefault(
     }
 
     /**
-     * Advanced version of coupon validation - takes in the complete
-     * order data as request body.
+     * This endpoint accepts a coupon code and the current order data to determine whether the coupon
+     * can be applied, and what the discount value would be. The Order information is required for this
+     * endpoint to function since a coupon’s validity is usually tied to the current order data.
+     *
+     * @param couponCode - Coupon code
+     * @param body - Validate coupon body
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun validateCoupon(couponCode: String, body: ValidateCouponBody): Observable<OrderValidateCouponResponse> {
         return cartService.validateCoupon(couponCode, body)
     }
 
     /**
-     * Initiates a payment for the particular biz's store. This is useful if the biz is
-     * using a franchisee model.
+     * TODO
      *
+     * @param storeId
+     * @param amount
+     * @param redirectUrl
+     * @param paytm
+     * @param simpl
+     * @param callback
      */
     override fun initPayment(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
@@ -1213,9 +1276,13 @@ private class UPClientDefault(
     }
 
     /**
-     * Initiates a payment for the particular biz's store. This is useful if the biz is
-     * using a franchisee model.
+     * TODO
      *
+     * @param storeId
+     * @param amount
+     * @param redirectUrl
+     * @param paytm
+     * @param simpl
      */
     override fun initPayment(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
@@ -1224,7 +1291,14 @@ private class UPClientDefault(
     }
 
     /**
-     * Init wallet reload
+     * TODO
+     *
+     * @param storeId
+     * @param amount
+     * @param redirectUrl
+     * @param paytm
+     * @param simpl
+     * @param callback
      */
     override fun initWalletReload(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
@@ -1234,7 +1308,13 @@ private class UPClientDefault(
     }
 
     /**
-     * Init wallet reload
+     * TODO
+     *
+     * @param storeId
+     * @param amount
+     * @param redirectUrl
+     * @param paytm
+     * @param simpl
      */
     override fun initWalletReload(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
@@ -1243,22 +1323,31 @@ private class UPClientDefault(
     }
 
     /**
-     * Sends the order details to the server for persistence.
+     * TODO
+     *
+     * @param body
+     * @param callback
      */
     override fun placeOrder(body: Order, callback: Callback<OrderSaveResponse>): CancellableTask {
         return cartService.placeOrder(body, callback)
     }
 
     /**
-     * Sends the order details to the server for persistence.
+     * TODO
+     *
+     * @param body
      */
     override fun placeOrder(body: Order): Observable<OrderSaveResponse> {
         return cartService.placeOrder(body)
     }
 
     /**
-     * Marks the completion of a transaction.
+     * TODO
      *
+     * @param transactionId
+     * @param gwTxnId
+     * @param failed
+     * @param callback
      */
     override fun verifyPayment(
         transactionId: String, gwTxnId: String, failed: Int, callback: Callback<PaymentCallbackResponse>
@@ -1267,8 +1356,11 @@ private class UPClientDefault(
     }
 
     /**
-     * Marks the completion of a transaction.
+     * TODO
      *
+     * @param transactionId
+     * @param gwTxnId
+     * @param failed
      */
     override fun verifyPayment(
         transactionId: String, gwTxnId: String, failed: Int
@@ -1277,9 +1369,11 @@ private class UPClientDefault(
     }
 
     /**
-     * Returns an instance of the cart
+     * This method returns a reference to a singleton instance of a cart
+     *
+     * @return Cart - The method returns an instance of a cart
      */
-    override fun getCartInstance(): Cart {
-        return cartService.getCartInstance()
+    override fun getCart(): Cart {
+        return cartService.getCart()
     }
 }

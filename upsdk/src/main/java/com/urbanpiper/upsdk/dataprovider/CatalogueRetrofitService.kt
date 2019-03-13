@@ -4,6 +4,9 @@ import retrofit2.http.*
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 
+/**
+ * List of catalogue related retrofit calls
+ */
 interface CatalogueRetrofitService {
 
     /**

@@ -5,6 +5,9 @@ import com.urbanpiper.upsdk.model.ValidateCouponBody
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 
+/**
+ * List of methods related to cart
+ */
 interface CartService {
 
     /**
@@ -120,7 +123,7 @@ interface CartService {
     /**
      * Returns an instance of the local cart
      */
-    fun getCartInstance(): Cart
+    fun getCart(): Cart
 
 }
 

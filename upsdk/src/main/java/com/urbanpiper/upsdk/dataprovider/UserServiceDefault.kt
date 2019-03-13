@@ -55,7 +55,7 @@ class UserServiceDefault(private val authToken: String, private val bizId: Strin
     override fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
         val body = JWTAuthLoginBody(phone, password)
 
-        val lol = userRetrofitService.login(authToken, body)
+        val lol = userRetrofitService.login(authToken, body).share()
 
         val compositeDisposable = CompositeDisposable()
 

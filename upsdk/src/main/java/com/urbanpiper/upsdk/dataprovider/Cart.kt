@@ -7,6 +7,9 @@ import com.urbanpiper.upsdk.model.networkresponse.OrderItem
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * This class contains the implementation of the cart
+ */
 class Cart : CartTracker {
 
     /**

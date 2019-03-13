@@ -254,7 +254,7 @@ class CartServiceDefault(private val authToken: String, private val bizId: Strin
         return cartService.verifyPayment(authToken, transactionId, gwTxnId, failed)
     }
 
-    override fun getCartInstance(): Cart {
+    override fun getCart(): Cart {
         return cart.getInstance()
     }
 }

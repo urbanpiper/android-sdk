@@ -4,6 +4,10 @@ import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 import io.reactivex.internal.operators.observable.ObservableAll
 
+/**
+ * List of methods related to the catalogue
+ *
+ */
 interface CatalogueService {
 
     /**
