@@ -530,36 +530,67 @@ private class UPClientDefault(
     // ------------------------------- USER SERVICE --------------------------------
 
     /**
-     *  Login - The result is returned in a callback
+     * For login the user needs to provide his/her phone number, along with the password
+     * that they had set for their account.
+     *
+     * @param phone - Phone number of the user
+     * @param password - User password
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun login(phone: String, password: String, callback: Callback<AuthSuccessResponse>): CancellableTask {
         return userService.login(phone, password, callback)
     }
 
     /**
-     *  Login - The result is returned as an Observable
+     * For login the user needs to provide his/her phone number, along with the password
+     * that they had set for their account.
+     *
+     * @param phone - Phone number of the user
+     * @param password - User password
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
         return userService.login(phone, password)
     }
 
     /**
-     * Refresh Token - the result is returned as a callback
+     * We use JWT tokens for authentication, we need to use this method to get a new token
+     * if the current token has completed 80% of it's lifetime
+     *
+     * @param token - Old token
+     * @param callback - Callback to receive the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun refreshToken(token: String, callback: Callback<AuthSuccessResponse>): CancellableTask {
         return userService.refreshToken(token, callback)
     }
 
     /**
-     * refresh token - The result is returned as an observable
+     * We use JWT tokens for authentication, we need to use this method to get a new token
+     * if the current token has completed 80% of it's lifetime
+     *
+     * @param token - Old token
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun refreshToken(token: String): Observable<AuthSuccessResponse> {
         return userService.refreshToken(token)
     }
 
     /**
-     * Social login - the result is returned as a callback
+     * TODO
      *
+     * @param email
+     * @param provider
+     * @param accessToken
+     * @param action
+     * @param phone
+     * @param otp
+     * @param callback
      */
     override fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String, otp: String,
@@ -569,8 +600,14 @@ private class UPClientDefault(
     }
 
     /**
-     * Social login - The result is returned as an observable
+     * TODO
      *
+     * @param email
+     * @param provider
+     * @param accessToken
+     * @param action
+     * @param phone
+     * @param otp
      */
     override fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String, otp: String
@@ -579,21 +616,12 @@ private class UPClientDefault(
     }
 
     /**
-     *  Refresh user info - The result is returned as a callback
-     */
-    override fun refreshUserInfo(phone: String, callback: Callback<UserInfoResponse>): CancellableTask {
-        return userService.refreshUserInfo(phone, callback)
-    }
-
-    /**
-     *  Refresh user info - The result is returned as a Observable
-     */
-    override fun refreshUserInfo(phone: String): Observable<UserInfoResponse> {
-        return userService.refreshUserInfo(phone)
-    }
-
-    /**
-     * Social login - the result is returned as a callback
+     * TODO
+     *
+     * @param email
+     * @param provider
+     * @param accessToken
+     * @param callback
      */
     override fun socialLogin(
         email: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
@@ -602,14 +630,47 @@ private class UPClientDefault(
     }
 
     /**
-     * Social login - The result is returned as an observable
+     * TODO
+     *
+     * @param email
+     * @param provider
+     * @param accessToken
      */
     override fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse> {
         return userService.socialLogin(email, provider, accessToken)
     }
 
     /**
-     * Update user info - The result is returned as a callback
+     * Returns the profile data associated with a particular user identified by his/her phone number.
+     *
+     * @param phone - Phone number
+     * @param callback - The result is returned as a callback
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     */
+    override fun refreshUserInfo(phone: String, callback: Callback<UserInfoResponse>): CancellableTask {
+        return userService.refreshUserInfo(phone, callback)
+    }
+
+    /**
+     * Returns the profile data associated with a particular user identified by his/her phone number.
+     *
+     * @param phone - Phone number
+     *
+     * @return Observable - the result of the network request is returned as an Observable
+     */
+    override fun refreshUserInfo(phone: String): Observable<UserInfoResponse> {
+        return userService.refreshUserInfo(phone)
+    }
+
+    /**
+     * Updates the profile data associated with a particular user identified by the phone number.
+     *
+     * @param phone - Phone number
+     * @param body - UpdateUserInfo Object
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun updateUserInfo(
         phone: String, body: UpdateUserInfoBody, callback: Callback<UpdateUserInfoResponse>
@@ -618,28 +679,48 @@ private class UPClientDefault(
     }
 
     /**
-     * Update user info - the result is returned as a observable
+     * Updates the profile data associated with a particular user identified by the phone number.
+     *
+     * @param phone - Phone number
+     * @param body - UpdateUserInfo Object
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun updateUserInfo(phone: String, body: UpdateUserInfoBody): Observable<UpdateUserInfoResponse> {
         return userService.updateUserInfo(phone, body)
     }
 
     /**
-     * Refresh User Biz info - The result is returned as a callback
+     * Returns the profile data associated with a particular user identified by his/her phone number.
+     *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun refreshUserBizInfo(callback: Callback<UserBizInfoResponse>): CancellableTask {
         return userService.refreshUserBizInfo(callback)
     }
 
     /**
-     * Refresh User Biz info - the result is returned as a observable
+     * Returns the profile data associated with a particular user identified by his/her phone number.
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun refreshUserBizInfo(): Observable<UserBizInfoResponse> {
         return userService.refreshUserBizInfo()
     }
 
     /**
-     * change the password - The result is returned as a callback
+     * Change the password for a user, The new password has to be passed in twice so the server can
+     * verify it
+     *
+     * @param oldPassword - Old password
+     * @param newPassword - New password
+     * @param confirmPassword - New password
+     * @param phone - phone number
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun changePassword(
         oldPassword: String, newPassword: String, confirmPassword: String, phone: String,
@@ -649,7 +730,15 @@ private class UPClientDefault(
     }
 
     /**
-     * change the password - The result tis returned as an Observable
+     * Change the password for a user, The new password has to be passed in twice so the server can
+     * verify it
+     *
+     * @param oldPassword - Old password
+     * @param newPassword - New password
+     * @param confirmPassword - New password
+     * @param phone - phone number
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun changePassword(
         oldPassword: String, newPassword: String, confirmPassword: String, phone: String
@@ -658,7 +747,13 @@ private class UPClientDefault(
     }
 
     /**
-     * get Deliverable address - The result is returned as a callback
+     * This method returns a list of addresses for a given location idm
+     * with a field deliverable(true or false) indicating if delivery is possible for that location or not
+     *
+     * @param locationId - Location id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getDeliverableAddresses(
         locationId: String, callback: Callback<DeliverableAddressResponse>
@@ -667,56 +762,99 @@ private class UPClientDefault(
     }
 
     /**
-     * get Deliverable address - The result is returned as a observable
+     * This method returns a list of addresses for a given location id
+     * with a field deliverable(true or false) indicating if delivery is possible for that location or not
+     *
+     * @param locationId - Location id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getDeliverableAddresses(locationId: String): Observable<DeliverableAddressResponse> {
         return userService.getDeliverableAddresses(locationId)
     }
 
     /**
-     * Add an address - The result is a callback
+     * This method adds a new address for the user
+     *
+     * @param userAddress - UserAddress Object
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun addAddress(userAddress: UserAddress, callback: Callback<UserAddressSaveResponse>): CancellableTask {
         return userService.addAddress(userAddress, callback)
     }
 
+
     /**
-     * add an address
+     * This method adds a new address for the user
+     *
+     * @param userAddress - UserAddress Object
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun addAddress(userAddress: UserAddress): Observable<UserAddressSaveResponse> {
         return userService.addAddress(userAddress)
     }
 
     /**
-     * Update an address
+     * This method adds a updates an existing address for the user
+     *
+     * @param userAddress - UserAddress Object
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun updateAddress(userAddress: UserAddress, callback: Callback<UserAddressSaveResponse>): CancellableTask {
         return userService.updateAddress(userAddress, callback)
     }
 
     /**
-     * Update an existing address
+     * This method adds a updates an existing address for the user
+     *
+     * @param userAddress - UserAddress Object
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun updateAddress(userAddress: UserAddress): Observable<UserAddressSaveResponse> {
         return userService.updateAddress(userAddress)
     }
 
     /**
-     * Delete an existing address
+     * This method deletes an existing address for a user
+     *
+     * @param addressId - Address id
+     * @param callback - Callback
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun deleteAddress(addressId: String, callback: Callback<UserAddressSaveResponse>): CancellableTask {
         return userService.deleteAddress(addressId, callback)
     }
 
     /**
-     * Delete an existing address
+     * This method deletes an existing address for a user
+     *
+     * @param addressId - Address id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun deleteAddress(addressId: String): Observable<UserAddressSaveResponse> {
         return userService.deleteAddress(addressId)
     }
 
     /**
-     *  Returns wallet transaction's of the user
+     * This endpoint returns a list of prepaid transactions associated with the user.
+     * Each of the transactions contains some basic information about the context of the transaction.
+     * Since the white-label prepaid wallet instrument is available to the user to perform some other
+     * transaction - like paying for an online order or an in-store purchase -
+     * each prepaid transaction can be thought of as an enabler for an associated transaction.
+     *
+     * @param limit - Limit
+     * @param offset - Offset
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getWalletTransactions(
         limit: String, offset: String, callback: Callback<TransactionsResponse>
@@ -725,125 +863,199 @@ private class UPClientDefault(
     }
 
     /**
-     *  Returns wallet transaction's of the user
+     * This endpoint returns a list of prepaid transactions associated with the user.
+     * Each of the transactions contains some basic information about the context of the transaction.
+     * Since the white-label prepaid wallet instrument is available to the user to perform some other
+     * transaction - like paying for an online order or an in-store purchase -
+     * each prepaid transaction can be thought of as an enabler for an associated transaction.
+     *
+     * @param limit - Limit
+     * @param offset - Offset
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getWalletTransactions(limit: String, offset: String): Observable<TransactionsResponse> {
         return userService.getWalletTransactions(limit, offset)
     }
 
     /**
-     * Fetches the summary data for orders placed in the past by a
-     * user.
+     * This endpoint returns the list of orders placed by a user in the past. Only the summary data
+     * for each order is returned. This should be used when a client needs to display the past orders placed
+     * by a user.
+     *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getPastOrders(callback: Callback<OrderHistoryV2Response>): CancellableTask {
         return userService.getPastOrders(callback)
     }
 
     /**
-     * Fetches the summary data for orders placed in the past by a
-     * user.
+     * This endpoint returns the list of orders placed by a user in the past. Only the summary data
+     * for each order is returned. This should be used when a client needs to display the past orders placed
+     * by a user.
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getPastOrders(): Observable<OrderHistoryV2Response> {
         return userService.getPastOrders()
     }
 
     /**
-     * Fetches the summary data for orders placed in the past by a
-     * user
+     * Returns details information about an order
+     *
+     * @param orderId - Order id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getPastOrderDetails(orderId: Int, callback: Callback<OrderDetailResponse>): CancellableTask {
         return userService.getPastOrderDetails(orderId, callback)
     }
 
     /**
-     * Fetches the summary data for orders placed in the past by a
-     * user
+     * Returns details information about an order
+     *
+     * @param orderId - Order id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getPastOrderDetails(orderId: Int): Observable<OrderDetailResponse> {
         return userService.getPastOrderDetails(orderId)
     }
 
     /**
-     * Redeem a reward
+     * TODO
+     *
+     * @param rewardId
+     * @param callback
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun redeemReward(rewardId: Int, callback: Callback<RedeemRewardResponse>): CancellableTask {
         return userService.redeemReward(rewardId, callback)
     }
 
     /**
-     * Redeem a reward
+     * TODO
+     *
+     * @param rewardId
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun redeemReward(rewardId: Int): Observable<RedeemRewardResponse> {
         return userService.redeemReward(rewardId)
     }
 
     /**
-     *  Retrieves the list of notifications available for
-     * the user.
+     * This method returns a list of all the notifications that was sent to that user
+     *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getNotifications(callback: Callback<UserbizNotificationsResponse>): CancellableTask {
         return userService.getNotifications(callback)
     }
 
     /**
-     *  Retrieves the list of notifications available for
-     * the user.
+     * This method returns a list of all the notifications that was sent to that user
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getNotifications(): Observable<UserbizNotificationsResponse> {
         return userService.getNotifications()
     }
 
     /**
-     * For saving the feedback associated with an order.
+     * TODO
+     *
+     * @param feedback
+     * @param callback
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun submitFeedback(feedback: UserFeedback, callback: Callback<SimpleResponse>): CancellableTask {
         return userService.submitFeedback(feedback, callback)
     }
 
     /**
-     * For saving the feedback associated with an order.
+     * TODO
+     *
+     * @param feedback
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun submitFeedback(feedback: UserFeedback): Observable<SimpleResponse> {
         return userService.submitFeedback(feedback)
     }
 
+
     /**
-     * For getting list of likes
+     * Returns a list of likes for item id's passed as (eg - id1,id2,id3)
+     *
+     * @param ids - Item id's passed as a comma separated values (eg - id1,id2,id3)
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getUserLikes(ids: String, callback: Callback<UserLikesResponse>): CancellableTask {
         return userService.getUserLikes(ids, callback)
     }
 
     /**
-     * For getting list of likes
+     * Returns a list of likes for item id's passed as (eg - id1,id2,id3)
+     *
+     * @param ids - Item id's passed as a comma separated values (eg - id1,id2,id3)
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getUserLikes(ids: String): Observable<UserLikesResponse> {
         return userService.getUserLikes(ids)
     }
 
     /**
-     * like item
+     * This method likes an item based on the item id
+     *
+     * @param itemId - Item id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun likeItem(itemId: Int, callback: Callback<Like>): CancellableTask {
         return userService.likeItem(itemId, callback)
     }
 
     /**
-     * like item
+     * This method likes an item based on the item id
+     *
+     * @param itemId - Item id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun likeItem(itemId: Int): Observable<Like> {
         return userService.likeItem(itemId)
     }
 
     /**
-     * unlike item
+     * This method un likes an item based on the item id
+     *
+     * @param itemId - Item id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun unLikeItem(itemId: Int, callback: Callback<Like>): CancellableTask {
         return userService.unLikeItem(itemId, callback)
     }
 
     /**
-     * unlike item
+     * This method un likes an item based on the item id
+     *
+     * @param itemId - Item id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun unLikeItem(itemId: Int): Observable<Like> {
         return userService.unLikeItem(itemId)

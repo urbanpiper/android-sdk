@@ -165,7 +165,6 @@ interface UserRetrofitService {
      *
      * @param authToken
      * @param addressId
-     * @param cb
      */
     @DELETE("/api/v1/user/address/{address_id}/")
     fun deleteAddress(
@@ -223,8 +222,7 @@ interface UserRetrofitService {
     ): Observable<RedeemRewardResponse>
 
     /**
-     * Retrieves the list of notifications available for
-     * the user.
+     * Retrieves the list of notifications available for the user.
      *
      * @param authToken: only supports user-auth.
      */
@@ -238,7 +236,6 @@ interface UserRetrofitService {
      *
      * @param authToken
      * @param feedback
-     * @param cb
      */
     @POST("/api/v2/feedback/")
     fun submitFeedback(
@@ -250,7 +247,6 @@ interface UserRetrofitService {
      * For getting list of likes
      *
      * @param authToken
-     * @param cb
      */
     @GET("/api/v1/user/item/likes/")
     fun getUserLikes(

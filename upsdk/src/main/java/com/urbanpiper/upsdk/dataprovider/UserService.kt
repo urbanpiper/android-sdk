@@ -7,28 +7,59 @@ import io.reactivex.Observable
 interface UserService {
 
     /**
-     *  Login - The result is returned in a callback
-     */
+     * For login the user needs to provide his/her phone number, along with the password
+     * that they had set for their account.
+     *
+     * @param phone - Phone number of the user
+     * @param password - User password
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+    */
     fun login(phone: String, password: String, callback: Callback<AuthSuccessResponse>): CancellableTask
 
     /**
-     *  Login - The result is returned as an Observable
+     * For login the user needs to provide his/her phone number, along with the password
+     * that they had set for their account.
+     *
+     * @param phone - Phone number of the user
+     * @param password - User password
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun login(phone: String, password: String): Observable<AuthSuccessResponse>
 
     /**
-     * Refresh Token - the result is returned as a callback
+     * We use JWT tokens for authentication, we need to use this method to get a new token
+     * if the current token has completed 80% of it's lifetime
+     *
+     * @param token - Old token
+     * @param callback - Callback to receive the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun refreshToken(token: String, callback: Callback<AuthSuccessResponse>): CancellableTask
 
     /**
-     * refresh token - The result is returned as an observable
+     * We use JWT tokens for authentication, we need to use this method to get a new token
+     * if the current token has completed 80% of it's lifetime
+     *
+     * @param token - Old token
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun refreshToken(token: String): Observable<AuthSuccessResponse>
 
     /**
-     * Social login - the result is returned as a callback
+     * TODO
      *
+     * @param email
+     * @param provider
+     * @param accessToken
+     * @param action
+     * @param phone
+     * @param otp
+     * @param callback
      */
     fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String,
@@ -36,8 +67,14 @@ interface UserService {
     ): CancellableTask
 
     /**
-     * Social login - The result is returned as an observable
+     * TODO
      *
+     * @param email
+     * @param provider
+     * @param accessToken
+     * @param action
+     * @param phone
+     * @param otp
      */
     fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String,
@@ -45,7 +82,12 @@ interface UserService {
     ): Observable<SocialAuthResponse>
 
     /**
-     * Social login - the result is returned as a callback
+     * TODO
+     *
+     * @param email
+     * @param provider
+     * @param accessToken
+     * @param callback
      */
     fun socialLogin(
         email: String, provider: String, accessToken: String,
@@ -53,44 +95,83 @@ interface UserService {
     ): CancellableTask
 
     /**
-     * Social login - The result is returned as an observable
+     * TODO
+     *
+     * @param email
+     * @param provider
+     * @param accessToken
      */
     fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse>
 
     /**
-     *  Refresh user info - The result is returned as a callback
+     * Returns the profile data associated with a particular user identified by his/her phone number.
+     *
+     * @param phone - Phone number
+     * @param callback - The result is returned as a callback
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun refreshUserInfo(phone: String, callback: Callback<UserInfoResponse>): CancellableTask
 
     /**
-     *  Refresh user info - The result is returned as a Observable
+     * Returns the profile data associated with a particular user identified by his/her phone number.
+     *
+     * @param phone - Phone number
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun refreshUserInfo(phone: String): Observable<UserInfoResponse>
 
     /**
-     * Update user info - The result is returned as a callback
+     * Updates the profile data associated with a particular user identified by the phone number.
+     *
+     * @param phone - Phone number
+     * @param body - UpdateUserInfo Object
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun updateUserInfo(
         phone: String, body: UpdateUserInfoBody, callback: Callback<UpdateUserInfoResponse>
     ): CancellableTask
 
     /**
-     * Update user info - the result is returned as a observable
+     * Updates the profile data associated with a particular user identified by the phone number.
+     *
+     * @param phone - Phone number
+     * @param body - UpdateUserInfo Object
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun updateUserInfo(phone: String, body: UpdateUserInfoBody): Observable<UpdateUserInfoResponse>
 
     /**
-     * Refresh User Biz info - The result is returned as a callback
+     * Returns the profile data associated with a particular user identified by his/her phone number.
+     *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun refreshUserBizInfo(callback: Callback<UserBizInfoResponse>): CancellableTask
 
     /**
-     * Refresh User Biz info - the result is returned as a observable
+     * Returns the profile data associated with a particular user identified by his/her phone number.
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun refreshUserBizInfo(): Observable<UserBizInfoResponse>
 
     /**
-     * change the password - The result is returned as a callback
+     * Change the password for a user, The new password has to be passed in twice so the server can
+     * verify it
+     *
+     * @param oldPassword - Old password
+     * @param newPassword - New password
+     * @param confirmPassword - New password
+     * @param phone - phone number
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun changePassword(
         oldPassword: String, newPassword: String, confirmPassword: String, phone: String,
@@ -98,145 +179,274 @@ interface UserService {
     ): CancellableTask
 
     /**
-     * change the password - The result tis returned as an Observable
+     * Change the password for a user, The new password has to be passed in twice so the server can
+     * verify it
+     *
+     * @param oldPassword - Old password
+     * @param newPassword - New password
+     * @param confirmPassword - New password
+     * @param phone - phone number
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun changePassword(
         oldPassword: String, newPassword: String, confirmPassword: String, phone: String
     ): Observable<GenericResponse>
 
     /**
-     * get Deliverable address - The result is returned as a callback
+     * This method returns a list of addresses for a given location idm
+     * with a field deliverable(true or false) indicating if delivery is possible for that location or not
+     *
+     * @param locationId - Location id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun getDeliverableAddresses(locationId: String, callback: Callback<DeliverableAddressResponse>): CancellableTask
 
     /**
-     * get Deliverable address - The result is returned as a observable
+     * This method returns a list of addresses for a given location id
+     * with a field deliverable(true or false) indicating if delivery is possible for that location or not
+     *
+     * @param locationId - Location id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun getDeliverableAddresses(locationId: String): Observable<DeliverableAddressResponse>
 
     /**
-     * Add an address - The result is a callback
+     * This method adds a new address for the user
+     *
+     * @param userAddress - UserAddress Object
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun addAddress(userAddress: UserAddress, callback: Callback<UserAddressSaveResponse>): CancellableTask
 
     /**
-     * add an address
+     * This method adds a new address for the user
+     *
+     * @param userAddress - UserAddress Object
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun addAddress(userAddress: UserAddress): Observable<UserAddressSaveResponse>
 
     /**
-     * Update an address
+     * This method adds a updates an existing address for the user
+     *
+     * @param userAddress - UserAddress Object
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun updateAddress(userAddress: UserAddress, callback: Callback<UserAddressSaveResponse>): CancellableTask
 
     /**
-     * Update an existing address
+     * This method adds a updates an existing address for the user
+     *
+     * @param userAddress - UserAddress Object
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun updateAddress(userAddress: UserAddress): Observable<UserAddressSaveResponse>
 
     /**
-     * Delete an existing address
+     * This method deletes an existing address for a user
+     *
+     * @param addressId - Address id
+     * @param callback - Callback
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun deleteAddress(addressId: String, callback: Callback<UserAddressSaveResponse>): CancellableTask
 
     /**
-     * Delete an existing address
+     * This method deletes an existing address for a user
+     *
+     * @param addressId - Address id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun deleteAddress(addressId: String): Observable<UserAddressSaveResponse>
 
     /**
-     *  Returns wallet transaction's of the user
+     * This endpoint returns a list of prepaid transactions associated with the user.
+     * Each of the transactions contains some basic information about the context of the transaction.
+     * Since the white-label prepaid wallet instrument is available to the user to perform some other
+     * transaction - like paying for an online order or an in-store purchase -
+     * each prepaid transaction can be thought of as an enabler for an associated transaction.
+     *
+     * @param limit - Limit
+     * @param offset - Offset
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun getWalletTransactions(limit: String, offset: String, callback: Callback<TransactionsResponse>): CancellableTask
 
     /**
-     *  Returns wallet transaction's of the user
+     * This endpoint returns a list of prepaid transactions associated with the user.
+     * Each of the transactions contains some basic information about the context of the transaction.
+     * Since the white-label prepaid wallet instrument is available to the user to perform some other
+     * transaction - like paying for an online order or an in-store purchase -
+     * each prepaid transaction can be thought of as an enabler for an associated transaction.
+     *
+     * @param limit - Limit
+     * @param offset - Offset
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun getWalletTransactions(limit: String, offset: String): Observable<TransactionsResponse>
 
     /**
-     * Fetches the summary data for orders placed in the past by a
-     * user.
+     * This endpoint returns the list of orders placed by a user in the past. Only the summary data
+     * for each order is returned. This should be used when a client needs to display the past orders placed
+     * by a user.
+     *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun getPastOrders(callback: Callback<OrderHistoryV2Response>): CancellableTask
 
     /**
-     * Fetches the summary data for orders placed in the past by a
-     * user.
+     * This endpoint returns the list of orders placed by a user in the past. Only the summary data
+     * for each order is returned. This should be used when a client needs to display the past orders placed
+     * by a user.
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun getPastOrders(): Observable<OrderHistoryV2Response>
 
     /**
-     * Fetches the summary data for orders placed in the past by a
-     * user
+     * Returns details information about an order
+     *
+     * @param orderId - Order id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun getPastOrderDetails(orderId: Int, callback: Callback<OrderDetailResponse>): CancellableTask
 
     /**
-     * Fetches the summary data for orders placed in the past by a
-     * user
+     * Returns details information about an order
+     *
+     * @param orderId - Order id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun getPastOrderDetails(orderId: Int): Observable<OrderDetailResponse>
 
     /**
-     * Redeem a reward
+     * TODO
+     *
+     * @param rewardId
+     * @param callback
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun redeemReward(rewardId: Int, callback: Callback<RedeemRewardResponse>): CancellableTask
 
     /**
-     * Redeem a reward
+     * TODO
+     *
+     * @param rewardId
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun redeemReward(rewardId: Int): Observable<RedeemRewardResponse>
 
     /**
-     *  Retrieves the list of notifications available for
-     * the user.
+     * This method returns a list of all the notifications that was sent to that user
+     *
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun getNotifications(callback: Callback<UserbizNotificationsResponse>): CancellableTask
 
     /**
-     *  Retrieves the list of notifications available for
-     * the user.
+     * This method returns a list of all the notifications that was sent to that user
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun getNotifications(): Observable<UserbizNotificationsResponse>
 
     /**
-     * For saving the feedback associated with an order.
+     * TODO
+     *
+     * @param feedback
+     * @param callback
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun submitFeedback(feedback: UserFeedback, callback: Callback<SimpleResponse>): CancellableTask
 
     /**
-     * For saving the feedback associated with an order.
+     * TODO
+     *
+     * @param feedback
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun submitFeedback(feedback: UserFeedback): Observable<SimpleResponse>
 
     /**
-     * For getting list of likes
+     * Returns a list of likes for item id's passed as (eg - id1,id2,id3)
+     *
+     * @param ids - Item id's passed as a comma separated values (eg - id1,id2,id3)
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun getUserLikes(ids: String, callback: Callback<UserLikesResponse>): CancellableTask
 
     /**
-     * For getting list of likes
+     * Returns a list of likes for item id's passed as (eg - id1,id2,id3)
+     *
+     * @param ids - Item id's passed as a comma separated values (eg - id1,id2,id3)
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun getUserLikes(ids: String): Observable<UserLikesResponse>
 
     /**
-     * like item
+     * This method likes an item based on the item id
+     *
+     * @param itemId - Item id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun likeItem(itemId: Int, callback: Callback<Like>): CancellableTask
 
     /**
-     * like item
+     * This method likes an item based on the item id
+     *
+     * @param itemId - Item id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun likeItem(itemId: Int): Observable<Like>
 
     /**
-     * unlike item
+     * This method un likes an item based on the item id
+     *
+     * @param itemId - Item id
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun unLikeItem(itemId: Int, callback: Callback<Like>): CancellableTask
 
     /**
-     * unlike item
+     * This method un likes an item based on the item id
+     *
+     * @param itemId - Item id
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun unLikeItem(itemId: Int): Observable<Like>
 }
