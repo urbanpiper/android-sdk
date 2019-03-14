@@ -30,11 +30,11 @@ class UPClientDefault(
 ) : UPClient {
 
     // Member variables
-    private val generalService: GeneralService
-    private val catalogueService: CatalogueService
-    private val userService: UserService
-    private val promotionsService: PromotionsService
-    private val cartService: CartService
+    private val generalServiceDefault: GeneralServiceDefault
+    private val catalogueServiceDefault: CatalogueServiceDefault
+    private val userServiceDefault: UserServiceDefault
+    private val promotionsServiceDefault: PromotionsServiceDefault
+    private val cartServiceDefault: CartServiceDefault
 
     // Initialization block
     init {
@@ -65,11 +65,11 @@ class UPClientDefault(
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        generalService = GeneralServiceDefault(authToken, bizId, retrofit)
-        catalogueService = CatalogueServiceDefault(authToken, bizId, retrofit)
-        userService = UserServiceDefault(authToken, bizId, retrofit)
-        promotionsService = PromotionsServiceDefault(authToken, bizId, retrofit)
-        cartService = CartServiceDefault(authToken, bizId, retrofit)
+        generalServiceDefault = GeneralServiceDefault(authToken, bizId, retrofit)
+        catalogueServiceDefault = CatalogueServiceDefault(authToken, bizId, retrofit)
+        userServiceDefault = UserServiceDefault(authToken, bizId, retrofit)
+        promotionsServiceDefault = PromotionsServiceDefault(authToken, bizId, retrofit)
+        cartServiceDefault = CartServiceDefault(authToken, bizId, retrofit)
     }
     // ----------------------  BASIC DETAILS ------------------------------------
 
@@ -132,7 +132,7 @@ class UPClientDefault(
     override fun checkAppVersion(
         username: String, version: String, callback: Callback<VersionCheckResponse>
     ): CancellableTask {
-        return generalService.checkAppVersion(username, version, callback)
+        return generalServiceDefault.checkAppVersion(username, version, callback)
     }
 
     /**
@@ -147,7 +147,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun checkAppVersion(username: String, version: String): Observable<VersionCheckResponse> {
-        return generalService.checkAppVersion(username, version)
+        return generalServiceDefault.checkAppVersion(username, version)
     }
 
     /**
@@ -165,7 +165,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun registerFCMToken(token: String, deviceId: String, callback: Callback<Void>): CancellableTask {
-        return generalService.registerFCMToken(token, deviceId, callback)
+        return generalServiceDefault.registerFCMToken(token, deviceId, callback)
     }
 
     /**
@@ -182,7 +182,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun registerFCMToken(token: String, deviceId: String): Observable<Void> {
-        return generalService.registerFCMToken(token, deviceId)
+        return generalServiceDefault.registerFCMToken(token, deviceId)
     }
 
     /**
@@ -200,7 +200,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreReponse>): CancellableTask {
-        return generalService.getNearestStore(lat, lng, callback)
+        return generalServiceDefault.getNearestStore(lat, lng, callback)
     }
 
     /**
@@ -217,7 +217,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getNearestStore(lat: Double, lng: Double): Observable<StoreReponse> {
-        return generalService.getNearestStore(lat, lng)
+        return generalServiceDefault.getNearestStore(lat, lng)
     }
 
     /**
@@ -230,7 +230,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getAllStores(callback: Callback<StoreListResponse>): CancellableTask {
-        return generalService.getAllStores(callback)
+        return generalServiceDefault.getAllStores(callback)
     }
 
     /**
@@ -241,7 +241,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getAllStores(): Observable<StoreListResponse> {
-        return generalService.getAllStores()
+        return generalServiceDefault.getAllStores()
     }
 
     // --------------------------- CATALOGUE SERVICE -------------------------------
@@ -257,7 +257,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getCategories(locationId: Int, callback: Callback<CategoriesResponse>): CancellableTask {
-        return catalogueService.getCategories(locationId, callback)
+        return catalogueServiceDefault.getCategories(locationId, callback)
     }
 
     /**
@@ -270,7 +270,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getCategories(locationId: Int): Observable<CategoriesResponse> {
-        return catalogueService.getCategories(locationId)
+        return catalogueServiceDefault.getCategories(locationId)
     }
 
     /**
@@ -295,7 +295,7 @@ class UPClientDefault(
     override fun getCategoryItems(
         categoryId: Int, locationId: String, offset: Int, limit: Int, callback: Callback<CategoryItemResponse>
     ): CancellableTask {
-        return catalogueService.getCategoryItems(categoryId, locationId, offset, limit, callback)
+        return catalogueServiceDefault.getCategoryItems(categoryId, locationId, offset, limit, callback)
     }
 
     /**
@@ -319,7 +319,7 @@ class UPClientDefault(
     override fun getCategoryItems(
         categoryId: Int, locationId: String, offset: Int, limit: Int
     ): Observable<CategoryItemResponse> {
-        return catalogueService.getCategoryItems(categoryId, locationId, offset, limit)
+        return catalogueServiceDefault.getCategoryItems(categoryId, locationId, offset, limit)
     }
 
     /**
@@ -334,7 +334,7 @@ class UPClientDefault(
         categoryId: Int,
         callback: Callback<FilterAndSortOptionsResponse>
     ): CancellableTask {
-        return catalogueService.getFilterAndSortOptions(categoryId, callback)
+        return catalogueServiceDefault.getFilterAndSortOptions(categoryId, callback)
     }
 
     /**
@@ -345,7 +345,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getFilterAndSortOptions(categoryId: Int): Observable<FilterAndSortOptionsResponse> {
-        return catalogueService.getFilterAndSortOptions(categoryId)
+        return catalogueServiceDefault.getFilterAndSortOptions(categoryId)
     }
 
     /**
@@ -368,7 +368,7 @@ class UPClientDefault(
         categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int,
         callback: Callback<CategoryItemResponse>
     ): CancellableTask {
-        return catalogueService.getFilteredItems(categoryId, locationId, filterBy, offset, limit, callback)
+        return catalogueServiceDefault.getFilteredItems(categoryId, locationId, filterBy, offset, limit, callback)
     }
 
     /**
@@ -389,7 +389,7 @@ class UPClientDefault(
     override fun getFilteredItems(
         categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int
     ): Observable<CategoryItemResponse> {
-        return catalogueService.getFilteredItems(categoryId, locationId, filterBy, offset, limit)
+        return catalogueServiceDefault.getFilteredItems(categoryId, locationId, filterBy, offset, limit)
     }
 
     /**
@@ -412,7 +412,7 @@ class UPClientDefault(
         categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int,
         callback: Callback<CategoryItemResponse>
     ): CancellableTask {
-        return catalogueService.getSortedItems(categoryId, locationId, sortBy, offset, limit, callback)
+        return catalogueServiceDefault.getSortedItems(categoryId, locationId, sortBy, offset, limit, callback)
     }
 
     /**
@@ -433,7 +433,7 @@ class UPClientDefault(
     override fun getSortedItems(
         categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int
     ): Observable<CategoryItemResponse> {
-        return catalogueService.getSortedItems(categoryId, locationId, sortBy, offset, limit)
+        return catalogueServiceDefault.getSortedItems(categoryId, locationId, sortBy, offset, limit)
     }
 
     /**
@@ -445,7 +445,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getRecommendedItems(locationId: Int, callback: Callback<RecommendedItemResponse>): CancellableTask {
-        return catalogueService.getRecommendedItems(locationId, callback)
+        return catalogueServiceDefault.getRecommendedItems(locationId, callback)
     }
 
     /**
@@ -456,7 +456,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getRecommendedItems(locationId: Int): Observable<RecommendedItemResponse> {
-        return catalogueService.getRecommendedItems(locationId)
+        return catalogueServiceDefault.getRecommendedItems(locationId)
     }
 
     /**
@@ -472,7 +472,7 @@ class UPClientDefault(
     override fun getRelatedItems(
         itemId: String, locationId: Int, callback: Callback<RecommendedItemResponse>
     ): CancellableTask {
-        return catalogueService.getRelatedItems(itemId, locationId, callback)
+        return catalogueServiceDefault.getRelatedItems(itemId, locationId, callback)
     }
 
     /**
@@ -485,7 +485,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getRelatedItems(itemId: String, locationId: Int): Observable<RecommendedItemResponse> {
-        return catalogueService.getRelatedItems(itemId, locationId)
+        return catalogueServiceDefault.getRelatedItems(itemId, locationId)
     }
 
     /**
@@ -500,7 +500,7 @@ class UPClientDefault(
     override fun getItemDetails(
         itemId: Int, locationId: Int, callback: Callback<ItemDetailsResponse>
     ): CancellableTask {
-        return catalogueService.getItemDetails(itemId, locationId, callback)
+        return catalogueServiceDefault.getItemDetails(itemId, locationId, callback)
     }
 
     /**
@@ -512,7 +512,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getItemDetails(itemId: Int, locationId: Int): Observable<ItemDetailsResponse> {
-        return catalogueService.getItemDetails(itemId, locationId)
+        return catalogueServiceDefault.getItemDetails(itemId, locationId)
     }
 
     /**
@@ -530,7 +530,7 @@ class UPClientDefault(
     override fun searchItems(
         query: String, locationId: Int, callback: Callback<CategorySearchResponse>
     ): CancellableTask {
-        return catalogueService.searchItems(query, locationId, callback)
+        return catalogueServiceDefault.searchItems(query, locationId, callback)
     }
 
     /**
@@ -545,7 +545,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun searchItems(query: String, locationId: Int): Observable<CategorySearchResponse> {
-        return catalogueService.searchItems(query, locationId)
+        return catalogueServiceDefault.searchItems(query, locationId)
     }
 
     // ------------------------------- USER SERVICE --------------------------------
@@ -561,7 +561,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun login(phone: String, password: String, callback: Callback<AuthSuccessResponse>): CancellableTask {
-        return userService.login(phone, password, callback)
+        return userServiceDefault.login(phone, password, callback)
     }
 
     /**
@@ -574,7 +574,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
-        return userService.login(phone, password)
+        return userServiceDefault.login(phone, password)
     }
 
     /**
@@ -587,7 +587,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun refreshToken(token: String, callback: Callback<AuthSuccessResponse>): CancellableTask {
-        return userService.refreshToken(token, callback)
+        return userServiceDefault.refreshToken(token, callback)
     }
 
     /**
@@ -599,7 +599,61 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun refreshToken(token: String): Observable<AuthSuccessResponse> {
-        return userService.refreshToken(token)
+        return userServiceDefault.refreshToken(token)
+    }
+
+    /**
+     * This method is used to register a new user
+     *
+     * @param phone - Phone number
+     * @param email - Email
+     * @param password - Password
+     * @param name - Name
+     * @param callback - Callback
+     */
+    override fun registerUser(
+        phone: String, email: String, password: String, name: String, callback: Callback<UserCreateResponse>
+    ): CancellableTask {
+        return userServiceDefault.registerUser(phone, email, password, name, callback)
+    }
+
+    /**
+     * This method is used to register a new user
+     *
+     * @param phone - Phone number
+     * @param email - Email
+     * @param password - Password
+     * @param name - Name
+     */
+    override fun registerUser(
+        phone: String, email: String, password: String, name: String
+    ): Observable<UserCreateResponse> {
+        return userServiceDefault.registerUser(phone, email, password, name)
+    }
+
+    /**
+     * This method is used to verify the OTP
+     *
+     * @param phone - Phone number
+     * @param pin - pin
+     * @param name - name
+     * @param callback - callback to return the result
+     */
+    override fun verifyOTP(
+        phone: String, pin: String, name: String, callback: Callback<VerifyOTPResponse>
+    ): CancellableTask {
+        return userServiceDefault.verifyOTP(phone, pin, name, callback)
+    }
+
+    /**
+     * This method is used to verify the OTP
+     *
+     * @param phone - Phone number
+     * @param pin - Pin
+     * @param name - Name
+     */
+    override fun verifyOTP(phone: String, pin: String, name: String): Observable<VerifyOTPResponse> {
+        return userServiceDefault.verifyOTP(phone, pin, name)
     }
 
     /**
@@ -617,7 +671,7 @@ class UPClientDefault(
         email: String, provider: String, accessToken: String, action: String, phone: String, otp: String,
         callback: Callback<SocialAuthResponse>
     ): CancellableTask {
-        return userService.socialLoginOTP(email, provider, accessToken, action, phone, otp, callback)
+        return userServiceDefault.socialLoginOTP(email, provider, accessToken, action, phone, otp, callback)
     }
 
     /**
@@ -633,7 +687,7 @@ class UPClientDefault(
     override fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String, otp: String
     ): Observable<SocialAuthResponse> {
-        return userService.socialLoginOTP(email, provider, accessToken, action, phone, otp)
+        return userServiceDefault.socialLoginOTP(email, provider, accessToken, action, phone, otp)
     }
 
     /**
@@ -647,7 +701,7 @@ class UPClientDefault(
     override fun socialLogin(
         email: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
     ): CancellableTask {
-        return userService.socialLogin(email, provider, accessToken, callback)
+        return userServiceDefault.socialLogin(email, provider, accessToken, callback)
     }
 
     /**
@@ -658,7 +712,7 @@ class UPClientDefault(
      * @param accessToken
      */
     override fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse> {
-        return userService.socialLogin(email, provider, accessToken)
+        return userServiceDefault.socialLogin(email, provider, accessToken)
     }
 
     /**
@@ -670,7 +724,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun refreshUserInfo(phone: String, callback: Callback<UserInfoResponse>): CancellableTask {
-        return userService.refreshUserInfo(phone, callback)
+        return userServiceDefault.refreshUserInfo(phone, callback)
     }
 
     /**
@@ -681,7 +735,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun refreshUserInfo(phone: String): Observable<UserInfoResponse> {
-        return userService.refreshUserInfo(phone)
+        return userServiceDefault.refreshUserInfo(phone)
     }
 
     /**
@@ -696,7 +750,7 @@ class UPClientDefault(
     override fun updateUserInfo(
         phone: String, body: UpdateUserInfoBody, callback: Callback<UpdateUserInfoResponse>
     ): CancellableTask {
-        return userService.updateUserInfo(phone, body, callback)
+        return userServiceDefault.updateUserInfo(phone, body, callback)
     }
 
     /**
@@ -708,7 +762,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun updateUserInfo(phone: String, body: UpdateUserInfoBody): Observable<UpdateUserInfoResponse> {
-        return userService.updateUserInfo(phone, body)
+        return userServiceDefault.updateUserInfo(phone, body)
     }
 
     /**
@@ -719,7 +773,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun refreshUserBizInfo(callback: Callback<UserBizInfoResponse>): CancellableTask {
-        return userService.refreshUserBizInfo(callback)
+        return userServiceDefault.refreshUserBizInfo(callback)
     }
 
     /**
@@ -728,7 +782,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun refreshUserBizInfo(): Observable<UserBizInfoResponse> {
-        return userService.refreshUserBizInfo()
+        return userServiceDefault.refreshUserBizInfo()
     }
 
     /**
@@ -747,7 +801,7 @@ class UPClientDefault(
         oldPassword: String, newPassword: String, confirmPassword: String, phone: String,
         callback: Callback<GenericResponse>
     ): CancellableTask {
-        return userService.changePassword(oldPassword, newPassword, confirmPassword, phone, callback)
+        return userServiceDefault.changePassword(oldPassword, newPassword, confirmPassword, phone, callback)
     }
 
     /**
@@ -764,7 +818,7 @@ class UPClientDefault(
     override fun changePassword(
         oldPassword: String, newPassword: String, confirmPassword: String, phone: String
     ): Observable<GenericResponse> {
-        return userService.changePassword(oldPassword, newPassword, confirmPassword, phone)
+        return userServiceDefault.changePassword(oldPassword, newPassword, confirmPassword, phone)
     }
 
     /**
@@ -779,7 +833,7 @@ class UPClientDefault(
     override fun getDeliverableAddresses(
         locationId: String, callback: Callback<DeliverableAddressResponse>
     ): CancellableTask {
-        return userService.getDeliverableAddresses(locationId, callback)
+        return userServiceDefault.getDeliverableAddresses(locationId, callback)
     }
 
     /**
@@ -791,7 +845,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getDeliverableAddresses(locationId: String): Observable<DeliverableAddressResponse> {
-        return userService.getDeliverableAddresses(locationId)
+        return userServiceDefault.getDeliverableAddresses(locationId)
     }
 
     /**
@@ -803,7 +857,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun addAddress(userAddress: UserAddress, callback: Callback<UserAddressSaveResponse>): CancellableTask {
-        return userService.addAddress(userAddress, callback)
+        return userServiceDefault.addAddress(userAddress, callback)
     }
 
 
@@ -815,7 +869,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun addAddress(userAddress: UserAddress): Observable<UserAddressSaveResponse> {
-        return userService.addAddress(userAddress)
+        return userServiceDefault.addAddress(userAddress)
     }
 
     /**
@@ -827,7 +881,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun updateAddress(userAddress: UserAddress, callback: Callback<UserAddressSaveResponse>): CancellableTask {
-        return userService.updateAddress(userAddress, callback)
+        return userServiceDefault.updateAddress(userAddress, callback)
     }
 
     /**
@@ -838,7 +892,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun updateAddress(userAddress: UserAddress): Observable<UserAddressSaveResponse> {
-        return userService.updateAddress(userAddress)
+        return userServiceDefault.updateAddress(userAddress)
     }
 
     /**
@@ -850,7 +904,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun deleteAddress(addressId: String, callback: Callback<UserAddressSaveResponse>): CancellableTask {
-        return userService.deleteAddress(addressId, callback)
+        return userServiceDefault.deleteAddress(addressId, callback)
     }
 
     /**
@@ -861,7 +915,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun deleteAddress(addressId: String): Observable<UserAddressSaveResponse> {
-        return userService.deleteAddress(addressId)
+        return userServiceDefault.deleteAddress(addressId)
     }
 
     /**
@@ -880,7 +934,7 @@ class UPClientDefault(
     override fun getWalletTransactions(
         limit: String, offset: String, callback: Callback<TransactionsResponse>
     ): CancellableTask {
-        return userService.getWalletTransactions(limit, offset, callback)
+        return userServiceDefault.getWalletTransactions(limit, offset, callback)
     }
 
     /**
@@ -896,7 +950,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getWalletTransactions(limit: String, offset: String): Observable<TransactionsResponse> {
-        return userService.getWalletTransactions(limit, offset)
+        return userServiceDefault.getWalletTransactions(limit, offset)
     }
 
     /**
@@ -909,7 +963,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getPastOrders(callback: Callback<OrderHistoryV2Response>): CancellableTask {
-        return userService.getPastOrders(callback)
+        return userServiceDefault.getPastOrders(callback)
     }
 
     /**
@@ -920,7 +974,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getPastOrders(): Observable<OrderHistoryV2Response> {
-        return userService.getPastOrders()
+        return userServiceDefault.getPastOrders()
     }
 
     /**
@@ -932,7 +986,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getPastOrderDetails(orderId: Int, callback: Callback<OrderDetailResponse>): CancellableTask {
-        return userService.getPastOrderDetails(orderId, callback)
+        return userServiceDefault.getPastOrderDetails(orderId, callback)
     }
 
     /**
@@ -943,7 +997,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getPastOrderDetails(orderId: Int): Observable<OrderDetailResponse> {
-        return userService.getPastOrderDetails(orderId)
+        return userServiceDefault.getPastOrderDetails(orderId)
     }
 
     /**
@@ -955,7 +1009,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun redeemReward(rewardId: Int, callback: Callback<RedeemRewardResponse>): CancellableTask {
-        return userService.redeemReward(rewardId, callback)
+        return userServiceDefault.redeemReward(rewardId, callback)
     }
 
     /**
@@ -966,7 +1020,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun redeemReward(rewardId: Int): Observable<RedeemRewardResponse> {
-        return userService.redeemReward(rewardId)
+        return userServiceDefault.redeemReward(rewardId)
     }
 
     /**
@@ -977,7 +1031,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getNotifications(callback: Callback<UserbizNotificationsResponse>): CancellableTask {
-        return userService.getNotifications(callback)
+        return userServiceDefault.getNotifications(callback)
     }
 
     /**
@@ -986,7 +1040,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getNotifications(): Observable<UserbizNotificationsResponse> {
-        return userService.getNotifications()
+        return userServiceDefault.getNotifications()
     }
 
     /**
@@ -998,7 +1052,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun submitFeedback(feedback: UserFeedback, callback: Callback<SimpleResponse>): CancellableTask {
-        return userService.submitFeedback(feedback, callback)
+        return userServiceDefault.submitFeedback(feedback, callback)
     }
 
     /**
@@ -1009,7 +1063,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun submitFeedback(feedback: UserFeedback): Observable<SimpleResponse> {
-        return userService.submitFeedback(feedback)
+        return userServiceDefault.submitFeedback(feedback)
     }
 
 
@@ -1022,7 +1076,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getUserLikes(ids: String, callback: Callback<UserLikesResponse>): CancellableTask {
-        return userService.getUserLikes(ids, callback)
+        return userServiceDefault.getUserLikes(ids, callback)
     }
 
     /**
@@ -1033,7 +1087,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getUserLikes(ids: String): Observable<UserLikesResponse> {
-        return userService.getUserLikes(ids)
+        return userServiceDefault.getUserLikes(ids)
     }
 
     /**
@@ -1045,7 +1099,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun likeItem(itemId: Int, callback: Callback<Like>): CancellableTask {
-        return userService.likeItem(itemId, callback)
+        return userServiceDefault.likeItem(itemId, callback)
     }
 
     /**
@@ -1056,7 +1110,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun likeItem(itemId: Int): Observable<Like> {
-        return userService.likeItem(itemId)
+        return userServiceDefault.likeItem(itemId)
     }
 
     /**
@@ -1068,7 +1122,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun unLikeItem(itemId: Int, callback: Callback<Like>): CancellableTask {
-        return userService.unLikeItem(itemId, callback)
+        return userServiceDefault.unLikeItem(itemId, callback)
     }
 
     /**
@@ -1079,7 +1133,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun unLikeItem(itemId: Int): Observable<Like> {
-        return userService.unLikeItem(itemId)
+        return userServiceDefault.unLikeItem(itemId)
     }
 
     // ------------------------ PROMOTIONS SERVICE -------------------------------
@@ -1096,7 +1150,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
-        return promotionsService.getBanners(callback)
+        return promotionsServiceDefault.getBanners(callback)
     }
 
     /**
@@ -1109,7 +1163,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getBanners(): Observable<BannerResponse> {
-        return promotionsService.getBanners()
+        return promotionsServiceDefault.getBanners()
     }
 
     /**
@@ -1120,7 +1174,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getOffers(callback: Callback<OffersResponse>): CancellableTask {
-        return promotionsService.getOffers(callback)
+        return promotionsServiceDefault.getOffers(callback)
     }
 
     /**
@@ -1129,7 +1183,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getOffers(): Observable<OffersResponse> {
-        return promotionsService.getOffers()
+        return promotionsServiceDefault.getOffers()
     }
 
     /**
@@ -1141,7 +1195,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getRewards(callback: Callback<RewardsResponse>): CancellableTask {
-        return promotionsService.getRewards(callback)
+        return promotionsServiceDefault.getRewards(callback)
     }
 
     /**
@@ -1151,7 +1205,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getRewards(): Observable<RewardsResponse> {
-        return promotionsService.getRewards()
+        return promotionsServiceDefault.getRewards()
     }
     // ------------------------ CART SERVICE -------------------------------
 
@@ -1170,7 +1224,7 @@ class UPClientDefault(
     override fun reOrder(
         orderId: String, locationId: String, lat: String, lng: String, callback: Callback<ReOrderResponse>
     ): CancellableTask {
-        return cartService.reOrder(orderId, locationId, lat, lng, callback)
+        return cartServiceDefault.reOrder(orderId, locationId, lat, lng, callback)
     }
 
     /**
@@ -1185,7 +1239,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun reOrder(orderId: String, locationId: String, lat: String, lng: String): Observable<ReOrderResponse> {
-        return cartService.reOrder(orderId, locationId, lat, lng)
+        return cartServiceDefault.reOrder(orderId, locationId, lat, lng)
     }
 
     /**
@@ -1201,7 +1255,7 @@ class UPClientDefault(
     override fun getCartRelatedItems(
         itemIds: String, locationId: Int, callback: Callback<RecommendedItemResponse>
     ): CancellableTask {
-        return cartService.getCartRelatedItems(itemIds, locationId, callback)
+        return cartServiceDefault.getCartRelatedItems(itemIds, locationId, callback)
     }
 
     /**
@@ -1214,7 +1268,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getCartRelatedItems(itemIds: String, locationId: Int): Observable<RecommendedItemResponse> {
-        return cartService.getCartRelatedItems(itemIds, locationId)
+        return cartServiceDefault.getCartRelatedItems(itemIds, locationId)
     }
 
     /**
@@ -1230,7 +1284,7 @@ class UPClientDefault(
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun validateCart(order: Order, callback: Callback<PreProcessOrderResponse>): CancellableTask {
-        return cartService.validateCart(order, callback)
+        return cartServiceDefault.validateCart(order, callback)
     }
 
     /**
@@ -1245,7 +1299,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun validateCart(order: Order): Observable<PreProcessOrderResponse> {
-        return cartService.validateCart(order)
+        return cartServiceDefault.validateCart(order)
     }
 
     /**
@@ -1262,7 +1316,7 @@ class UPClientDefault(
     override fun validateCoupon(
         couponCode: String, body: ValidateCouponBody, callback: Callback<OrderValidateCouponResponse>
     ): CancellableTask {
-        return cartService.validateCoupon(couponCode, body, callback)
+        return cartServiceDefault.validateCoupon(couponCode, body, callback)
     }
 
     /**
@@ -1276,7 +1330,7 @@ class UPClientDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun validateCoupon(couponCode: String, body: ValidateCouponBody): Observable<OrderValidateCouponResponse> {
-        return cartService.validateCoupon(couponCode, body)
+        return cartServiceDefault.validateCoupon(couponCode, body)
     }
 
     /**
@@ -1293,7 +1347,7 @@ class UPClientDefault(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask {
-        return cartService.initPayment(storeId, amount, redirectUrl, paytm, simpl, callback)
+        return cartServiceDefault.initPayment(storeId, amount, redirectUrl, paytm, simpl, callback)
     }
 
     /**
@@ -1308,7 +1362,7 @@ class UPClientDefault(
     override fun initPayment(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
     ): Observable<PaymentInitResponse> {
-        return cartService.initPayment(storeId, amount, redirectUrl, paytm, simpl)
+        return cartServiceDefault.initPayment(storeId, amount, redirectUrl, paytm, simpl)
     }
 
     /**
@@ -1325,7 +1379,7 @@ class UPClientDefault(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask {
-        return cartService.initWalletReload(storeId, amount, redirectUrl, paytm, simpl, callback)
+        return cartServiceDefault.initWalletReload(storeId, amount, redirectUrl, paytm, simpl, callback)
     }
 
     /**
@@ -1340,7 +1394,7 @@ class UPClientDefault(
     override fun initWalletReload(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
     ): Observable<PaymentInitResponse> {
-        return cartService.initWalletReload(storeId, amount, redirectUrl, paytm, simpl)
+        return cartServiceDefault.initWalletReload(storeId, amount, redirectUrl, paytm, simpl)
     }
 
     /**
@@ -1350,7 +1404,7 @@ class UPClientDefault(
      * @param callback
      */
     override fun placeOrder(body: Order, callback: Callback<OrderSaveResponse>): CancellableTask {
-        return cartService.placeOrder(body, callback)
+        return cartServiceDefault.placeOrder(body, callback)
     }
 
     /**
@@ -1359,7 +1413,7 @@ class UPClientDefault(
      * @param body
      */
     override fun placeOrder(body: Order): Observable<OrderSaveResponse> {
-        return cartService.placeOrder(body)
+        return cartServiceDefault.placeOrder(body)
     }
 
     /**
@@ -1373,7 +1427,7 @@ class UPClientDefault(
     override fun verifyPayment(
         transactionId: String, gwTxnId: String, failed: Int, callback: Callback<PaymentCallbackResponse>
     ): CancellableTask {
-        return cartService.verifyPayment(transactionId, gwTxnId, failed, callback)
+        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, failed, callback)
     }
 
     /**
@@ -1386,7 +1440,7 @@ class UPClientDefault(
     override fun verifyPayment(
         transactionId: String, gwTxnId: String, failed: Int
     ): Observable<PaymentCallbackResponse> {
-        return cartService.verifyPayment(transactionId, gwTxnId, failed)
+        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, failed)
     }
 
     /**
@@ -1395,6 +1449,14 @@ class UPClientDefault(
      * @return Cart - The method returns an instance of a cart
      */
     override fun getCart(): Cart {
-        return cartService.getCart()
+        return cartServiceDefault.getCart()
+    }
+
+    /**
+     * Get registration builder
+     *
+     */
+    override fun getRegistrationBuilder(): RegistrationBuilder {
+        return RegistrationBuilder(userServiceDefault)
     }
 }

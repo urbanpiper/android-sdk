@@ -1,9 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import com.urbanpiper.upsdk.model.ChangePasswordBody
-import com.urbanpiper.upsdk.model.JWTAuthLoginBody
-import com.urbanpiper.upsdk.model.JWTRefreshTokenBody
-import com.urbanpiper.upsdk.model.UpdateUserInfoBody
+import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -33,6 +30,38 @@ interface UserRetrofitService {
         @Header("Authorization") authToken: String,
         @Body body: JWTRefreshTokenBody
     ): Observable<AuthSuccessResponse>
+
+    /**
+     * For creating a new user account.
+     *
+     * @param authToken - Auth token
+     * @param customerPhone - phone
+     * @param email - email
+     * @param password - password
+     * @param customerName - name
+     * @param channel - channel = app_android
+     */
+    @POST("/api/v2/card/")
+    fun createUser(
+        @Header("Authorization") authToken: String,
+        @Query("customer_phone") customerPhone: String,
+        @Query("email") email: String,
+        @Query("password") password: String,
+        @Query("customer_name") customerName: String,
+        @Query("channel") channel: String,
+        @Body referralBody: AccountRegistrationBody?
+    ): Observable<UserCreateResponse>
+
+    /**
+     * Verify OTP
+     *
+     * @param authToken - Auth Token
+     */
+    @POST("/api/v2/card/?nopinsend=true")
+    fun verifyOTP(
+        @Header("Authorization") authToken: String,
+        @Body body: VerifyOTPBody
+    ): Observable<VerifyOTPResponse>
 
     /**
      * Observable to perform social login

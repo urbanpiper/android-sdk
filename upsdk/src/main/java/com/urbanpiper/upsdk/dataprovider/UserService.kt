@@ -15,7 +15,7 @@ interface UserService {
      * @param callback - Callback to return the result
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-    */
+     */
     fun login(phone: String, password: String, callback: Callback<AuthSuccessResponse>): CancellableTask
 
     /**
@@ -49,6 +49,49 @@ interface UserService {
      * @return Observable - the result of the network request is returned as an Observable
      */
     fun refreshToken(token: String): Observable<AuthSuccessResponse>
+
+
+    /**
+     * This method is used to register a new user
+     *
+     * @param phone - Phone number
+     * @param email - Email
+     * @param password - Password
+     * @param name - Name
+     * @param callback - Callback
+     */
+    fun registerUser(
+        phone: String, email: String, password: String, name: String, callback: Callback<UserCreateResponse>
+    ): CancellableTask
+
+    /**
+     * This method is used to register a new user
+     *
+     * @param phone - Phone number
+     * @param email - Email
+     * @param password - Password
+     * @param name - Name
+     */
+    fun registerUser(phone: String, email: String, password: String, name: String): Observable<UserCreateResponse>
+
+    /**
+     * This method is used to verify the OTP
+     *
+     * @param phone - Phone number
+     * @param pin - pin
+     * @param name - name
+     * @param callback - callback to return the result
+     */
+    fun verifyOTP(phone: String, pin: String, name: String, callback: Callback<VerifyOTPResponse>): CancellableTask
+
+    /**
+     * This method is used to verify the OTP
+     *
+     * @param phone - Phone number
+     * @param pin - Pin
+     * @param name - Name
+     */
+    fun verifyOTP(phone: String, pin: String, name: String): Observable<VerifyOTPResponse>
 
     /**
      * TODO

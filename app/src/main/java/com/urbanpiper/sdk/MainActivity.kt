@@ -92,17 +92,22 @@ class MainActivity : AppCompatActivity() {
 
 
         compositeDisposable.add(
-            MyApp().login("9880170805","nikhil12345")
+            MyApp().login("9880170805", "nikhil12345")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ response ->
-                    Log.d("Main Activity ","${response.message}  ${response.token} ${response.status}")
+                    Log.d("Main Activity ", "${response.message}  ${response.token} ${response.status}")
 
                 }, { error ->
-                    Log.d("error" , "Login failed ", error)
-                }))
+                    Log.d("error", "Login failed ", error)
+                })
+        )
 
+
+        val builder = MyApp().getRegistrationBuilder()
+
+        builder.createUser("a", "b", "c", "A")
+
+        builder.verifyOTP("a", "v", "lol")
     }
-
-
 }

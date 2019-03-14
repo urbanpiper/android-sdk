@@ -1,10 +1,7 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import android.util.Log
-import com.urbanpiper.upsdk.model.ChangePasswordBody
-import com.urbanpiper.upsdk.model.JWTAuthLoginBody
-import com.urbanpiper.upsdk.model.JWTRefreshTokenBody
-import com.urbanpiper.upsdk.model.UpdateUserInfoBody
+import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -55,24 +52,24 @@ class UserServiceDefault(private val authToken: String, private val bizId: Strin
     override fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
         val body = JWTAuthLoginBody(phone, password)
 
-        val lol = userRetrofitService.login(authToken, body).share()
+        val observable = userRetrofitService.login(authToken, body).share()
 
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            lol.observeOn(AndroidSchedulers.mainThread())
+            observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
                     val response: AuthSuccessResponse = success
 
-                    Log.d("User service ","${response.message}  ${response.token} ${response.status}")
+                    Log.d("User service ", "${response.message}  ${response.token} ${response.status}")
 
                 }, { error ->
-                    Log.d("error" , "Login failed ", error)
+                    Log.d("error", "Login failed ", error)
                 })
         )
 
-        return lol
+        return observable
     }
 
     /**
@@ -111,6 +108,87 @@ class UserServiceDefault(private val authToken: String, private val bizId: Strin
     override fun refreshToken(token: String): Observable<AuthSuccessResponse> {
         val body = JWTRefreshTokenBody(token)
         return userRetrofitService.refreshToken(authToken, body)
+    }
+
+    /**
+     * This method is used to register a new user
+     *
+     * @param phone - Phone number
+     * @param email - Email
+     * @param password - Password
+     * @param name - Name
+     * @param callback - Callback
+     */
+    override fun registerUser(
+        phone: String, email: String, password: String, name: String, callback: Callback<UserCreateResponse>
+    ): CancellableTask {
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            registerUser(phone, email, password, name)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    /**
+     * This method is used to register a new user
+     *
+     * @param phone - Phone number
+     * @param email - Email
+     * @param password - Password
+     * @param name - Name
+     */
+    override fun registerUser(
+        phone: String, email: String, password: String, name: String
+    ): Observable<UserCreateResponse> {
+        return userRetrofitService.createUser(
+            authToken, phone, email, password, name, "app_android", null
+        )
+    }
+
+    /**
+     * This method is used to verify the OTP
+     *
+     * @param phone - Phone number
+     * @param pin - pin
+     * @param name - name
+     * @param callback - callback to return the result
+     */
+    override fun verifyOTP(
+        phone: String, pin: String, name: String, callback: Callback<VerifyOTPResponse>
+    ): CancellableTask {
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            verifyOTP(phone, pin, name)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    /**
+     * This method is used to verify the OTP
+     *
+     * @param phone - Phone number
+     * @param pin - Pin
+     * @param name - Name
+     */
+    override fun verifyOTP(phone: String, pin: String, name: String): Observable<VerifyOTPResponse> {
+        val body = VerifyOTPBody(phone, pin, name, "app_android")
+        return userRetrofitService.verifyOTP(authToken, body)
     }
 
     /**
