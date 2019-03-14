@@ -56,12 +56,26 @@ interface UserRetrofitService {
      * Verify OTP
      *
      * @param authToken - Auth Token
+     * @param body - Object of verify OTP body
      */
     @POST("/api/v2/card/?nopinsend=true")
     fun verifyOTP(
         @Header("Authorization") authToken: String,
         @Body body: VerifyOTPBody
     ): Observable<VerifyOTPResponse>
+
+
+//    /**
+//     * TODO
+//     *
+//     * @param authToken
+//     * @param body
+//     */
+//    fun resendOTP(
+//        @Header("Authorization") authToken: String,
+//        @Body body: ResendOTPBody
+//    ): Observable<>
+
 
     /**
      * Observable to perform social login
