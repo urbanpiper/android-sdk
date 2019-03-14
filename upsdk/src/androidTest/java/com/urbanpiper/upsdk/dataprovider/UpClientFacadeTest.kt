@@ -1,8 +1,10 @@
 package com.urbanpiper.upsdk.dataprovider
 
+import android.service.autofill.UserData
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.urbanpiper.upsdk.model.UpdateUserInfoBody
 import com.urbanpiper.upsdk.model.networkresponse.UserAddress
+import com.urbanpiper.upsdk.model.networkresponse.UserInfoResponse
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,7 +17,11 @@ class UpClientFacadeTest {
 
     lateinit var upClient: UPClient
 
-    lateinit var updateUserInfoBody: UpdateUserInfoBody
+    var userData: UserInfoResponse = UserInfoResponse(
+        anyString(), anyLong(), anyLong(), anyString(), anyString(),
+        anyString(), anyString(), anyString(), anyString()
+    )
+    var updateUserInfoBody: UpdateUserInfoBody = UpdateUserInfoBody(userData)
 
     lateinit var userAddress: UserAddress
 
@@ -66,18 +72,15 @@ class UpClientFacadeTest {
         // User
         assertNotNull(upClient.login(anyString(), anyString()))
         assertNotNull(upClient.refreshToken(anyString()))
-        assertNotNull(upClient.socialLoginOTP(anyString(), anyString(), anyString(), anyString(), anyString(), anyString()))
+        assertNotNull(
+            upClient.socialLoginOTP(anyString(), anyString(), anyString(), anyString(), anyString(), anyString())
+        )
         assertNotNull(upClient.socialLogin(anyString(), anyString(), anyString()))
         assertNotNull(upClient.refreshUserInfo(anyString()))
         assertNotNull(upClient.refreshUserBizInfo())
-//        assertNotNull(upClient.updateUserInfo(anyString(), updateUserInfoBody))
+        assertNotNull(upClient.updateUserInfo(anyString(), updateUserInfoBody))
         assertNotNull(upClient.changePassword(anyString(), anyString(), anyString(), anyString()))
         assertNotNull(upClient.getDeliverableAddresses(anyString()))
-
-
-
-
-
 
 
         // Cart

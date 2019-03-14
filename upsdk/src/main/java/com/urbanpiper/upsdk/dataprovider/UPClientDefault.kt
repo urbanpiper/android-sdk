@@ -1136,6 +1136,71 @@ class UPClientDefault(
         return userServiceDefault.unLikeItem(itemId)
     }
 
+    /**
+     * This method generates a password reset token that is sent to the user through
+     * SMS and phone
+     *
+     * @param phone - Phone number
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     */
+    override fun getResetPasswordToken(phone: String, callback: Callback<GenericResponse>): CancellableTask {
+        return userServiceDefault.getResetPasswordToken(phone, callback)
+    }
+
+    /**
+     * This method generates a password reset token that is sent to the user through
+     * SMS and phone
+     *
+     * @param phone - Phone number
+     *
+     * @return Observable - the result of the network request is returned as an Observable
+     */
+    override fun getResetPasswordToken(phone: String): Observable<GenericResponse> {
+        return userServiceDefault.getResetPasswordToken(phone)
+    }
+
+    /**
+     * This method reset's the password after the user enter's the password reset token sent
+     * through SMS and email
+     *
+     * The password has to be sent twice so that the server can verify it
+     *
+     * @param phone - Phone number
+     * @param newPassword - New password
+     * @param confirmPassword - Confirm same password
+     * @param token - Token the user input's
+     * @param callback - Callback to return the result
+     *
+     * @return Observable - the result of the network request is returned as an Observable
+     */
+    override fun resetPassword(
+        phone: String, newPassword: String, confirmPassword: String, token: String,
+        callback: Callback<GenericResponse>
+    ): CancellableTask {
+        return userServiceDefault.resetPassword(phone, newPassword, confirmPassword, token, callback)
+    }
+
+    /**
+     * This method reset's the password after the user enter's the password reset token sent
+     * through SMS and email
+     *
+     * The password has to be sent twice so that the server can verify it
+     *
+     * @param phone - Phone number
+     * @param newPassword - New password
+     * @param confirmPassword - Confirm same password
+     * @param token - Token the user input's
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     */
+    override fun resetPassword(
+        phone: String, newPassword: String, confirmPassword: String, token: String
+    ): Observable<GenericResponse> {
+        return userServiceDefault.resetPassword(phone, newPassword, confirmPassword, token)
+    }
+
     // ------------------------ PROMOTIONS SERVICE -------------------------------
 
     /**
@@ -1458,5 +1523,21 @@ class UPClientDefault(
      */
     override fun getRegistrationBuilder(): RegistrationBuilder {
         return RegistrationBuilder(userServiceDefault)
+    }
+
+    /**
+     * Get the Checkout Builder
+     *
+     */
+    override fun getCheckOutBuilder(): CheckoutBuilder {
+        return CheckoutBuilder(cartServiceDefault)
+    }
+
+    /**
+     * Get the Forgot Password Builder
+     *
+     */
+    override fun getForgotPasswordBuilder(): ForgotPasswordBuilder {
+        return ForgotPasswordBuilder(userServiceDefault)
     }
 }

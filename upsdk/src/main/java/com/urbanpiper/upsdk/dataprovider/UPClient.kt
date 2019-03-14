@@ -13,4 +13,8 @@ interface UPClient : GeneralService, CatalogueService, UserService, PromotionsSe
     fun changeLanguage(language: String)
 
     fun getRegistrationBuilder(): RegistrationBuilder
+
+    fun getCheckOutBuilder(): CheckoutBuilder
+
+    fun getForgotPasswordBuilder(): ForgotPasswordBuilder
 }
