@@ -90,9 +90,7 @@ class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
-
                 }, { failure ->
-                    response = null
                 })
         )
         return observable

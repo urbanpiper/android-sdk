@@ -272,7 +272,7 @@ interface UserRetrofitService {
     @GET("/api/v1/ub/notifications/?channel__in=app_notification,all")
     fun getNotifications(
         @Header("Authorization") authToken: String
-    ) :Observable<UserbizNotificationsResponse>
+    ): Observable<UserbizNotificationsResponse>
 
     /**
      * For saving the feedback associated with an order.
@@ -284,7 +284,7 @@ interface UserRetrofitService {
     fun submitFeedback(
         @Header("Authorization") authToken: String,
         @Body feedback: UserFeedback
-    ) : Observable<SimpleResponse>
+    ): Observable<SimpleResponse>
 
     /**
      * For getting list of likes
@@ -294,8 +294,8 @@ interface UserRetrofitService {
     @GET("/api/v1/user/item/likes/")
     fun getUserLikes(
         @Header("Authorization") authToken: String,
-        @Query( "item_ids") ids: String
-    ) : Observable<UserLikesResponse>
+        @Query("item_ids") ids: String
+    ): Observable<UserLikesResponse>
 
     /**
      * Like item.
@@ -320,6 +320,30 @@ interface UserRetrofitService {
         @Header("Authorization") authToken: String,
         @Path("item_id") itemId: Int
     ): Observable<Like>
+
+    /**
+     * Generate a token for forgot password
+     *
+     * @param authToken
+     * @param body
+     */
+    @POST("/api/v1/user/password/token/")
+    fun getResetPasswordToken(
+        @Header("Authorization") authToken: String,
+        @Body body: ForgotPwdGenerateTokenReq
+    ): Observable<GenericResponse>
+
+    /**
+     * API call to reset password
+     *
+     * @param authToken
+     * @param body
+     */
+    @POST("/api/v1/user/password/")
+    fun resetPassword(
+        @Header("Authorization") authToken: String,
+        @Body body: ForgotPwdGenerateTokenReq
+    ): Observable<GenericResponse>
 }
 
 
