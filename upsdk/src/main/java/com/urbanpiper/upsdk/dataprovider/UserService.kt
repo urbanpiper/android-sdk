@@ -59,6 +59,8 @@ interface UserService {
      * @param password - Password
      * @param name - Name
      * @param callback - Callback
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun registerUser(
         phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
@@ -71,6 +73,8 @@ interface UserService {
      * @param email - Email
      * @param password - Password
      * @param name - Name
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun registerUser(phone: String, email: String, password: String, name: String): Observable<RegistrationResponse>
 
@@ -81,6 +85,8 @@ interface UserService {
      * @param pin - pin
      * @param name - name
      * @param callback - callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun verifyOTP(phone: String, pin: String, name: String, callback: Callback<RegistrationResponse>): CancellableTask
 
@@ -90,6 +96,8 @@ interface UserService {
      * @param phone - Phone number
      * @param pin - Pin
      * @param name - Name
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun verifyOTP(phone: String, pin: String, name: String): Observable<RegistrationResponse>
 
@@ -98,6 +106,8 @@ interface UserService {
      *
      * @param phone - Phone number
      * @param callback - callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask
 
@@ -105,8 +115,66 @@ interface UserService {
      * This method is used to resend the OTP
      *
      * @param phone - Phone number
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun resendOTP(phone: String): Observable<RegistrationResponse>
+
+    /**
+     * TODO
+     *
+     * @param email
+     * @param provider
+     * @param accessToken
+     * @param callback
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     */
+    fun socialLogin(
+        email: String, provider: String, accessToken: String,
+        callback: Callback<SocialAuthResponse>
+    ): CancellableTask
+
+    /**
+     * TODO
+     *
+     * @param email
+     * @param provider
+     * @param accessToken
+     *
+     * @return Observable - the result of the network request is returned as an Observable
+     */
+    fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse>
+
+    /**
+     * Check if phone number is present in the server. It will also send an OTP if the user is present
+     * in the server, or you will have to create a new user
+     *
+     * @param email - Email
+     * @param phone - Phone
+     * @param provider - Provider
+     * @param accessToken - Access Token for google / facebook
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     */
+    fun verifyPhone(
+        email: String, phone: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
+    ): CancellableTask
+
+
+    /**
+     * Check if phone number is present in the server. It will also send an OTP if the user is present
+     * in the server, or you will have to create a new user
+     *
+     * @param email - Email
+     * @param phone - Phone
+     * @param provider - Provider
+     * @param accessToken - Access Token for google / facebook
+     *
+     * @return Observable - the result of the network request is returned as an Observable
+     */
+    fun verifyPhone(email: String, phone: String, provider: String, accessToken: String): Observable<SocialAuthResponse>
 
     /**
      * TODO
@@ -133,33 +201,14 @@ interface UserService {
      * @param action
      * @param phone
      * @param otp
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String,
         otp: String
     ): Observable<SocialAuthResponse>
 
-    /**
-     * TODO
-     *
-     * @param email
-     * @param provider
-     * @param accessToken
-     * @param callback
-     */
-    fun socialLogin(
-        email: String, provider: String, accessToken: String,
-        callback: Callback<SocialAuthResponse>
-    ): CancellableTask
-
-    /**
-     * TODO
-     *
-     * @param email
-     * @param provider
-     * @param accessToken
-     */
-    fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse>
 
     /**
      * Returns the profile data associated with a particular user identified by his/her phone number.

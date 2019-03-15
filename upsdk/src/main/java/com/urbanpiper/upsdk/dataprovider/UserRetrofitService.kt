@@ -4,6 +4,7 @@ import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 import retrofit2.http.*
+
 interface UserRetrofitService {
 
     /**
@@ -72,7 +73,7 @@ interface UserRetrofitService {
     @POST("/api/v2/card/?pin=resendotp")
     fun resendOTP(
         @Header("Authorization") authToken: String,
-        @Path("customer_phone") phone :String
+        @Path("customer_phone") phone: String
     ): Observable<RegistrationResponse>
 
     /**
@@ -115,6 +116,26 @@ interface UserRetrofitService {
         @Header("Authorization") authToken: String,
         @Query("biz_id") bizId: String,
         @Query("email") email: String,
+        @Query("provider") provider: String,
+        @Query("access_token") accessToken: String
+    ): Observable<SocialAuthResponse>
+
+    /**
+     * Checks if the phone number is already present in the server
+     *
+     * @param authToken - Auth token
+     * @param bizId - biz id
+     * @param email - email
+     * @param phone - phone
+     * @param provider - provider
+     * @param accessToken - access Token
+     */
+    @GET("/api/v2/social_auth/me/")
+    fun verifyPhone(
+        @Header("Authorization") authToken: String,
+        @Query("biz_id") bizId: String,
+        @Query("email") email: String,
+        @Query("phone") phone: String,
         @Query("provider") provider: String,
         @Query("access_token") accessToken: String
     ): Observable<SocialAuthResponse>

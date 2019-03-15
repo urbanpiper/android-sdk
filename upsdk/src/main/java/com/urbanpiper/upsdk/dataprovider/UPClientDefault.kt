@@ -744,6 +744,41 @@ class UPClientDefault(
     }
 
     /**
+     * Check if phone number is present in the server. It will also send an OTP if the user is present
+     * in the server, or you will have to create a new user
+     *
+     * @param email - Email
+     * @param phone - Phone
+     * @param provider - Provider
+     * @param accessToken - Access Token for google / facebook
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     */
+    override fun verifyPhone(
+        email: String, phone: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
+    ): CancellableTask {
+        return userServiceDefault.verifyPhone(email, phone, provider, accessToken, callback)
+    }
+
+    /**
+     * Check if phone number is present in the server. It will also send an OTP if the user is present
+     * in the server, or you will have to create a new user
+     *
+     * @param email - Email
+     * @param phone - Phone
+     * @param provider - Provider
+     * @param accessToken - Access Token for google / facebook
+     *
+     * @return Observable - the result of the network request is returned as an Observable
+     */
+    override fun verifyPhone(
+        email: String, phone: String, provider: String, accessToken: String
+    ): Observable<SocialAuthResponse> {
+        return userServiceDefault.verifyPhone(email, phone, provider, accessToken)
+    }
+
+    /**
      * Returns the profile data associated with a particular user identified by his/her phone number.
      *
      * @param phone - Phone number

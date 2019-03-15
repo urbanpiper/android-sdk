@@ -313,6 +313,55 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
         return userRetrofitService.socialLogin(authToken, bizId, email, provider, accessToken)
     }
 
+
+    /**
+     * Check if phone number is present in the server. It will also send an OTP if the user is present
+     * in the server, or you will have to create a new user
+     *
+     * @param email - Email
+     * @param phone - Phone
+     * @param provider - Provider
+     * @param accessToken - Access Token for google / facebook
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     */
+    override fun verifyPhone(
+        email: String, phone: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
+    ): CancellableTask {
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            verifyPhone(email, phone, provider, accessToken)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    /**
+     * Check if phone number is present in the server. It will also send an OTP if the user is present
+     * in the server, or you will have to create a new user
+     *
+     * @param email - Email
+     * @param phone - Phone
+     * @param provider - Provider
+     * @param accessToken - Access Token for google / facebook
+     *
+     * @return Observable - the result of the network request is returned as an Observable
+     */
+    override fun verifyPhone(
+        email: String, phone: String, provider: String, accessToken: String
+    ): Observable<SocialAuthResponse> {
+        val authToken: String = Utils().getAuthToken(false)
+        return userRetrofitService.verifyPhone(authToken, bizId, email, phone, provider, accessToken)
+    }
+
     /**
      * Returns the profile data associated with a particular user identified by his/her phone number.
      *
