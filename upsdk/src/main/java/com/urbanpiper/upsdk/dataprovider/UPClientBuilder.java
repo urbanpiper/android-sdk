@@ -1,10 +1,11 @@
 package com.urbanpiper.upsdk.dataprovider;
 
 import android.text.TextUtils;
+import com.urbanpiper.upsdk.model.networkresponse.UserBizInfoResponse;
 
 /**
  * Written in java for now
- *
+ * <p>
  * It would be easier to create the UPClient object if the builder was written in java
  * for third party dev's who might use java to build the android application
  */
@@ -14,7 +15,7 @@ public final class UPClientBuilder {
     private String apiUserName;
     private String apiKey;
     private String language;
-//    private String callback;
+    private Callback<UserBizInfoResponse> callback = null;
 
     /**
      * Biz id - It identifies your business on the UrbanPiper platform
@@ -68,10 +69,10 @@ public final class UPClientBuilder {
      * @param callback
      * @return
      */
-//    public UPClientBuilder setCallback(String callback){
-//        this.callback = callback;
-//        return this;
-//    }
+    public UPClientBuilder setCallback(Callback<UserBizInfoResponse> callback) {
+        this.callback = callback;
+        return this;
+    }
 
     /**
      * @return - The UPClient object
@@ -93,14 +94,15 @@ public final class UPClientBuilder {
             throw new IllegalArgumentException("Language is a required parameter ");
         }
 
-//        if (TextUtils.isEmpty(callback)){
-//            throw new IllegalArgumentException("Callback is a required parameter ");
-//        }
+        if (callback == null) {
+            throw new IllegalArgumentException("Callback is a required parameter ");
+        }
 
         return new UPClientDefault(bizId
                 , apiUserName
                 , apiKey
-                , language);
+                , language
+                , callback);
     }
 
 

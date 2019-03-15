@@ -48,7 +48,7 @@ class UpClientError(var retrofitErrorThrowable: Throwable?) {
      * 0 = ERROR_TYPE_UNKNOWN
      *
      */
-    fun getType(): Int {
+    fun getErrorType(): Int {
         return type
     }
 

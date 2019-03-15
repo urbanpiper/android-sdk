@@ -29,6 +29,7 @@ class UPClientDefault(
     , private val apiUsername: String
     , private val apiKey: String
     , private var language: String
+    , private val callback: Callback<UserBizInfoResponse>
 ) : UPClient {
 
     // Member variables
@@ -79,6 +80,8 @@ class UPClientDefault(
         userServiceDefault = UserServiceDefault(bizId, retrofit)
         promotionsServiceDefault = PromotionsServiceDefault(bizId, retrofit)
         cartServiceDefault = CartServiceDefault(bizId, retrofit)
+
+        val task = refreshUserBizInfo(callback)
     }
     // ----------------------  BASIC DETAILS ------------------------------------
 
