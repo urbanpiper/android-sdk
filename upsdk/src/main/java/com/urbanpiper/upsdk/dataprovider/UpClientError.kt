@@ -22,21 +22,18 @@ class UpClientError(var retrofitErrorThrowable: Throwable?) {
     private var type: Int
 
     private var httpErrorResponseCode: Int = -1
-
+    private var httpErrorResponseMessage: String = ""
     init {
         if (retrofitErrorThrowable != null) {
-
-
             if (retrofitErrorThrowable is IOException) {
                 type = ERROR_TYPE_NETWORK
             } else if (retrofitErrorThrowable is HttpException) {
                 type = ERROR_TYPE_API
                 httpErrorResponseCode = (retrofitErrorThrowable as HttpException).code()
+                httpErrorResponseMessage = (retrofitErrorThrowable as HttpException).message()
             } else {
                 type = ERROR_TYPE_UNKNOWN
             }
-
-
         } else {
             type = ERROR_TYPE_UNKNOWN
         }
@@ -67,6 +64,13 @@ class UpClientError(var retrofitErrorThrowable: Throwable?) {
         return httpErrorResponseCode
     }
 
+    /**
+     * This returns the response error message
+     *
+     */
+    fun getResponseMessage(): String{
+        return httpErrorResponseMessage
+    }
     /**
      * This method shows whether or not the session has expired
      * i.e - The if the token has expired and an API returns a 401

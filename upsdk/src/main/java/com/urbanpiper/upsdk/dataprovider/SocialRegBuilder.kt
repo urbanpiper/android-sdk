@@ -8,9 +8,9 @@ import io.reactivex.schedulers.Schedulers
 
 class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
 
+    var response1: SocialAuthResponse? = null
     var response2: SocialAuthResponse? = null
 
-    var response1: SocialAuthResponse? = null
     /**
      * TODO
      *
@@ -69,9 +69,9 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
      * @param provider - provider
      * @param accessToken - accessToken
      * @param action - action
-     * @param phone -
-     * @param otp
-     * @param callback
+     * @param phone - phone
+     * @param otp - otp
+     * @param callback - Callback to return the result
      */
     fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String, otp: String,
@@ -95,12 +95,12 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
     /**
      * TODO
      *
-     * @param email
-     * @param provider
-     * @param accessToken
-     * @param action
-     * @param phone
-     * @param otp
+     * @param email - email
+     * @param provider - provider
+     * @param accessToken - accessToken
+     * @param action - action
+     * @param phone - phone
+     * @param otp - otp
      */
     fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String, otp: String
@@ -122,6 +122,9 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
         )
         return observable
     }
+
+
+
 
 
 }
