@@ -1,7 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import android.content.Context
-import com.urbanpiper.upsdk.commons.UPClientContextProvider
 
 class Utils {
 

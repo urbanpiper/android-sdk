@@ -2,7 +2,6 @@ package com.urbanpiper.upsdk.dataprovider
 
 import android.content.Context
 import com.urbanpiper.upsdk.BuildConfig
-import com.urbanpiper.upsdk.commons.UPClientContextProvider
 import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
