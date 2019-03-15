@@ -19,10 +19,13 @@ import retrofit2.converter.gson.GsonConverterFactory
  *
  * This class is a facade
  *
+ *
  * @property bizId - Business id of the merchant
  * @property apiUsername - API username of the merchant
  * @property apiKey -  API key of the merchant
  * @property language - The default language of the merchant
+ * @param context - Context is used to store data in shared preferences
+ * @param callback - Callback to return the result
  */
 class UPClientDefault(
     private val bizId: String
@@ -1111,7 +1114,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Submit feedback for the order
      *
      * @param feedback
      * @param callback
@@ -1123,7 +1126,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Submit feedback for the order
      *
      * @param feedback
      *
@@ -1466,14 +1469,14 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Initiates a payment for the particular biz's store.
      *
-     * @param storeId
-     * @param amount
-     * @param redirectUrl
-     * @param paytm
-     * @param simpl
-     * @param callback
+     * @param storeId - Store id
+     * @param amount - amount
+     * @param redirectUrl - redirect url
+     * @param paytm - paytm
+     * @param simpl - simpl
+     * @param callback - Callback to return the result
      */
     override fun initPayment(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
@@ -1483,13 +1486,13 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Initiates a payment for the particular biz's store.
      *
-     * @param storeId
-     * @param amount
-     * @param redirectUrl
-     * @param paytm
-     * @param simpl
+     * @param storeId - Store id
+     * @param amount - amount
+     * @param redirectUrl - redirect url
+     * @param paytm - paytm
+     * @param simpl - simpl
      */
     override fun initPayment(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
@@ -1498,14 +1501,14 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Initiates a payment for the particular biz's store.
      *
-     * @param storeId
-     * @param amount
-     * @param redirectUrl
-     * @param paytm
-     * @param simpl
-     * @param callback
+     * @param storeId - Store id
+     * @param amount - amount
+     * @param redirectUrl - redirect url
+     * @param paytm - paytm
+     * @param simpl - simpl
+     * @param callback - Callback to return the result
      */
     override fun initWalletReload(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
@@ -1515,7 +1518,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Initiates a payment for the particular biz's store.
      *
      * @param storeId
      * @param amount
@@ -1530,31 +1533,31 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Sends the order details to the server
      *
-     * @param body
-     * @param callback
+     * @param body - Order object
+     * @param callback - Callback to return the result
      */
     override fun placeOrder(body: Order, callback: Callback<OrderSaveResponse>): CancellableTask {
         return cartServiceDefault.placeOrder(body, callback)
     }
 
     /**
-     * TODO
+     * Sends the order details to the server
      *
-     * @param body
+     * @param body - Order object
      */
     override fun placeOrder(body: Order): Observable<OrderSaveResponse> {
         return cartServiceDefault.placeOrder(body)
     }
 
     /**
-     * TODO
+     * Verify payment after transaction is complete
      *
-     * @param transactionId
-     * @param gwTxnId
-     * @param failed
-     * @param callback
+     * @param transactionId - transaction id
+     * @param gwTxnId - payment gateway transaction id
+     * @param failed - failed
+     * @param callback - callback to return the result
      */
     override fun verifyPayment(
         transactionId: String, gwTxnId: String, failed: Int, callback: Callback<PaymentCallbackResponse>
@@ -1563,11 +1566,11 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Verify payment after transaction is complete
      *
-     * @param transactionId
-     * @param gwTxnId
-     * @param failed
+     * @param transactionId - transaction id
+     * @param gwTxnId - payment gateway transaction id
+     * @param failed - failed
      */
     override fun verifyPayment(
         transactionId: String, gwTxnId: String, failed: Int
@@ -1586,7 +1589,6 @@ class UPClientDefault(
 
     /**
      * Get registration builder
-     *
      */
     override fun getRegistrationBuilder(): RegistrationBuilder {
         return RegistrationBuilder(userServiceDefault)
@@ -1594,7 +1596,6 @@ class UPClientDefault(
 
     /**
      * Get the Checkout Builder
-     *
      */
     override fun getCheckOutBuilder(): CheckoutBuilder {
         return CheckoutBuilder(cartServiceDefault)
@@ -1602,7 +1603,6 @@ class UPClientDefault(
 
     /**
      * Get the Forgot Password Builder
-     *
      */
     override fun getForgotPasswordBuilder(): ForgotPasswordBuilder {
         return ForgotPasswordBuilder(userServiceDefault)
@@ -1610,7 +1610,6 @@ class UPClientDefault(
 
     /**
      * Returns the social reg builder
-     *
      */
     override fun getSocialRegBuilder(): SocialRegBuilder {
         return SocialRegBuilder(userServiceDefault)
@@ -1618,7 +1617,6 @@ class UPClientDefault(
 
     /**
      * Returns the item option builder
-     *
      */
     override fun getItemOptionBuilder(): ItemOptionBuilder {
         return ItemOptionBuilder()
