@@ -63,8 +63,16 @@ class UpClientError(var retrofitErrorThrowable: Throwable?) {
      * This returns a -1 if the error is because of an IOException, only http errors are returned
      *
      */
-    fun getResponseCode(): Int{
+    fun getResponseCode(): Int {
         return httpErrorResponseCode
+    }
+
+    /**
+     * This method shows whether or not the session has expired
+     * i.e - The if the token has expired and an API returns a 401
+     */
+    fun isSessionExpired(): Boolean {
+        return httpErrorResponseCode == 401
     }
 
 }
