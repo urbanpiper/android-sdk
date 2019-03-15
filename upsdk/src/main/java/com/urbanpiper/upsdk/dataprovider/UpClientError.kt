@@ -3,6 +3,11 @@ package com.urbanpiper.upsdk.dataprovider
 import retrofit2.HttpException
 import java.io.IOException
 
+/**
+ * This class returns network errors
+ *
+ * @property retrofitErrorThrowable - Throwable
+ */
 class UpClientError(var retrofitErrorThrowable: Throwable?) {
     /**
      * Represents any errors returning from the backend

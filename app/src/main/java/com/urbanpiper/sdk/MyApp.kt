@@ -35,12 +35,21 @@ class MyApp : Application() {
             })
             .build()
 
-        upClient.changeLanguage("hi")
+//        upClient.changeLanguage("hi")
     }
 
 
     fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
-        return upClient.getBanners(callback)
+        return upClient.getBanners(object: Callback<BannerResponse>{
+            override fun success(response: BannerResponse) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun failure(upClientError: UpClientError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
     }
 
     fun getBanners(): Observable<BannerResponse> {
