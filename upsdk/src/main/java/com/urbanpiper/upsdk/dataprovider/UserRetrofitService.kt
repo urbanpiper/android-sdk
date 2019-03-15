@@ -8,7 +8,7 @@ import retrofit2.http.*
 interface UserRetrofitService {
 
     /**
-     * io.reactivex.Observable to login with JWT authentication
+     * Observable to login with JWT authentication
      *
      * @param authToken - Biz auth token
      * @param body - Pass the body auth retrofit
@@ -20,7 +20,7 @@ interface UserRetrofitService {
     ): Observable<AuthSuccessResponse>
 
     /**
-     * io.reactivex.Observable to refresh the JWT token
+     * Observable to refresh the JWT token
      *
      * @param authToken - biz auth token
      * @param body -
