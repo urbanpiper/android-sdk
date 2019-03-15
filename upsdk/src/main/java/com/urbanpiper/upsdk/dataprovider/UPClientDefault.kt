@@ -621,7 +621,7 @@ class UPClientDefault(
      * @param callback - Callback
      */
     override fun registerUser(
-        phone: String, email: String, password: String, name: String, callback: Callback<UserCreateResponse>
+        phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
     ): CancellableTask {
         return userServiceDefault.registerUser(phone, email, password, name, callback)
     }
@@ -636,7 +636,7 @@ class UPClientDefault(
      */
     override fun registerUser(
         phone: String, email: String, password: String, name: String
-    ): Observable<UserCreateResponse> {
+    ): Observable<RegistrationResponse> {
         return userServiceDefault.registerUser(phone, email, password, name)
     }
 
@@ -649,7 +649,7 @@ class UPClientDefault(
      * @param callback - callback to return the result
      */
     override fun verifyOTP(
-        phone: String, pin: String, name: String, callback: Callback<VerifyOTPResponse>
+        phone: String, pin: String, name: String, callback: Callback<RegistrationResponse>
     ): CancellableTask {
         return userServiceDefault.verifyOTP(phone, pin, name, callback)
     }
@@ -661,8 +661,27 @@ class UPClientDefault(
      * @param pin - Pin
      * @param name - Name
      */
-    override fun verifyOTP(phone: String, pin: String, name: String): Observable<VerifyOTPResponse> {
+    override fun verifyOTP(phone: String, pin: String, name: String): Observable<RegistrationResponse> {
         return userServiceDefault.verifyOTP(phone, pin, name)
+    }
+
+    /**
+     * This method is used ot resend the OTP
+     *
+     * @param phone - Phone number
+     * @param callback - callback to return the result
+     */
+    override fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask {
+        return userServiceDefault.resendOTP(phone, callback)
+    }
+
+    /**
+     * This method is used to resend the OTP
+     *
+     * @param phone - Phone number
+     */
+    override fun resendOTP(phone: String): Observable<RegistrationResponse> {
+        return userServiceDefault.resendOTP(phone)
     }
 
     /**

@@ -1,7 +1,7 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.model.networkresponse.UserCreateResponse
-import com.urbanpiper.upsdk.model.networkresponse.VerifyOTPResponse
+import com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -18,10 +18,10 @@ import io.reactivex.schedulers.Schedulers
  */
 class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
 
-    private var response: UserCreateResponse? = null
+    private var response: RegistrationResponse? = null
 
     fun createUser(
-        phone: String, email: String, password: String, name: String, callback: Callback<UserCreateResponse>
+        phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
@@ -40,7 +40,7 @@ class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
 
     fun createUser(
         phone: String, email: String, password: String, name: String
-    ): Observable<UserCreateResponse> {
+    ): Observable<RegistrationResponse> {
 
         val observable = userServiceDefault.registerUser(phone, email, password, name).share()
 
@@ -62,7 +62,7 @@ class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
     }
 
 
-    fun verifyOTP(phone: String, name: String, pin: String, callback: Callback<VerifyOTPResponse>): CancellableTask {
+    fun verifyOTP(phone: String, name: String, pin: String, callback: Callback<RegistrationResponse>): CancellableTask {
         assert(response != null)
         val compositeDisposable = CompositeDisposable()
 
@@ -79,7 +79,7 @@ class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
         return CancellableTaskDisposableWrapper(compositeDisposable)
     }
 
-    fun verifyOTP(phone: String, name: String, pin: String): Observable<VerifyOTPResponse> {
+    fun verifyOTP(phone: String, name: String, pin: String): Observable<RegistrationResponse> {
         assert(response != null)
         val observable = userServiceDefault.verifyOTP(phone, pin, name).share()
 
@@ -96,6 +96,48 @@ class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
         return observable
     }
 
+    /**
+     * This method is used ot resend the OTP
+     *
+     * @param phone - Phone number
+     * @param callback - callback to return the result
+     */
+    fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask {
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            resendOTP(phone)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    /**
+     * This method is used to resend the OTP
+     *
+     * @param phone - Phone number
+     */
+    fun resendOTP(phone: String): Observable<RegistrationResponse> {
+        val observable = userServiceDefault.resendOTP(phone).share()
+
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            observable
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                }, { failure ->
+                })
+        )
+        return observable
+    }
 
 
 }

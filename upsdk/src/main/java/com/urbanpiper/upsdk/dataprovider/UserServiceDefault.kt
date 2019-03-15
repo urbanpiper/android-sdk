@@ -121,7 +121,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @param callback - Callback
      */
     override fun registerUser(
-        phone: String, email: String, password: String, name: String, callback: Callback<UserCreateResponse>
+        phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
@@ -148,7 +148,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      */
     override fun registerUser(
         phone: String, email: String, password: String, name: String
-    ): Observable<UserCreateResponse> {
+    ): Observable<RegistrationResponse> {
         val authToken: String = Utils().getAuthToken(false)
         return userRetrofitService.createUser(
             authToken, phone, email, password, name, "app_android", null
@@ -164,7 +164,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @param callback - callback to return the result
      */
     override fun verifyOTP(
-        phone: String, pin: String, name: String, callback: Callback<VerifyOTPResponse>
+        phone: String, pin: String, name: String, callback: Callback<RegistrationResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
@@ -188,10 +188,42 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @param pin - Pin
      * @param name - Name
      */
-    override fun verifyOTP(phone: String, pin: String, name: String): Observable<VerifyOTPResponse> {
+    override fun verifyOTP(phone: String, pin: String, name: String): Observable<RegistrationResponse> {
         val body = VerifyOTPBody(phone, pin, name, "app_android")
         val authToken: String = Utils().getAuthToken(false)
         return userRetrofitService.verifyOTP(authToken, body)
+    }
+
+    /**
+     * This method is used ot resend the OTP
+     *
+     * @param phone - Phone number
+     * @param callback - callback to return the result
+     */
+    override fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask {
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            resendOTP(phone)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    /**
+     * This method is used to resend the OTP
+     *
+     * @param phone - Phone number
+     */
+    override fun resendOTP(phone: String): Observable<RegistrationResponse> {
+        val authToken: String = Utils().getAuthToken(false)
+        return userRetrofitService.resendOTP(authToken, phone)
     }
 
     /**

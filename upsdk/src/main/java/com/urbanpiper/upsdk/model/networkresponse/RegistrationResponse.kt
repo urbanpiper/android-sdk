@@ -2,7 +2,7 @@ package com.urbanpiper.upsdk.model.networkresponse
 
 import com.google.gson.annotations.SerializedName
 
-data class VerifyOTPResponse(
+data class RegistrationResponse(
     @SerializedName("card_number")
     val cardNumber: String,
     @SerializedName("customer_email")

@@ -61,7 +61,7 @@ interface UserService {
      * @param callback - Callback
      */
     fun registerUser(
-        phone: String, email: String, password: String, name: String, callback: Callback<UserCreateResponse>
+        phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
     ): CancellableTask
 
     /**
@@ -72,7 +72,7 @@ interface UserService {
      * @param password - Password
      * @param name - Name
      */
-    fun registerUser(phone: String, email: String, password: String, name: String): Observable<UserCreateResponse>
+    fun registerUser(phone: String, email: String, password: String, name: String): Observable<RegistrationResponse>
 
     /**
      * This method is used to verify the OTP
@@ -82,7 +82,7 @@ interface UserService {
      * @param name - name
      * @param callback - callback to return the result
      */
-    fun verifyOTP(phone: String, pin: String, name: String, callback: Callback<VerifyOTPResponse>): CancellableTask
+    fun verifyOTP(phone: String, pin: String, name: String, callback: Callback<RegistrationResponse>): CancellableTask
 
     /**
      * This method is used to verify the OTP
@@ -91,7 +91,22 @@ interface UserService {
      * @param pin - Pin
      * @param name - Name
      */
-    fun verifyOTP(phone: String, pin: String, name: String): Observable<VerifyOTPResponse>
+    fun verifyOTP(phone: String, pin: String, name: String): Observable<RegistrationResponse>
+
+    /**
+     * This method is used ot resend the OTP
+     *
+     * @param phone - Phone number
+     * @param callback - callback to return the result
+     */
+    fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask
+
+    /**
+     * This method is used to resend the OTP
+     *
+     * @param phone - Phone number
+     */
+    fun resendOTP(phone: String): Observable<RegistrationResponse>
 
     /**
      * TODO

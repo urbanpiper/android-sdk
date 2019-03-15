@@ -4,7 +4,6 @@ import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
 import retrofit2.http.*
-
 interface UserRetrofitService {
 
     /**
@@ -50,10 +49,10 @@ interface UserRetrofitService {
         @Query("customer_name") customerName: String,
         @Query("channel") channel: String,
         @Body referralBody: AccountRegistrationBody?
-    ): Observable<UserCreateResponse>
+    ): Observable<RegistrationResponse>
 
     /**
-     * Verify OTP after siging up with OTP
+     * Verify OTP after sign-in up with OTP
      *
      * @param authToken - Auth Token
      * @param body - Object of verify OTP body
@@ -62,20 +61,19 @@ interface UserRetrofitService {
     fun verifyOTP(
         @Header("Authorization") authToken: String,
         @Body body: VerifyOTPBody
-    ): Observable<VerifyOTPResponse>
+    ): Observable<RegistrationResponse>
 
-
-//    /**
-//     * TODO
-//     *
-//     * @param authToken
-//     * @param body
-//     */
-//    fun resendOTP(
-//        @Header("Authorization") authToken: String,
-//        @Body body: ResendOTPBody
-//    ): Observable<>
-
+    /**
+     * Resend OTP
+     *
+     * @param authToken - Auth token
+     * @param body - Object of verify OTP body , No need to send HTTP Body
+     */
+    @POST("/api/v2/card/?pin=resendotp")
+    fun resendOTP(
+        @Header("Authorization") authToken: String,
+        @Path("customer_phone") phone :String
+    ): Observable<RegistrationResponse>
 
     /**
      * Observable to perform social login
@@ -345,5 +343,6 @@ interface UserRetrofitService {
         @Body body: ForgotPwdGenerateTokenReq
     ): Observable<GenericResponse>
 }
+
 
 
