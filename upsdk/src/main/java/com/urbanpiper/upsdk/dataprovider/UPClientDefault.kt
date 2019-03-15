@@ -29,7 +29,8 @@ class UPClientDefault(
     , private val apiUsername: String
     , private val apiKey: String
     , private var language: String
-    , private val callback: Callback<UserBizInfoResponse>
+    , context: Context
+    , callback: Callback<UserBizInfoResponse>
 ) : UPClient {
 
     // Member variables
@@ -43,9 +44,8 @@ class UPClientDefault(
     init {
 //        val authToken = String.format("apikey %s:%s", apiUsername, apiKey)
 
-        val sp = UPClientContextProvider().getAppContext()
-            ?.getSharedPreferences(Utils().spSessionDetails, Context.MODE_PRIVATE)
-        val editor = sp!!.edit()
+        val sp = context.getSharedPreferences(Utils().spSessionDetails, Context.MODE_PRIVATE)
+        val editor = sp.edit()
         editor.putString(Utils().spAPIUsername, apiUsername)
         editor.putString(Utils().spAPIKey, apiKey)
         editor.apply()
@@ -75,13 +75,14 @@ class UPClientDefault(
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        generalServiceDefault = GeneralServiceDefault(bizId, retrofit)
-        catalogueServiceDefault = CatalogueServiceDefault(bizId, retrofit)
-        userServiceDefault = UserServiceDefault(bizId, retrofit)
-        promotionsServiceDefault = PromotionsServiceDefault(bizId, retrofit)
-        cartServiceDefault = CartServiceDefault(bizId, retrofit)
+        generalServiceDefault = GeneralServiceDefault(context, bizId, retrofit)
+        catalogueServiceDefault = CatalogueServiceDefault(context, bizId, retrofit)
+        userServiceDefault = UserServiceDefault(context, bizId, retrofit)
+        promotionsServiceDefault = PromotionsServiceDefault(context, bizId, retrofit)
+        cartServiceDefault = CartServiceDefault(context, bizId, retrofit)
 
-        val task = refreshUserBizInfo(callback)
+        // Refreshing user biz info on init
+        refreshUserBizInfo(callback)
     }
     // ----------------------  BASIC DETAILS ------------------------------------
 

@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
+import android.content.Context
 import android.util.Log
 import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
@@ -9,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 
-class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserService {
+class UserServiceDefault(private val context: Context, private val bizId: String, retrofit: Retrofit) : UserService {
 
     private val userRetrofitService: UserRetrofitService =
         retrofit.create(UserRetrofitService::class.java)
@@ -51,7 +52,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      */
     override fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
         val body = JWTAuthLoginBody(phone, password)
-        val authToken: String = Utils().getAuthToken(false)
+        val authToken: String = Utils().getAuthToken(context, false)
         val observable = userRetrofitService.login(authToken, body).share()
 
         val compositeDisposable = CompositeDisposable()
@@ -107,7 +108,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      */
     override fun refreshToken(token: String): Observable<AuthSuccessResponse> {
         val body = JWTRefreshTokenBody(token)
-        val authToken: String = Utils().getAuthToken(false)
+        val authToken: String = Utils().getAuthToken(context, false)
         return userRetrofitService.refreshToken(authToken, body)
     }
 
@@ -149,7 +150,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
     override fun registerUser(
         phone: String, email: String, password: String, name: String
     ): Observable<RegistrationResponse> {
-        val authToken: String = Utils().getAuthToken(false)
+        val authToken: String = Utils().getAuthToken(context, false)
         return userRetrofitService.createUser(
             authToken, phone, email, password, name, "app_android", null
         )
@@ -190,7 +191,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      */
     override fun verifyOTP(phone: String, pin: String, name: String): Observable<RegistrationResponse> {
         val body = VerifyOTPBody(phone, pin, name, "app_android")
-        val authToken: String = Utils().getAuthToken(false)
+        val authToken: String = Utils().getAuthToken(context, false)
         return userRetrofitService.verifyOTP(authToken, body)
     }
 
@@ -222,7 +223,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @param phone - Phone number
      */
     override fun resendOTP(phone: String): Observable<RegistrationResponse> {
-        val authToken: String = Utils().getAuthToken(false)
+        val authToken: String = Utils().getAuthToken(context, false)
         return userRetrofitService.resendOTP(authToken, phone)
     }
 
@@ -269,7 +270,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
     override fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String, otp: String
     ): Observable<SocialAuthResponse> {
-        val authToken: String = Utils().getAuthToken(false)
+        val authToken: String = Utils().getAuthToken(context, false)
         return userRetrofitService.socialLogin(
             authToken, bizId, email, provider, accessToken, phone, action, otp
         )
@@ -309,7 +310,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @param accessToken
      */
     override fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse> {
-        val authToken: String = Utils().getAuthToken(false)
+        val authToken: String = Utils().getAuthToken(context, false)
         return userRetrofitService.socialLogin(authToken, bizId, email, provider, accessToken)
     }
 
@@ -358,7 +359,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
     override fun verifyPhone(
         email: String, phone: String, provider: String, accessToken: String
     ): Observable<SocialAuthResponse> {
-        val authToken: String = Utils().getAuthToken(false)
+        val authToken: String = Utils().getAuthToken(context, false)
         return userRetrofitService.verifyPhone(authToken, bizId, email, phone, provider, accessToken)
     }
 
@@ -394,7 +395,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun refreshUserInfo(phone: String): Observable<UserInfoResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.refreshUserInfo(authToken, phone)
     }
 
@@ -436,7 +437,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun updateUserInfo(phone: String, body: UpdateUserInfoBody): Observable<UpdateUserInfoResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.updateUserInfo(authToken, phone, body)
     }
 
@@ -469,7 +470,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun refreshUserBizInfo(): Observable<UserBizInfoResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.refreshUserBizInfo(authToken, bizId)
     }
 
@@ -521,7 +522,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
         confirmPassword: String,
         phone: String
     ): Observable<GenericResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         val body = ChangePasswordBody(bizId, oldPassword, newPassword, confirmPassword, phone)
         return userRetrofitService.changePassword(authToken, body)
     }
@@ -563,7 +564,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getDeliverableAddresses(locationId: String): Observable<DeliverableAddressResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.getDeliverableAddress(authToken, locationId)
     }
 
@@ -599,7 +600,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun addAddress(userAddress: UserAddress): Observable<UserAddressSaveResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.addAddress(authToken, userAddress)
     }
 
@@ -635,7 +636,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun updateAddress(userAddress: UserAddress): Observable<UserAddressSaveResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.updateAddress(authToken, userAddress)
     }
 
@@ -671,7 +672,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun deleteAddress(addressId: String): Observable<UserAddressSaveResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.deleteAddress(authToken, addressId)
     }
 
@@ -721,7 +722,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getWalletTransactions(limit: String, offset: String): Observable<TransactionsResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.getWalletTransactions(authToken, limit, offset)
     }
 
@@ -758,7 +759,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getPastOrders(): Observable<OrderHistoryV2Response> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.getPastOrders(authToken)
     }
 
@@ -794,7 +795,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getPastOrderDetails(orderId: Int): Observable<OrderDetailResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.getPastOrderDetails(authToken, orderId)
     }
 
@@ -830,7 +831,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun redeemReward(rewardId: Int): Observable<RedeemRewardResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.redeemReward(authToken, rewardId, "")
     }
 
@@ -863,7 +864,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getNotifications(): Observable<UserbizNotificationsResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.getNotifications(authToken)
     }
 
@@ -899,7 +900,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun submitFeedback(feedback: UserFeedback): Observable<SimpleResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.submitFeedback(authToken, feedback)
     }
 
@@ -935,7 +936,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getUserLikes(ids: String): Observable<UserLikesResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.getUserLikes(authToken, ids)
     }
 
@@ -971,7 +972,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun likeItem(itemId: Int): Observable<Like> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.likeItem(authToken, itemId, "")
     }
 
@@ -1007,7 +1008,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun unLikeItem(itemId: Int): Observable<Like> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.unLikeItem(authToken, itemId)
     }
 
@@ -1046,7 +1047,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
      */
     override fun getResetPasswordToken(phone: String): Observable<GenericResponse> {
         val body = ForgotPwdGenerateTokenReq(bizId, phone)
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.getResetPasswordToken(authToken, body)
     }
 
@@ -1100,7 +1101,7 @@ class UserServiceDefault(private val bizId: String, retrofit: Retrofit) : UserSe
         phone: String, newPassword: String, confirmPassword: String, token: String
     ): Observable<GenericResponse> {
         val body = ForgotPwdGenerateTokenReq(bizId, phone, token, newPassword, confirmPassword)
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.resetPassword(authToken, body)
     }
 

@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
+import android.content.Context
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
 import com.urbanpiper.upsdk.model.networkresponse.OffersResponse
 import com.urbanpiper.upsdk.model.networkresponse.RewardsResponse
@@ -10,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 
 class PromotionsServiceDefault(
-    private val bizId: String, retrofit: Retrofit
+    private val context: Context, private val bizId: String, retrofit: Retrofit
 ) : PromotionsService {
 
     private val promotionsRetrofitService: PromotionsRetrofitService =
@@ -54,7 +55,7 @@ class PromotionsServiceDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getBanners(): Observable<BannerResponse> {
-        val authToken: String = Utils().getAuthToken(false)
+        val authToken: String = Utils().getAuthToken(context, false)
         return promotionsRetrofitService.getBanners(authToken)
     }
 
@@ -88,7 +89,7 @@ class PromotionsServiceDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getOffers(): Observable<OffersResponse> {
-        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
+        val authToken: String = Utils().getAuthToken(context, Utils().isUserLoggedIn(context))
         return promotionsRetrofitService.getOffers(authToken, bizId)
     }
 
@@ -124,7 +125,7 @@ class PromotionsServiceDefault(
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getRewards(): Observable<RewardsResponse> {
-        val authToken: String = Utils().getAuthToken(true)
+        val authToken: String = Utils().getAuthToken(context, true)
         return promotionsRetrofitService.getRewards(authToken, bizId)
     }
 

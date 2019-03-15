@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider;
 
+import android.content.Context;
 import android.text.TextUtils;
 import com.urbanpiper.upsdk.model.networkresponse.UserBizInfoResponse;
 
@@ -15,6 +16,7 @@ public final class UPClientBuilder {
     private String apiUserName;
     private String apiKey;
     private String language;
+    private Context context;
     private Callback<UserBizInfoResponse> callback = null;
 
     /**
@@ -67,10 +69,21 @@ public final class UPClientBuilder {
      * Callback that returns user information
      *
      * @param callback
-     * @return
+     * @return - Builder
      */
     public UPClientBuilder setCallback(Callback<UserBizInfoResponse> callback) {
         this.callback = callback;
+        return this;
+    }
+
+    /**
+     * Application context
+     *
+     * @param context
+     * @return - Builder
+     */
+    public UPClientBuilder setApplicationContext(Context context) {
+        this.context = context;
         return this;
     }
 
@@ -98,10 +111,14 @@ public final class UPClientBuilder {
             throw new IllegalArgumentException("Callback is a required parameter ");
         }
 
+        if (context == null) {
+            throw new IllegalArgumentException("Context is a required parameter ");
+        }
         return new UPClientDefault(bizId
                 , apiUserName
                 , apiKey
                 , language
+                , context
                 , callback);
     }
 
