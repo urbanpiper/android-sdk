@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 
-class CatalogueServiceDefault(private val authToken: String, private val bizId: String, retrofit: Retrofit) :
+class CatalogueServiceDefault(private val bizId: String, retrofit: Retrofit) :
     CatalogueService {
 
     private val orderingRetrofitService: CatalogueRetrofitService =
@@ -49,6 +49,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getCategories(locationId: Int): Observable<CategoriesResponse> {
+        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
         return orderingRetrofitService.getCategories(authToken, "no-cache", bizId, locationId)
     }
 
@@ -111,6 +112,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
     override fun getCategoryItems(
         categoryId: Int, locationId: String, offset: Int, limit: Int
     ): Observable<CategoryItemResponse> {
+        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
         return orderingRetrofitService.getCategoryItems(authToken, categoryId, locationId, bizId, offset, limit)
     }
 
@@ -149,6 +151,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getFilterAndSortOptions(categoryId: Int): Observable<FilterAndSortOptionsResponse> {
+        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
         return orderingRetrofitService.getFilterSortOptions(authToken, categoryId)
     }
 
@@ -206,6 +209,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
     override fun getFilteredItems(
         categoryId: Int, locationId: String, filterBy: String, offset: Int, limit: Int
     ): Observable<CategoryItemResponse> {
+        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
         return orderingRetrofitService.getFilteredItems(
             authToken, categoryId, locationId, filterBy, bizId, offset, limit
         )
@@ -265,6 +269,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
     override fun getSortedItems(
         categoryId: Int, locationId: String, sortBy: String, offset: Int, limit: Int
     ): Observable<CategoryItemResponse> {
+        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
         return orderingRetrofitService.getSortedItems(authToken, categoryId, locationId, sortBy, bizId, offset, limit)
     }
 
@@ -301,6 +306,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getRecommendedItems(locationId: Int): Observable<RecommendedItemResponse> {
+        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
         return orderingRetrofitService.getRecommendedItems(authToken, locationId)
     }
 
@@ -343,6 +349,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getRelatedItems(itemId: String, locationId: Int): Observable<RecommendedItemResponse> {
+        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
         return orderingRetrofitService.getRelatedItems(authToken, itemId, locationId)
     }
 
@@ -383,6 +390,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getItemDetails(itemId: Int, locationId: Int): Observable<ItemDetailsResponse> {
+        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
         return orderingRetrofitService.getItemDetails(authToken, itemId, locationId)
     }
 
@@ -429,6 +437,7 @@ class CatalogueServiceDefault(private val authToken: String, private val bizId: 
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun searchItems(query: String, locationId: Int): Observable<CategorySearchResponse> {
+        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
         return orderingRetrofitService.searchItems(authToken, query, locationId)
     }
 

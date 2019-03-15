@@ -1,6 +1,8 @@
 package com.urbanpiper.upsdk.dataprovider
 
+import android.content.Context
 import com.urbanpiper.upsdk.BuildConfig
+import com.urbanpiper.upsdk.commons.UPClientContextProvider
 import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
@@ -38,7 +40,14 @@ class UPClientDefault(
 
     // Initialization block
     init {
-        val authToken = String.format("apikey %s:%s", apiUsername, apiKey)
+//        val authToken = String.format("apikey %s:%s", apiUsername, apiKey)
+
+        val sp = UPClientContextProvider().getAppContext()
+            ?.getSharedPreferences(Utils().spSessionDetails, Context.MODE_PRIVATE)
+        val editor = sp!!.edit()
+        editor.putString(Utils().spAPIUsername, apiUsername)
+        editor.putString(Utils().spAPIKey, apiKey)
+        editor.apply()
 
         val client: OkHttpClient = OkHttpClient().newBuilder()
             .addInterceptor { chain ->
@@ -65,11 +74,11 @@ class UPClientDefault(
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        generalServiceDefault = GeneralServiceDefault(authToken, bizId, retrofit)
-        catalogueServiceDefault = CatalogueServiceDefault(authToken, bizId, retrofit)
-        userServiceDefault = UserServiceDefault(authToken, bizId, retrofit)
-        promotionsServiceDefault = PromotionsServiceDefault(authToken, bizId, retrofit)
-        cartServiceDefault = CartServiceDefault(authToken, bizId, retrofit)
+        generalServiceDefault = GeneralServiceDefault(bizId, retrofit)
+        catalogueServiceDefault = CatalogueServiceDefault(bizId, retrofit)
+        userServiceDefault = UserServiceDefault(bizId, retrofit)
+        promotionsServiceDefault = PromotionsServiceDefault(bizId, retrofit)
+        cartServiceDefault = CartServiceDefault(bizId, retrofit)
     }
     // ----------------------  BASIC DETAILS ------------------------------------
 
@@ -1541,11 +1550,19 @@ class UPClientDefault(
         return ForgotPasswordBuilder(userServiceDefault)
     }
 
+    /**
+     * Returns the social reg builder
+     *
+     */
     override fun getSocialRegBuilder(): SocialRegBuilder {
         return SocialRegBuilder(userServiceDefault)
     }
 
-    override fun getItemOptionBuilder(groupId: String, selectedOption: String): ItemOptionBuilder {
+    /**
+     * Returns the item option builder
+     *
+     */
+    override fun getItemOptionBuilder(): ItemOptionBuilder {
         return ItemOptionBuilder()
     }
 }

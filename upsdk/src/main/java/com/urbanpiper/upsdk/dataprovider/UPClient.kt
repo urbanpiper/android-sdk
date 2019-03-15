@@ -20,5 +20,5 @@ interface UPClient : GeneralService, CatalogueService, UserService, PromotionsSe
 
     fun getSocialRegBuilder(): SocialRegBuilder
 
-    fun getItemOptionBuilder(groupId: String, selectedOption: String): ItemOptionBuilder
+    fun getItemOptionBuilder(): ItemOptionBuilder
 }

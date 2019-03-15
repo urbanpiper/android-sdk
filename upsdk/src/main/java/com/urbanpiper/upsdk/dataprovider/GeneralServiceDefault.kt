@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 
-class GeneralServiceDefault(private val authToken: String, private val bizId: String, retrofit: Retrofit) :
+class GeneralServiceDefault(private val bizId: String, retrofit: Retrofit) :
     GeneralService {
 
     private val generalRetrofitService: GeneralRetrofitService =
@@ -59,6 +59,7 @@ class GeneralServiceDefault(private val authToken: String, private val bizId: St
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun checkAppVersion(username: String, version: String): Observable<VersionCheckResponse> {
+        val authToken: String = Utils().getAuthToken(false)
         return generalRetrofitService.appVersionCheck(authToken, bizId, username, version)
     }
 
@@ -107,6 +108,7 @@ class GeneralServiceDefault(private val authToken: String, private val bizId: St
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun registerFCMToken(token: String, deviceId: String): Observable<Void> {
+        val authToken: String = Utils().getAuthToken(Utils().isUserLoggedIn())
         val fcmRegistrationBody = FCMRegistrationBody(token, deviceId)
         return generalRetrofitService.registerDeviceForFCM(fcmRegistrationBody, authToken)
     }
@@ -156,6 +158,7 @@ class GeneralServiceDefault(private val authToken: String, private val bizId: St
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getNearestStore(lat: Double, lng: Double): Observable<StoreReponse> {
+        val authToken: String = Utils().getAuthToken(false)
         return generalRetrofitService.getNearestStore(authToken, lat, lng, bizId)
     }
 
@@ -192,6 +195,7 @@ class GeneralServiceDefault(private val authToken: String, private val bizId: St
      * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getAllStores(): Observable<StoreListResponse> {
+        val authToken: String = Utils().getAuthToken(false)
         return generalRetrofitService.getAllStores(authToken)
     }
 
