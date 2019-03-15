@@ -17,4 +17,8 @@ interface UPClient : GeneralService, CatalogueService, UserService, PromotionsSe
     fun getCheckOutBuilder(): CheckoutBuilder
 
     fun getForgotPasswordBuilder(): ForgotPasswordBuilder
+
+    fun getSocialRegBuilder(): SocialRegBuilder
+
+    fun getItemOptionBuilder(groupId: String, selectedOption: String): ItemOptionBuilder
 }

@@ -1540,4 +1540,12 @@ class UPClientDefault(
     override fun getForgotPasswordBuilder(): ForgotPasswordBuilder {
         return ForgotPasswordBuilder(userServiceDefault)
     }
+
+    override fun getSocialRegBuilder(): SocialRegBuilder {
+        return SocialRegBuilder(userServiceDefault)
+    }
+
+    override fun getItemOptionBuilder(groupId: String, selectedOption: String): ItemOptionBuilder {
+        return ItemOptionBuilder()
+    }
 }

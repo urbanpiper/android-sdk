@@ -53,7 +53,7 @@ interface UserRetrofitService {
     ): Observable<UserCreateResponse>
 
     /**
-     * Verify OTP
+     * Verify OTP after siging up with OTP
      *
      * @param authToken - Auth Token
      * @param body - Object of verify OTP body

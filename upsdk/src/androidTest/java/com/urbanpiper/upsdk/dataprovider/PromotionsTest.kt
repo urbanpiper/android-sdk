@@ -13,11 +13,9 @@ import retrofit2.Call
 @RunWith(AndroidJUnit4::class)
 class PromotionsTest {
 
-    @Mock
-    lateinit var mockCall: Call<BannerResponse>
-
     @Test
     fun testBanners() {
+
 
     }
 
