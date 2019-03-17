@@ -8,7 +8,7 @@ data class CategorySearchResponse(
 //    val combos: List<Any>,
 
     @SerializedName("items")
-    val items: List<OrderItem>,
+    val items: List<CartItem>,
 
     @SerializedName("meta")
     val meta: ResponseMeta

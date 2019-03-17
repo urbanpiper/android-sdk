@@ -20,6 +20,15 @@ class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
 
     private var response: RegistrationResponse? = null
 
+    /**
+     * This method is used to register a new user
+     *
+     * @param phone - Phone number
+     * @param email - Email
+     * @param password - Password
+     * @param name - Name
+     * @param callback - Callback
+     */
     fun createUser(
         phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
     ): CancellableTask {
@@ -38,6 +47,14 @@ class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
         return CancellableTaskDisposableWrapper(compositeDisposable)
     }
 
+    /**
+     * This method is used to register a new user
+     *
+     * @param phone - Phone number
+     * @param email - Email
+     * @param password - Password
+     * @param name - Name
+     */
     fun createUser(
         phone: String, email: String, password: String, name: String
     ): Observable<RegistrationResponse> {
@@ -52,7 +69,6 @@ class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
                     response = success
-
                 }, { failure ->
                     response = null
                 })
@@ -61,9 +77,15 @@ class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
         return observable
     }
 
-
+    /**
+     * This method is used to verify the OTP
+     *
+     * @param phone - Phone number
+     * @param pin - pin
+     * @param name - name
+     * @param callback - callback to return the result
+     */
     fun verifyOTP(phone: String, name: String, pin: String, callback: Callback<RegistrationResponse>): CancellableTask {
-        assert(response != null)
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -79,6 +101,13 @@ class RegistrationBuilder(private var userServiceDefault: UserServiceDefault) {
         return CancellableTaskDisposableWrapper(compositeDisposable)
     }
 
+    /**
+     * This method is used to verify the OTP
+     *
+     * @param phone - Phone number
+     * @param pin - Pin
+     * @param name - Name
+     */
     fun verifyOTP(phone: String, name: String, pin: String): Observable<RegistrationResponse> {
         assert(response != null)
         val observable = userServiceDefault.verifyOTP(phone, pin, name).share()

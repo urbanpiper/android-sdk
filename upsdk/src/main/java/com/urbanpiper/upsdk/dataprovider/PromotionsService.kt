@@ -8,7 +8,7 @@ import io.reactivex.Observable
 interface PromotionsService {
 
     /**
-     * The Gallery method returns the list of images that have been uploaded through the configuration portal.
+     * The method returns the list of images that have been uploaded through the configuration portal.
      *
      * These images might be used for different visual purposes, such as:
      * - showing banners in a carousel in the website or app.
@@ -21,7 +21,7 @@ interface PromotionsService {
     fun getBanners(callback: Callback<BannerResponse>): CancellableTask
 
     /**
-     * The Gallery method returns the list of images that have been uploaded through the configuration portal.
+     * The method returns the list of images that have been uploaded through the configuration portal.
      *
      * These images might be used for different visual purposes, such as:
      * - showing banners in a carousel in the website or app.
@@ -38,14 +38,14 @@ interface PromotionsService {
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    fun getOffers(callback: Callback<OffersResponse>): CancellableTask
+    fun getCoupons(callback: Callback<OffersResponse>): CancellableTask
 
     /**
      * This method returns a list of offers that can be applied to an order
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    fun getOffers(): Observable<OffersResponse>
+    fun getCoupons(): Observable<OffersResponse>
 
     /**
      * This endpoint returns the list of rewards that are configured in the system.

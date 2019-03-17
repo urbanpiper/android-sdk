@@ -10,15 +10,15 @@ import io.reactivex.schedulers.Schedulers
 
 class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
 
-    private var response1: PreProcessOrderResponse? = null
-    private var response2: OrderValidateCouponResponse? = null
-    private var response3: PaymentInitResponse? = null
-    private var response4: OrderSaveResponse? = null
+//    private var response1: ValidateCartResponse? = null
+//    private var response2: OrderValidateCouponResponse? = null
+//    private var response3: PaymentInitResponse? = null
+//    private var response4: OrderSaveResponse? = null
 
     /**
      * Sends the order details to the server for validation.
      */
-    fun validateCart(order: Order, callback: Callback<PreProcessOrderResponse>): CancellableTask {
+    fun validateCart(order: Order, callback: Callback<ValidateCartResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -37,7 +37,7 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
     /**
      * Sends the order details to the server for validation.
      */
-    fun validateCart(order: Order): Observable<PreProcessOrderResponse> {
+    fun validateCart(order: Order): Observable<ValidateCartResponse> {
         val observable = cartServiceDefault.validateCart(order).share()
 
         val compositeDisposable = CompositeDisposable()
@@ -47,7 +47,7 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
-                    response1 = success
+//                    response1 = success
                 }, { error ->
                 })
         )
@@ -62,7 +62,7 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
     fun validateCoupon(
         couponCode: String, body: ValidateCouponBody, callback: Callback<OrderValidateCouponResponse>
     ): CancellableTask {
-        assert(response1 != null)
+//        assert(response1 != null)
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -83,7 +83,7 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
      * order data as request body.
      */
     fun validateCoupon(couponCode: String, body: ValidateCouponBody): Observable<OrderValidateCouponResponse> {
-        assert(response1 != null)
+//        assert(response1 != null)
         val observable = cartServiceDefault.validateCoupon(couponCode, body)
 
         val compositeDisposable = CompositeDisposable()
@@ -93,7 +93,7 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
-                    response2 = success
+//                    response2 = success
                 }, { error ->
                 })
         )
@@ -102,10 +102,10 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
 
 
     fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask {
-        assert(response1 != null)
+//        assert(response1 != null)
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -127,9 +127,9 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
      *
      */
     fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
     ): Observable<PaymentInitResponse> {
-        assert(response1 != null)
+//        assert(response1 != null)
         val observable = cartServiceDefault.initPayment(storeId, amount, redirectUrl, paytm, simpl)
 
         val compositeDisposable = CompositeDisposable()
@@ -139,8 +139,7 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
-
-                    response3 = success
+//                    response3 = success
                 }, { error ->
                 })
         )
@@ -154,7 +153,7 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
      */
     fun placeOrder(body: Order, callback: Callback<OrderSaveResponse>): CancellableTask {
 
-        assert(response3 != null)
+//        assert(response3 != null)
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -174,7 +173,7 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
      * Sends the order details to the server for persistence.
      */
     fun placeOrder(body: Order): Observable<OrderSaveResponse> {
-        assert(response3 != null)
+//        assert(response3 != null)
         val observable = cartServiceDefault.placeOrder(body)
 
         val compositeDisposable = CompositeDisposable()
@@ -184,7 +183,7 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
-                    response4 = success
+//                    response4 = success
                 }, { error ->
                 })
         )
@@ -197,13 +196,13 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
      *
      */
     fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int, callback: Callback<PaymentCallbackResponse>
+        transactionId: String, gwTxnId: String, transactionStatus: Int, callback: Callback<PaymentCallbackResponse>
     ): CancellableTask {
-        assert(response4 != null)
+//        assert(response4 != null)
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            verifyPayment(transactionId, gwTxnId, failed)
+            verifyPayment(transactionId, gwTxnId, transactionStatus)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -220,10 +219,10 @@ class CheckoutBuilder(private val cartServiceDefault: CartServiceDefault) {
      *
      */
     fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int
+        transactionId: String, gwTxnId: String, transactionStatus: Int
     ): Observable<PaymentCallbackResponse> {
-        assert(response4 != null)
-        val observable = cartServiceDefault.verifyPayment(transactionId, gwTxnId, failed)
+//        assert(response4 != null)
+        val observable = cartServiceDefault.verifyPayment(transactionId, gwTxnId, transactionStatus)
 
         val compositeDisposable = CompositeDisposable()
 

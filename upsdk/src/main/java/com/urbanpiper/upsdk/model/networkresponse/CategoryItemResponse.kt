@@ -9,7 +9,7 @@ data class CategoryItemResponse(
 //    @SerializedName("combos")
 //    val combos: List<Any>,
     @SerializedName("objects")
-    val objects: List<OrderItem>
+    val objects: List<CartItem>
 ) {
 
     fun toJson(): String {

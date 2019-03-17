@@ -31,7 +31,7 @@ import io.reactivex.schedulers.Schedulers
  * - `resendSocialOTP(...)`, function to resend a new otp to the user's phone number passed in by the user
  * if the message variable in verifyPhone response is not "new_registration_required"
  *
- * @property userServiceDefault - This is passed in with
+ * @property userServiceDefault - An instance of userServiceDefault must be passed into the builder
  */
 class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
 

@@ -1063,7 +1063,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param token - Token the user input's
      * @param callback - Callback to return the result
      *
-     * @return Observable - the result of the network request is returned as an Observable
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String,
@@ -1095,7 +1095,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param confirmPassword - Confirm same password
      * @param token - Token the user input's
      *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String

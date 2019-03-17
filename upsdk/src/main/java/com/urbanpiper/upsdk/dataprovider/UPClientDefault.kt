@@ -18,7 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory
  *
  * This class is a facade
  *
- *
  * @property bizId - Business id of the merchant
  * @property apiUsername - API username of the merchant
  * @property apiKey -  API key of the merchant
@@ -1242,7 +1241,7 @@ class UPClientDefault(
      * @param token - Token the user input's
      * @param callback - Callback to return the result
      *
-     * @return Observable - the result of the network request is returned as an Observable
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String,
@@ -1262,7 +1261,7 @@ class UPClientDefault(
      * @param confirmPassword - Confirm same password
      * @param token - Token the user input's
      *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String
@@ -1307,8 +1306,8 @@ class UPClientDefault(
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun getOffers(callback: Callback<OffersResponse>): CancellableTask {
-        return promotionsServiceDefault.getOffers(callback)
+    override fun getCoupons(callback: Callback<OffersResponse>): CancellableTask {
+        return promotionsServiceDefault.getCoupons(callback)
     }
 
     /**
@@ -1316,8 +1315,8 @@ class UPClientDefault(
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getOffers(): Observable<OffersResponse> {
-        return promotionsServiceDefault.getOffers()
+    override fun getCoupons(): Observable<OffersResponse> {
+        return promotionsServiceDefault.getCoupons()
     }
 
     /**
@@ -1417,7 +1416,7 @@ class UPClientDefault(
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun validateCart(order: Order, callback: Callback<PreProcessOrderResponse>): CancellableTask {
+    override fun validateCart(order: Order, callback: Callback<ValidateCartResponse>): CancellableTask {
         return cartServiceDefault.validateCart(order, callback)
     }
 
@@ -1432,7 +1431,7 @@ class UPClientDefault(
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun validateCart(order: Order): Observable<PreProcessOrderResponse> {
+    override fun validateCart(order: Order): Observable<ValidateCartResponse> {
         return cartServiceDefault.validateCart(order)
     }
 
@@ -1478,7 +1477,7 @@ class UPClientDefault(
      * @param callback - Callback to return the result
      */
     override fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask {
         return cartServiceDefault.initPayment(storeId, amount, redirectUrl, paytm, simpl, callback)
@@ -1494,7 +1493,7 @@ class UPClientDefault(
      * @param simpl - simpl
      */
     override fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
     ): Observable<PaymentInitResponse> {
         return cartServiceDefault.initPayment(storeId, amount, redirectUrl, paytm, simpl)
     }
@@ -1555,13 +1554,13 @@ class UPClientDefault(
      *
      * @param transactionId - transaction id
      * @param gwTxnId - payment gateway transaction id
-     * @param failed - failed
+     * @param transactionStatus - transactionStatus
      * @param callback - callback to return the result
      */
     override fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int, callback: Callback<PaymentCallbackResponse>
+        transactionId: String, gwTxnId: String, transactionStatus: Int, callback: Callback<PaymentCallbackResponse>
     ): CancellableTask {
-        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, failed, callback)
+        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, transactionStatus, callback)
     }
 
     /**
@@ -1569,12 +1568,12 @@ class UPClientDefault(
      *
      * @param transactionId - transaction id
      * @param gwTxnId - payment gateway transaction id
-     * @param failed - failed
+     * @param transactionStatus - transactionStatus
      */
     override fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int
+        transactionId: String, gwTxnId: String, transactionStatus: Int
     ): Observable<PaymentCallbackResponse> {
-        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, failed)
+        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, transactionStatus)
     }
 
     /**
@@ -1587,35 +1586,35 @@ class UPClientDefault(
     }
 
     /**
-     * Get registration builder
+     * This method returns an instance of the Registration Builder
      */
     override fun getRegistrationBuilder(): RegistrationBuilder {
         return RegistrationBuilder(userServiceDefault)
     }
 
     /**
-     * Get the Checkout Builder
+     * This method returns an instance of the Checkout Builder
      */
     override fun getCheckOutBuilder(): CheckoutBuilder {
         return CheckoutBuilder(cartServiceDefault)
     }
 
     /**
-     * Get the Forgot Password Builder
+     * This method returns an instance of the reset password builder
      */
-    override fun getForgotPasswordBuilder(): ForgotPasswordBuilder {
-        return ForgotPasswordBuilder(userServiceDefault)
+    override fun getResetPasswordBuilder(): ResetPasswordBuilder {
+        return ResetPasswordBuilder(userServiceDefault)
     }
 
     /**
-     * Returns the social reg builder
+     * This method returns an instance of the social reg builder
      */
     override fun getSocialRegBuilder(): SocialRegBuilder {
         return SocialRegBuilder(userServiceDefault)
     }
 
     /**
-     * Returns the item option builder
+     * This method returns an instance of the item option builder
      */
     override fun getItemOptionBuilder(): ItemOptionBuilder {
         return ItemOptionBuilder()

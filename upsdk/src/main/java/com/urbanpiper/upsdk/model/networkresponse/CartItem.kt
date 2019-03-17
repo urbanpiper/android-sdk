@@ -3,7 +3,7 @@ package com.urbanpiper.upsdk.model.networkresponse
 import com.google.gson.annotations.SerializedName
 import java.util.ArrayList
 
-data class OrderItem(
+data class CartItem(
     @SerializedName("id")
     var id: Int = 0,
 
@@ -91,7 +91,7 @@ data class OrderItem(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as OrderItem
+        other as CartItem
 
         if (id != other.id) return false
 

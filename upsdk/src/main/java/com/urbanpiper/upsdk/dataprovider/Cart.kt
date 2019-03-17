@@ -3,7 +3,7 @@ package com.urbanpiper.upsdk.dataprovider
 import android.util.Log
 import com.urbanpiper.upsdk.dataprovider.Cart.Singleton.instance
 import com.urbanpiper.upsdk.model.networkresponse.OrderCategory
-import com.urbanpiper.upsdk.model.networkresponse.OrderItem
+import com.urbanpiper.upsdk.model.networkresponse.CartItem
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -15,7 +15,7 @@ class Cart : CartTracker {
     /**
      * The cart is a tree map.
      */
-    private var cart: TreeMap<OrderCategory, ArrayList<OrderItem>> = TreeMap()
+    private var cart: TreeMap<OrderCategory, ArrayList<CartItem>> = TreeMap()
 
     private var itemCount: Int = 0
     private var lastUpdatedAt: Long = 0L
@@ -23,7 +23,6 @@ class Cart : CartTracker {
     // This creates a single instance of a cart
     object Singleton {
         val instance: Cart = Cart()
-
     }
 
     /**
@@ -36,15 +35,15 @@ class Cart : CartTracker {
     /**
      * Returns the cart
      */
-    fun getCartTreeMap(): TreeMap<OrderCategory, ArrayList<OrderItem>> {
+    fun getCartTreeMap(): TreeMap<OrderCategory, ArrayList<CartItem>> {
         return instance.cart
     }
 
-    override fun addItem(category: OrderCategory, item: OrderItem) {
+    override fun addItem(category: OrderCategory, item: CartItem) {
         addItemToCart(category, item)
     }
 
-    override fun removeItem(category: OrderCategory, item: OrderItem) {
+    override fun removeItem(category: OrderCategory, item: CartItem) {
         removeItemFromCart(category, item)
     }
 
@@ -55,7 +54,7 @@ class Cart : CartTracker {
     /**
      * Returns the total number of items in the cart
      */
-    fun getTotalItemsInCart(cart: TreeMap<OrderCategory, ArrayList<OrderItem>>): Int {
+    fun getTotalItemsInCart(cart: TreeMap<OrderCategory, ArrayList<CartItem>>): Int {
         var count = 0
         val categories: Set<OrderCategory> = cart.keys
 
@@ -74,13 +73,12 @@ class Cart : CartTracker {
     /**
      * Returns a list of all the items in the cart
      */
-    fun getCartItems(): ArrayList<OrderItem> {
-        val allItems: ArrayList<OrderItem> = ArrayList()
+    fun getAllCartItems(): ArrayList<CartItem> {
+        val allItems: ArrayList<CartItem> = ArrayList()
 
         for (items in instance.cart.values) {
             allItems.addAll(items)
         }
-
         return allItems
     }
 
@@ -105,8 +103,8 @@ class Cart : CartTracker {
     /**
      * Get the quantity of items stored in the cart
      */
-    fun getItemCountForId(category: OrderCategory, item: OrderItem): Int {
-        val items: ArrayList<OrderItem>? = instance.cart[category]
+    fun getItemCountForId(category: OrderCategory, item: CartItem): Int {
+        val items: ArrayList<CartItem>? = instance.cart[category]
         var count = 0
         if (items == null){
             return count
@@ -124,8 +122,8 @@ class Cart : CartTracker {
     }
 
 
-    private fun removeItemFromCart(category: OrderCategory, item: OrderItem) {
-        val items: ArrayList<OrderItem>? = instance.cart[category]
+    private fun removeItemFromCart(category: OrderCategory, item: CartItem) {
+        val items: ArrayList<CartItem>? = instance.cart[category]
         if (items == null) {
             Log.e("cart", "Item does not exist in the cart")
         } else if (!contains(items, item)) {
@@ -145,8 +143,8 @@ class Cart : CartTracker {
     /**
      * Add an item to the cart
      */
-    private fun addItemToCart(category: OrderCategory, item: OrderItem) {
-        var items: ArrayList<OrderItem>? = instance.cart[category]
+    private fun addItemToCart(category: OrderCategory, item: CartItem) {
+        var items: ArrayList<CartItem>? = instance.cart[category]
         if (items == null) {
             items = ArrayList()
             instance.cart[category] = items
@@ -165,12 +163,12 @@ class Cart : CartTracker {
      *
      */
     private fun removeItemFromCategory(
-        cart: TreeMap<OrderCategory, ArrayList<OrderItem>>, category: OrderCategory, item: OrderItem
+        cart: TreeMap<OrderCategory, ArrayList<CartItem>>, category: OrderCategory, item: CartItem
     ) {
-        val itemsIterator: MutableIterator<OrderItem> = cart[category]!!.iterator()
+        val itemsIterator: MutableIterator<CartItem> = cart[category]!!.iterator()
 
         while (itemsIterator.hasNext()) {
-            val currentItem: OrderItem = itemsIterator.next()
+            val currentItem: CartItem = itemsIterator.next()
 
             if (currentItem == item) {
                 currentItem.quantity = currentItem.quantity - 1

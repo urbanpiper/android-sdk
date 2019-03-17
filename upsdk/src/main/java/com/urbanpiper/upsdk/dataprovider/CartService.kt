@@ -39,12 +39,12 @@ interface CartService {
     /**
      * Sends the order details to the server for validation.
      */
-    fun validateCart(order: Order, callback: Callback<PreProcessOrderResponse>): CancellableTask
+    fun validateCart(order: Order, callback: Callback<ValidateCartResponse>): CancellableTask
 
     /**
      * Sends the order details to the server for validation.
      */
-    fun validateCart(order: Order): Observable<PreProcessOrderResponse>
+    fun validateCart(order: Order): Observable<ValidateCartResponse>
 
     /**
      * Advanced version of coupon validation - takes in the complete
@@ -67,7 +67,7 @@ interface CartService {
      *
      */
     fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask
 
@@ -76,7 +76,7 @@ interface CartService {
      *
      */
     fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
     ): Observable<PaymentInitResponse>
 
     /**
@@ -109,7 +109,7 @@ interface CartService {
      *
      */
     fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int, callback: Callback<PaymentCallbackResponse>
+        transactionId: String, gwTxnId: String, transactionStatus: Int, callback: Callback<PaymentCallbackResponse>
     ): CancellableTask
 
     /**
@@ -117,7 +117,7 @@ interface CartService {
      *
      */
     fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int
+        transactionId: String, gwTxnId: String, transactionStatus: Int
     ): Observable<PaymentCallbackResponse>
 
     /**

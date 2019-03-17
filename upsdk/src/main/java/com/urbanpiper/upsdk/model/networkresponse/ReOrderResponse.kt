@@ -8,10 +8,10 @@ data class ReOrderResponse(
     var deliveryCharge: Double,
 
     @SerializedName("items_available")
-    var itemsAvailable: List<OrderItem> = ArrayList(),
+    var itemsAvailable: List<CartItem> = ArrayList(),
 
     @SerializedName("items_not_available")
-    var itemsNotAvailable: List<OrderItem> = ArrayList(),
+    var itemsNotAvailable: List<CartItem> = ArrayList(),
 
     @SerializedName("order_item_taxes")
     var orderItemTaxes: Double,

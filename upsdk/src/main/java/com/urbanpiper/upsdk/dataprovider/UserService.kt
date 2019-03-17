@@ -593,7 +593,7 @@ interface UserService {
      * @param token - Token the user input's
      * @param callback - Callback to return the result
      *
-     * @return Observable - the result of the network request is returned as an Observable
+     *  @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String,
@@ -611,7 +611,7 @@ interface UserService {
      * @param confirmPassword - Confirm same password
      * @param token - Token the user input's
      *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     * @return Observable - the result of the network request is returned as an Observable
      */
     fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String

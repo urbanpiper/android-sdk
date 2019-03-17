@@ -1,8 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import android.service.autofill.UserData
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.urbanpiper.upsdk.model.Order
 import com.urbanpiper.upsdk.model.UpdateUserInfoBody
 import com.urbanpiper.upsdk.model.networkresponse.*
 import org.junit.Before
@@ -10,7 +8,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Assert.*
 import org.mockito.ArgumentMatchers.*
-import org.mockito.Mockito
 
 @RunWith(AndroidJUnit4::class)
 class UpClientFacadeTest {
@@ -81,7 +78,7 @@ class UpClientFacadeTest {
         assertNotNull(upClient.getBizLanguage())
         assertNotNull(upClient.getCheckOutBuilder())
         assertNotNull(upClient.getRegistrationBuilder())
-        assertNotNull(upClient.getForgotPasswordBuilder())
+        assertNotNull(upClient.getResetPasswordBuilder())
         assertNotNull(upClient.getSocialRegBuilder())
         assertNotNull(upClient.getItemOptionBuilder())
 
@@ -90,7 +87,7 @@ class UpClientFacadeTest {
 
         // Promotions
         assertNotNull(upClient.getBanners())
-        assertNotNull(upClient.getOffers())
+        assertNotNull(upClient.getCoupons())
         assertNotNull(upClient.getRewards())
 
         // General

@@ -80,7 +80,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
     /**
      * Sends the order details to the server for validation.
      */
-    override fun validateCart(order: Order, callback: Callback<PreProcessOrderResponse>): CancellableTask {
+    override fun validateCart(order: Order, callback: Callback<ValidateCartResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -99,7 +99,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
     /**
      * Sends the order details to the server for validation.
      */
-    override fun validateCart(order: Order): Observable<PreProcessOrderResponse> {
+    override fun validateCart(order: Order): Observable<ValidateCartResponse> {
         val authToken: String = Utils().getAuthToken(context, Utils().isUserLoggedIn(context))
         return cartService.validateCart(authToken, bizId, 1, order)
     }
@@ -141,7 +141,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
      *
      */
     override fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
@@ -165,7 +165,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
      *
      */
     override fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
     ): Observable<PaymentInitResponse> {
         val authToken: String = Utils().getAuthToken(context, true)
         return cartService.initPayment(authToken, bizId, storeId, amount, "ordering", redirectUrl, paytm, simpl)
@@ -235,12 +235,12 @@ class CartServiceDefault(private val context: Context, private val bizId: String
      *
      */
     override fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int, callback: Callback<PaymentCallbackResponse>
+        transactionId: String, gwTxnId: String, transactionStatus: Int, callback: Callback<PaymentCallbackResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            verifyPayment(transactionId, gwTxnId, failed)
+            verifyPayment(transactionId, gwTxnId, transactionStatus)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -257,10 +257,10 @@ class CartServiceDefault(private val context: Context, private val bizId: String
      *
      */
     override fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int
+        transactionId: String, gwTxnId: String, transactionStatus: Int
     ): Observable<PaymentCallbackResponse> {
         val authToken: String = Utils().getAuthToken(context, true)
-        return cartService.verifyPayment(authToken, transactionId, gwTxnId, failed)
+        return cartService.verifyPayment(authToken, transactionId, gwTxnId, transactionStatus)
     }
 
     override fun getCart(): Cart {
