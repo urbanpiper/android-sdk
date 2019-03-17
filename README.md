@@ -2,6 +2,8 @@
 
 Source-code for the Android SDK to be used for building custom apps on top of the UrbanPiper platform.
 
+Welcome to the android-sdk wiki!
+
 # Android SDK for UP
 
 ## Basic Setup
@@ -77,13 +79,15 @@ Init SDK in java
 ### Usage
 
 All the methods are available through **UPClient** object after init.
+
 There are two types of each method
-1. This method returns an CancellableTask using which the task can be cancelled. 
-The result is returned as a callback which is passed in as a param.
+
+1. The result is returned as a callback which is passed in as a param. This method returns a CancellableTask using which the task can be cancelled by calling ```.cancel()``` on the return value.
+
 
 Eg: 
 ```kotlin
- upclient.getBanners(callback): CancellableTask
+getBanners(callback: Callback<BannerResponse>): CancellableTask 
 ```
 2. This method returns an RXJava observable through which the result of the network response can be observed.
 
@@ -91,6 +95,18 @@ Eg:
 ```kotlin
 upclient.getBanners(): Observable<BannerResponse>
 ```
+
+_**From here on all examples will only show the RXJava implementation. But keep in mind, all methods have both types available for use.**_
+
+
+
+
+
+
+
+
+
+
 
 
 
