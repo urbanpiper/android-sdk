@@ -90,18 +90,16 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        })
 
-
-        compositeDisposable.add(
-            MyApp().login("9880170805", "nikhil12345")
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ response ->
-                    Log.d("Main Activity ", "${response.message}  ${response.token} ${response.status}")
-
-                }, { error ->
-                    Log.d("error", "Login failed ", error)
-                })
-        )
+//        compositeDisposable.add(
+//            BaseApplication().client!!.login("9880170805", "nikhil12345")
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe({ response ->
+//                    Log.d("Main Activity ", "${response.message}  ${response.token} ${response.status}")
+//                }, { error ->
+//                    Log.d("error", "Login failed ", error)
+//                })
+//        )
 //
 //
 //        val builder = MyApp().getRegistrationBuilder()

@@ -11,56 +11,64 @@ import io.reactivex.Observable
 
 class MyApp : Application() {
 
-    private lateinit var upClient: UPClient
+    var upClient: UPClient? = null
 
     override fun onCreate() {
         super.onCreate()
         Log.d("Application created ", " UP client init")
 
-        upClient = UPClientBuilder()
-            .setBizId("76720224")
-            .setApiUserName("biz_adm_clients_yjXwAgQzHqYM")
-            .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe232d8fa8")
-            .setLanguage("en")
-            .setApplicationContext(this)
-            .setCallback(object : Callback<UserBizInfoResponse> {
-                override fun success(response: UserBizInfoResponse) {
-                    Log.d("callback response", " $response")
-                }
-
-                override fun failure(upClientError: UpClientError) {
-                    upClientError.getResponseCode()
-                    Log.e("", " Failure response  ${upClientError.getResponseCode()}")
-                }
-            })
-            .build()
 
 //        upClient.changeLanguage("hi")
     }
 
+    fun getUPClientInstance(): UPClient? {
+        if (upClient == null) {
+            upClient = UPClientBuilder()
+                .setBizId("76720224")
+                .setApiUserName("biz_adm_clients_yjXwAgQzHqYM")
+                .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe232d8fa8")
+                .setLanguage("en")
+                .setApplicationContext(applicationContext)
+                .setCallback(object : Callback<UserBizInfoResponse> {
+                    override fun success(response: UserBizInfoResponse) {
+                        Log.d("callback response", " $response")
+                    }
 
-    fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
-        return upClient.getBanners(object: Callback<BannerResponse>{
-            override fun success(response: BannerResponse) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun failure(upClientError: UpClientError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        })
+                    override fun failure(upClientError: UpClientError) {
+                        upClientError.getResponseCode()
+                        Log.e("", " Failure response  ${upClientError.getResponseCode()}")
+                    }
+                })
+                .build()
+            return upClient
+        } else {
+            return upClient
+        }
     }
 
-    fun getBanners(): Observable<BannerResponse> {
-        return upClient.getBanners()
-    }
 
-    fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
-        return upClient.login(phone, password)
-    }
-
-    fun getRegistrationBuilder(): RegistrationBuilder {
-        return upClient.getRegistrationBuilder()
-    }
+//    fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
+//        return upClient.getBanners(object : Callback<BannerResponse> {
+//            override fun success(response: BannerResponse) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun failure(upClientError: UpClientError) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//        })
+//    }
+//
+//    fun getBanners(): Observable<BannerResponse> {
+//        return upClient.getBanners()
+//    }
+//
+//    fun login(phone: String, password: String): Observable<AuthSuccessResponse> {
+//        return upClient.login(phone, password)
+//    }
+//
+//    fun getRegistrationBuilder(): RegistrationBuilder {
+//        return upClient.getRegistrationBuilder()
+//    }
 }

@@ -8,21 +8,21 @@ import java.io.IOException
  *
  * @property retrofitErrorThrowable - Throwable
  */
-class UpClientError(var retrofitErrorThrowable: Throwable?) {
+class UpClientError(private var retrofitErrorThrowable: Throwable?) {
     /**
      * Represents any errors returning from the backend
      */
-    val ERROR_TYPE_API = -2
+    public val ERROR_TYPE_API = -2
 
     /**
      * Represents any network related errors
      */
-    val ERROR_TYPE_NETWORK = -1
+    public val ERROR_TYPE_NETWORK = -1
 
     /**
      * Represent any unknown errors
      */
-    val ERROR_TYPE_UNKNOWN = 0
+    public val ERROR_TYPE_UNKNOWN = 0
 
     private var type: Int
 
