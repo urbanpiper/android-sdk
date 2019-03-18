@@ -98,7 +98,7 @@ upclient.getBanners(): Observable<BannerResponse>
 
 _**From here on all examples will only show the RXJava implementation. But keep in mind, all methods have both types available for use.**_
 
-_**Note: The callback is always passed as the last or in some cases the only argument in all the methods. **_
+_**Note: The callback is always passed as the last or in some cases the only argument in all the methods.**_
 
 
 
