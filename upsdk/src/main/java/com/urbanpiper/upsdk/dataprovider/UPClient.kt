@@ -64,11 +64,11 @@ interface UPClient : GeneralService, CatalogueService, UserService, PromotionsSe
      * This method returns an instance of the user object, it can be null if
      * user is not signed in
      */
-    fun getUser(): User
+    fun getUser(): User?
 
     /**
      * This method returns an instance of the biz, It can be null if the
      * stores method or categories method are not called
      */
-    fun getBizInfo(): Biz
+    fun getBizInfo(): Biz?
 }

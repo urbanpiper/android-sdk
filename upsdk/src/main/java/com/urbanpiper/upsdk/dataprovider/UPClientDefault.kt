@@ -1655,7 +1655,7 @@ class UPClientDefault(
      * This method returns an instance of the user object, it can be null if
      * user is not signed in
      */
-    override fun getUser(): User {
+    override fun getUser(): User? {
         return User()
     }
 
@@ -1663,7 +1663,7 @@ class UPClientDefault(
      * This method returns an instance of the biz, It can be null if the
      * stores method or categories method are not called
      */
-    override fun getBizInfo(): Biz {
+    override fun getBizInfo(): Biz? {
         return Biz()
     }
 }
