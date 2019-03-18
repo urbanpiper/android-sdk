@@ -1619,4 +1619,12 @@ class UPClientDefault(
     override fun getItemOptionBuilder(): ItemOptionBuilder {
         return ItemOptionBuilder()
     }
+
+    override fun getUser(): User {
+        return User()
+    }
+
+    override fun getBizInfo(): Biz {
+        return Biz()
+    }
 }

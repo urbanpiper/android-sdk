@@ -149,6 +149,69 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
     }
 
     /**
+     * Resend Social login OTP
+     *
+     * @param email - email
+     * @param provider - provider
+     * @param accessToken - accessToken
+     * @param action - action
+     * @param phone - phone
+     * @param otp - otp
+     * @param callback - Callback to return the result
+     *
+     * @return Observable - the result of the network request is returned as an Observable
+     */
+    fun verifySocialOTP(
+        email: String, provider: String, accessToken: String, action: String, phone: String, otp: String,
+        callback: Callback<SocialAuthResponse>
+    ): CancellableTask {
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            verifySocialOTP(email, provider, accessToken, phone, action, otp)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    callback.success(success)
+                }, { error ->
+                    callback.failure(UpClientError(error))
+                })
+        )
+        return CancellableTaskDisposableWrapper(compositeDisposable)
+    }
+
+    /**
+     * Verifies Social Login OTP
+     *
+     * @param email - email
+     * @param provider - provider
+     * @param accessToken - accessToken
+     * @param action - action
+     * @param phone - phone
+     * @param otp - otp
+     */
+    fun verifySocialOTP(
+        email: String, provider: String, accessToken: String, action: String, phone: String, otp: String
+    ): Observable<SocialAuthResponse> {
+        assert(response1 != null)
+        val observable = userServiceDefault.socialLoginOTP(email, provider, accessToken, action, phone, otp).share()
+
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            observable
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    response2 = success
+                }, { error ->
+                    response2 = null
+                })
+        )
+        return observable
+    }
+
+    /**
      * Resend Social OTP
      *
      * @param email - Email
@@ -180,69 +243,6 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
     }
 
     /**
-     * Resend Social login OTP
-     *
-     * @param email - email
-     * @param provider - provider
-     * @param accessToken - accessToken
-     * @param action - action
-     * @param phone - phone
-     * @param otp - otp
-     * @param callback - Callback to return the result
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    fun socialLoginOTP(
-        email: String, provider: String, accessToken: String, action: String, phone: String, otp: String,
-        callback: Callback<SocialAuthResponse>
-    ): CancellableTask {
-        val compositeDisposable = CompositeDisposable()
-
-        compositeDisposable.add(
-            socialLoginOTP(email, provider, accessToken, phone, action, otp)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ success ->
-                    callback.success(success)
-                }, { error ->
-                    callback.failure(UpClientError(error))
-                })
-        )
-        return CancellableTaskDisposableWrapper(compositeDisposable)
-    }
-
-    /**
-     * Verifies Social Login OTP
-     *
-     * @param email - email
-     * @param provider - provider
-     * @param accessToken - accessToken
-     * @param action - action
-     * @param phone - phone
-     * @param otp - otp
-     */
-    fun socialLoginOTP(
-        email: String, provider: String, accessToken: String, action: String, phone: String, otp: String
-    ): Observable<SocialAuthResponse> {
-        assert(response1 != null)
-        val observable = userServiceDefault.socialLoginOTP(email, provider, accessToken, action, phone, otp).share()
-
-        val compositeDisposable = CompositeDisposable()
-
-        compositeDisposable.add(
-            observable
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ success ->
-                    response2 = success
-                }, { error ->
-                    response2 = null
-                })
-        )
-        return observable
-    }
-
-    /**
      * Create a new user
      *
      * @param phone
@@ -251,13 +251,13 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
      * @param name
      * @param callback
      */
-    fun createUser(
+    fun createSocialUser(
         phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            createUser(phone, email, password, name)
+            createSocialUser(phone, email, password, name)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -277,7 +277,7 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
      * @param password
      * @param name
      */
-    fun createUser(
+    fun createSocialUser(
         phone: String, email: String, password: String, name: String
     ): Observable<RegistrationResponse> {
 
@@ -306,11 +306,11 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
      * @param pin
      * @param callback
      */
-    fun verifyOTP(phone: String, name: String, pin: String, callback: Callback<RegistrationResponse>): CancellableTask {
+    fun verifyRegOTP(phone: String, name: String, pin: String, callback: Callback<RegistrationResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            verifyOTP(phone, name, pin)
+            verifyRegOTP(phone, name, pin)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -329,7 +329,7 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
      * @param name
      * @param pin
      */
-    fun verifyOTP(phone: String, name: String, pin: String): Observable<RegistrationResponse> {
+    fun verifyRegOTP(phone: String, name: String, pin: String): Observable<RegistrationResponse> {
         val observable = userServiceDefault.verifyOTP(phone, pin, name).share()
 
         val compositeDisposable = CompositeDisposable()
@@ -351,11 +351,11 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
      * @param phone - Phone number
      * @param callback - callback to return the result
      */
-    fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask {
+    fun resendRegOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            resendOTP(phone)
+            resendRegOTP(phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -372,7 +372,7 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
      *
      * @param phone - Phone number
      */
-    fun resendOTP(phone: String): Observable<RegistrationResponse> {
+    fun resendRegOTP(phone: String): Observable<RegistrationResponse> {
         val observable = userServiceDefault.resendOTP(phone).share()
 
         val compositeDisposable = CompositeDisposable()

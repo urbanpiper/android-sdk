@@ -106,8 +106,8 @@ class MainActivity : AppCompatActivity() {
 //
 //        val builder = MyApp().getRegistrationBuilder()
 
-//        val observable = builder.createUser("a", "b", "c", "A")
+//        val observable = builder.createSocialUser("a", "b", "c", "A")
 //
-//        builder.verifyOTP("a", "v", "lol")
+//        builder.verifyRegOTP("a", "v", "lol")
     }
 }

@@ -1,5 +1,7 @@
 package com.urbanpiper.upsdk.dataprovider
 
+import com.urbanpiper.upsdk.model.networkresponse.Biz
+
 interface UPClient : GeneralService, CatalogueService, UserService, PromotionsService, CartService {
 
     fun getBizId(): String
@@ -21,4 +23,8 @@ interface UPClient : GeneralService, CatalogueService, UserService, PromotionsSe
     fun getSocialRegBuilder(): SocialRegBuilder
 
     fun getItemOptionBuilder(): ItemOptionBuilder
+
+    fun getUser(): User
+
+    fun getBizInfo(): Biz
 }
