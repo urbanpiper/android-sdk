@@ -2,7 +2,7 @@ package com.urbanpiper.upsdk.model
 
 import com.google.gson.annotations.SerializedName
 import com.urbanpiper.upsdk.model.networkresponse.Discount
-import com.urbanpiper.upsdk.model.networkresponse.OrderItem
+import com.urbanpiper.upsdk.model.networkresponse.CartItem
 import com.urbanpiper.upsdk.model.networkresponse.Store
 import java.util.*
 
@@ -72,10 +72,10 @@ data class Order(
     var store: Store,
 
     @SerializedName("items")
-    var items: List<OrderItem> = ArrayList(),
+    var items: List<CartItem> = ArrayList(),
 
     @SerializedName("cartItems")
-    var cartItems: List<OrderItem> = ArrayList(),
+    var cartItems: List<CartItem> = ArrayList(),
 
     @SerializedName("address")
     var address: String? = null,

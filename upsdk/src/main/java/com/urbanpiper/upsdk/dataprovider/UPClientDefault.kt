@@ -18,7 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory
  *
  * This class is a facade
  *
- *
  * @property bizId - Business id of the merchant
  * @property apiUsername - API username of the merchant
  * @property apiKey -  API key of the merchant
@@ -171,8 +170,6 @@ class UPClientDefault(
      * This can be used to force update the application. The response has a field that shows if force update
      * is required. This method should be called when the app is opened and after the user sign's in.
      *
-     * TODO - This should return a generic response in the callback
-     *
      * @param token - FCM registration token
      * @param deviceId - The unique id of the device
      * @param callback - Callback to receive the result
@@ -188,8 +185,6 @@ class UPClientDefault(
      *
      * This method registers a device to receive FCM messages, This should be called when the app
      * is launched and after the user sign's in to the app
-     *
-     * TODO - This should return a generic response in the callback
      *
      * @param token - FCM registration token
      * @param deviceId - The unique id of the device
@@ -691,7 +686,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Verifies the OTP sent to the user
      *
      * @param email
      * @param provider
@@ -709,7 +704,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Verifies the OTP sent to the user
      *
      * @param email
      * @param provider
@@ -725,7 +720,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Login using social auth providers (eg. google, facebook)
      *
      * @param email
      * @param provider
@@ -739,7 +734,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Login using social auth providers (eg. google, facebook)
      *
      * @param email
      * @param provider
@@ -1242,7 +1237,7 @@ class UPClientDefault(
      * @param token - Token the user input's
      * @param callback - Callback to return the result
      *
-     * @return Observable - the result of the network request is returned as an Observable
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String,
@@ -1262,7 +1257,7 @@ class UPClientDefault(
      * @param confirmPassword - Confirm same password
      * @param token - Token the user input's
      *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String
@@ -1307,8 +1302,8 @@ class UPClientDefault(
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun getOffers(callback: Callback<OffersResponse>): CancellableTask {
-        return promotionsServiceDefault.getOffers(callback)
+    override fun getCoupons(callback: Callback<OffersResponse>): CancellableTask {
+        return promotionsServiceDefault.getCoupons(callback)
     }
 
     /**
@@ -1316,8 +1311,8 @@ class UPClientDefault(
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getOffers(): Observable<OffersResponse> {
-        return promotionsServiceDefault.getOffers()
+    override fun getCoupons(): Observable<OffersResponse> {
+        return promotionsServiceDefault.getCoupons()
     }
 
     /**
@@ -1417,7 +1412,7 @@ class UPClientDefault(
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun validateCart(order: Order, callback: Callback<PreProcessOrderResponse>): CancellableTask {
+    override fun validateCart(order: Order, callback: Callback<ValidateCartResponse>): CancellableTask {
         return cartServiceDefault.validateCart(order, callback)
     }
 
@@ -1432,7 +1427,7 @@ class UPClientDefault(
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun validateCart(order: Order): Observable<PreProcessOrderResponse> {
+    override fun validateCart(order: Order): Observable<ValidateCartResponse> {
         return cartServiceDefault.validateCart(order)
     }
 
@@ -1468,33 +1463,40 @@ class UPClientDefault(
     }
 
     /**
-     * Initiates a payment for the particular biz's store.
+     * Starts the payment process
      *
      * @param storeId - Store id
      * @param amount - amount
-     * @param redirectUrl - redirect url
-     * @param paytm - paytm
-     * @param simpl - simpl
+     * @param redirectUrl - redirect url - https://urbanpiper.com
+     * @param paytm - send true`` if paytm is the payment option or send null``
+     * @param simpl - send true`` if simpl is the payment option or send null``
+     * If both paytm and simpl are not being used then send both options as null.
+     *
      * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask {
         return cartServiceDefault.initPayment(storeId, amount, redirectUrl, paytm, simpl, callback)
     }
 
     /**
-     * Initiates a payment for the particular biz's store.
+     * Starts the payment process
      *
      * @param storeId - Store id
      * @param amount - amount
-     * @param redirectUrl - redirect url
-     * @param paytm - paytm
-     * @param simpl - simpl
+     * @param redirectUrl - redirect url - https://urbanpiper.com
+     * @param paytm - send true`` if paytm is the payment option or send null``
+     * @param simpl - send true`` if simpl is the payment option or send null``
+     * If both paytm and simpl are not being used then send both options as null.
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
     ): Observable<PaymentInitResponse> {
         return cartServiceDefault.initPayment(storeId, amount, redirectUrl, paytm, simpl)
     }
@@ -1534,8 +1536,15 @@ class UPClientDefault(
     /**
      * Sends the order details to the server
      *
+     * If the payment option is NOT Cash on delivery, a provisional order is placed
+     * order.state = "awaiting_payment"
+     *
+     * If the payment option is Cash on Delivery, Then order.state = null
+     *
      * @param body - Order object
-     * @param callback - Callback to return the result
+     * @param callback - callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun placeOrder(body: Order, callback: Callback<OrderSaveResponse>): CancellableTask {
         return cartServiceDefault.placeOrder(body, callback)
@@ -1544,37 +1553,58 @@ class UPClientDefault(
     /**
      * Sends the order details to the server
      *
+     * If the payment option is NOT Cash on delivery, a provisional order is placed
+     * order.state = "awaiting_payment"
+     *
+     * If the payment option is Cash on Delivery, Then order.state = null
+     *
      * @param body - Order object
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun placeOrder(body: Order): Observable<OrderSaveResponse> {
         return cartServiceDefault.placeOrder(body)
     }
 
     /**
-     * Verify payment after transaction is complete
+     * This step is only required if the payment did not happen through a
+     * redirection flow (i.e - through a webview with a redirection url from the payment init response)
+     * This Marks the completion of a transaction.
      *
-     * @param transactionId - transaction id
+     * @param transactionId - Transaction id from payement init
      * @param gwTxnId - payment gateway transaction id
-     * @param failed - failed
-     * @param callback - callback to return the result
+     * @param transactionStatus - transaction status, it can have the following values
+     * 0 - Transaction success
+     * 1 - Transaction failed
+     * 5 - Transaction cancelled
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int, callback: Callback<PaymentCallbackResponse>
+        transactionId: String, gwTxnId: String, transactionStatus: Int, callback: Callback<PaymentCallbackResponse>
     ): CancellableTask {
-        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, failed, callback)
+        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, transactionStatus, callback)
     }
 
     /**
-     * Verify payment after transaction is complete
+     * This step is only required if the payment did not happen through a
+     * redirection flow (i.e - through a webview with a redirection url from the payment init response)
+     * This Marks the completion of a transaction.
      *
-     * @param transactionId - transaction id
+     * @param transactionId - Transaction id from payement init
      * @param gwTxnId - payment gateway transaction id
-     * @param failed - failed
+     * @param transactionStatus - transaction status, it can have the following values
+     * 0 - Transaction success
+     * 1 - Transaction failed
+     * 5 - Transaction cancelled
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun verifyPayment(
-        transactionId: String, gwTxnId: String, failed: Int
+        transactionId: String, gwTxnId: String, transactionStatus: Int
     ): Observable<PaymentCallbackResponse> {
-        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, failed)
+        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, transactionStatus)
     }
 
     /**
@@ -1587,37 +1617,53 @@ class UPClientDefault(
     }
 
     /**
-     * Get registration builder
+     * This method returns an instance of the Registration Builder
      */
     override fun getRegistrationBuilder(): RegistrationBuilder {
         return RegistrationBuilder(userServiceDefault)
     }
 
     /**
-     * Get the Checkout Builder
+     * This method returns an instance of the Checkout Builder
      */
     override fun getCheckOutBuilder(): CheckoutBuilder {
         return CheckoutBuilder(cartServiceDefault)
     }
 
     /**
-     * Get the Forgot Password Builder
+     * This method returns an instance of the reset password builder
      */
-    override fun getForgotPasswordBuilder(): ForgotPasswordBuilder {
-        return ForgotPasswordBuilder(userServiceDefault)
+    override fun getResetPasswordBuilder(): ResetPasswordBuilder {
+        return ResetPasswordBuilder(userServiceDefault)
     }
 
     /**
-     * Returns the social reg builder
+     * This method returns an instance of the social reg builder
      */
     override fun getSocialRegBuilder(): SocialRegBuilder {
         return SocialRegBuilder(userServiceDefault)
     }
 
     /**
-     * Returns the item option builder
+     * This method returns an instance of the item option builder
      */
     override fun getItemOptionBuilder(): ItemOptionBuilder {
         return ItemOptionBuilder()
+    }
+
+    /**
+     * This method returns an instance of the user object, it can be null if
+     * user is not signed in
+     */
+    override fun getUser(): User? {
+        return User()
+    }
+
+    /**
+     * This method returns an instance of the biz, It can be null if the
+     * stores method or categories method are not called
+     */
+    override fun getBizInfo(): Biz? {
+        return Biz()
     }
 }

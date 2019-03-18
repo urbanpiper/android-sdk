@@ -7,7 +7,7 @@ data class RecommendedItemResponse(
     @SerializedName("meta")
     val meta: ResponseMeta,
     @SerializedName("objects")
-    val objects: List<OrderItem>
+    val objects: List<CartItem>
 ) {
 
     fun toJson(): String {

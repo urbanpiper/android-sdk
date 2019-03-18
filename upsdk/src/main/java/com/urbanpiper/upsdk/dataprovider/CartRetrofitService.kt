@@ -7,7 +7,7 @@ import io.reactivex.Observable
 import retrofit2.http.*
 
 /**
- * TODO
+ * A list of retrofit endpoints related to cart operations
  *
  */
 interface CartRetrofitService {
@@ -59,7 +59,7 @@ interface CartRetrofitService {
         @Query("biz_id") bizId: String,
         @Query("pre_proc") preProcessOutput: Int,
         @Body order: Order
-    ): Observable<PreProcessOrderResponse>
+    ): Observable<ValidateCartResponse>
 
     /**
      * Advanced version of coupon validation - takes in the complete
@@ -94,8 +94,8 @@ interface CartRetrofitService {
         @Query("amount") amount: Int,
         @Query("purpose") purpose: String,
         @Query("redirect_url") redirectUrl: String,
-        @Query("paytm") paytm: String,
-        @Query("simpl") simpl: String
+        @Query("paytm") paytm: String?,
+        @Query("simpl") simpl: String?
     ) : Observable<PaymentInitResponse>
 
     /**

@@ -228,7 +228,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * Login to the using social auth providers (eg, Facebook, Google)
      *
      * @param email
      * @param provider
@@ -258,7 +258,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * Login to the using social auth providers (eg, Facebook, Google)
      *
      * @param email
      * @param provider
@@ -277,7 +277,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * Login to the using social auth providers (eg, Facebook, Google)
      *
      * @param email
      * @param provider
@@ -303,7 +303,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * Login to the using social auth providers (eg, Facebook, Google)
      *
      * @param email
      * @param provider
@@ -869,10 +869,10 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * this method submits user feedback
      *
-     * @param feedback
-     * @param callback
+     * @param feedback - feedback object
+     * @param callback - Callback to return the result
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
@@ -893,7 +893,9 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * this method submits user feedback
+     *
+     * @param feedback - feedback object
      *
      * @param feedback
      *
@@ -1063,7 +1065,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param token - Token the user input's
      * @param callback - Callback to return the result
      *
-     * @return Observable - the result of the network request is returned as an Observable
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String,
@@ -1095,7 +1097,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param confirmPassword - Confirm same password
      * @param token - Token the user input's
      *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String

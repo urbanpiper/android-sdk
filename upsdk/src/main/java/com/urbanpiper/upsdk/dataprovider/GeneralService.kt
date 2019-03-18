@@ -40,8 +40,6 @@ interface GeneralService {
      * This can be used to force update the application. The response has a field that shows if force update
      * is required. This method should be called when the app is opened and after the user sign's in.
      *
-     * TODO - This should return a generic response in the callback
-     *
      * @param token - FCM registration token
      * @param deviceId - The unique id of the device
      * @param callback - Callback to receive the result
@@ -55,8 +53,6 @@ interface GeneralService {
      *
      * This method registers a device to receive FCM messages, This should be called when the app
      * is launched and after the user sign's in to the app
-     *
-     * TODO - This should return a generic response in the callback
      *
      * @param token - FCM registration token
      * @param deviceId - The unique id of the device

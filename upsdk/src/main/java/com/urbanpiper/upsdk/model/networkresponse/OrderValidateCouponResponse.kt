@@ -7,7 +7,7 @@ data class OrderValidateCouponResponse(
     var discount: Discount,
 
     @SerializedName("items")
-    var items: List<OrderItem>,
+    var items: List<CartItem>,
 
     @SerializedName("item_taxes")
     var itemTaxes: Float = 0.toFloat(),

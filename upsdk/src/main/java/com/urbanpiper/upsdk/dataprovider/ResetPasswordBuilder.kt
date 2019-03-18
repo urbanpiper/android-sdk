@@ -6,7 +6,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class ForgotPasswordBuilder(private val userServiceDefault: UserServiceDefault) {
+class ResetPasswordBuilder(private val userServiceDefault: UserServiceDefault) {
 
     private var response: GenericResponse? = null
     /**

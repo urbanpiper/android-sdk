@@ -66,11 +66,11 @@ class PromotionsServiceDefault(
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun getOffers(callback: Callback<OffersResponse>): CancellableTask {
+    override fun getCoupons(callback: Callback<OffersResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            getOffers()
+            getCoupons()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -88,7 +88,7 @@ class PromotionsServiceDefault(
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getOffers(): Observable<OffersResponse> {
+    override fun getCoupons(): Observable<OffersResponse> {
         val authToken: String = Utils().getAuthToken(context, Utils().isUserLoggedIn(context))
         return promotionsRetrofitService.getOffers(authToken, bizId)
     }

@@ -3,6 +3,31 @@ package com.urbanpiper.upsdk.model.networkresponse
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
+/**
+ * This class represents the configured information for the business
+ *
+ * @property contactPhone
+ * @property deliveryRadius
+ * @property timezone
+ * @property currency
+ * @property pickupEnabled
+ * @property paymentOptions
+ * @property walletReloadOpts
+ * @property minOrderTotal
+ * @property preProcess
+ * @property deliveryMinOffsetTime
+ * @property pickupMinOffsetTime
+ * @property timeSlots
+ * @property msgNoStoresNearby
+ * @property msgNearestStoreClosed
+ * @property msgNearestStoreClosedTemporary
+ * @property feedbackConfigs
+ * @property usePointOfDelivery
+ * @property referralUILbl
+ * @property referralShareLbl
+ * @property paymentGatewayProvider
+ * @property supportedLanguages
+ */
 data class Biz(
     @SerializedName("contact_phone")
     var contactPhone: String = "",
