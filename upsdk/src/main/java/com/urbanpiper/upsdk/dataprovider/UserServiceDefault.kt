@@ -228,7 +228,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * Login to the using social auth providers (eg, Facebook, Google)
      *
      * @param email
      * @param provider
@@ -258,7 +258,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * Login to the using social auth providers (eg, Facebook, Google)
      *
      * @param email
      * @param provider
@@ -277,7 +277,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * Login to the using social auth providers (eg, Facebook, Google)
      *
      * @param email
      * @param provider
@@ -303,7 +303,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * Login to the using social auth providers (eg, Facebook, Google)
      *
      * @param email
      * @param provider
@@ -869,10 +869,10 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * this method submits user feedback
      *
-     * @param feedback
-     * @param callback
+     * @param feedback - feedback object
+     * @param callback - Callback to return the result
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
@@ -893,7 +893,9 @@ class UserServiceDefault(private val context: Context, private val bizId: String
     }
 
     /**
-     * TODO
+     * this method submits user feedback
+     *
+     * @param feedback - feedback object
      *
      * @param feedback
      *

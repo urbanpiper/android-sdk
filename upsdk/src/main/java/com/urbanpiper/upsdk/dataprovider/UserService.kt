@@ -121,7 +121,7 @@ interface UserService {
     fun resendOTP(phone: String): Observable<RegistrationResponse>
 
     /**
-     * TODO
+     * Login to the using social auth providers (eg, Facebook, Google)
      *
      * @param email
      * @param provider
@@ -136,7 +136,7 @@ interface UserService {
     ): CancellableTask
 
     /**
-     * TODO
+     * Login to the using social auth providers (eg, Facebook, Google)
      *
      * @param email
      * @param provider
@@ -177,7 +177,7 @@ interface UserService {
     fun verifyPhone(email: String, phone: String, provider: String, accessToken: String): Observable<SocialAuthResponse>
 
     /**
-     * TODO
+     * Verify the OTP returned
      *
      * @param email
      * @param provider
@@ -193,7 +193,7 @@ interface UserService {
     ): CancellableTask
 
     /**
-     * TODO
+     * Verify the OTP returned
      *
      * @param email
      * @param provider
@@ -482,7 +482,7 @@ interface UserService {
     fun getNotifications(): Observable<UserbizNotificationsResponse>
 
     /**
-     * TODO
+     * Submit feedback
      *
      * @param feedback
      * @param callback
@@ -492,7 +492,7 @@ interface UserService {
     fun submitFeedback(feedback: UserFeedback, callback: Callback<SimpleResponse>): CancellableTask
 
     /**
-     * TODO
+     * Submit feedback
      *
      * @param feedback
      *

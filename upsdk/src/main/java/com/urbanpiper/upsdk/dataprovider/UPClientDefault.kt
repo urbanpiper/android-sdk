@@ -170,8 +170,6 @@ class UPClientDefault(
      * This can be used to force update the application. The response has a field that shows if force update
      * is required. This method should be called when the app is opened and after the user sign's in.
      *
-     * TODO - This should return a generic response in the callback
-     *
      * @param token - FCM registration token
      * @param deviceId - The unique id of the device
      * @param callback - Callback to receive the result
@@ -187,8 +185,6 @@ class UPClientDefault(
      *
      * This method registers a device to receive FCM messages, This should be called when the app
      * is launched and after the user sign's in to the app
-     *
-     * TODO - This should return a generic response in the callback
      *
      * @param token - FCM registration token
      * @param deviceId - The unique id of the device
@@ -690,7 +686,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Verifies the OTP sent to the user
      *
      * @param email
      * @param provider
@@ -708,7 +704,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Verifies the OTP sent to the user
      *
      * @param email
      * @param provider
@@ -724,7 +720,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Login using social auth providers (eg. google, facebook)
      *
      * @param email
      * @param provider
@@ -738,7 +734,7 @@ class UPClientDefault(
     }
 
     /**
-     * TODO
+     * Login using social auth providers (eg. google, facebook)
      *
      * @param email
      * @param provider
@@ -1467,14 +1463,18 @@ class UPClientDefault(
     }
 
     /**
-     * Initiates a payment for the particular biz's store.
+     * Starts the payment process
      *
      * @param storeId - Store id
      * @param amount - amount
-     * @param redirectUrl - redirect url
-     * @param paytm - paytm
-     * @param simpl - simpl
+     * @param redirectUrl - redirect url - https://urbanpiper.com
+     * @param paytm - send true`` if paytm is the payment option or send null``
+     * @param simpl - send true`` if simpl is the payment option or send null``
+     * If both paytm and simpl are not being used then send both options as null.
+     *
      * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun initPayment(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?,
@@ -1484,13 +1484,16 @@ class UPClientDefault(
     }
 
     /**
-     * Initiates a payment for the particular biz's store.
+     * Starts the payment process
      *
      * @param storeId - Store id
      * @param amount - amount
-     * @param redirectUrl - redirect url
-     * @param paytm - paytm
-     * @param simpl - simpl
+     * @param redirectUrl - redirect url - https://urbanpiper.com
+     * @param paytm - send true`` if paytm is the payment option or send null``
+     * @param simpl - send true`` if simpl is the payment option or send null``
+     * If both paytm and simpl are not being used then send both options as null.
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun initPayment(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
@@ -1533,8 +1536,15 @@ class UPClientDefault(
     /**
      * Sends the order details to the server
      *
+     * If the payment option is NOT Cash on delivery, a provisional order is placed
+     * order.state = "awaiting_payment"
+     *
+     * If the payment option is Cash on Delivery, Then order.state = null
+     *
      * @param body - Order object
-     * @param callback - Callback to return the result
+     * @param callback - callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun placeOrder(body: Order, callback: Callback<OrderSaveResponse>): CancellableTask {
         return cartServiceDefault.placeOrder(body, callback)
@@ -1543,19 +1553,33 @@ class UPClientDefault(
     /**
      * Sends the order details to the server
      *
+     * If the payment option is NOT Cash on delivery, a provisional order is placed
+     * order.state = "awaiting_payment"
+     *
+     * If the payment option is Cash on Delivery, Then order.state = null
+     *
      * @param body - Order object
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun placeOrder(body: Order): Observable<OrderSaveResponse> {
         return cartServiceDefault.placeOrder(body)
     }
 
     /**
-     * Verify payment after transaction is complete
+     * This step is only required if the payment did not happen through a
+     * redirection flow (i.e - through a webview with a redirection url from the payment init response)
+     * This Marks the completion of a transaction.
      *
-     * @param transactionId - transaction id
+     * @param transactionId - Transaction id from payement init
      * @param gwTxnId - payment gateway transaction id
-     * @param transactionStatus - transactionStatus
-     * @param callback - callback to return the result
+     * @param transactionStatus - transaction status, it can have the following values
+     * 0 - Transaction success
+     * 1 - Transaction failed
+     * 5 - Transaction cancelled
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun verifyPayment(
         transactionId: String, gwTxnId: String, transactionStatus: Int, callback: Callback<PaymentCallbackResponse>
@@ -1564,11 +1588,18 @@ class UPClientDefault(
     }
 
     /**
-     * Verify payment after transaction is complete
+     * This step is only required if the payment did not happen through a
+     * redirection flow (i.e - through a webview with a redirection url from the payment init response)
+     * This Marks the completion of a transaction.
      *
-     * @param transactionId - transaction id
+     * @param transactionId - Transaction id from payement init
      * @param gwTxnId - payment gateway transaction id
-     * @param transactionStatus - transactionStatus
+     * @param transactionStatus - transaction status, it can have the following values
+     * 0 - Transaction success
+     * 1 - Transaction failed
+     * 5 - Transaction cancelled
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun verifyPayment(
         transactionId: String, gwTxnId: String, transactionStatus: Int
@@ -1620,10 +1651,18 @@ class UPClientDefault(
         return ItemOptionBuilder()
     }
 
+    /**
+     * This method returns an instance of the user object, it can be null if
+     * user is not signed in
+     */
     override fun getUser(): User {
         return User()
     }
 
+    /**
+     * This method returns an instance of the biz, It can be null if the
+     * stores method or categories method are not called
+     */
     override fun getBizInfo(): Biz {
         return Biz()
     }

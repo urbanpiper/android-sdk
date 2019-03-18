@@ -7,7 +7,7 @@ import io.reactivex.Observable
 import retrofit2.http.*
 
 /**
- * TODO
+ * A list of retrofit endpoints related to cart operations
  *
  */
 interface CartRetrofitService {

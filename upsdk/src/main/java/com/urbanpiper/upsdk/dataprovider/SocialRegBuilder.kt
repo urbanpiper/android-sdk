@@ -39,7 +39,7 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
     var response2: SocialAuthResponse? = null
 
     /**
-     * TODO
+     * Login using social auth providers (eg. google, facebook)
      *
      * @param email - email
      * @param provider - provider
@@ -65,7 +65,7 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
     }
 
     /**
-     * TODO
+     * Login using social auth providers (eg. google, facebook)
      *
      * @param email - email
      * @param provider - provider
