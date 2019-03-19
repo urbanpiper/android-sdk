@@ -1,123 +1,116 @@
-# Android SDK for UrbanPiper platform
-
-Source-code for the Android SDK to be used for building custom apps on top of the UrbanPiper platform.
-
-Welcome to the android-sdk wiki!
+Welcome to the urban piper android-sdk wiki!
 
 # Android SDK for UP
 
 ## Basic Setup
 
-The Urban piper android SDK is written in kotlin and it is fully interoperable in java.
+The Urban piper android SDK is written in Kotlin and it is fully interoperable in java.
+
+### How it works
+
+The urban piper SDK is built so that third party developers can build native android applications for online ordering with the urbanpiper platform.
 
 ### Add the dependency
 
 This will be written later, as we have not hosted the project anywhere
 
-### Init
+### Initialisation
 
-The SDK should be init inside the extended application class. 
+The SDK should be initialised inside the extended application class. 
 
-The **UPClientBuilder** must be used to create an object of the type **UPClient**
+The ```UPClientBuilder``` must be used to create an object of the type ```UPClient```
 
-The required parameters are
- - Biz id
-- API username
-- API key
-- language
-- Application context
-- callback - It returns user info if user is signed in, or if the user session has expired it will return
-a 401
+The required parameters are,
 
-Example 
+```bizId```, `ApiUsername`, `Apikey` can be obtained by contacting the technical team at support@urbanpiper.com
 
-Init SDK in kotlin
+| Params  | Description |
+| ------------- | ------------- |
+| BizId | Business id of the merchant for whom the app is being built |
+| ApiUsername  | API username used internally in the SDK to connect to the backend |
+| ApiKey | API key used internally in the SDK to connect to the backend |
+| ApplicationContext| Application context from the application class |
+| Callback | callback of type UserBizInfoResponse. If the user is logged in it returns a user info, otherwise it returns an error.    |
+| Language | This is an optional field. The default language is set the ```en```. Other languages can be configured (eg. ```hi```)    |
+
+#### Example 
+
+#### Init SDK in kotlin
 
 ```kotlin
- upClient = UPClientBuilder()
-            .setBizId("76720224")
-            .setApiUserName("biz_adm_clients_yjXwAgQzHqYM")
-            .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe232d8fa8")
-            .setLanguage("en")
-            .setApplicationContext(this)
+ val upClient = UPClientBuilder()
+            .setBizId("76230224")
+            .setApiUsername("biz_adm_clients_yj1234QzHqYM")
+            .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe897d8fa8")
+            .setLanguage("en") // Optional - The default language is english
+            .setApplicationContext(context)
             .setCallback(object : Callback<UserBizInfoResponse> {
                 override fun success(response: UserBizInfoResponse) {
-                    Log.d("callback response", " $response")
+                    Log.d("Myapp", "Success Response " + response.toString())
                 }
 
                 override fun failure(upClientError: UpClientError) {
                     upClientError.getResponseCode()
-                    Log.e("", " Failure response  ${upClientError.getResponseCode()}")
+                    Log.e("Myapp", "Failure response " + upClientError.getResponseCode())
                 }
             })
             .build()
 ```
 
-Init SDK in java
+#### Init SDK in java
 
+```java 
+  UPClient upClient = new UPClientBuilder()
+          .setBizId("76230224")
+          .setApiUsername("biz_adm_clients_yj1234QzHqYM")
+          .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe897d8fa8")
+          .setLanguage("en") // Optional - The default language is english
+          .setApplicationContext(context)
+          .setCallback(new Callback<UserBizInfoResponse>() {
+              @Override
+              public void success(UserBizInfoResponse response) {
+                   Log.d("Myapp", "Success Response " + response.toString())
+              }
 
-```java
-    UPClient client = new UPClientBuilder()
-            .setBizId("")
-            .setApiKey("")
-            .setApiUserName("")
-            .setApiKey("")
-            .setLanguage("")
-            .setApplicationContext(context)
-            .setCallback(new Callback<UserBizInfoResponse>() {
-                @Override
-                public void success(UserBizInfoResponse response) {
-
-                }
-
-                @Override
-                public void failure(@NotNull UpClientError upClientError) {
-
-                }
-            });
+              @Override
+              public void failure(@NotNull UpClientError upClientError) {
+                  Log.e("Myapp", "Failure response " + upClientError.getResponseCode())
+              }
+          });
 ```
+
+_**From here on all examples will be written in kotlin with its RXJava implementation.**_
+
 ### Usage
 
-All the methods are available through **UPClient** object after init.
+All the methods are available through ```UPClient``` object after init.
 
-There are two types of each method
+Each method can be called in two different ways,
 
-1. The result is returned as a callback which is passed in as a param. This method returns a CancellableTask using which the task can be cancelled by calling ```.cancel()``` on the return value.
+**1** - The result is returned as a callback which is passed in as a param.
+This method returns an CancellableTask using which the task can be cancelled by calling ```cancellableTask.cancel()```. 
 
+```Callback<T>``` is a custom callback class in the SDK that is used to return the result of the network request.
+
+```UPClientError``` is a custom class that returns the errors, if the network request failed.
 
 Eg: 
+
 ```kotlin
-getBanners(callback: Callback<BannerResponse>): CancellableTask 
+upClient.getBanners(object: Callback<BannerResponse>) {
+      override fun success(response: BannerResponse) {
+         // Returns successful response       
+      }
+
+      override fun failure(upClientError: UpClientError) {
+         // Returns failure response. The failure response is a custom class in the SDK called UpClientError       
+      }
+})  
 ```
-2. This method returns an RXJava observable through which the result of the network response can be observed.
+
+**2** - This method returns an RXJava observable through which the result of the network response can be observed.
 
 Eg: 
 ```kotlin
 upclient.getBanners(): Observable<BannerResponse>
 ```
-
-_**From here on all examples will only show the RXJava implementation. But keep in mind, all methods have both types available for use.**_
-
-_**Note: The callback is always passed as the last or in some cases the only argument in all the methods.**_
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
