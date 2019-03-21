@@ -1,7 +1,6 @@
 package com.urbanpiper.sdk;
 
 import android.app.Application;
-import android.util.Log;
 import com.urbanpiper.upsdk.dataprovider.Callback;
 import com.urbanpiper.upsdk.dataprovider.UPClient;
 import com.urbanpiper.upsdk.dataprovider.UPClientBuilder;
@@ -19,7 +18,7 @@ public class BaseApplication extends Application {
 
         client = new UPClientBuilder()
                 .setBizId("76720224")
-                .setApiUserName("biz_adm_clients_yjXwAgQzHqYM")
+                .setApiUsername("biz_adm_clients_yjXwAgQzHqYM")
                 .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe232d8fa8")
                 .setLanguage("en")
                 .setApplicationContext(this)
@@ -41,7 +40,7 @@ public class BaseApplication extends Application {
         if (client == null) {
             client = new UPClientBuilder()
                     .setBizId("76720224")
-                    .setApiUserName("biz_adm_clients_yjXwAgQzHqYM")
+                    .setApiUsername("biz_adm_clients_yjXwAgQzHqYM")
                     .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe232d8fa8")
                     .setLanguage("en")
                     .setApplicationContext(this)

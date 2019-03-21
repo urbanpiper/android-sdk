@@ -121,7 +121,12 @@ class Cart : CartTracker {
         return count
     }
 
-
+    /**
+     * remove an item from the cart
+     *
+     * @param category
+     * @param item
+     */
     private fun removeItemFromCart(category: OrderCategory, item: CartItem) {
         val items: ArrayList<CartItem>? = instance.cart[category]
         if (items == null) {

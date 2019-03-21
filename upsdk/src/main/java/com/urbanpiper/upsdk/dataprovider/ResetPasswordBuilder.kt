@@ -18,11 +18,11 @@ class ResetPasswordBuilder(private val userServiceDefault: UserServiceDefault) {
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    fun getResetPasswordToken(phone: String, callback: Callback<GenericResponse>): CancellableTask {
+    fun sendResetPasswordOTP(phone: String, callback: Callback<GenericResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            getResetPasswordToken(phone)
+            sendResetPasswordOTP(phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -42,9 +42,9 @@ class ResetPasswordBuilder(private val userServiceDefault: UserServiceDefault) {
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    fun getResetPasswordToken(phone: String): Observable<GenericResponse> {
+    fun sendResetPasswordOTP(phone: String): Observable<GenericResponse> {
 
-        val observable = userServiceDefault.getResetPasswordToken(phone).share()
+        val observable = userServiceDefault.sendResetPasswordOTP(phone).share()
 
         val compositeDisposable = CompositeDisposable()
 
@@ -65,7 +65,7 @@ class ResetPasswordBuilder(private val userServiceDefault: UserServiceDefault) {
     }
 
     /**
-     * This method reset's the password after the user enter's the password reset token sent
+     * This method reset's the password after the user enter's the password reset otp sent
      * through SMS and email
      *
      * The password has to be sent twice so that the server can verify it
@@ -73,19 +73,19 @@ class ResetPasswordBuilder(private val userServiceDefault: UserServiceDefault) {
      * @param phone - Phone number
      * @param newPassword - New password
      * @param confirmPassword - Confirm same password
-     * @param token - Token the user input's
+     * @param otp - OTP the user input's
      * @param callback - Callback to return the result
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
     fun resetPassword(
-        phone: String, newPassword: String, confirmPassword: String, token: String,
+        phone: String, newPassword: String, confirmPassword: String, otp: String,
         callback: Callback<GenericResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            resetPassword(phone, newPassword, confirmPassword, token)
+            resetPassword(phone, newPassword, confirmPassword, otp)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -98,7 +98,7 @@ class ResetPasswordBuilder(private val userServiceDefault: UserServiceDefault) {
     }
 
     /**
-     * This method reset's the password after the user enter's the password reset token sent
+     * This method reset's the password after the user enter's the password reset otp sent
      * through SMS and email
      *
      * The password has to be sent twice so that the server can verify it
@@ -106,16 +106,16 @@ class ResetPasswordBuilder(private val userServiceDefault: UserServiceDefault) {
      * @param phone - Phone number
      * @param newPassword - New password
      * @param confirmPassword - Confirm same password
-     * @param token - Token the user input's
+     * @param otp - Token the user input's
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     fun resetPassword(
-        phone: String, newPassword: String, confirmPassword: String, token: String
+        phone: String, newPassword: String, confirmPassword: String, otp: String
     ): Observable<GenericResponse> {
         assert(response != null)
 
-        val observable = userServiceDefault.resetPassword(phone, newPassword, confirmPassword, token).share()
+        val observable = userServiceDefault.resetPassword(phone, newPassword, confirmPassword, otp).share()
 
         val compositeDisposable = CompositeDisposable()
 

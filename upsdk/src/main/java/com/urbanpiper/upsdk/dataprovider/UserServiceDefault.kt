@@ -1027,7 +1027,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            getResetPasswordToken(phone)
+            sendResetPasswordOTP(phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -1047,7 +1047,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getResetPasswordToken(phone: String): Observable<GenericResponse> {
+    override fun sendResetPasswordOTP(phone: String): Observable<GenericResponse> {
         val body = ForgotPwdGenerateTokenReq(bizId, phone)
         val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.getResetPasswordToken(authToken, body)

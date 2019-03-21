@@ -303,14 +303,14 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
      *
      * @param phone
      * @param name
-     * @param pin
+     * @param otp
      * @param callback
      */
-    fun verifyRegOTP(phone: String, name: String, pin: String, callback: Callback<RegistrationResponse>): CancellableTask {
+    fun verifyRegOTP(phone: String, name: String, otp: String, callback: Callback<RegistrationResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
-            verifyRegOTP(phone, name, pin)
+            verifyRegOTP(phone, name, otp)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
@@ -325,12 +325,12 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
     /**
      * Verify OTP
      *
-     * @param phone
-     * @param name
-     * @param pin
+     * @param phone - Phone number
+     * @param name - name
+     * @param otp - OTP
      */
-    fun verifyRegOTP(phone: String, name: String, pin: String): Observable<RegistrationResponse> {
-        val observable = userServiceDefault.verifyOTP(phone, pin, name).share()
+    fun verifyRegOTP(phone: String, name: String, otp: String): Observable<RegistrationResponse> {
+        val observable = userServiceDefault.verifyOTP(phone, otp, name).share()
 
         val compositeDisposable = CompositeDisposable()
 

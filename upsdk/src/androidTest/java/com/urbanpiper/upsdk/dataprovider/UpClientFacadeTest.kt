@@ -64,7 +64,7 @@ class UpClientFacadeTest {
     fun setUp() {
         upClient = UPClientBuilder()
             .setBizId("76720224")
-            .setApiUserName("biz_adm_clients_yjXwAgQzHqYM")
+            .setApiUsername("biz_adm_clients_yjXwAgQzHqYM")
             .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe232d8fa8")
             .setLanguage("en")
             .build()
@@ -131,7 +131,7 @@ class UpClientFacadeTest {
         assertNotNull(upClient.getUserLikes(anyString()))
         assertNotNull(upClient.likeItem(anyInt()))
         assertNotNull(upClient.unLikeItem(anyInt()))
-        assertNotNull(upClient.getResetPasswordToken(anyString()))
+        assertNotNull(upClient.sendResetPasswordOTP(anyString()))
         assertNotNull(upClient.resetPassword(anyString(), anyString(), anyString(), anyString()))
 
         // Cart

@@ -1221,8 +1221,8 @@ class UPClientDefault(
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getResetPasswordToken(phone: String): Observable<GenericResponse> {
-        return userServiceDefault.getResetPasswordToken(phone)
+    override fun sendResetPasswordOTP(phone: String): Observable<GenericResponse> {
+        return userServiceDefault.sendResetPasswordOTP(phone)
     }
 
     /**

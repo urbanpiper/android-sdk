@@ -38,7 +38,7 @@ public final class UPClientBuilder {
      * @param apiUserName
      * @return - Builder
      */
-    public UPClientBuilder setApiUserName(String apiUserName) {
+    public UPClientBuilder setApiUsername(String apiUserName) {
         this.apiUserName = apiUserName;
         return this;
     }

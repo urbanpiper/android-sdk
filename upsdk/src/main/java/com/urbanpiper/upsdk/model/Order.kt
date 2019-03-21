@@ -23,13 +23,13 @@ data class Order(
     var taxRate: Float = 0f,
 
     @SerializedName("order_subtotal")
-    var subtotalAmt: Float = 0.toFloat(),
+    var subtotalAmt: Float = 0f,
 
     @SerializedName("order_total")
-    var totalAmt: Float = 0.toFloat(),
+    var totalAmt: Float = 0f,
 
     @SerializedName("payable_amount")
-    var payableAmt: Float = 0.toFloat(),
+    var payableAmt: Float = 0f,
 
     @SerializedName("delivery_datetime")
     var deliveryTime: Long = 0,
@@ -47,22 +47,22 @@ data class Order(
     var trxId: String,
 
     @SerializedName("address_lat")
-    var lat: Double = 0.toDouble(),
+    var lat: Double = 0.0,
 
     @SerializedName("address_lng")
-    var lng: Double = 0.toDouble(),
+    var lng: Double = 0.0,
 
     @SerializedName("item_taxes")
-    var totalItemTaxes: Float = 0.toFloat(),
+    var totalItemTaxes: Float = 0f,
 
     @SerializedName("discount_applied")
-    var discountApplied: Float = 0.toFloat(),
+    var discountApplied: Float = 0f,
 
     @SerializedName("channel")
     var channel: String = "app_android",
 
     @SerializedName("discount")
-    var discount: Float = 0.toFloat(),
+    var discount: Float = 0f,
 
     @SerializedName("discount")
     var discountObj: Discount? = null,
@@ -95,12 +95,6 @@ data class Order(
     @SerializedName("total_charges")
     var totalCharges: Float? = 0f,
 
-    /**
-     * In Older themes we are preparing order at last but in theme_V3 we are preparing in one page
-     * and sending across different screen to modify it. So we need to know is Address already set or
-     * not. if not the address id will be 0, there might be a chance address may exists in DB with
-     * id 0. so making default value to DEFAULT_ADDRESS_ID.
-     */
     @SerializedName("address_id")
     var addressId: Int = -1,
 

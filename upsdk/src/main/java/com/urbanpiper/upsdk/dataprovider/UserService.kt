@@ -578,7 +578,7 @@ interface UserService {
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    fun getResetPasswordToken(phone: String): Observable<GenericResponse>
+    fun sendResetPasswordOTP(phone: String): Observable<GenericResponse>
 
 
     /**
