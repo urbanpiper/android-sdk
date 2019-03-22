@@ -22,7 +22,7 @@ public class MainActivityJava extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_java);
 
-        CancellableTask task = ((MyApp) getApplication())
+        CancellableTask cancellableTask = ((MyApp) getApplication())
                 .getBanners(new Callback<BannerResponse>() {
                     @Override
                     public void success(BannerResponse response) {
@@ -36,7 +36,7 @@ public class MainActivityJava extends AppCompatActivity {
                 });
 
         // This method cancels the network request
-        task.cancel();
+        cancellableTask.cancel();
 
         // Observable
         Observable<BannerResponse> observable = ((MyApp) getApplication()).getBanners();

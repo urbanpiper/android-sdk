@@ -6,6 +6,10 @@ import com.urbanpiper.upsdk.dataprovider.*
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
 import com.urbanpiper.upsdk.model.networkresponse.UserBizInfoResponse
 import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 
 class MyApp : Application() {
 
@@ -32,6 +36,37 @@ class MyApp : Application() {
                 }
             })
             .build()
+
+        upClient.getBanners()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object: Observer<BannerResponse> {
+                override fun onComplete() {
+                }
+
+                override fun onSubscribe(d: Disposable) {
+                }
+
+                override fun onNext(t: BannerResponse) {
+                }
+
+                override fun onError(e: Throwable) {
+                }
+
+            })
+
+        val cancellableTask = upClient.getBanners(object : Callback<BannerResponse>{
+            override fun success(response: BannerResponse) {
+
+            }
+
+            override fun failure(upClientError: UpClientError) {
+
+            }
+        })
+
+        // Note - This method can be called to cancel the network request
+        cancellableTask.cancel()
     }
 
 

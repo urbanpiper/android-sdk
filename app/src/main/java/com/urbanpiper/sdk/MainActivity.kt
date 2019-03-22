@@ -6,20 +6,19 @@ import android.util.Log
 import com.urbanpiper.upsdk.dataprovider.Callback
 import com.urbanpiper.upsdk.dataprovider.UpClientError
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
+import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val cancellableTask = MyApp().getBanners(object: Callback<BannerResponse> {
+        val cancellableTask = MyApp().getBanners(object : Callback<BannerResponse> {
             override fun success(response: BannerResponse) {
                 val banners: BannerResponse = response
 
@@ -38,15 +37,27 @@ class MainActivity : AppCompatActivity() {
 
         cancellableTask.cancel()
 
-        compositeDisposable.add(
-            MyApp().getBanners()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ success ->
+        MyApp().getBanners()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object: Observer<BannerResponse>{
+                override fun onComplete() {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
 
-                }, { error ->
+                override fun onSubscribe(d: Disposable) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
 
-                })
-        )
+                override fun onNext(t: BannerResponse) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onError(e: Throwable) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+            })
+
     }
 }
