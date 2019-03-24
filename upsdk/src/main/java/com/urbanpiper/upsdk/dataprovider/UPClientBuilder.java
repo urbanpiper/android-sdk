@@ -16,7 +16,6 @@ public final class UPClientBuilder {
     private String apiUserName;
     private String apiKey;
     private String language;
-    private Context context;
     private Callback<UserBizInfoResponse> callback = null;
 
     /**
@@ -77,17 +76,6 @@ public final class UPClientBuilder {
     }
 
     /**
-     * Application context
-     *
-     * @param context
-     * @return - Builder
-     */
-    public UPClientBuilder setApplicationContext(Context context) {
-        this.context = context;
-        return this;
-    }
-
-    /**
      * @return - The UPClient object
      */
     public UPClient build() {
@@ -111,14 +99,10 @@ public final class UPClientBuilder {
             throw new IllegalArgumentException("Callback is a required parameter ");
         }
 
-        if (context == null) {
-            throw new IllegalArgumentException("Context is a required parameter ");
-        }
         return new UPClientDefault(bizId
                 , apiUserName
                 , apiKey
                 , language
-                , context
                 , callback);
     }
 

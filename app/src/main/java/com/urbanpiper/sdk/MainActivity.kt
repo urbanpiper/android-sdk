@@ -18,23 +18,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val cancellableTask = MyApp().getBanners(object : Callback<BannerResponse> {
-//            override fun success(response: BannerResponse) {
-//                val banners: BannerResponse = response
-//
-//                if (!banners.images.isNullOrEmpty()) {
-//                    for (i in 0 until banners.images.size) {
-//                        Log.d("Success ", "Banner Name ${banners.images[0].image}")
-//                        text.text = "Banner Name ${banners.images[0].image}"
-//                    }
-//                }
-//            }
-//
-//            override fun failure(upClientError: UpClientError) {
-//                upClientError.getErrorType()
-//            }
-//        })
-//
+        val cancellableTask = MyApp().getBanners(object : Callback<BannerResponse> {
+            override fun success(response: BannerResponse) {
+                val banners: BannerResponse = response
+
+                if (!banners.images.isNullOrEmpty()) {
+                    for (i in 0 until banners.images.size) {
+                        Log.d("Success ", "Banner Name ${banners.images[0].image}")
+                        text.text = "Banner Name ${banners.images[0].image}"
+                    }
+                }
+            }
+
+            override fun failure(upClientError: UpClientError) {
+                upClientError.getErrorType()
+            }
+        })
+
 //        cancellableTask.cancel()
 //
 //        MyApp().getBanners()

@@ -23,7 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @property apiUsername - API username of the merchant
  * @property apiKey -  API key of the merchant
  * @property language - The default language of the merchant
- * @param context - Context is used to store data in shared preferences
  * @param callback - Callback to return the result
  */
 class UPClientDefault(
@@ -31,7 +30,6 @@ class UPClientDefault(
     , private val apiUsername: String
     , private val apiKey: String
     , private var language: String
-    , context: Context
     , callback: Callback<UserBizInfoResponse>
 ) : UPClient {
 
@@ -46,11 +44,14 @@ class UPClientDefault(
     init {
 //        val authToken = String.format("apikey %s:%s", apiUsername, apiKey)
 
-        val sp = context.getSharedPreferences(Utils().spSessionDetails, Context.MODE_PRIVATE)
-        val editor = sp.edit()
-        editor.putString(Utils().spAPIUsername, apiUsername)
-        editor.putString(Utils().spAPIKey, apiKey)
-        editor.apply()
+//        val sp = context.getSharedPreferences(Utils().spSessionDetails, Context.MODE_PRIVATE)
+//        val editor = sp.edit()
+//        editor.putString(Utils().spAPIUsername, apiUsername)
+//        editor.putString(Utils().spAPIKey, apiKey)
+//        editor.apply()
+
+        // Saving the biz auth token
+        SharedPrefManager.saveBizAuthToken(apiUsername, apiKey)
 
         val client: OkHttpClient = OkHttpClient().newBuilder()
             .addInterceptor { chain ->
@@ -77,11 +78,11 @@ class UPClientDefault(
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        generalServiceDefault = GeneralServiceDefault(context, bizId, retrofit)
-        catalogueServiceDefault = CatalogueServiceDefault(context, bizId, retrofit)
-        userServiceDefault = UserServiceDefault(context, bizId, retrofit)
-        promotionsServiceDefault = PromotionsServiceDefault(context, bizId, retrofit)
-        cartServiceDefault = CartServiceDefault(context, bizId, retrofit)
+        generalServiceDefault = GeneralServiceDefault(bizId, retrofit)
+        catalogueServiceDefault = CatalogueServiceDefault(bizId, retrofit)
+        userServiceDefault = UserServiceDefault(bizId, retrofit)
+        promotionsServiceDefault = PromotionsServiceDefault(bizId, retrofit)
+        cartServiceDefault = CartServiceDefault(bizId, retrofit)
 
         // Refreshing user biz info on init
         refreshUserBizInfo(callback)

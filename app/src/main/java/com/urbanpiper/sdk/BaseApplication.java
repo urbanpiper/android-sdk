@@ -24,7 +24,6 @@ public class BaseApplication extends Application {
                 .setApiUsername("biz_adm_clients_yjXwAgQzHqYM")
                 .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe232d8fa8")
                 .setLanguage("en")
-                .setApplicationContext(this)
                 .setCallback(new Callback<UserBizInfoResponse>() {
                     @Override
                     public void success(UserBizInfoResponse response) {
@@ -88,7 +87,6 @@ public class BaseApplication extends Application {
                     .setApiUsername("biz_adm_clients_yjXwAgQzHqYM")
                     .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe232d8fa8")
                     .setLanguage("en")
-                    .setApplicationContext(this)
                     .setCallback(new Callback<UserBizInfoResponse>() {
                         @Override
                         public void success(UserBizInfoResponse response) {

@@ -1,6 +1,5 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import android.content.Context
 import com.urbanpiper.upsdk.model.Order
 import com.urbanpiper.upsdk.model.ValidateCouponBody
 import com.urbanpiper.upsdk.model.networkresponse.*
@@ -10,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 
-class CartServiceDefault(private val context: Context, private val bizId: String, retrofit: Retrofit) : CartService {
+class CartServiceDefault(private val bizId: String, retrofit: Retrofit) : CartService {
 
     private val cartService: CartRetrofitService =
         retrofit.create(CartRetrofitService::class.java)
@@ -42,7 +41,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
      * re-order api
      */
     override fun reOrder(orderId: String, locationId: String, lat: String, lng: String): Observable<ReOrderResponse> {
-        val authToken: String = Utils().getAuthToken(context, true)
+        val authToken: String = SharedPrefManager.getAuthToken( true)
         return cartService.reOrder(authToken, orderId, locationId, lat, lng)
     }
 
@@ -73,7 +72,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
      * in details or checkout page.
      */
     override fun getCartRelatedItems(itemIds: String, locationId: Int): Observable<RecommendedItemResponse> {
-        val authToken: String = Utils().getAuthToken(context, Utils().isUserLoggedIn(context))
+        val authToken: String = SharedPrefManager.getAuthToken( SharedPrefManager.isUserLoggedIn())
         return cartService.getCartRelatedItems(authToken, itemIds, locationId)
     }
 
@@ -117,7 +116,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
      * @return Observable - the result of the network request is returned as an Observable
      */
     fun validateCart(order: Order): Observable<ValidateCartResponse> {
-        val authToken: String = Utils().getAuthToken(context, Utils().isUserLoggedIn(context))
+        val authToken: String = SharedPrefManager.getAuthToken( SharedPrefManager.isUserLoggedIn())
         return cartService.validateCart(authToken, bizId, 1, order)
     }
 
@@ -161,7 +160,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
      * @return Observable - the result of the network request is returned as an Observable
      */
     fun validateCoupon(couponCode: String, body: ValidateCouponBody): Observable<OrderValidateCouponResponse> {
-        val authToken: String = Utils().getAuthToken(context, true)
+        val authToken: String = SharedPrefManager.getAuthToken( true)
         return cartService.validateCoupon(authToken, couponCode, body)
     }
 
@@ -213,7 +212,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
     fun initPayment(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
     ): Observable<PaymentInitResponse> {
-        val authToken: String = Utils().getAuthToken(context, true)
+        val authToken: String = SharedPrefManager.getAuthToken( true)
         return cartService.initPayment(authToken, bizId, storeId, amount, "ordering", redirectUrl, paytm, simpl)
     }
 
@@ -259,7 +258,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
      * @return Observable - the result of the network request is returned as an Observable
      */
     fun placeOrder(body: Order): Observable<OrderSaveResponse> {
-        val authToken: String = Utils().getAuthToken(context, true)
+        val authToken: String = SharedPrefManager.getAuthToken( true)
         return cartService.placeOrder(authToken, bizId, body)
     }
 
@@ -313,7 +312,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
     fun verifyPayment(
         transactionId: String, gwTxnId: String, transactionStatus: Int
     ): Observable<PaymentCallbackResponse> {
-        val authToken: String = Utils().getAuthToken(context, true)
+        val authToken: String = SharedPrefManager.getAuthToken( true)
         return cartService.verifyPayment(authToken, transactionId, gwTxnId, transactionStatus)
     }
 
@@ -362,7 +361,7 @@ class CartServiceDefault(private val context: Context, private val bizId: String
     override fun initWalletReload(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
     ): Observable<PaymentInitResponse> {
-        val authToken: String = Utils().getAuthToken(context, true)
+        val authToken: String = SharedPrefManager.getAuthToken( true)
         return cartService.initPayment(authToken, bizId, storeId, amount, "reload", redirectUrl, paytm, simpl)
     }
 }
