@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
+import com.urbanpiper.upsdk.model.User
 import com.urbanpiper.upsdk.model.networkresponse.Biz
 
 interface UPClient : GeneralService, CatalogueService, UserService, PromotionsService, CartService {

@@ -1,6 +1,5 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import android.content.Context
 import android.util.Log
 import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
@@ -62,11 +61,8 @@ class UserServiceDefault( private val bizId: String, retrofit: Retrofit) : UserS
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
                     val response: AuthSuccessResponse = success
-
-                    Log.d("User service ", "${response.message}  ${response.token} ${response.status}")
-
+                    SharedPrefManager.saveToken(response.token)
                 }, { error ->
-                    Log.d("error", "Login failed ", error)
                 })
         )
 
@@ -109,7 +105,20 @@ class UserServiceDefault( private val bizId: String, retrofit: Retrofit) : UserS
     override fun refreshToken(token: String): Observable<AuthSuccessResponse> {
         val body = JWTRefreshTokenBody(token)
         val authToken: String = SharedPrefManager.getAuthToken( false)
-        return userRetrofitService.refreshToken(authToken, body)
+
+        val observable = userRetrofitService.refreshToken(authToken, body).share()
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            observable.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    val response: AuthSuccessResponse = success
+                    SharedPrefManager.saveToken(response.token)
+                }, { error ->
+                })
+        )
+        return observable
     }
 
     /**
@@ -311,9 +320,21 @@ class UserServiceDefault( private val bizId: String, retrofit: Retrofit) : UserS
      */
     override fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse> {
         val authToken: String = SharedPrefManager.getAuthToken( false)
-        return userRetrofitService.socialLogin(authToken, bizId, email, provider, accessToken)
-    }
 
+        val observable = userRetrofitService.socialLogin(authToken, bizId, email, provider, accessToken).share()
+        val compositeDisposable = CompositeDisposable()
+
+        compositeDisposable.add(
+            observable.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ success ->
+                    val response: SocialAuthResponse = success
+                    SharedPrefManager.saveToken(response.token)
+                }, { error ->
+                })
+        )
+        return observable
+    }
 
     /**
      * Check if phone number is present in the server. It will also send an OTP if the user is present

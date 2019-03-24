@@ -153,6 +153,7 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
                     response2 = success
+                    SharedPrefManager.saveToken(success.token)
                 }, { error ->
                     response2 = null
                 })
@@ -288,6 +289,8 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ success ->
+                    // TODO - Check if this works
+//                    SharedPrefManager.saveToken(success.token)
                 }, { failure ->
                 })
         )

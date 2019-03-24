@@ -1,7 +1,5 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import android.content.Context
-import android.util.Log
 import com.urbanpiper.upsdk.BuildConfig
 import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
@@ -40,15 +38,11 @@ class UPClientDefault(
     private val promotionsServiceDefault: PromotionsServiceDefault
     private val cartServiceDefault: CartServiceDefault
 
+    // Cart Instance
+    private val cart: Cart = Cart()
+
     // Initialization block
     init {
-//        val authToken = String.format("apikey %s:%s", apiUsername, apiKey)
-
-//        val sp = context.getSharedPreferences(Utils().spSessionDetails, Context.MODE_PRIVATE)
-//        val editor = sp.edit()
-//        editor.putString(Utils().spAPIUsername, apiUsername)
-//        editor.putString(Utils().spAPIKey, apiKey)
-//        editor.apply()
 
         // Saving the biz auth token
         SharedPrefManager.saveBizAuthToken(apiUsername, apiKey)
@@ -1233,7 +1227,7 @@ class UPClientDefault(
      * @return Cart - The method returns an instance of a cart
      */
     override fun getCart(): Cart {
-        return cartServiceDefault.getCart()
+        return cart
     }
 
     /**
@@ -1276,7 +1270,11 @@ class UPClientDefault(
      * user is not signed in
      */
     override fun getUser(): User? {
-        return User()
+        return if (SharedPrefManager.isUserLoggedIn()) {
+            SharedPrefManager.getUser()
+        } else {
+            null
+        }
     }
 
     /**

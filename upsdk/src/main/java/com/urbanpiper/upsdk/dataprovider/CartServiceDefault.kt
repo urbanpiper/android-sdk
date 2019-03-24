@@ -14,8 +14,6 @@ class CartServiceDefault(private val bizId: String, retrofit: Retrofit) : CartSe
     private val cartService: CartRetrofitService =
         retrofit.create(CartRetrofitService::class.java)
 
-    private val cart: Cart = Cart()
-
     /**
      * re-order api
      */
@@ -314,10 +312,6 @@ class CartServiceDefault(private val bizId: String, retrofit: Retrofit) : CartSe
     ): Observable<PaymentCallbackResponse> {
         val authToken: String = SharedPrefManager.getAuthToken( true)
         return cartService.verifyPayment(authToken, transactionId, gwTxnId, transactionStatus)
-    }
-
-    fun getCart(): Cart {
-        return cart.getInstance()
     }
 
     /**
