@@ -71,4 +71,9 @@ interface UPClient : GeneralService, CatalogueService, UserService, PromotionsSe
      * stores method or categories method are not called
      */
     fun getBizInfo(): Biz?
+
+    /**
+     * Returns an instance of the local cart
+     */
+    fun getCart(): Cart
 }

@@ -3,8 +3,7 @@ package com.urbanpiper.upsdk.dataprovider
 import com.urbanpiper.upsdk.model.FCMRegistrationBody
 import com.urbanpiper.upsdk.model.networkresponse.StoreListResponse
 import com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse
-import retrofit2.Call
-import com.urbanpiper.upsdk.model.networkresponse.StoreReponse
+import com.urbanpiper.upsdk.model.networkresponse.StoreResponse
 import retrofit2.http.*
 import io.reactivex.Observable
 
@@ -47,7 +46,7 @@ interface GeneralRetrofitService {
         @Query("lat") latitude: Double,
         @Query("lng") longitude: Double,
         @Query("biz_id") bizId: String
-    ): Observable<StoreReponse>
+    ): Observable<StoreResponse>
 
 
     /**

@@ -39,57 +39,6 @@ class SocialRegBuilder(private val userServiceDefault: UserServiceDefault) {
     var response2: SocialAuthResponse? = null
 
     /**
-     * Login using social auth providers (eg. google, facebook)
-     *
-     * @param email - email
-     * @param provider - provider
-     * @param accessToken - access token from facebook or google
-     * @param callback - callback to return the result
-     */
-    fun socialLogin(
-        email: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
-    ): CancellableTask {
-        val compositeDisposable = CompositeDisposable()
-
-        compositeDisposable.add(
-            socialLogin(email, provider, accessToken)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ success ->
-                    callback.success(success)
-                }, { error ->
-                    callback.failure(UpClientError(error))
-                })
-        )
-        return CancellableTaskDisposableWrapper(compositeDisposable)
-    }
-
-    /**
-     * Login using social auth providers (eg. google, facebook)
-     *
-     * @param email - email
-     * @param provider - provider
-     * @param accessToken - access token from facebook or google
-     */
-    fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse> {
-        val observable = userServiceDefault.socialLogin(email, provider, accessToken).share()
-
-        val compositeDisposable = CompositeDisposable()
-
-        compositeDisposable.add(
-            observable
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ success ->
-                    response1 = success
-                }, { error ->
-                    response1 = null
-                })
-        )
-        return observable
-    }
-
-    /**
      * Check if phone number is present in the server. It will also send an OTP if the user is present
      * in the server, or you will have to create a new user
      *

@@ -50,75 +50,74 @@ interface UserService {
      */
     fun refreshToken(token: String): Observable<AuthSuccessResponse>
 
+//    /**
+//     * This method is used to register a new user
+//     *
+//     * @param phone - Phone number
+//     * @param email - Email
+//     * @param password - Password
+//     * @param name - Name
+//     * @param callback - Callback
+//     *
+//     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+//     */
+//    fun registerUser(
+//        phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
+//    ): CancellableTask
 
-    /**
-     * This method is used to register a new user
-     *
-     * @param phone - Phone number
-     * @param email - Email
-     * @param password - Password
-     * @param name - Name
-     * @param callback - Callback
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    fun registerUser(
-        phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
-    ): CancellableTask
+//    /**
+//     * This method is used to register a new user
+//     *
+//     * @param phone - Phone number
+//     * @param email - Email
+//     * @param password - Password
+//     * @param name - Name
+//     *
+//     * @return Observable - the result of the network request is returned as an Observable
+//     */
+//    fun registerUser(phone: String, email: String, password: String, name: String): Observable<RegistrationResponse>
 
-    /**
-     * This method is used to register a new user
-     *
-     * @param phone - Phone number
-     * @param email - Email
-     * @param password - Password
-     * @param name - Name
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    fun registerUser(phone: String, email: String, password: String, name: String): Observable<RegistrationResponse>
-
-    /**
-     * This method is used to verify the OTP
-     *
-     * @param phone - Phone number
-     * @param pin - pin
-     * @param name - name
-     * @param callback - callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    fun verifyOTP(phone: String, pin: String, name: String, callback: Callback<RegistrationResponse>): CancellableTask
-
-    /**
-     * This method is used to verify the OTP
-     *
-     * @param phone - Phone number
-     * @param pin - Pin
-     * @param name - Name
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    fun verifyOTP(phone: String, pin: String, name: String): Observable<RegistrationResponse>
-
-    /**
-     * This method is used ot resend the OTP
-     *
-     * @param phone - Phone number
-     * @param callback - callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask
-
-    /**
-     * This method is used to resend the OTP
-     *
-     * @param phone - Phone number
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    fun resendOTP(phone: String): Observable<RegistrationResponse>
+//    /**
+//     * This method is used to verify the OTP
+//     *
+//     * @param phone - Phone number
+//     * @param pin - pin
+//     * @param name - name
+//     * @param callback - callback to return the result
+//     *
+//     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+//     */
+//    fun verifyOTP(phone: String, pin: String, name: String, callback: Callback<RegistrationResponse>): CancellableTask
+//
+//    /**
+//     * This method is used to verify the OTP
+//     *
+//     * @param phone - Phone number
+//     * @param pin - Pin
+//     * @param name - Name
+//     *
+//     * @return Observable - the result of the network request is returned as an Observable
+//     */
+//    fun verifyOTP(phone: String, pin: String, name: String): Observable<RegistrationResponse>
+//
+//    /**
+//     * This method is used ot resend the OTP
+//     *
+//     * @param phone - Phone number
+//     * @param callback - callback to return the result
+//     *
+//     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+//     */
+//    fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask
+//
+//    /**
+//     * This method is used to resend the OTP
+//     *
+//     * @param phone - Phone number
+//     *
+//     * @return Observable - the result of the network request is returned as an Observable
+//     */
+//    fun resendOTP(phone: String): Observable<RegistrationResponse>
 
     /**
      * Login to the using social auth providers (eg, Facebook, Google)
@@ -146,69 +145,69 @@ interface UserService {
      */
     fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse>
 
-    /**
-     * Check if phone number is present in the server. It will also send an OTP if the user is present
-     * in the server, or you will have to create a new user
-     *
-     * @param email - Email
-     * @param phone - Phone
-     * @param provider - Provider
-     * @param accessToken - Access Token for google / facebook
-     * @param callback - Callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    fun verifyPhone(
-        email: String, phone: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
-    ): CancellableTask
-
-
-    /**
-     * Check if phone number is present in the server. It will also send an OTP if the user is present
-     * in the server, or you will have to create a new user
-     *
-     * @param email - Email
-     * @param phone - Phone
-     * @param provider - Provider
-     * @param accessToken - Access Token for google / facebook
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    fun verifyPhone(email: String, phone: String, provider: String, accessToken: String): Observable<SocialAuthResponse>
-
-    /**
-     * Verify the OTP returned
-     *
-     * @param email
-     * @param provider
-     * @param accessToken
-     * @param action
-     * @param phone
-     * @param otp
-     * @param callback
-     */
-    fun socialLoginOTP(
-        email: String, provider: String, accessToken: String, action: String, phone: String,
-        otp: String, callback: Callback<SocialAuthResponse>
-    ): CancellableTask
-
-    /**
-     * Verify the OTP returned
-     *
-     * @param email
-     * @param provider
-     * @param accessToken
-     * @param action
-     * @param phone
-     * @param otp
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    fun socialLoginOTP(
-        email: String, provider: String, accessToken: String, action: String, phone: String,
-        otp: String
-    ): Observable<SocialAuthResponse>
-
+//    /**
+//     * Check if phone number is present in the server. It will also send an OTP if the user is present
+//     * in the server, or you will have to create a new user
+//     *
+//     * @param email - Email
+//     * @param phone - Phone
+//     * @param provider - Provider
+//     * @param accessToken - Access Token for google / facebook
+//     * @param callback - Callback to return the result
+//     *
+//     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+//     */
+//    fun verifyPhone(
+//        email: String, phone: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
+//    ): CancellableTask
+//
+//
+//    /**
+//     * Check if phone number is present in the server. It will also send an OTP if the user is present
+//     * in the server, or you will have to create a new user
+//     *
+//     * @param email - Email
+//     * @param phone - Phone
+//     * @param provider - Provider
+//     * @param accessToken - Access Token for google / facebook
+//     *
+//     * @return Observable - the result of the network request is returned as an Observable
+//     */
+//    fun verifyPhone(email: String, phone: String, provider: String, accessToken: String): Observable<SocialAuthResponse>
+//
+//    /**
+//     * Verify the OTP returned
+//     *
+//     * @param email
+//     * @param provider
+//     * @param accessToken
+//     * @param action
+//     * @param phone
+//     * @param otp
+//     * @param callback
+//     */
+//    fun socialLoginOTP(
+//        email: String, provider: String, accessToken: String, action: String, phone: String,
+//        otp: String, callback: Callback<SocialAuthResponse>
+//    ): CancellableTask
+//
+//    /**
+//     * Verify the OTP returned
+//     *
+//     * @param email
+//     * @param provider
+//     * @param accessToken
+//     * @param action
+//     * @param phone
+//     * @param otp
+//     *
+//     * @return Observable - the result of the network request is returned as an Observable
+//     */
+//    fun socialLoginOTP(
+//        email: String, provider: String, accessToken: String, action: String, phone: String,
+//        otp: String
+//    ): Observable<SocialAuthResponse>
+//
 
     /**
      * Returns the profile data associated with a particular user identified by his/her phone number.
@@ -558,63 +557,63 @@ interface UserService {
     fun unLikeItem(itemId: Int): Observable<Like>
 
 
-    /**
-     * This method generates a password reset token that is sent to the user through
-     * SMS and phone
-     *
-     * @param phone - Phone number
-     * @param callback - Callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    fun getResetPasswordToken(phone: String, callback: Callback<GenericResponse>): CancellableTask
-
-
-    /**
-     * This method generates a password reset token that is sent to the user through
-     * SMS and phone
-     *
-     * @param phone - Phone number
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    fun sendResetPasswordOTP(phone: String): Observable<GenericResponse>
-
-
-    /**
-     * This method reset's the password after the user enter's the password reset token sent
-     * through SMS and email
-     *
-     * The password has to be sent twice so that the server can verify it
-     *
-     * @param phone - Phone number
-     * @param newPassword - New password
-     * @param confirmPassword - Confirm same password
-     * @param token - Token the user input's
-     * @param callback - Callback to return the result
-     *
-     *  @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    fun resetPassword(
-        phone: String, newPassword: String, confirmPassword: String, token: String,
-        callback: Callback<GenericResponse>
-    ): CancellableTask
-
-    /**
-     * This method reset's the password after the user enter's the password reset token sent
-     * through SMS and email
-     *
-     * The password has to be sent twice so that the server can verify it
-     *
-     * @param phone - Phone number
-     * @param newPassword - New password
-     * @param confirmPassword - Confirm same password
-     * @param token - Token the user input's
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    fun resetPassword(
-        phone: String, newPassword: String, confirmPassword: String, token: String
-    ): Observable<GenericResponse>
+//    /**
+//     * This method generates a password reset token that is sent to the user through
+//     * SMS and phone
+//     *
+//     * @param phone - Phone number
+//     * @param callback - Callback to return the result
+//     *
+//     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+//     */
+//    fun sendResetPasswordOTP(phone: String, callback: Callback<GenericResponse>): CancellableTask
+//
+//
+//    /**
+//     * This method generates a password reset token that is sent to the user through
+//     * SMS and phone
+//     *
+//     * @param phone - Phone number
+//     *
+//     * @return Observable - the result of the network request is returned as an Observable
+//     */
+//    fun sendResetPasswordOTP(phone: String): Observable<GenericResponse>
+//
+//
+//    /**
+//     * This method reset's the password after the user enter's the password reset token sent
+//     * through SMS and email
+//     *
+//     * The password has to be sent twice so that the server can verify it
+//     *
+//     * @param phone - Phone number
+//     * @param newPassword - New password
+//     * @param confirmPassword - Confirm same password
+//     * @param token - Token the user input's
+//     * @param callback - Callback to return the result
+//     *
+//     *  @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+//     */
+//    fun resetPassword(
+//        phone: String, newPassword: String, confirmPassword: String, token: String,
+//        callback: Callback<GenericResponse>
+//    ): CancellableTask
+//
+//    /**
+//     * This method reset's the password after the user enter's the password reset token sent
+//     * through SMS and email
+//     *
+//     * The password has to be sent twice so that the server can verify it
+//     *
+//     * @param phone - Phone number
+//     * @param newPassword - New password
+//     * @param confirmPassword - Confirm same password
+//     * @param token - Token the user input's
+//     *
+//     * @return Observable - the result of the network request is returned as an Observable
+//     */
+//    fun resetPassword(
+//        phone: String, newPassword: String, confirmPassword: String, token: String
+//    ): Observable<GenericResponse>
 
 }

@@ -4,7 +4,7 @@ import android.content.Context
 import com.urbanpiper.upsdk.model.FCMRegistrationBody
 import com.urbanpiper.upsdk.model.networkresponse.StoreListResponse
 import com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse
-import com.urbanpiper.upsdk.model.networkresponse.StoreReponse
+import com.urbanpiper.upsdk.model.networkresponse.StoreResponse
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -124,7 +124,7 @@ class GeneralServiceDefault(private val context: Context, private val bizId: Str
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreReponse>): CancellableTask {
+    override fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -154,7 +154,7 @@ class GeneralServiceDefault(private val context: Context, private val bizId: Str
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getNearestStore(lat: Double, lng: Double): Observable<StoreReponse> {
+    override fun getNearestStore(lat: Double, lng: Double): Observable<StoreResponse> {
         val authToken: String = Utils().getAuthToken(context, false)
         return generalRetrofitService.getNearestStore(authToken, lat, lng, bizId)
     }

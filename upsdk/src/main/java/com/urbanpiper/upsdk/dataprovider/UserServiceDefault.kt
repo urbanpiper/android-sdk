@@ -121,7 +121,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param name - Name
      * @param callback - Callback
      */
-    override fun registerUser(
+    fun registerUser(
         phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
@@ -147,7 +147,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param password - Password
      * @param name - Name
      */
-    override fun registerUser(
+    fun registerUser(
         phone: String, email: String, password: String, name: String
     ): Observable<RegistrationResponse> {
         val authToken: String = Utils().getAuthToken(context, false)
@@ -164,7 +164,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param name - name
      * @param callback - callback to return the result
      */
-    override fun verifyOTP(
+    fun verifyOTP(
         phone: String, pin: String, name: String, callback: Callback<RegistrationResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
@@ -189,7 +189,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param pin - Pin
      * @param name - Name
      */
-    override fun verifyOTP(phone: String, pin: String, name: String): Observable<RegistrationResponse> {
+    fun verifyOTP(phone: String, pin: String, name: String): Observable<RegistrationResponse> {
         val body = VerifyOTPBody(phone, pin, name, "app_android")
         val authToken: String = Utils().getAuthToken(context, false)
         return userRetrofitService.verifyOTP(authToken, body)
@@ -201,7 +201,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param phone - Phone number
      * @param callback - callback to return the result
      */
-    override fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask {
+    fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -222,7 +222,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      *
      * @param phone - Phone number
      */
-    override fun resendOTP(phone: String): Observable<RegistrationResponse> {
+    fun resendOTP(phone: String): Observable<RegistrationResponse> {
         val authToken: String = Utils().getAuthToken(context, false)
         return userRetrofitService.resendOTP(authToken, phone)
     }
@@ -238,7 +238,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param otp
      * @param callback
      */
-    override fun socialLoginOTP(
+    fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String, otp: String,
         callback: Callback<SocialAuthResponse>
     ): CancellableTask {
@@ -267,7 +267,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      * @param phone
      * @param otp
      */
-    override fun socialLoginOTP(
+    fun socialLoginOTP(
         email: String, provider: String, accessToken: String, action: String, phone: String, otp: String
     ): Observable<SocialAuthResponse> {
         val authToken: String = Utils().getAuthToken(context, false)
@@ -327,7 +327,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun verifyPhone(
+    fun verifyPhone(
         email: String, phone: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
     ): CancellableTask {
         val compositeDisposable = CompositeDisposable()
@@ -356,7 +356,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun verifyPhone(
+    fun verifyPhone(
         email: String, phone: String, provider: String, accessToken: String
     ): Observable<SocialAuthResponse> {
         val authToken: String = Utils().getAuthToken(context, false)
@@ -1023,7 +1023,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun getResetPasswordToken(phone: String, callback: Callback<GenericResponse>): CancellableTask {
+    fun sendResetPasswordOTP(phone: String, callback: Callback<GenericResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -1047,7 +1047,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun sendResetPasswordOTP(phone: String): Observable<GenericResponse> {
+    fun sendResetPasswordOTP(phone: String): Observable<GenericResponse> {
         val body = ForgotPwdGenerateTokenReq(bizId, phone)
         val authToken: String = Utils().getAuthToken(context, true)
         return userRetrofitService.getResetPasswordToken(authToken, body)
@@ -1067,7 +1067,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun resetPassword(
+    fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String,
         callback: Callback<GenericResponse>
     ): CancellableTask {
@@ -1099,7 +1099,7 @@ class UserServiceDefault(private val context: Context, private val bizId: String
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun resetPassword(
+    fun resetPassword(
         phone: String, newPassword: String, confirmPassword: String, token: String
     ): Observable<GenericResponse> {
         val body = ForgotPwdGenerateTokenReq(bizId, phone, token, newPassword, confirmPassword)

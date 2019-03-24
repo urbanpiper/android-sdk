@@ -3,7 +3,7 @@ package com.urbanpiper.upsdk.model.networkresponse
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
-data class StoreReponse(
+data class StoreResponse(
     @SerializedName("biz")
     val biz: Biz,
     @SerializedName("store")

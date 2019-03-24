@@ -2,7 +2,7 @@ package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.model.networkresponse.StoreListResponse
 import com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse
-import com.urbanpiper.upsdk.model.networkresponse.StoreReponse
+import com.urbanpiper.upsdk.model.networkresponse.StoreResponse
 import io.reactivex.Observable
 
 interface GeneralService {
@@ -75,7 +75,7 @@ interface GeneralService {
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreReponse>): CancellableTask
+    fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreResponse>): CancellableTask
 
     /**
      * Returns the nearest store based on lat/ lng
@@ -90,7 +90,7 @@ interface GeneralService {
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    fun getNearestStore(lat: Double, lng: Double): Observable<StoreReponse>
+    fun getNearestStore(lat: Double, lng: Double): Observable<StoreResponse>
 
     /**
      * Returns all the stores for the business

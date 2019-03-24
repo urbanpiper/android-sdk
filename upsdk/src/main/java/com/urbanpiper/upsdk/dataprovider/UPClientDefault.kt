@@ -209,7 +209,7 @@ class UPClientDefault(
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreReponse>): CancellableTask {
+    override fun getNearestStore(lat: Double, lng: Double, callback: Callback<StoreResponse>): CancellableTask {
         return generalServiceDefault.getNearestStore(lat, lng, callback)
     }
 
@@ -226,7 +226,7 @@ class UPClientDefault(
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getNearestStore(lat: Double, lng: Double): Observable<StoreReponse> {
+    override fun getNearestStore(lat: Double, lng: Double): Observable<StoreResponse> {
         return generalServiceDefault.getNearestStore(lat, lng)
     }
 
@@ -613,113 +613,6 @@ class UPClientDefault(
     }
 
     /**
-     * This method is used to register a new user
-     *
-     * @param phone - Phone number
-     * @param email - Email
-     * @param password - Password
-     * @param name - Name
-     * @param callback - Callback
-     */
-    override fun registerUser(
-        phone: String, email: String, password: String, name: String, callback: Callback<RegistrationResponse>
-    ): CancellableTask {
-        return userServiceDefault.registerUser(phone, email, password, name, callback)
-    }
-
-    /**
-     * This method is used to register a new user
-     *
-     * @param phone - Phone number
-     * @param email - Email
-     * @param password - Password
-     * @param name - Name
-     */
-    override fun registerUser(
-        phone: String, email: String, password: String, name: String
-    ): Observable<RegistrationResponse> {
-        return userServiceDefault.registerUser(phone, email, password, name)
-    }
-
-    /**
-     * This method is used to verify the OTP
-     *
-     * @param phone - Phone number
-     * @param pin - pin
-     * @param name - name
-     * @param callback - callback to return the result
-     */
-    override fun verifyOTP(
-        phone: String, pin: String, name: String, callback: Callback<RegistrationResponse>
-    ): CancellableTask {
-        return userServiceDefault.verifyOTP(phone, pin, name, callback)
-    }
-
-    /**
-     * This method is used to verify the OTP
-     *
-     * @param phone - Phone number
-     * @param pin - Pin
-     * @param name - Name
-     */
-    override fun verifyOTP(phone: String, pin: String, name: String): Observable<RegistrationResponse> {
-        return userServiceDefault.verifyOTP(phone, pin, name)
-    }
-
-    /**
-     * This method is used ot resend the OTP
-     *
-     * @param phone - Phone number
-     * @param callback - callback to return the result
-     */
-    override fun resendOTP(phone: String, callback: Callback<RegistrationResponse>): CancellableTask {
-        return userServiceDefault.resendOTP(phone, callback)
-    }
-
-    /**
-     * This method is used to resend the OTP
-     *
-     * @param phone - Phone number
-     */
-    override fun resendOTP(phone: String): Observable<RegistrationResponse> {
-        return userServiceDefault.resendOTP(phone)
-    }
-
-    /**
-     * Verifies the OTP sent to the user
-     *
-     * @param email
-     * @param provider
-     * @param accessToken
-     * @param action
-     * @param phone
-     * @param otp
-     * @param callback
-     */
-    override fun socialLoginOTP(
-        email: String, provider: String, accessToken: String, action: String, phone: String, otp: String,
-        callback: Callback<SocialAuthResponse>
-    ): CancellableTask {
-        return userServiceDefault.socialLoginOTP(email, provider, accessToken, action, phone, otp, callback)
-    }
-
-    /**
-     * Verifies the OTP sent to the user
-     *
-     * @param email
-     * @param provider
-     * @param accessToken
-     * @param action
-     * @param phone
-     * @param otp
-     */
-    override fun socialLoginOTP(
-        email: String, provider: String, accessToken: String, action: String, phone: String, otp: String
-    ): Observable<SocialAuthResponse> {
-        return userServiceDefault.socialLoginOTP(email, provider, accessToken, action, phone, otp)
-    }
-
-    /**
      * Login using social auth providers (eg. google, facebook)
      *
      * @param email
@@ -742,41 +635,6 @@ class UPClientDefault(
      */
     override fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse> {
         return userServiceDefault.socialLogin(email, provider, accessToken)
-    }
-
-    /**
-     * Check if phone number is present in the server. It will also send an OTP if the user is present
-     * in the server, or you will have to create a new user
-     *
-     * @param email - Email
-     * @param phone - Phone
-     * @param provider - Provider
-     * @param accessToken - Access Token for google / facebook
-     * @param callback - Callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    override fun verifyPhone(
-        email: String, phone: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
-    ): CancellableTask {
-        return userServiceDefault.verifyPhone(email, phone, provider, accessToken, callback)
-    }
-
-    /**
-     * Check if phone number is present in the server. It will also send an OTP if the user is present
-     * in the server, or you will have to create a new user
-     *
-     * @param email - Email
-     * @param phone - Phone
-     * @param provider - Provider
-     * @param accessToken - Access Token for google / facebook
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    override fun verifyPhone(
-        email: String, phone: String, provider: String, accessToken: String
-    ): Observable<SocialAuthResponse> {
-        return userServiceDefault.verifyPhone(email, phone, provider, accessToken)
     }
 
     /**
@@ -1200,70 +1058,70 @@ class UPClientDefault(
         return userServiceDefault.unLikeItem(itemId)
     }
 
-    /**
-     * This method generates a password reset token that is sent to the user through
-     * SMS and phone
-     *
-     * @param phone - Phone number
-     * @param callback - Callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    override fun getResetPasswordToken(phone: String, callback: Callback<GenericResponse>): CancellableTask {
-        return userServiceDefault.getResetPasswordToken(phone, callback)
-    }
-
-    /**
-     * This method generates a password reset token that is sent to the user through
-     * SMS and phone
-     *
-     * @param phone - Phone number
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    override fun sendResetPasswordOTP(phone: String): Observable<GenericResponse> {
-        return userServiceDefault.sendResetPasswordOTP(phone)
-    }
-
-    /**
-     * This method reset's the password after the user enter's the password reset token sent
-     * through SMS and email
-     *
-     * The password has to be sent twice so that the server can verify it
-     *
-     * @param phone - Phone number
-     * @param newPassword - New password
-     * @param confirmPassword - Confirm same password
-     * @param token - Token the user input's
-     * @param callback - Callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    override fun resetPassword(
-        phone: String, newPassword: String, confirmPassword: String, token: String,
-        callback: Callback<GenericResponse>
-    ): CancellableTask {
-        return userServiceDefault.resetPassword(phone, newPassword, confirmPassword, token, callback)
-    }
-
-    /**
-     * This method reset's the password after the user enter's the password reset token sent
-     * through SMS and email
-     *
-     * The password has to be sent twice so that the server can verify it
-     *
-     * @param phone - Phone number
-     * @param newPassword - New password
-     * @param confirmPassword - Confirm same password
-     * @param token - Token the user input's
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    override fun resetPassword(
-        phone: String, newPassword: String, confirmPassword: String, token: String
-    ): Observable<GenericResponse> {
-        return userServiceDefault.resetPassword(phone, newPassword, confirmPassword, token)
-    }
+//    /**
+//     * This method generates a password reset token that is sent to the user through
+//     * SMS and phone
+//     *
+//     * @param phone - Phone number
+//     * @param callback - Callback to return the result
+//     *
+//     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+//     */
+//    override fun sendResetPasswordOTP(phone: String, callback: Callback<GenericResponse>): CancellableTask {
+//        return userServiceDefault.sendResetPasswordOTP(phone, callback)
+//    }
+//
+//    /**
+//     * This method generates a password reset token that is sent to the user through
+//     * SMS and phone
+//     *
+//     * @param phone - Phone number
+//     *
+//     * @return Observable - the result of the network request is returned as an Observable
+//     */
+//    override fun sendResetPasswordOTP(phone: String): Observable<GenericResponse> {
+//        return userServiceDefault.sendResetPasswordOTP(phone)
+//    }
+//
+//    /**
+//     * This method reset's the password after the user enter's the password reset token sent
+//     * through SMS and email
+//     *
+//     * The password has to be sent twice so that the server can verify it
+//     *
+//     * @param phone - Phone number
+//     * @param newPassword - New password
+//     * @param confirmPassword - Confirm same password
+//     * @param token - Token the user input's
+//     * @param callback - Callback to return the result
+//     *
+//     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+//     */
+//    override fun resetPassword(
+//        phone: String, newPassword: String, confirmPassword: String, token: String,
+//        callback: Callback<GenericResponse>
+//    ): CancellableTask {
+//        return userServiceDefault.resetPassword(phone, newPassword, confirmPassword, token, callback)
+//    }
+//
+//    /**
+//     * This method reset's the password after the user enter's the password reset token sent
+//     * through SMS and email
+//     *
+//     * The password has to be sent twice so that the server can verify it
+//     *
+//     * @param phone - Phone number
+//     * @param newPassword - New password
+//     * @param confirmPassword - Confirm same password
+//     * @param token - Token the user input's
+//     *
+//     * @return Observable - the result of the network request is returned as an Observable
+//     */
+//    override fun resetPassword(
+//        phone: String, newPassword: String, confirmPassword: String, token: String
+//    ): Observable<GenericResponse> {
+//        return userServiceDefault.resetPassword(phone, newPassword, confirmPassword, token)
+//    }
 
     // ------------------------ PROMOTIONS SERVICE -------------------------------
 
@@ -1401,108 +1259,7 @@ class UPClientDefault(
     }
 
     /**
-     * This is an important method in the flow of placing an order. This endpoint validates the contents
-     * of the cart to return the computational details for the order, like the charges, taxes, total, etc.
-     * We strongly recommend client applications not to perform these complex computations at their end,
-     * since there are many variables that can affect the computations—not all of which are available with
-     * the client application at any time.
-     *
-     * @param order - Order object
-     * @param callback - Callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    override fun validateCart(order: Order, callback: Callback<ValidateCartResponse>): CancellableTask {
-        return cartServiceDefault.validateCart(order, callback)
-    }
-
-    /**
-     * This is an important method in the flow of placing an order. This endpoint validates the contents
-     * of the cart to return the computational details for the order, like the charges, taxes, total, etc.
-     * We strongly recommend client applications not to perform these complex computations at their end,
-     * since there are many variables that can affect the computations—not all of which are available with
-     * the client application at any time.
-     *
-     * @param order - Order object
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    override fun validateCart(order: Order): Observable<ValidateCartResponse> {
-        return cartServiceDefault.validateCart(order)
-    }
-
-    /**
-     * This endpoint accepts a coupon code and the current order data to determine whether the coupon
-     * can be applied, and what the discount value would be. The Order information is required for this
-     * endpoint to function since a coupon’s validity is usually tied to the current order data.
-     *
-     * @param couponCode - Coupon code
-     * @param body - Validate coupon body
-     * @param callback - Callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    override fun validateCoupon(
-        couponCode: String, body: ValidateCouponBody, callback: Callback<OrderValidateCouponResponse>
-    ): CancellableTask {
-        return cartServiceDefault.validateCoupon(couponCode, body, callback)
-    }
-
-    /**
-     * This endpoint accepts a coupon code and the current order data to determine whether the coupon
-     * can be applied, and what the discount value would be. The Order information is required for this
-     * endpoint to function since a coupon’s validity is usually tied to the current order data.
-     *
-     * @param couponCode - Coupon code
-     * @param body - Validate coupon body
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    override fun validateCoupon(couponCode: String, body: ValidateCouponBody): Observable<OrderValidateCouponResponse> {
-        return cartServiceDefault.validateCoupon(couponCode, body)
-    }
-
-    /**
-     * Starts the payment process
-     *
-     * @param storeId - Store id
-     * @param amount - amount
-     * @param redirectUrl - redirect url - https://urbanpiper.com
-     * @param paytm - send true`` if paytm is the payment option or send null``
-     * @param simpl - send true`` if simpl is the payment option or send null``
-     * If both paytm and simpl are not being used then send both options as null.
-     *
-     * @param callback - Callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    override fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?,
-        callback: Callback<PaymentInitResponse>
-    ): CancellableTask {
-        return cartServiceDefault.initPayment(storeId, amount, redirectUrl, paytm, simpl, callback)
-    }
-
-    /**
-     * Starts the payment process
-     *
-     * @param storeId - Store id
-     * @param amount - amount
-     * @param redirectUrl - redirect url - https://urbanpiper.com
-     * @param paytm - send true`` if paytm is the payment option or send null``
-     * @param simpl - send true`` if simpl is the payment option or send null``
-     * If both paytm and simpl are not being used then send both options as null.
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    override fun initPayment(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
-    ): Observable<PaymentInitResponse> {
-        return cartServiceDefault.initPayment(storeId, amount, redirectUrl, paytm, simpl)
-    }
-
-    /**
-     * Initiates a payment for the particular biz's store.
+     * Initiates wallet reload
      *
      * @param storeId - Store id
      * @param amount - amount
@@ -1512,99 +1269,25 @@ class UPClientDefault(
      * @param callback - Callback to return the result
      */
     override fun initWalletReload(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String,
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?,
         callback: Callback<PaymentInitResponse>
     ): CancellableTask {
         return cartServiceDefault.initWalletReload(storeId, amount, redirectUrl, paytm, simpl, callback)
     }
 
     /**
-     * Initiates a payment for the particular biz's store.
+     * Initiates wallet reload
      *
-     * @param storeId
-     * @param amount
-     * @param redirectUrl
-     * @param paytm
-     * @param simpl
+     * @param storeId - Store id
+     * @param amount - amount
+     * @param redirectUrl - redirect url
+     * @param paytm - paytm
+     * @param simpl - simpl
      */
     override fun initWalletReload(
-        storeId: Int, amount: Int, redirectUrl: String, paytm: String, simpl: String
+        storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
     ): Observable<PaymentInitResponse> {
         return cartServiceDefault.initWalletReload(storeId, amount, redirectUrl, paytm, simpl)
-    }
-
-    /**
-     * Sends the order details to the server
-     *
-     * If the payment option is NOT Cash on delivery, a provisional order is placed
-     * order.state = "awaiting_payment"
-     *
-     * If the payment option is Cash on Delivery, Then order.state = null
-     *
-     * @param body - Order object
-     * @param callback - callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    override fun placeOrder(body: Order, callback: Callback<OrderSaveResponse>): CancellableTask {
-        return cartServiceDefault.placeOrder(body, callback)
-    }
-
-    /**
-     * Sends the order details to the server
-     *
-     * If the payment option is NOT Cash on delivery, a provisional order is placed
-     * order.state = "awaiting_payment"
-     *
-     * If the payment option is Cash on Delivery, Then order.state = null
-     *
-     * @param body - Order object
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    override fun placeOrder(body: Order): Observable<OrderSaveResponse> {
-        return cartServiceDefault.placeOrder(body)
-    }
-
-    /**
-     * This step is only required if the payment did not happen through a
-     * redirection flow (i.e - through a webview with a redirection url from the payment init response)
-     * This Marks the completion of a transaction.
-     *
-     * @param transactionId - Transaction id from payement init
-     * @param gwTxnId - payment gateway transaction id
-     * @param transactionStatus - transaction status, it can have the following values
-     * 0 - Transaction success
-     * 1 - Transaction failed
-     * 5 - Transaction cancelled
-     * @param callback - Callback to return the result
-     *
-     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
-     */
-    override fun verifyPayment(
-        transactionId: String, gwTxnId: String, transactionStatus: Int, callback: Callback<PaymentCallbackResponse>
-    ): CancellableTask {
-        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, transactionStatus, callback)
-    }
-
-    /**
-     * This step is only required if the payment did not happen through a
-     * redirection flow (i.e - through a webview with a redirection url from the payment init response)
-     * This Marks the completion of a transaction.
-     *
-     * @param transactionId - Transaction id from payement init
-     * @param gwTxnId - payment gateway transaction id
-     * @param transactionStatus - transaction status, it can have the following values
-     * 0 - Transaction success
-     * 1 - Transaction failed
-     * 5 - Transaction cancelled
-     *
-     * @return Observable - the result of the network request is returned as an Observable
-     */
-    override fun verifyPayment(
-        transactionId: String, gwTxnId: String, transactionStatus: Int
-    ): Observable<PaymentCallbackResponse> {
-        return cartServiceDefault.verifyPayment(transactionId, gwTxnId, transactionStatus)
     }
 
     /**
@@ -1624,6 +1307,13 @@ class UPClientDefault(
     }
 
     /**
+     * This method returns an instance of the social reg builder
+     */
+    override fun getSocialRegBuilder(): SocialRegBuilder {
+        return SocialRegBuilder(userServiceDefault)
+    }
+
+    /**
      * This method returns an instance of the Checkout Builder
      */
     override fun getCheckOutBuilder(): CheckoutBuilder {
@@ -1635,13 +1325,6 @@ class UPClientDefault(
      */
     override fun getResetPasswordBuilder(): ResetPasswordBuilder {
         return ResetPasswordBuilder(userServiceDefault)
-    }
-
-    /**
-     * This method returns an instance of the social reg builder
-     */
-    override fun getSocialRegBuilder(): SocialRegBuilder {
-        return SocialRegBuilder(userServiceDefault)
     }
 
     /**

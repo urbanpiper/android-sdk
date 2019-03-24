@@ -101,10 +101,9 @@ interface CartRetrofitService {
     /**
      * Sends the order details to the server for persistence.
      *
-     * @param order
-     * @param bizId
-     * @param authToken
-     * @param cb
+     * @param order - Order object
+     * @param bizId - biz Id
+     * @param authToken - Auth token
      */
     @POST("/api/v1/order/")
     fun placeOrder(
@@ -116,11 +115,10 @@ interface CartRetrofitService {
     /**
      * Marks the completion of a transaction.
      *
-     * @param transactionId
-     * @param gwTxnId
-     * @param failed        set to 1 if a failure occurred. Else, set to 0.
-     * @param authToken
-     * @param cb
+     * @param transactionId - transaction id from payment init
+     * @param gwTxnId - Gateway transaction id
+     * @param failed  - set to 1 if a failure occurred. Else, set to 0.
+     * @param authToken - Auth token
      */
     @GET("/payments/callback/{txn_id}")
     fun verifyPayment(
