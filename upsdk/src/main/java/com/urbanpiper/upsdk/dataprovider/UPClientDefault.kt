@@ -1,6 +1,7 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import android.content.Context
+import android.util.Log
 import com.urbanpiper.upsdk.BuildConfig
 import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*

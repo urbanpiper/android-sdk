@@ -76,4 +76,7 @@ interface UPClient : GeneralService, CatalogueService, UserService, PromotionsSe
      * Returns an instance of the local cart
      */
     fun getCart(): Cart
+
+    // Remove this in production
+//    fun getTest(): String
 }

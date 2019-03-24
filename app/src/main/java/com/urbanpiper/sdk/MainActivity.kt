@@ -18,44 +18,44 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val cancellableTask = MyApp().getBanners(object : Callback<BannerResponse> {
-            override fun success(response: BannerResponse) {
-                val banners: BannerResponse = response
-
-                if (!banners.images.isNullOrEmpty()) {
-                    for (i in 0 until banners.images.size) {
-                        Log.d("Success ", "Banner Name ${banners.images[0].image}")
-                        text.text = "Banner Name ${banners.images[0].image}"
-                    }
-                }
-            }
-
-            override fun failure(upClientError: UpClientError) {
-                upClientError.getErrorType()
-            }
-        })
-
-        cancellableTask.cancel()
-
-        MyApp().getBanners()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(object: Observer<BannerResponse>{
-                override fun onComplete() {
-
-                }
-
-                override fun onSubscribe(d: Disposable) {
-
-                }
-
-                override fun onNext(t: BannerResponse) {
-
-                }
-
-                override fun onError(e: Throwable) {
-
-                }
-            })
+//        val cancellableTask = MyApp().getBanners(object : Callback<BannerResponse> {
+//            override fun success(response: BannerResponse) {
+//                val banners: BannerResponse = response
+//
+//                if (!banners.images.isNullOrEmpty()) {
+//                    for (i in 0 until banners.images.size) {
+//                        Log.d("Success ", "Banner Name ${banners.images[0].image}")
+//                        text.text = "Banner Name ${banners.images[0].image}"
+//                    }
+//                }
+//            }
+//
+//            override fun failure(upClientError: UpClientError) {
+//                upClientError.getErrorType()
+//            }
+//        })
+//
+//        cancellableTask.cancel()
+//
+//        MyApp().getBanners()
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeOn(Schedulers.io())
+//            .subscribe(object: Observer<BannerResponse>{
+//                override fun onComplete() {
+//
+//                }
+//
+//                override fun onSubscribe(d: Disposable) {
+//
+//                }
+//
+//                override fun onNext(t: BannerResponse) {
+//
+//                }
+//
+//                override fun onError(e: Throwable) {
+//
+//                }
+//            })
     }
 }

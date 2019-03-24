@@ -1,4 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.urbanpiper.upsdk">
 
+    <application>
+        <provider android:authorities="${applicationId}.UpInitContentProvider"
+                  android:name=".dataprovider.UpInitContentProvider"
+                  android:enabled="true"
+                  android:exported="false"/>
+    </application>
 </manifest>

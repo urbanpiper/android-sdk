@@ -37,45 +37,47 @@ class MyApp : Application() {
             })
             .build()
 
-        upClient.getBanners()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(object: Observer<BannerResponse> {
-                override fun onComplete() {
-                }
+//        Log.d("init ", " Init result ${upClient.getTest()}")
 
-                override fun onSubscribe(d: Disposable) {
-                }
+//        upClient.getBanners()
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribeOn(Schedulers.io())
+//            .subscribe(object: Observer<BannerResponse> {
+//                override fun onComplete() {
+//                }
+//
+//                override fun onSubscribe(d: Disposable) {
+//                }
+//
+//                override fun onNext(t: BannerResponse) {
+//                }
+//
+//                override fun onError(e: Throwable) {
+//                }
+//
+//            })
 
-                override fun onNext(t: BannerResponse) {
-                }
-
-                override fun onError(e: Throwable) {
-                }
-
-            })
-
-        val cancellableTask = upClient.getBanners(object : Callback<BannerResponse>{
-            override fun success(response: BannerResponse) {
-
-            }
-
-            override fun failure(upClientError: UpClientError) {
-
-            }
-        })
-
-        // Note - This method can be called to cancel the network request
-        cancellableTask.cancel()
+//        val cancellableTask = upClient.getBanners(object : Callback<BannerResponse>{
+//            override fun success(response: BannerResponse) {
+//
+//            }
+//
+//            override fun failure(upClientError: UpClientError) {
+//
+//            }
+//        })
+//
+//        // Note - This method can be called to cancel the network request
+//        cancellableTask.cancel()
     }
 
 
-    fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
-        return upClient.getBanners(callback)
-    }
-
-    fun getBanners(): Observable<BannerResponse> {
-        return upClient.getBanners()
-    }
+//    fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
+//        return upClient.getBanners(callback)
+//    }
+//
+//    fun getBanners(): Observable<BannerResponse> {
+//        return upClient.getBanners()
+//    }
 
 }

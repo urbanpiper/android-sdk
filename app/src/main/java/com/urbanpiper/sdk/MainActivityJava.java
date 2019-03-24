@@ -22,50 +22,50 @@ public class MainActivityJava extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_java);
 
-        CancellableTask cancellableTask = ((MyApp) getApplication())
-                .getBanners(new Callback<BannerResponse>() {
-                    @Override
-                    public void success(BannerResponse response) {
-
-                    }
-
-                    @Override
-                    public void failure(@NotNull UpClientError upClientError) {
-
-                    }
-                });
-
-        // This method cancels the network request
-        cancellableTask.cancel();
-
-        // Observable
-        Observable<BannerResponse> observable = ((MyApp) getApplication()).getBanners();
-
-        observable.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<BannerResponse>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(BannerResponse bannerResponse) {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
-
+//        CancellableTask cancellableTask = ((MyApp) getApplication())
+//                .getBanners(new Callback<BannerResponse>() {
+//                    @Override
+//                    public void success(BannerResponse response) {
+//
+//                    }
+//
+//                    @Override
+//                    public void failure(@NotNull UpClientError upClientError) {
+//
+//                    }
+//                });
+//
+//        // This method cancels the network request
+//        cancellableTask.cancel();
+//
+//        // Observable
+//        Observable<BannerResponse> observable = ((MyApp) getApplication()).getBanners();
+//
+//        observable.observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe(new Observer<BannerResponse>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(BannerResponse bannerResponse) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
+//                });
+//
+//
     }
 
 
