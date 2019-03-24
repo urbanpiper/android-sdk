@@ -28,6 +28,9 @@ data class PaymentInitResponse(
     var pgType: String
 ) {
 
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
 
     fun getRedirectUrl(): String? {
 
@@ -81,6 +84,5 @@ data class PaymentInitResponse(
         constructedUrl = sb.toString()
 
         return constructedUrl
-
     }
 }

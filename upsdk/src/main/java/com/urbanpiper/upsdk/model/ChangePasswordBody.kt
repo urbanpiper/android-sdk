@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class ChangePasswordBody(
@@ -13,4 +14,8 @@ data class ChangePasswordBody(
     var newPassword12: String,
     @SerializedName("phone")
     var phone: String
-)
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

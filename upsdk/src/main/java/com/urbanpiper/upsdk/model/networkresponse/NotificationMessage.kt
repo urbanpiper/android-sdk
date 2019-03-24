@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class NotificationMessage (
@@ -27,4 +28,8 @@ data class NotificationMessage (
 
     @SerializedName("type")
     var type: String
-)
+){
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

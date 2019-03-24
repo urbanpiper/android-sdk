@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class LikedItem(
@@ -8,4 +9,8 @@ data class LikedItem(
 
     @SerializedName("item_title")
     var itemTitle: String
-)
+){
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

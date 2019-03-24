@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class PaymentCallbackResponse(
@@ -11,4 +12,8 @@ data class PaymentCallbackResponse(
 
     @SerializedName("pid")
     var pid: String
-)
+){
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

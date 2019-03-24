@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 import java.io.Serializable
@@ -66,5 +67,9 @@ data class RewardsResponse(
         @SerializedName("redemption_code")
         var redeemCode: String
     )
+
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
 }
 

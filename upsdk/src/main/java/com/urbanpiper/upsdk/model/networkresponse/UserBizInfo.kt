@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import java.util.ArrayList
 
@@ -38,4 +39,8 @@ data class UserBizInfo(
     @SerializedName("username")
     var username: String
 
-)
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

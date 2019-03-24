@@ -340,14 +340,14 @@ interface UserService {
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    fun getNotifications(callback: Callback<UserbizNotificationsResponse>): CancellableTask
+    fun getNotifications(callback: Callback<UserBizNotificationsResponse>): CancellableTask
 
     /**
      * This method returns a list of all the notifications that was sent to that user
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    fun getNotifications(): Observable<UserbizNotificationsResponse>
+    fun getNotifications(): Observable<UserBizNotificationsResponse>
 
     /**
      * Submit feedback

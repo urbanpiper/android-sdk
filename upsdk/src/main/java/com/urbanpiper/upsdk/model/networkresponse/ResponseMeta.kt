@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 import java.io.Serializable
@@ -15,7 +16,11 @@ data class ResponseMeta(
     var previous: String? = null,
     @SerializedName("total_count")
     var totalCount: Int = 0
-)
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}
 
 
 

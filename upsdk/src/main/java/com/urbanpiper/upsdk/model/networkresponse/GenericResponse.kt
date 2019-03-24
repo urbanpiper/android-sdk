@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class GenericResponse(
@@ -11,4 +12,8 @@ data class GenericResponse(
     var errorMessage: String,
     @SerializedName("result_code")
     var resultCode: String
-)
+){
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class Store(
@@ -51,4 +52,8 @@ data class Store(
     val temporarilyClosed: Boolean,
     @SerializedName("time_slots")
     var timeSlots: List<TimeSlot>
-)
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

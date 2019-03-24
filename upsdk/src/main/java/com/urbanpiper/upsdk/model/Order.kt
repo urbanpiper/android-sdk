@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import com.urbanpiper.upsdk.model.networkresponse.Discount
 import com.urbanpiper.upsdk.model.networkresponse.CartItem
@@ -119,6 +120,10 @@ data class Order(
     @SerializedName("payment_modes")
     var paymentModes: Array<String>
 ) {
+
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
 
     val PAYMENT_OPT_PG = "payment_gateway"
     val PAYMENT_OPT_PAYTM = "paytm"

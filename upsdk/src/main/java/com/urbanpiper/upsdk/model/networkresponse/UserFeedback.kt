@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class UserFeedback(
@@ -29,5 +30,9 @@ data class UserFeedback(
 ) {
     enum class Type {
         ORDERING, DEFAULT
+    }
+
+    fun toJson(): String {
+        return Gson().toJson(this)
     }
 }

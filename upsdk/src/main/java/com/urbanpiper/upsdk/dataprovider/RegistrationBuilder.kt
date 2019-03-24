@@ -1,6 +1,5 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import com.urbanpiper.upsdk.model.networkresponse.UserCreateResponse
 import com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

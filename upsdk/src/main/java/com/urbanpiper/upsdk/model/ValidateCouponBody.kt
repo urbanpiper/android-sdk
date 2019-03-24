@@ -1,3 +1,9 @@
 package com.urbanpiper.upsdk.model
 
-class ValidateCouponBody(var order: Order)
+import com.google.gson.Gson
+
+class ValidateCouponBody(var order: Order) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

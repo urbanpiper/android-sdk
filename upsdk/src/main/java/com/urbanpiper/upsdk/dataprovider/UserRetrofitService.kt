@@ -49,7 +49,7 @@ interface UserRetrofitService {
         @Query("password") password: String,
         @Query("customer_name") customerName: String,
         @Query("channel") channel: String,
-        @Body referralBody: AccountRegistrationBody?
+        @Body body: AccountRegistrationBody?
     ): Observable<RegistrationResponse>
 
     /**
@@ -291,7 +291,7 @@ interface UserRetrofitService {
     @GET("/api/v1/ub/notifications/?channel__in=app_notification,all")
     fun getNotifications(
         @Header("Authorization") authToken: String
-    ): Observable<UserbizNotificationsResponse>
+    ): Observable<UserBizNotificationsResponse>
 
     /**
      * For saving the feedback associated with an order.

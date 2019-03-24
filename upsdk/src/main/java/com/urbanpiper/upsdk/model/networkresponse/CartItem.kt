@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import java.util.ArrayList
 
@@ -83,7 +84,7 @@ data class CartItem(
     var userLiked: Boolean = false
 
 ) {
-    fun hasOptions(): Boolean{
+    fun hasOptions(): Boolean {
         return optionGroups.size > 0
     }
 
@@ -100,5 +101,9 @@ data class CartItem(
 
     override fun hashCode(): Int {
         return id
+    }
+
+    fun toJson(): String {
+        return Gson().toJson(this)
     }
 }

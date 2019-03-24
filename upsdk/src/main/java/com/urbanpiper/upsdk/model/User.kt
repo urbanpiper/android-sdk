@@ -1,5 +1,7 @@
 package com.urbanpiper.upsdk.model
 
+import com.google.gson.Gson
+
 data class User(
     val bearerToken: String?
     , val token: String?
@@ -17,5 +19,8 @@ data class User(
     , val phoneVerified: Boolean
     , val emailVerified: Boolean
     , val timeSaved: String?
-){
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
 }

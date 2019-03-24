@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import com.urbanpiper.upsdk.model.Order
 
@@ -15,4 +16,8 @@ data class ValidateCartResponse(
 
     @SerializedName("message")
     var message: String
-)
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

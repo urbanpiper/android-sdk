@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class OrderSaveResponse(
@@ -14,4 +15,8 @@ data class OrderSaveResponse(
 
     @SerializedName("order_id")
     var orderId: String
-)
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

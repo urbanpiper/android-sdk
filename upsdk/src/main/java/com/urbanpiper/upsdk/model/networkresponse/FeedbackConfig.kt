@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class FeedbackConfig(
@@ -16,4 +17,8 @@ data class FeedbackConfig(
         @SerializedName("text")
         val text: String
     )
+
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
 }

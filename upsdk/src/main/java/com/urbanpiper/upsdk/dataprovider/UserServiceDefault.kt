@@ -1,6 +1,5 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import android.util.Log
 import com.urbanpiper.upsdk.model.*
 import com.urbanpiper.upsdk.model.networkresponse.*
 import io.reactivex.Observable
@@ -863,7 +862,7 @@ class UserServiceDefault( private val bizId: String, retrofit: Retrofit) : UserS
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun getNotifications(callback: Callback<UserbizNotificationsResponse>): CancellableTask {
+    override fun getNotifications(callback: Callback<UserBizNotificationsResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -884,7 +883,7 @@ class UserServiceDefault( private val bizId: String, retrofit: Retrofit) : UserS
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getNotifications(): Observable<UserbizNotificationsResponse> {
+    override fun getNotifications(): Observable<UserBizNotificationsResponse> {
         val authToken: String = SharedPrefManager.getAuthToken( true)
         return userRetrofitService.getNotifications(authToken)
     }

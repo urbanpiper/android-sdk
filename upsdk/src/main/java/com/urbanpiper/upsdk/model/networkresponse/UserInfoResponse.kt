@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class UserInfoResponse(
@@ -21,6 +22,10 @@ data class UserInfoResponse(
     var lastName: String,
     @SerializedName("phone")
     var phone: String
-)
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}
 
 

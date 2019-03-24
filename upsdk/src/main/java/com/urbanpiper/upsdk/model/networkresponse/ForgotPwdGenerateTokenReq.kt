@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class ForgotPwdGenerateTokenReq(
@@ -14,4 +15,8 @@ data class ForgotPwdGenerateTokenReq(
     var new_password1: String = "",
     @SerializedName("new_password2")
     var new_password2: String = ""
-)
+){
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

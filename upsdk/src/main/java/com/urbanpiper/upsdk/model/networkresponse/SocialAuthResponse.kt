@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class SocialAuthResponse(
@@ -23,4 +24,8 @@ data class SocialAuthResponse(
     var phone: String,
     @SerializedName("token")
     var token: String
-)
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

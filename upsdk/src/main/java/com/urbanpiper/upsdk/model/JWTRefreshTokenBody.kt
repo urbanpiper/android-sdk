@@ -1,3 +1,9 @@
 package com.urbanpiper.upsdk.model
 
-data class JWTRefreshTokenBody(val token: String)
+import com.google.gson.Gson
+
+data class JWTRefreshTokenBody(val token: String){
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

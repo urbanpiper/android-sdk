@@ -948,7 +948,7 @@ class UPClientDefault(
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun getNotifications(callback: Callback<UserbizNotificationsResponse>): CancellableTask {
+    override fun getNotifications(callback: Callback<UserBizNotificationsResponse>): CancellableTask {
         return userServiceDefault.getNotifications(callback)
     }
 
@@ -957,7 +957,7 @@ class UPClientDefault(
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getNotifications(): Observable<UserbizNotificationsResponse> {
+    override fun getNotifications(): Observable<UserBizNotificationsResponse> {
         return userServiceDefault.getNotifications()
     }
 

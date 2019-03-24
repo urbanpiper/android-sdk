@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class VerifyOTPBody(
@@ -11,4 +12,8 @@ data class VerifyOTPBody(
     val name: String,
     @SerializedName("channel")
     val channel: String
-)
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

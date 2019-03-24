@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class OrderValidateCouponResponse(
@@ -20,4 +21,8 @@ data class OrderValidateCouponResponse(
 
     @SerializedName("payable_amount")
     var payableAmt: Float
-)
+){
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

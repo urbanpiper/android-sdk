@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class OrderStatusItem(
@@ -35,4 +36,8 @@ data class OrderStatusItem(
 
     @SerializedName("charges")
     var charges: List<BillComponentValue>
-)
+){
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}

@@ -1,5 +1,6 @@
 package com.urbanpiper.upsdk.model.networkresponse
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class RegistrationResponse(
@@ -23,4 +24,8 @@ data class RegistrationResponse(
     val success: Boolean,
     @SerializedName("total_balance")
     val totalBalance: Int
-)
+) {
+    fun toJson(): String {
+        return Gson().toJson(this)
+    }
+}
