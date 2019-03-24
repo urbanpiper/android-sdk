@@ -29,7 +29,6 @@ The required parameters are,
 | BizId | Business id of the merchant for whom the app is being built |
 | ApiUsername  | API username used internally in the SDK to connect to the backend |
 | ApiKey | API key used internally in the SDK to connect to the backend |
-| ApplicationContext| Application context from the application class |
 | Callback | callback of type UserBizInfoResponse. If the user is logged in it returns a user info, otherwise it returns an error.    |
 | Language | This is an optional field. The default language is set the ```en```. Other languages can be configured (eg. ```hi```)    |
 
@@ -43,7 +42,6 @@ The required parameters are,
             .setApiUsername("biz_adm_clients_yj1234QzHqYM")
             .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe897d8fa8")
             .setLanguage("en") // Optional - The default language is english
-            .setApplicationContext(context)
             .setCallback(object : Callback<UserBizInfoResponse> {
                 override fun success(response: UserBizInfoResponse) {
                     Log.d("Myapp", "Success Response " + response.toString())
@@ -65,7 +63,6 @@ The required parameters are,
           .setApiUsername("biz_adm_clients_yj1234QzHqYM")
           .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe897d8fa8")
           .setLanguage("en") // Optional - The default language is english
-          .setApplicationContext(context)
           .setCallback(new Callback<UserBizInfoResponse>() {
               @Override
               public void success(UserBizInfoResponse response) {
