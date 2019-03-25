@@ -880,7 +880,7 @@ class UPClientDefault(
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun getPastOrders(callback: Callback<OrderHistoryV2Response>): CancellableTask {
+    override fun getPastOrders(callback: Callback<OrderHistoryResponse>): CancellableTask {
         return userServiceDefault.getPastOrders(callback)
     }
 
@@ -891,7 +891,7 @@ class UPClientDefault(
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getPastOrders(): Observable<OrderHistoryV2Response> {
+    override fun getPastOrders(): Observable<OrderHistoryResponse> {
         return userServiceDefault.getPastOrders()
     }
 
@@ -1219,6 +1219,47 @@ class UPClientDefault(
         storeId: Int, amount: Int, redirectUrl: String, paytm: String?, simpl: String?
     ): Observable<PaymentInitResponse> {
         return cartServiceDefault.initWalletReload(storeId, amount, redirectUrl, paytm, simpl)
+    }
+
+    /**
+     * This step is only required if the payment did not happen through a
+     * redirection flow (i.e - through a webview with a redirection url from the payment init response)
+     * This Marks the completion of a transaction.
+     *
+     * @param transactionId - Transaction id from payement init
+     * @param gwTxnId - payment gateway transaction id
+     * @param transactionStatus - transaction status, it can have the following values
+     * 0 - Transaction success
+     * 1 - Transaction failed
+     * 5 - Transaction cancelled
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
+     */
+    override fun verifyWalletPayment(
+        transactionId: String, gwTxnId: String, transactionStatus: Int, callback: Callback<PaymentCallbackResponse>
+    ): CancellableTask {
+        return cartServiceDefault.verifyWalletPayment(transactionId, gwTxnId, transactionStatus, callback)
+    }
+
+    /**
+     * This step is only required if the payment did not happen through a
+     * redirection flow (i.e - through a webview with a redirection url from the payment init response)
+     * This Marks the completion of a transaction.
+     *
+     * @param transactionId - Transaction id from payement init
+     * @param gwTxnId - payment gateway transaction id
+     * @param transactionStatus - transaction status, it can have the following values
+     * 0 - Transaction success
+     * 1 - Transaction failed
+     * 5 - Transaction cancelled
+     *
+     * @return Observable - the result of the network request is returned as an Observable
+     */
+    override fun verifyWalletPayment(
+        transactionId: String, gwTxnId: String, transactionStatus: Int
+    ): Observable<PaymentCallbackResponse> {
+        return cartServiceDefault.verifyWalletPayment(transactionId, gwTxnId, transactionStatus)
     }
 
     /**

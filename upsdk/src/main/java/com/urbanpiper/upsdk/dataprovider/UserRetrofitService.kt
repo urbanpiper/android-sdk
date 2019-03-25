@@ -259,7 +259,7 @@ interface UserRetrofitService {
     @GET("/api/v2/orders/")
     fun getPastOrders(
         @Header("Authorization") authToken: String
-    ): Observable<OrderHistoryV2Response>
+    ): Observable<OrderHistoryResponse>
 
     /**
      * Fetches the summary data for orders placed in the past by a

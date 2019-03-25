@@ -284,7 +284,7 @@ interface UserService {
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    fun getPastOrders(callback: Callback<OrderHistoryV2Response>): CancellableTask
+    fun getPastOrders(callback: Callback<OrderHistoryResponse>): CancellableTask
 
     /**
      * This endpoint returns the list of orders placed by a user in the past. Only the summary data
@@ -293,7 +293,7 @@ interface UserService {
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    fun getPastOrders(): Observable<OrderHistoryV2Response>
+    fun getPastOrders(): Observable<OrderHistoryResponse>
 
     /**
      * Returns details information about an order

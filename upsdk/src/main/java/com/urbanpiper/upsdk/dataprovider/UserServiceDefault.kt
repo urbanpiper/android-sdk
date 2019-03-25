@@ -755,7 +755,7 @@ class UserServiceDefault( private val bizId: String, retrofit: Retrofit) : UserS
      *
      * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
-    override fun getPastOrders(callback: Callback<OrderHistoryV2Response>): CancellableTask {
+    override fun getPastOrders(callback: Callback<OrderHistoryResponse>): CancellableTask {
         val compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(
@@ -778,7 +778,7 @@ class UserServiceDefault( private val bizId: String, retrofit: Retrofit) : UserS
      *
      * @return Observable - the result of the network request is returned as an Observable
      */
-    override fun getPastOrders(): Observable<OrderHistoryV2Response> {
+    override fun getPastOrders(): Observable<OrderHistoryResponse> {
         val authToken: String = SharedPrefManager.getAuthToken( true)
         return userRetrofitService.getPastOrders(authToken)
     }
