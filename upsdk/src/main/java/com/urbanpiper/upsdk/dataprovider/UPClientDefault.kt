@@ -1317,12 +1317,4 @@ class UPClientDefault(
             null
         }
     }
-
-    /**
-     * This method returns an instance of the biz, It can be null if the
-     * stores method or categories method are not called
-     */
-    override fun getBizInfo(): Biz? {
-        return Biz()
-    }
 }
