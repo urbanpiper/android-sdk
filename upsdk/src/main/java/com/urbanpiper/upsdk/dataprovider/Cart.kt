@@ -70,6 +70,22 @@ class Cart : CartTracker {
         return count
     }
 
+    fun getTotalCount(): Int{
+        var count = 0
+        val categories: Set<OrderCategory> = cart.keys
+
+        for (category in categories) {
+            for (item in cart[category]!!) {
+                count += item.quantity
+            }
+        }
+
+        if (count == 0) {
+            cart.clear()
+        }
+        return count
+    }
+
     /**
      * Returns a list of all the items in the cart
      */
