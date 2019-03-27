@@ -31,7 +31,7 @@ object SharedPrefManager {
     private const val SP_EMAIL_VERIFIED = "jwt.email.verified"
     private const val SP_TIME_SAVED = "jwt.details.saved.at"
 
-    private var preferences: SharedPreferences? = null
+    private lateinit var preferences: SharedPreferences
 
     fun init(context: Context?) {
         if (context != null) {
@@ -41,7 +41,7 @@ object SharedPrefManager {
 
     @SuppressLint("ApplySharedPref")
     fun saveBizAuthToken(apiUsername: String, apiKey: String) {
-        val editor = preferences!!.edit()
+        val editor = preferences.edit()
         editor.putString(SP_API_USERNAME, apiUsername)
         editor.putString(SP_API_KEY, apiKey)
         editor.commit()
@@ -54,10 +54,10 @@ object SharedPrefManager {
      */
     fun getAuthToken(isUserLoggedIn: Boolean): String {
         return if (isUserLoggedIn) {
-            preferences!!.getString(SP_BEARER_JWT_TOKEN, "")!!
+            preferences.getString(SP_BEARER_JWT_TOKEN, "")!!
         } else {
-            val apiUsername = preferences!!.getString(SP_API_USERNAME, "")
-            val apiKey = preferences!!.getString(SP_API_KEY, "")
+            val apiUsername = preferences.getString(SP_API_USERNAME, "")
+            val apiKey = preferences.getString(SP_API_KEY, "")
             String.format("apikey %s:%s", apiUsername, apiKey)
         }
     }
@@ -66,10 +66,10 @@ object SharedPrefManager {
      * Checks if the user is logged in or not
      */
     fun isUserLoggedIn(): Boolean {
-        val token = preferences!!.getString(SP_BEARER_JWT_TOKEN, null)
-        val jit = preferences!!.getString(SP_JIT, null)
-        val exp = preferences!!.getString(SP_EXP, null)
-        val iat = preferences!!.getString(SP_IAT, null)
+        val token = preferences.getString(SP_BEARER_JWT_TOKEN, null)
+        val jit = preferences.getString(SP_JIT, null)
+        val exp = preferences.getString(SP_EXP, null)
+        val iat = preferences.getString(SP_IAT, null)
 
         return token != null && jit != null && exp != null && iat != null
     }
@@ -108,7 +108,7 @@ object SharedPrefManager {
         val today = Time(Time.getCurrentTimezone())
         val rightNow = today.setToNow().toString()
 
-        val editor = preferences!!.edit()
+        val editor = preferences.edit()
 
         editor.putString(SP_BEARER_JWT_TOKEN, JWTToken)
         editor.putString(SP_JWT_TOKEN, token)
@@ -132,22 +132,22 @@ object SharedPrefManager {
 
     fun getUser(): User {
         val user = User(
-            preferences!!.getString(SP_BEARER_JWT_TOKEN, ""),
-            preferences!!.getString(SP_JWT_TOKEN, ""),
-            preferences!!.getString(SP_SERVER_USERNAME, ""),
-            preferences!!.getString(SP_EMAIL, ""),
-            preferences!!.getString(SP_NAME, ""),
-            preferences!!.getString(SP_PHONE, ""),
-            preferences!!.getString(SP_JIT, ""),
-            preferences!!.getString(SP_EXP, ""),
-            preferences!!.getString(SP_IAT, ""),
-            preferences!!.getString(SP_BALANCE, ""),
-            preferences!!.getString(SP_PTS_BALANCE, ""),
-            preferences!!.getString(SP_AUTH_KEY, ""),
-            preferences!!.getString(SP_USER_BIZ_ID, ""),
-            preferences!!.getBoolean(SP_PHONE_VERIFIED, true),
-            preferences!!.getBoolean(SP_EMAIL_VERIFIED, true),
-            preferences!!.getString(SP_TIME_SAVED, "")
+            preferences.getString(SP_BEARER_JWT_TOKEN, ""),
+            preferences.getString(SP_JWT_TOKEN, ""),
+            preferences.getString(SP_SERVER_USERNAME, ""),
+            preferences.getString(SP_EMAIL, ""),
+            preferences.getString(SP_NAME, ""),
+            preferences.getString(SP_PHONE, ""),
+            preferences.getString(SP_JIT, ""),
+            preferences.getString(SP_EXP, ""),
+            preferences.getString(SP_IAT, ""),
+            preferences.getString(SP_BALANCE, ""),
+            preferences.getString(SP_PTS_BALANCE, ""),
+            preferences.getString(SP_AUTH_KEY, ""),
+            preferences.getString(SP_USER_BIZ_ID, ""),
+            preferences.getBoolean(SP_PHONE_VERIFIED, true),
+            preferences.getBoolean(SP_EMAIL_VERIFIED, true),
+            preferences.getString(SP_TIME_SAVED, "")
         )
         return user
     }

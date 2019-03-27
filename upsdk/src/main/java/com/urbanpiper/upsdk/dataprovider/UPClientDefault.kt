@@ -984,7 +984,6 @@ class UPClientDefault(
         return userServiceDefault.submitFeedback(feedback)
     }
 
-
     /**
      * Returns a list of likes for item id's passed as (eg - id1,id2,id3)
      *
