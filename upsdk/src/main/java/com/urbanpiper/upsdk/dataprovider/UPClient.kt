@@ -1,7 +1,6 @@
 package com.urbanpiper.upsdk.dataprovider
 
 import com.urbanpiper.upsdk.model.User
-import com.urbanpiper.upsdk.model.networkresponse.Biz
 
 interface UPClient : GeneralService, CatalogueService, UserService, PromotionsService, CartService {
 
@@ -70,8 +69,10 @@ interface UPClient : GeneralService, CatalogueService, UserService, PromotionsSe
     /**
      * Returns an instance of the local cart
      */
-    fun getCart(): Cart
+    fun getCart(locationId: Int): Cart
 
-    // Remove this in production
-//    fun getTest(): String
+    /**
+     * Returns an instance of the biz data
+     */
+//    fun getBiz(): Biz
 }

@@ -36,47 +36,5 @@ public class BaseApplication extends Application {
                     }
                 })
                 .build();
-
-//        CancellableTask cancellableTask = upClient.getBanners(new Callback<BannerResponse>() {
-//            @Override
-//            public void success(BannerResponse response) {
-//
-//            }
-//
-//            @Override
-//            public void failure(@NotNull UpClientError upClientError) {
-//
-//            }
-//        });
-//
-//        // Note - This method can be called to cancel the network request
-//        cancellableTask.cancel();
-//
-//        Observable<BannerResponse> observable = upClient.getBanners();
-//
-//        observable.observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(new Observer<BannerResponse>() {
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(BannerResponse bannerResponse) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//
-//                    }
-//                });
-
     }
 }

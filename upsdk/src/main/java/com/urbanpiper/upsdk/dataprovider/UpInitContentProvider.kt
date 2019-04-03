@@ -6,6 +6,10 @@ import android.database.Cursor
 import android.net.Uri
 import androidx.annotation.RestrictTo
 
+/**
+ * This is an internal class used to init parts of the SDK
+ *
+ */
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 class UpInitContentProvider : ContentProvider() {
 
@@ -13,6 +17,8 @@ class UpInitContentProvider : ContentProvider() {
     override fun onCreate(): Boolean {
         // Init shared preferences manager
         SharedPrefManager.init(context)
+        // Init the cart database
+        Cart.init(context)
         return true
     }
 
@@ -38,6 +44,4 @@ class UpInitContentProvider : ContentProvider() {
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
         return null
     }
-
-
 }

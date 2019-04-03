@@ -3,9 +3,13 @@ package com.urbanpiper.sdk
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.LiveData
 import com.urbanpiper.upsdk.dataprovider.Callback
 import com.urbanpiper.upsdk.dataprovider.UpClientError
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
+import com.urbanpiper.upsdk.model.networkresponse.CartItem
+import com.urbanpiper.upsdk.model.networkresponse.CategoryItemResponse
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -18,44 +22,47 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val cancellableTask = MyApp().getBanners(object : Callback<BannerResponse> {
-            override fun success(response: BannerResponse) {
-                val banners: BannerResponse = response
+        val cart = MyApp.Singleton.upClient.getCart(2070)
 
-                if (!banners.images.isNullOrEmpty()) {
-                    for (i in 0 until banners.images.size) {
-                        Log.d("Success ", "Banner Name ${banners.images[0].image}")
-                        text.text = "Banner Name ${banners.images[0].image}"
-                    }
+        val cartItems: LiveData<List<CartItem>> = cart.getAllItemsLiveData()
+        cartItems.observe(this, androidx.lifecycle.Observer { items ->
+            items?.let {
+
+                Log.d("Cart items", " Size ${items.size}")
+
+                Toast.makeText(this@MainActivity, " Size ${items.size}", Toast.LENGTH_LONG).show()
+
+                for(item in items){
+                    Log.d("Cart items", " ${item.toJson()}")
                 }
-            }
-
-            override fun failure(upClientError: UpClientError) {
-                upClientError.getErrorType()
             }
         })
 
-//        cancellableTask.cancel()
-//
-//        MyApp().getBanners()
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribeOn(Schedulers.io())
-//            .subscribe(object: Observer<BannerResponse>{
-//                override fun onComplete() {
-//
-//                }
-//
-//                override fun onSubscribe(d: Disposable) {
-//
-//                }
-//
-//                override fun onNext(t: BannerResponse) {
-//
-//                }
-//
-//                override fun onError(e: Throwable) {
-//
-//                }
-//            })
+        MyApp.Singleton.upClient.getCategoryItems(3115, "2070", 0, 20)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : io.reactivex.Observer<CategoryItemResponse> {
+                override fun onComplete() {
+
+                }
+
+                override fun onSubscribe(d: Disposable) {
+
+                }
+
+                override fun onNext(t: CategoryItemResponse) {
+                    for (item in t.objects) {
+                        cart.addItem(item)
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+
+                }
+
+            })
+
+        cart.clearCart()
+
     }
 }

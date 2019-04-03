@@ -2,9 +2,12 @@ package com.urbanpiper.sdk
 
 import android.app.Application
 import android.util.Log
+import com.facebook.stetho.Stetho
 import com.urbanpiper.sdk.MyApp.Singleton.upClient
 import com.urbanpiper.upsdk.dataprovider.*
 import com.urbanpiper.upsdk.model.networkresponse.BannerResponse
+import com.urbanpiper.upsdk.model.networkresponse.CartItem
+import com.urbanpiper.upsdk.model.networkresponse.CategoryItemResponse
 import com.urbanpiper.upsdk.model.networkresponse.UserBizInfoResponse
 import io.reactivex.Observable
 import io.reactivex.Observer
@@ -37,6 +40,9 @@ class MyApp : Application() {
         super.onCreate()
         Log.d("Application created ", " UP client init")
 
+        // Stetho init
+        Stetho.initializeWithDefaults(this);
+
 
 //        Log.d("init ", " Init result ${upClient.getTest()}")
 
@@ -57,7 +63,7 @@ class MyApp : Application() {
 //                }
 //
 //            })
-
+//
 //        val cancellableTask = upClient.getBanners(object : Callback<BannerResponse>{
 //            override fun success(response: BannerResponse) {
 //
@@ -76,7 +82,8 @@ class MyApp : Application() {
     fun getBanners(callback: Callback<BannerResponse>): CancellableTask {
         return upClient.getBanners(callback)
     }
-//
+
+    //
     fun getBanners(): Observable<BannerResponse> {
         return upClient.getBanners()
     }

@@ -11,12 +11,19 @@ import retrofit2.Retrofit
 
 class CartServiceDefault(private val bizId: String, retrofit: Retrofit) : CartService {
 
-
     private val cartService: CartRetrofitService =
         retrofit.create(CartRetrofitService::class.java)
 
     /**
-     * re-order api
+     * Re order Api
+     *
+     * @param orderId - Id of the order
+     * @param locationId - location id of the user
+     * @param lat - latitude
+     * @param lng - longitude
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun reOrder(
         orderId: String, locationId: String, lat: String, lng: String, callback: Callback<ReOrderResponse>
@@ -37,7 +44,14 @@ class CartServiceDefault(private val bizId: String, retrofit: Retrofit) : CartSe
     }
 
     /**
-     * re-order api
+     * Re order api
+     *
+     * @param orderId - Id of the order
+     * @param locationId - location id of the user
+     * @param lat - latitude
+     * @param lng - longitude
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun reOrder(orderId: String, locationId: String, lat: String, lng: String): Observable<ReOrderResponse> {
         val authToken: String = SharedPrefManager.getAuthToken(true)
@@ -47,6 +61,12 @@ class CartServiceDefault(private val bizId: String, retrofit: Retrofit) : CartSe
     /**
      * Get the recommended items from the server. The items returned are based on a particular item
      * in details or checkout page.
+     *
+     * @param itemIds - Item id's can be passed as comma separated values (id1,id2,id3)
+     * @param locationId - Location id of the user
+     * @param callback - Callback to return the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun getCartRelatedItems(
         itemIds: String, locationId: Int, callback: Callback<RecommendedItemResponse>
@@ -69,6 +89,11 @@ class CartServiceDefault(private val bizId: String, retrofit: Retrofit) : CartSe
     /**
      * Get the recommended items from the server. The items returned are based on a particular item
      * in details or checkout page.
+     *
+     * @param itemIds - Item id's can be passed as comma separated values (id1,id2,id3)
+     * @param locationId - Location id of the user
+     *
+     * @return Observable - the result of the network request is returned as an Observable
      */
     override fun getCartRelatedItems(itemIds: String, locationId: Int): Observable<RecommendedItemResponse> {
         val authToken: String = SharedPrefManager.getAuthToken(SharedPrefManager.isUserLoggedIn())
@@ -360,6 +385,14 @@ class CartServiceDefault(private val bizId: String, retrofit: Retrofit) : CartSe
         return cartService.initPayment(authToken, bizId, storeId, amount, "reload", redirectUrl, paytm, simpl)
     }
 
+    /**
+     * Verify that the wallet transaction occurred
+     *
+     * @param transactionId - transaction id
+     * @param gwTxnId - gateway transaction id
+     * @param transactionStatus - transaction status
+     * @param callback - Callback to return the result
+     */
     override fun verifyWalletPayment(
         transactionId: String, gwTxnId: String, transactionStatus: Int, callback: Callback<PaymentCallbackResponse>
     ): CancellableTask {
@@ -378,6 +411,13 @@ class CartServiceDefault(private val bizId: String, retrofit: Retrofit) : CartSe
         return CancellableTaskDisposableWrapper(compositeDisposable)
     }
 
+    /**
+     * Verify that the wallet transaction occurred
+     *
+     * @param transactionId - transaction id
+     * @param gwTxnId - gateway transaction id
+     * @param transactionStatus - transaction status
+     */
     override fun verifyWalletPayment(
         transactionId: String, gwTxnId: String, transactionStatus: Int
     ): Observable<PaymentCallbackResponse> {

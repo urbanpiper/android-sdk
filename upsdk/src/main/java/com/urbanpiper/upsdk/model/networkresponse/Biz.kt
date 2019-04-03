@@ -6,27 +6,27 @@ import com.google.gson.annotations.SerializedName
 /**
  * This class represents the configured information for the business
  *
- * @property contactPhone
- * @property deliveryRadius
- * @property timezone
- * @property currency
- * @property pickupEnabled
- * @property paymentOptions
- * @property walletReloadOpts
- * @property minOrderTotal
- * @property preProcess
- * @property deliveryMinOffsetTime
- * @property pickupMinOffsetTime
- * @property timeSlots
- * @property msgNoStoresNearby
- * @property msgNearestStoreClosed
- * @property msgNearestStoreClosedTemporary
- * @property feedbackConfigs
- * @property usePointOfDelivery
- * @property referralUILbl
- * @property referralShareLbl
- * @property paymentGatewayProvider
- * @property supportedLanguages
+ * @property contactPhone - Phone number of the business
+ * @property deliveryRadius - Delivery radius of the business
+ * @property timezone - shows the time zone of the business
+ * @property currency - currency of the business
+ * @property pickupEnabled - boolean to show if pickup is enabled for the business
+ * @property paymentOptions - payment options of available
+ * @property walletReloadOpts - wallet reload options for the business
+ * @property minOrderTotal - minimum order total
+ * @property preProcess - pre process
+ * @property deliveryMinOffsetTime - minimum time for the order to be delivered
+ * @property pickupMinOffsetTime - minimum time before the order can be picked up
+ * @property timeSlots - Time slots for delivery
+ * @property msgNoStoresNearby - Message to be shown when no stores are nearby
+ * @property msgNearestStoreClosed - message to be shown when nearest store is closed
+ * @property msgNearestStoreClosedTemporary - message to be shown when nearest store is closed temp
+ * @property feedbackConfigs - The feedback options to be shown to the user, other than stars
+ * @property usePointOfDelivery - Flag to use point of delivery mode
+ * @property referralUILbl - The text to be shown for referral label
+ * @property referralShareLbl - The text to be shown for the referral label
+ * @property paymentGatewayProvider - the payment gateway provider
+ * @property supportedLanguages - the languages supported by the business
  */
 data class Biz(
     @SerializedName("contact_phone")

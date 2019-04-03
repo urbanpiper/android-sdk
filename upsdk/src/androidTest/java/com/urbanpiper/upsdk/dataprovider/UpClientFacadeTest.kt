@@ -110,9 +110,9 @@ class UpClientFacadeTest {
         // User
         assertNotNull(upClient.login(anyString(), anyString()))
         assertNotNull(upClient.refreshToken(anyString()))
-        assertNotNull(
-            upClient.socialLoginOTP(anyString(), anyString(), anyString(), anyString(), anyString(), anyString())
-        )
+//        assertNotNull(
+//            upClient.socialLoginOTP(anyString(), anyString(), anyString(), anyString(), anyString(), anyString())
+//        )
         assertNotNull(upClient.socialLogin(anyString(), anyString(), anyString()))
         assertNotNull(upClient.refreshUserInfo(anyString()))
         assertNotNull(upClient.refreshUserBizInfo())
@@ -131,14 +131,13 @@ class UpClientFacadeTest {
         assertNotNull(upClient.getUserLikes(anyString()))
         assertNotNull(upClient.likeItem(anyInt()))
         assertNotNull(upClient.unLikeItem(anyInt()))
-        assertNotNull(upClient.sendResetPasswordOTP(anyString()))
-        assertNotNull(upClient.resetPassword(anyString(), anyString(), anyString(), anyString()))
+//        assertNotNull(upClient.sendResetPasswordOTP(anyString()))
+//        assertNotNull(upClient.resetPassword(anyString(), anyString(), anyString(), anyString()))
 
         // Cart
         assertNotNull(upClient.reOrder(anyString(), anyString(), anyString(), anyString()))
         assertNotNull(upClient.getCartRelatedItems(anyString(), anyInt()))
 //        assertNotNull(upClient.validateCart(order))
-
 
     }
 

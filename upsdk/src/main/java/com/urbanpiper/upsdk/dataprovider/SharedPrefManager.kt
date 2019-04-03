@@ -31,6 +31,8 @@ object SharedPrefManager {
     private const val SP_EMAIL_VERIFIED = "jwt.email.verified"
     private const val SP_TIME_SAVED = "jwt.details.saved.at"
 
+    private const val SP_CART_ADDRESS_ID = "cart.address.id"
+
     private lateinit var preferences: SharedPreferences
 
     fun init(context: Context?) {
@@ -63,6 +65,26 @@ object SharedPrefManager {
     }
 
     /**
+     * Save the cart location id
+     *
+     * @param locationId
+     */
+    @SuppressLint("ApplySharedPref")
+    internal fun saveCartLocationId(locationId: Int) {
+        val editor = preferences.edit()
+        editor.putInt(SP_CART_ADDRESS_ID, locationId)
+        editor.commit()
+    }
+
+    /**
+     * Returns the saved cart location id
+     *
+     */
+    internal fun getCartLocationId(): Int {
+        return preferences.getInt(SP_CART_ADDRESS_ID, -1)
+    }
+
+    /**
      * Checks if the user is logged in or not
      */
     fun isUserLoggedIn(): Boolean {
@@ -77,7 +99,7 @@ object SharedPrefManager {
     @SuppressLint("ApplySharedPref")
     fun saveToken(token: String) {
 
-        val JWTToken = "Bearer $token"
+        val jwtToken = "Bearer $token"
 
         val jwt = JWT(token)
 
@@ -110,7 +132,7 @@ object SharedPrefManager {
 
         val editor = preferences.edit()
 
-        editor.putString(SP_BEARER_JWT_TOKEN, JWTToken)
+        editor.putString(SP_BEARER_JWT_TOKEN, jwtToken)
         editor.putString(SP_JWT_TOKEN, token)
         editor.putString(SP_SERVER_USERNAME, serverUsername)
         editor.putString(SP_EMAIL, email)
@@ -131,7 +153,7 @@ object SharedPrefManager {
     }
 
     fun getUser(): User {
-        val user = User(
+        return User(
             preferences.getString(SP_BEARER_JWT_TOKEN, ""),
             preferences.getString(SP_JWT_TOKEN, ""),
             preferences.getString(SP_SERVER_USERNAME, ""),
@@ -149,7 +171,6 @@ object SharedPrefManager {
             preferences.getBoolean(SP_EMAIL_VERIFIED, true),
             preferences.getString(SP_TIME_SAVED, "")
         )
-        return user
     }
 
 }

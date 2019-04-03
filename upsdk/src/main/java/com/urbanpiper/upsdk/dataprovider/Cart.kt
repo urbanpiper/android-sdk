@@ -1,240 +1,124 @@
 package com.urbanpiper.upsdk.dataprovider
 
-import android.util.Log
-import com.urbanpiper.upsdk.dataprovider.Cart.Singleton.instance
-import com.urbanpiper.upsdk.model.networkresponse.OrderCategory
+import android.content.Context
+import androidx.lifecycle.LiveData
 import com.urbanpiper.upsdk.model.networkresponse.CartItem
-import java.util.*
-import kotlin.collections.ArrayList
+import io.reactivex.Observable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-/**
- * This class contains the implementation of the cart
- */
-class Cart : CartTracker {
+object Cart {
+
+    private lateinit var cartRepository: CartRepository
+
+    private var parentJob = Job()
+
+    private val coRoutineContext: CoroutineContext
+        get() = parentJob + Dispatchers.IO
+
+    private val scope = CoroutineScope(coRoutineContext)
 
     /**
-     * The cart is a tree map.
+     * Initializes the database. This is called from the UpInitContentProvider
+     *
+     * @param context - This is the context
      */
-    private var cart: TreeMap<OrderCategory, ArrayList<CartItem>> = TreeMap()
-
-    private var itemCount: Int = 0
-    private var lastUpdatedAt: Long = 0L
-
-    // This creates a single instance of a cart
-    object Singleton {
-        val instance: Cart = Cart()
+    fun init(context: Context?) {
+        if (context != null) {
+            val cartDao = CartRoomDatabase.getDatabase(context).cartDao()
+            cartRepository = CartRepository(cartDao)
+        }
     }
 
     /**
-     * Returns an instance of the cartManager
+     * Returns an instance of the cart
+     *
+     * @param locationId - Location Id
      */
-    fun getInstance(): Cart {
-        return instance
+    fun getInstance(locationId: Int): Cart {
+//        val locId: Int = SharedPrefManager.getCartLocationId()
+//        return if (locId == locationId) {
+//            Cart
+//        } else {
+//            clearCart()
+//            Cart
+//        }
+        return Cart
     }
 
     /**
-     * Returns the cart
+     * Add an item into the cart
+     *
+     * @param cartItem - Cart Item
      */
-    fun getCartTreeMap(): TreeMap<OrderCategory, ArrayList<CartItem>> {
-        return instance.cart
-    }
-
-    override fun addItem(category: OrderCategory, item: CartItem) {
-        addItemToCart(category, item)
-    }
-
-    override fun removeItem(category: OrderCategory, item: CartItem) {
-        removeItemFromCart(category, item)
-    }
-
-    override fun clearCart() {
-        resetCart()
+    fun addItem(cartItem: CartItem) = scope.launch {
+        cartRepository.insert(cartItem)
     }
 
     /**
-     * Returns the total number of items in the cart
+     * Remove an item from the cart
+     *
+     * @param cartItem
      */
-    fun getTotalItemsInCart(cart: TreeMap<OrderCategory, ArrayList<CartItem>>): Int {
-        var count = 0
-        val categories: Set<OrderCategory> = cart.keys
-
-        for (category in categories) {
-            for (item in cart[category]!!) {
-                count += item.quantity
-            }
-        }
-
-        if (count == 0) {
-            cart.clear()
-        }
-        return count
-    }
-
-    fun getTotalCount(): Int{
-        var count = 0
-        val categories: Set<OrderCategory> = cart.keys
-
-        for (category in categories) {
-            for (item in cart[category]!!) {
-                count += item.quantity
-            }
-        }
-
-        if (count == 0) {
-            cart.clear()
-        }
-        return count
+    fun removeItem(cartItem: CartItem) = scope.launch {
+        cartRepository.delete(cartItem)
     }
 
     /**
-     * Returns a list of all the items in the cart
+     * Clear the cart
+     *
      */
-    fun getAllCartItems(): ArrayList<CartItem> {
-        val allItems: ArrayList<CartItem> = ArrayList()
-
-        for (items in instance.cart.values) {
-            allItems.addAll(items)
-        }
-        return allItems
+    fun clearCart() = scope.launch {
+        cartRepository.clearCart()
     }
 
+    /**
+     * Get all the cart items
+     *
+     */
+    fun getAllItemsObservable(): Observable<List<CartItem>> {
+        return cartRepository.getAllItemsObservable()
+    }
 
     /**
-     * Returns a list of all the items
+     * Get all the items by id
+     *
+     * @param id - ID of the item
+     */
+    fun getAllItemsById(id: Int): Observable<List<CartItem>> {
+        return cartRepository.getAllItemsForId(id)
+    }
+
+    /**
+     * Get all the items using a live data observable
+     *
+     */
+    fun getAllItemsLiveData(): LiveData<List<CartItem>> {
+        return cartRepository.getAllCartItems()
+    }
+
+    /**
+     * Get all the items in the cart
+     */
+    fun getTotalItemsInCart(): Int {
+        return 0
+    }
+
+    /**
+     * Get the total cart value
      */
     fun getCartValue(): Float {
-        var value = 0F
-
-        val categories: Set<OrderCategory> = cart.keys
-
-        for (category in categories) {
-            for (item in cart[category]!!) {
-                val price: Float = item.price
-                value += price * item.quantity
-            }
-        }
-        return value
+        return 0f
     }
 
     /**
-     * Get the quantity of items stored in the cart
+     * Get the item count for id
      */
-    fun getItemCountForId(category: OrderCategory, item: CartItem): Int {
-        val items: ArrayList<CartItem>? = instance.cart[category]
-        var count = 0
-        if (items == null){
-            return count
-        } else if (!contains(items,item)){
-            return count
-        } else {
-            for (i in items) {
-                if (i == item) {
-                    count = i.quantity
-                    return count
-                }
-            }
-        }
-        return count
+    fun getItemCountForId(): Int {
+        return 0
     }
 
-    /**
-     * remove an item from the cart
-     *
-     * @param category
-     * @param item
-     */
-    private fun removeItemFromCart(category: OrderCategory, item: CartItem) {
-        val items: ArrayList<CartItem>? = instance.cart[category]
-        if (items == null) {
-            Log.e("cart", "Item does not exist in the cart")
-        } else if (!contains(items, item)) {
-            Log.e("cart", "Item does not exist in the cart")
-        } else {
-            removeItemFromCategory(instance.cart, category, item)
-            if (items.size == 0) {
-                instance.cart.remove(category)
-            }
-
-            instance.itemCount = getTotalItemsInCart(instance.cart)
-            instance.lastUpdatedAt = System.currentTimeMillis()
-        }
-
-    }
-
-    /**
-     * Add an item to the cart
-     */
-    private fun addItemToCart(category: OrderCategory, item: CartItem) {
-        var items: ArrayList<CartItem>? = instance.cart[category]
-        if (items == null) {
-            items = ArrayList()
-            instance.cart[category] = items
-        } else if (contains(items, item)) {
-            remove(items, item, item.hasOptions())
-        }
-        items.add(item)
-
-        // Updating cart internal values
-        instance.itemCount = getTotalItemsInCart(instance.cart)
-        instance.lastUpdatedAt = System.currentTimeMillis()
-    }
-
-    /**
-     * Remove item from a category in the cart
-     *
-     */
-    private fun removeItemFromCategory(
-        cart: TreeMap<OrderCategory, ArrayList<CartItem>>, category: OrderCategory, item: CartItem
-    ) {
-        val itemsIterator: MutableIterator<CartItem> = cart[category]!!.iterator()
-
-        while (itemsIterator.hasNext()) {
-            val currentItem: CartItem = itemsIterator.next()
-
-            if (currentItem == item) {
-                currentItem.quantity = currentItem.quantity - 1
-                if (currentItem.quantity <= 0) {
-                    itemsIterator.remove()
-                }
-            }
-            break
-        }
-    }
-
-    /**
-     * Remove an item from the list
-     */
-    private fun <T : Any> remove(list: ArrayList<T>, item: T, hasOptions: Boolean): T? {
-        for (i in list) {
-            if (i == item) {
-                if (hasOptions && i != item) {
-                    continue
-                }
-                list.remove(i)
-                return item
-            }
-
-        }
-        return null
-    }
-
-    /**
-     * Check if the item is present in the list
-     */
-    private fun <T : Any> contains(list: List<T>, item: T): Boolean {
-        for (i in list) {
-            if (i == item) {
-                return true
-            }
-        }
-        return false
-    }
-
-    /**
-     * Reset's the cart
-     */
-    private fun resetCart() {
-        instance.cart.clear()
-        instance.itemCount = 0
-    }
 }

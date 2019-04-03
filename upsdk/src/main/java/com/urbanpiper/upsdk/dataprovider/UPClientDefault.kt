@@ -38,9 +38,6 @@ class UPClientDefault(
     private val promotionsServiceDefault: PromotionsServiceDefault
     private val cartServiceDefault: CartServiceDefault
 
-    // Cart Instance
-    private val cart: Cart = Cart()
-
     // Initialization block
     init {
 
@@ -611,10 +608,12 @@ class UPClientDefault(
     /**
      * Login using social auth providers (eg. google, facebook)
      *
-     * @param email
-     * @param provider
-     * @param accessToken
-     * @param callback
+     * @param email - email address of the user
+     * @param provider - provider (google/facebook)
+     * @param accessToken - access token from google/facebook
+     * @param callback - Callback to receive the result
+     *
+     * @return CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask
      */
     override fun socialLogin(
         email: String, provider: String, accessToken: String, callback: Callback<SocialAuthResponse>
@@ -625,9 +624,11 @@ class UPClientDefault(
     /**
      * Login using social auth providers (eg. google, facebook)
      *
-     * @param email
-     * @param provider
-     * @param accessToken
+     * @param email - email address of the user
+     * @param provider - provider (google/facebook)
+     * @param accessToken - access token from google/facebook
+     *
+     *  @return Observable - the result of the network request is returned as an Observable
      */
     override fun socialLogin(email: String, provider: String, accessToken: String): Observable<SocialAuthResponse> {
         return userServiceDefault.socialLogin(email, provider, accessToken)
@@ -1266,8 +1267,8 @@ class UPClientDefault(
      *
      * @return Cart - The method returns an instance of a cart
      */
-    override fun getCart(): Cart {
-        return cart
+    override fun getCart(locationId: Int): Cart {
+        return Cart.getInstance(locationId)
     }
 
     /**
@@ -1316,4 +1317,11 @@ class UPClientDefault(
             null
         }
     }
+
+    /**
+     * Returns an instance of the biz data
+     */
+//    override fun getBiz(): Biz {
+//        return Biz
+//    }
 }
