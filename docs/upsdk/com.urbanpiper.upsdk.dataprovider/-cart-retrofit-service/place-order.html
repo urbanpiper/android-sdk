@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CartRetrofitService.placeOrder - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="index.html">CartRetrofitService</a>&nbsp;/&nbsp;<a href="./place-order.html">placeOrder</a><br/>
+<br/>
+<h1>placeOrder</h1>
+<a name="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$placeOrder(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.Order)"></a>
+<code><span class="identifier">@POST</span><span class="symbol">(</span>"/api/v1/order/"<span class="symbol">)</span> <span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">placeOrder</span><span class="symbol">(</span><span class="identifier">@Header</span><span class="symbol">(</span>"Authorization"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$placeOrder(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.Order)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"biz_id"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$placeOrder(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.Order)/bizId">bizId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Body</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$placeOrder(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.Order)/order">order</span><span class="symbol">:</span>&nbsp;<a href="../../com.urbanpiper.upsdk.model/-order/index.html"><span class="identifier">Order</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-order-save-response/index.html"><span class="identifier">OrderSaveResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Sends the order details to the server for persistence.</p>
+<h3>Parameters</h3>
+<p><a name="order"></a>
+<code>order</code> - <ul><li>Order object</li>
+</ul>
+</p>
+<p><a name="bizId"></a>
+<code>bizId</code> - <ul><li>biz Id</li>
+</ul>
+</p>
+<p><a name="authToken"></a>
+<code>authToken</code> - <ul><li>Auth token</li>
+</ul>
+</p>
+</BODY>
+</HTML>

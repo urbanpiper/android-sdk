@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>GeneralRetrofitService - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="./index.html">GeneralRetrofitService</a><br/>
+<br/>
+<h1>GeneralRetrofitService</h1>
+<code><span class="keyword">interface </span><span class="identifier">GeneralRetrofitService</span></code>
+<p>Defines the general interactions to be made with the server</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="app-version-check.html">appVersionCheck</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">appVersionCheck</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$appVersionCheck(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$appVersionCheck(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/bizId">bizId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$appVersionCheck(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/username">username</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$appVersionCheck(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/version">version</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-version-check-response/index.html"><span class="identifier">VersionCheckResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Determines the latest version of the android app
+as configured on the server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-all-stores.html">getAllStores</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAllStores</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$getAllStores(kotlin.String)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-store-list-response/index.html"><span class="identifier">StoreListResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Returns a list of all the stores</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-nearest-store.html">getNearestStore</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getNearestStore</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$getNearestStore(kotlin.String, kotlin.Double, kotlin.Double, kotlin.String)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$getNearestStore(kotlin.String, kotlin.Double, kotlin.Double, kotlin.String)/latitude">latitude</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$getNearestStore(kotlin.String, kotlin.Double, kotlin.Double, kotlin.String)/longitude">longitude</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$getNearestStore(kotlin.String, kotlin.Double, kotlin.Double, kotlin.String)/bizId">bizId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-store-response/index.html"><span class="identifier">StoreResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Returns the nearest store for the latitude and longitude</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="register-device-for-f-c-m.html">registerDeviceForFCM</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerDeviceForFCM</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$registerDeviceForFCM(com.urbanpiper.upsdk.model.FCMRegistrationBody, kotlin.String)/fcmRegistrationBody">fcmRegistrationBody</span><span class="symbol">:</span>&nbsp;<a href="../../com.urbanpiper.upsdk.model/-f-c-m-registration-body/index.html"><span class="identifier">FCMRegistrationBody</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralRetrofitService$registerDeviceForFCM(com.urbanpiper.upsdk.model.FCMRegistrationBody, kotlin.String)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="https://developer.android.com/reference/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span></code>
+<p>Registers device for fcm</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

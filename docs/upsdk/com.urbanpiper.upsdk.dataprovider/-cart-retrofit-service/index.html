@@ -1,0 +1,85 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CartRetrofitService - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="./index.html">CartRetrofitService</a><br/>
+<br/>
+<h1>CartRetrofitService</h1>
+<code><span class="keyword">interface </span><span class="identifier">CartRetrofitService</span></code>
+<p>A list of retrofit endpoints related to cart operations</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-cart-related-items.html">getCartRelatedItems</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getCartRelatedItems</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$getCartRelatedItems(kotlin.String, kotlin.String, kotlin.Int)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$getCartRelatedItems(kotlin.String, kotlin.String, kotlin.Int)/itemId">itemId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$getCartRelatedItems(kotlin.String, kotlin.String, kotlin.Int)/locationId">locationId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-recommended-item-response/index.html"><span class="identifier">RecommendedItemResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Get the recommended items from the server. The items returned are based on a particular item
+in details or checkout page.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="init-payment.html">initPayment</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">initPayment</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$initPayment(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$initPayment(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/bizId">bizId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$initPayment(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/storeId">storeId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$initPayment(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/amount">amount</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$initPayment(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/purpose">purpose</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$initPayment(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/redirectUrl">redirectUrl</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$initPayment(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/paytm">paytm</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$initPayment(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/simpl">simpl</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-payment-init-response/index.html"><span class="identifier">PaymentInitResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Initiates a payment for the particular biz's store. This is useful if the biz is
+using a franchisee model.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="place-order.html">placeOrder</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">placeOrder</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$placeOrder(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.Order)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$placeOrder(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.Order)/bizId">bizId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$placeOrder(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.Order)/order">order</span><span class="symbol">:</span>&nbsp;<a href="../../com.urbanpiper.upsdk.model/-order/index.html"><span class="identifier">Order</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-order-save-response/index.html"><span class="identifier">OrderSaveResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Sends the order details to the server for persistence.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="re-order.html">reOrder</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">reOrder</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/orderID">orderID</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/location_id">location_id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/lat">lat</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/lng">lng</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-re-order-response/index.html"><span class="identifier">ReOrderResponse</span></a><span class="symbol">&gt;</span></code>
+<p>re-order api</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validate-cart.html">validateCart</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">validateCart</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$validateCart(kotlin.String, kotlin.String, kotlin.Int, com.urbanpiper.upsdk.model.Order)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$validateCart(kotlin.String, kotlin.String, kotlin.Int, com.urbanpiper.upsdk.model.Order)/bizId">bizId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$validateCart(kotlin.String, kotlin.String, kotlin.Int, com.urbanpiper.upsdk.model.Order)/preProcessOutput">preProcessOutput</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$validateCart(kotlin.String, kotlin.String, kotlin.Int, com.urbanpiper.upsdk.model.Order)/order">order</span><span class="symbol">:</span>&nbsp;<a href="../../com.urbanpiper.upsdk.model/-order/index.html"><span class="identifier">Order</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-validate-cart-response/index.html"><span class="identifier">ValidateCartResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Sends the order details to the server for pre-processing.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validate-coupon.html">validateCoupon</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">validateCoupon</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$validateCoupon(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.ValidateCouponBody)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$validateCoupon(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.ValidateCouponBody)/couponCode">couponCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$validateCoupon(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.ValidateCouponBody)/body">body</span><span class="symbol">:</span>&nbsp;<a href="../../com.urbanpiper.upsdk.model/-validate-coupon-body/index.html"><span class="identifier">ValidateCouponBody</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-order-validate-coupon-response/index.html"><span class="identifier">OrderValidateCouponResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Advanced version of coupon validation - takes in the complete
+order data as request body.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="verify-payment.html">verifyPayment</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">verifyPayment</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$verifyPayment(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$verifyPayment(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/transactionId">transactionId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$verifyPayment(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/gwTxnId">gwTxnId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$verifyPayment(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/failed">failed</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-payment-callback-response/index.html"><span class="identifier">PaymentCallbackResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Marks the completion of a transaction.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

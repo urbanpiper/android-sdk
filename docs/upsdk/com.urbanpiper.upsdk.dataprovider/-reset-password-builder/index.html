@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ResetPasswordBuilder - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="./index.html">ResetPasswordBuilder</a><br/>
+<br/>
+<h1>ResetPasswordBuilder</h1>
+<code><span class="keyword">class </span><span class="identifier">ResetPasswordBuilder</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ResetPasswordBuilder</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$<init>(com.urbanpiper.upsdk.dataprovider.UserServiceDefault)/userServiceDefault">userServiceDefault</span><span class="symbol">:</span>&nbsp;<a href="../-user-service-default/index.html"><span class="identifier">UserServiceDefault</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="reset-password.html">resetPassword</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">resetPassword</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$resetPassword(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.GenericResponse)))/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$resetPassword(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.GenericResponse)))/newPassword">newPassword</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$resetPassword(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.GenericResponse)))/confirmPassword">confirmPassword</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$resetPassword(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.GenericResponse)))/otp">otp</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$resetPassword(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.GenericResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-generic-response/index.html"><span class="identifier">GenericResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">resetPassword</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$resetPassword(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$resetPassword(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/newPassword">newPassword</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$resetPassword(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/confirmPassword">confirmPassword</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$resetPassword(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/otp">otp</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-generic-response/index.html"><span class="identifier">GenericResponse</span></a><span class="symbol">&gt;</span></code>
+<p>This method reset's the password after the user enter's the password reset otp sent
+through SMS and email</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="send-reset-password-o-t-p.html">sendResetPasswordOTP</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">sendResetPasswordOTP</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$sendResetPasswordOTP(kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.GenericResponse)))/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$sendResetPasswordOTP(kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.GenericResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-generic-response/index.html"><span class="identifier">GenericResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">sendResetPasswordOTP</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.ResetPasswordBuilder$sendResetPasswordOTP(kotlin.String)/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-generic-response/index.html"><span class="identifier">GenericResponse</span></a><span class="symbol">&gt;</span></code>
+<p>This method generates a password reset token that is sent to the user through
+SMS and phone</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

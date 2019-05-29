@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CartRetrofitService.verifyPayment - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="index.html">CartRetrofitService</a>&nbsp;/&nbsp;<a href="./verify-payment.html">verifyPayment</a><br/>
+<br/>
+<h1>verifyPayment</h1>
+<a name="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$verifyPayment(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)"></a>
+<code><span class="identifier">@GET</span><span class="symbol">(</span>"/payments/callback/{txn_id}"<span class="symbol">)</span> <span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">verifyPayment</span><span class="symbol">(</span><span class="identifier">@Header</span><span class="symbol">(</span>"Authorization"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$verifyPayment(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Path</span><span class="symbol">(</span>"txn_id"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$verifyPayment(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/transactionId">transactionId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"gateway_txn_id"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$verifyPayment(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/gwTxnId">gwTxnId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"failed"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRetrofitService$verifyPayment(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/failed">failed</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-payment-callback-response/index.html"><span class="identifier">PaymentCallbackResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Marks the completion of a transaction.</p>
+<h3>Parameters</h3>
+<p><a name="transactionId"></a>
+<code>transactionId</code> - <ul><li>transaction id from payment init</li>
+</ul>
+</p>
+<p><a name="gwTxnId"></a>
+<code>gwTxnId</code> - <ul><li>Gateway transaction id</li>
+</ul>
+</p>
+<p><a name="failed"></a>
+<code>failed</code> - <ul><li>set to 1 if a failure occurred. Else, set to 0.</li>
+</ul>
+</p>
+<p><a name="authToken"></a>
+<code>authToken</code> - <ul><li>Auth token</li>
+</ul>
+</p>
+</BODY>
+</HTML>

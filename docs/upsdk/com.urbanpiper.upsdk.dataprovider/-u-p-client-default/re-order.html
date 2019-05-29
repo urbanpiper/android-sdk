@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UPClientDefault.reOrder - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="index.html">UPClientDefault</a>&nbsp;/&nbsp;<a href="./re-order.html">reOrder</a><br/>
+<br/>
+<h1>reOrder</h1>
+<a name="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.ReOrderResponse)))"></a>
+<code><span class="keyword">fun </span><span class="identifier">reOrder</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.ReOrderResponse)))/orderId">orderId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.ReOrderResponse)))/locationId">locationId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.ReOrderResponse)))/lat">lat</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.ReOrderResponse)))/lng">lng</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.ReOrderResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-re-order-response/index.html"><span class="identifier">ReOrderResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code>
+<p>Overrides <a href="../-cart-service/re-order.html">CartService.reOrder</a></p>
+<p>This endpoint validates whether a previously placed order can be re-ordered.
+The response indicates which items can be re-ordered and which can’t be.</p>
+<h3>Parameters</h3>
+<p><a name="orderId"></a>
+<code>orderId</code> - <ul><li>Order Id</li>
+</ul>
+</p>
+<p><a name="locationId"></a>
+<code>locationId</code> - <ul><li>Location Id</li>
+</ul>
+</p>
+<p><a name="lat"></a>
+<code>lat</code> - <ul><li>user's current latitude</li>
+</ul>
+</p>
+<p><a name="lng"></a>
+<code>lng</code> - <ul><li>user's current longitude</li>
+</ul>
+</p>
+<p><a name="callback"></a>
+<code>callback</code> - <ul><li>Callback to return the result</li>
+</ul>
+</p>
+<p><strong>Return</strong><br/>
+CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask</p>
+<a name="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String)"></a>
+<code><span class="keyword">fun </span><span class="identifier">reOrder</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/orderId">orderId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/locationId">locationId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/lat">lat</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$reOrder(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/lng">lng</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-re-order-response/index.html"><span class="identifier">ReOrderResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Overrides <a href="../-cart-service/re-order.html">CartService.reOrder</a></p>
+<p>This endpoint validates whether a previously placed order can be re-ordered.
+The response indicates which items can be re-ordered and which can’t be.</p>
+<h3>Parameters</h3>
+<p><a name="orderId"></a>
+<code>orderId</code> - <ul><li>Order Id</li>
+</ul>
+</p>
+<p><a name="locationId"></a>
+<code>locationId</code> - <ul><li>Location Id</li>
+</ul>
+</p>
+<p><a name="lat"></a>
+<code>lat</code> - <ul><li>user's current latitude</li>
+</ul>
+</p>
+<p><a name="lng"></a>
+<code>lng</code> - <ul><li>user's current longitude</li>
+</ul>
+</p>
+<p><strong>Return</strong><br/>
+Observable - the result of the network request is returned as an Observable</p>
+</BODY>
+</HTML>

@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UPClientDefault.getUserLikes - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="index.html">UPClientDefault</a>&nbsp;/&nbsp;<a href="./get-user-likes.html">getUserLikes</a><br/>
+<br/>
+<h1>getUserLikes</h1>
+<a name="com.urbanpiper.upsdk.dataprovider.UPClientDefault$getUserLikes(kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.UserLikesResponse)))"></a>
+<code><span class="keyword">fun </span><span class="identifier">getUserLikes</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$getUserLikes(kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.UserLikesResponse)))/ids">ids</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$getUserLikes(kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.UserLikesResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-user-likes-response/index.html"><span class="identifier">UserLikesResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code>
+<p>Overrides <a href="../-user-service/get-user-likes.html">UserService.getUserLikes</a></p>
+<p>Returns a list of likes for item id's passed as (eg - id1,id2,id3)</p>
+<h3>Parameters</h3>
+<p><a name="ids"></a>
+<code>ids</code> - <ul><li>Item id's passed as a comma separated values (eg - id1,id2,id3)</li>
+</ul>
+</p>
+<p><a name="callback"></a>
+<code>callback</code> - <ul><li>Callback to return the result</li>
+</ul>
+</p>
+<p><strong>Return</strong><br/>
+CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask</p>
+<a name="com.urbanpiper.upsdk.dataprovider.UPClientDefault$getUserLikes(kotlin.String)"></a>
+<code><span class="keyword">fun </span><span class="identifier">getUserLikes</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UPClientDefault$getUserLikes(kotlin.String)/ids">ids</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-user-likes-response/index.html"><span class="identifier">UserLikesResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Overrides <a href="../-user-service/get-user-likes.html">UserService.getUserLikes</a></p>
+<p>Returns a list of likes for item id's passed as (eg - id1,id2,id3)</p>
+<h3>Parameters</h3>
+<p><a name="ids"></a>
+<code>ids</code> - <ul><li>Item id's passed as a comma separated values (eg - id1,id2,id3)</li>
+</ul>
+</p>
+<p><strong>Return</strong><br/>
+Observable - the result of the network request is returned as an Observable</p>
+</BODY>
+</HTML>

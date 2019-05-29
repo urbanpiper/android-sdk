@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>PromotionsService - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="./index.html">PromotionsService</a><br/>
+<br/>
+<h1>PromotionsService</h1>
+<code><span class="keyword">interface </span><span class="identifier">PromotionsService</span></code>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-banners.html">getBanners</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getBanners</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.PromotionsService$getBanners(com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.BannerResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-banner-response/index.html"><span class="identifier">BannerResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getBanners</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-banner-response/index.html"><span class="identifier">BannerResponse</span></a><span class="symbol">&gt;</span></code>
+<p>The method returns the list of images that have been uploaded through the configuration portal.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-coupons.html">getCoupons</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getCoupons</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.PromotionsService$getCoupons(com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.OffersResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-offers-response/index.html"><span class="identifier">OffersResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getCoupons</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-offers-response/index.html"><span class="identifier">OffersResponse</span></a><span class="symbol">&gt;</span></code>
+<p>This method returns a list of offers that can be applied to an order</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-rewards.html">getRewards</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getRewards</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.PromotionsService$getRewards(com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RewardsResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-rewards-response/index.html"><span class="identifier">RewardsResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getRewards</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-rewards-response/index.html"><span class="identifier">RewardsResponse</span></a><span class="symbol">&gt;</span></code>
+<p>This endpoint returns the list of rewards that are configured in the system.
+Rewards might be in one of the following states for a user</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-promotions-service-default/index.html">PromotionsServiceDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">PromotionsServiceDefault</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">PromotionsService</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-u-p-client/index.html">UPClient</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">UPClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-general-service/index.html"><span class="identifier">GeneralService</span></a><span class="symbol">, </span><a href="../-catalogue-service/index.html"><span class="identifier">CatalogueService</span></a><span class="symbol">, </span><a href="../-user-service/index.html"><span class="identifier">UserService</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">PromotionsService</span></a><span class="symbol">, </span><a href="../-cart-service/index.html"><span class="identifier">CartService</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

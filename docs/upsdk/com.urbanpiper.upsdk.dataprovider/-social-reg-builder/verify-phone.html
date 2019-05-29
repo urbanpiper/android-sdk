@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SocialRegBuilder.verifyPhone - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="index.html">SocialRegBuilder</a>&nbsp;/&nbsp;<a href="./verify-phone.html">verifyPhone</a><br/>
+<br/>
+<h1>verifyPhone</h1>
+<a name="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))"></a>
+<code><span class="keyword">fun </span><span class="identifier">verifyPhone</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))/provider">provider</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))/accessToken">accessToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-social-auth-response/index.html"><span class="identifier">SocialAuthResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code>
+<p>Check if phone number is present in the server. It will also send an OTP if the user is present
+in the server, or you will have to create a new user</p>
+<h3>Parameters</h3>
+<p><a name="email"></a>
+<code>email</code> - <ul><li>Email</li>
+</ul>
+</p>
+<p><a name="phone"></a>
+<code>phone</code> - <ul><li>Phone</li>
+</ul>
+</p>
+<p><a name="provider"></a>
+<code>provider</code> - <ul><li>Provider</li>
+</ul>
+</p>
+<p><a name="accessToken"></a>
+<code>accessToken</code> - <ul><li>Access Token for google / facebook</li>
+</ul>
+</p>
+<p><a name="callback"></a>
+<code>callback</code> - <ul><li>Callback to return the result</li>
+</ul>
+</p>
+<p><strong>Return</strong><br/>
+CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask</p>
+<a name="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String)"></a>
+<code><span class="keyword">fun </span><span class="identifier">verifyPhone</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/provider">provider</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.SocialRegBuilder$verifyPhone(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/accessToken">accessToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-social-auth-response/index.html"><span class="identifier">SocialAuthResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Check if phone number is present in the server. It will also send an OTP if the user is present
+in the server, or you will have to create a new user</p>
+<h3>Parameters</h3>
+<p><a name="email"></a>
+<code>email</code> - <ul><li>Email</li>
+</ul>
+</p>
+<p><a name="phone"></a>
+<code>phone</code> - <ul><li>Phone</li>
+</ul>
+</p>
+<p><a name="provider"></a>
+<code>provider</code> - <ul><li>Provider</li>
+</ul>
+</p>
+<p><a name="accessToken"></a>
+<code>accessToken</code> - <ul><li>Access Token for google / facebook</li>
+</ul>
+</p>
+<p><strong>Return</strong><br/>
+Observable - the result of the network request is returned as an Observable</p>
+</BODY>
+</HTML>

@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UserService.socialLogin - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="index.html">UserService</a>&nbsp;/&nbsp;<a href="./social-login.html">socialLogin</a><br/>
+<br/>
+<h1>socialLogin</h1>
+<a name="com.urbanpiper.upsdk.dataprovider.UserService$socialLogin(kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">socialLogin</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserService$socialLogin(kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserService$socialLogin(kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))/provider">provider</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserService$socialLogin(kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))/accessToken">accessToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserService$socialLogin(kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.SocialAuthResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-social-auth-response/index.html"><span class="identifier">SocialAuthResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code>
+<p>Login to the using social auth providers (eg, Facebook, Google)</p>
+<h3>Parameters</h3>
+<p><a name="email"></a>
+<code>email</code> - </p>
+<p><a name="provider"></a>
+<code>provider</code> - </p>
+<p><a name="accessToken"></a>
+<code>accessToken</code> - </p>
+<p><a name="callback"></a>
+<code>callback</code> - </p>
+<p><strong>Return</strong><br/>
+CancellableTask - the request can be cancelled by calling .cancel() on the CancellableTask</p>
+<a name="com.urbanpiper.upsdk.dataprovider.UserService$socialLogin(kotlin.String, kotlin.String, kotlin.String)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">socialLogin</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserService$socialLogin(kotlin.String, kotlin.String, kotlin.String)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserService$socialLogin(kotlin.String, kotlin.String, kotlin.String)/provider">provider</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserService$socialLogin(kotlin.String, kotlin.String, kotlin.String)/accessToken">accessToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-social-auth-response/index.html"><span class="identifier">SocialAuthResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Login to the using social auth providers (eg, Facebook, Google)</p>
+<h3>Parameters</h3>
+<p><a name="email"></a>
+<code>email</code> - </p>
+<p><a name="provider"></a>
+<code>provider</code> - </p>
+<p><a name="accessToken"></a>
+<code>accessToken</code> - </p>
+<p><strong>Return</strong><br/>
+Observable - the result of the network request is returned as an Observable</p>
+</BODY>
+</HTML>

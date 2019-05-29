@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>RegistrationBuilder - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="./index.html">RegistrationBuilder</a><br/>
+<br/>
+<h1>RegistrationBuilder</h1>
+<code><span class="keyword">class </span><span class="identifier">RegistrationBuilder</span></code>
+<p>Registration builder</p>
+<p>There are two steps</p>
+<ol><li>First you have to create a new user</li>
+<li>Verify OTP</li>
+</ol>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">RegistrationBuilder</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$<init>(com.urbanpiper.upsdk.dataprovider.UserServiceDefault)/userServiceDefault">userServiceDefault</span><span class="symbol">:</span>&nbsp;<a href="../-user-service-default/index.html"><span class="identifier">UserServiceDefault</span></a><span class="symbol">)</span></code>
+<p>Registration builder</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="create-user.html">createUser</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">createUser</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-registration-response/index.html"><span class="identifier">RegistrationResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">createUser</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-registration-response/index.html"><span class="identifier">RegistrationResponse</span></a><span class="symbol">&gt;</span></code>
+<p>This method is used to register a new user</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="resend-o-t-p.html">resendOTP</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">resendOTP</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$resendOTP(kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$resendOTP(kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-registration-response/index.html"><span class="identifier">RegistrationResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code>
+<p>This method is used ot resend the OTP</p>
+<code><span class="keyword">fun </span><span class="identifier">resendOTP</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$resendOTP(kotlin.String)/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-registration-response/index.html"><span class="identifier">RegistrationResponse</span></a><span class="symbol">&gt;</span></code>
+<p>This method is used to resend the OTP</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="verify-o-t-p.html">verifyOTP</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">verifyOTP</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$verifyOTP(kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$verifyOTP(kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$verifyOTP(kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/pin">pin</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$verifyOTP(kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.RegistrationResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-registration-response/index.html"><span class="identifier">RegistrationResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">verifyOTP</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$verifyOTP(kotlin.String, kotlin.String, kotlin.String)/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$verifyOTP(kotlin.String, kotlin.String, kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.RegistrationBuilder$verifyOTP(kotlin.String, kotlin.String, kotlin.String)/pin">pin</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-registration-response/index.html"><span class="identifier">RegistrationResponse</span></a><span class="symbol">&gt;</span></code>
+<p>This method is used to verify the OTP</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

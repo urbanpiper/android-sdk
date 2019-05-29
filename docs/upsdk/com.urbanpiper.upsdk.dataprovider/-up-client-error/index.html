@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UpClientError - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="./index.html">UpClientError</a><br/>
+<br/>
+<h1>UpClientError</h1>
+<code><span class="keyword">class </span><span class="identifier">UpClientError</span></code>
+<p>This class returns network errors</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">UpClientError</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UpClientError$<init>(kotlin.Throwable)/retrofitErrorThrowable">retrofitErrorThrowable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">?</span><span class="symbol">)</span></code>
+<p>This class returns network errors</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-e-r-r-o-r_-t-y-p-e_-a-p-i.html">ERROR_TYPE_API</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">ERROR_TYPE_API</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Represents any errors returning from the backend</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-e-r-r-o-r_-t-y-p-e_-n-e-t-w-o-r-k.html">ERROR_TYPE_NETWORK</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">ERROR_TYPE_NETWORK</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Represents any network related errors</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-e-r-r-o-r_-t-y-p-e_-u-n-k-n-o-w-n.html">ERROR_TYPE_UNKNOWN</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">ERROR_TYPE_UNKNOWN</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Represent any unknown errors</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-error-type.html">getErrorType</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getErrorType</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Returns the different types of errors</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-response-code.html">getResponseCode</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getResponseCode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>This returns a -1 if the error is because of an IOException, only http errors are returned</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-response-message.html">getResponseMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getResponseMessage</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>This returns the response error message</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-throwable.html">getThrowable</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getThrowable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="is-session-expired.html">isSessionExpired</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">isSessionExpired</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>This method shows whether or not the session has expired
+i.e - The if the token has expired and an API returns a 401</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

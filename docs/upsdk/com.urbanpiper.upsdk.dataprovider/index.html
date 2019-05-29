@@ -1,0 +1,298 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.urbanpiper.upsdk.dataprovider - upsdk</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">upsdk</a>&nbsp;/&nbsp;<a href="./index.html">com.urbanpiper.upsdk.dataprovider</a><br/>
+<br/>
+<h2>Package com.urbanpiper.upsdk.dataprovider</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-callback/index.html">Callback</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Callback</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>This callback returns the response from a network call</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-cancellable-task/index.html">CancellableTask</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">CancellableTask</span></code>
+<p>Interface is used to help with cancelling a network request made with retrofit</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-cancellable-task-disposable-wrapper/index.html">CancellableTaskDisposableWrapper</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CancellableTaskDisposableWrapper</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code>
+<p>Helper method to cancel network requests</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-cart/index.html">Cart</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">Cart</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-cart-dao/index.html">CartDao</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">CartDao</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-cart-old/index.html">CartOld</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CartOld</span></code>
+<p>This class contains the implementation of the cart</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-cart-repository/index.html">CartRepository</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CartRepository</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-cart-retrofit-service/index.html">CartRetrofitService</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">CartRetrofitService</span></code>
+<p>A list of retrofit endpoints related to cart operations</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-cart-room-database/index.html">CartRoomDatabase</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">CartRoomDatabase</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">RoomDatabase</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-cart-service/index.html">CartService</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">CartService</span></code>
+<p>List of methods related to cart</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-cart-service-default/index.html">CartServiceDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CartServiceDefault</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-cart-service/index.html"><span class="identifier">CartService</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-cart-tracker/index.html">CartTracker</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">CartTracker</span></code>
+<p>Helper method for the cart implementation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-catalogue-retrofit-service/index.html">CatalogueRetrofitService</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">CatalogueRetrofitService</span></code>
+<p>List of catalogue related retrofit calls</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-catalogue-service/index.html">CatalogueService</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">CatalogueService</span></code>
+<p>List of methods related to the catalogue</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-catalogue-service-default/index.html">CatalogueServiceDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CatalogueServiceDefault</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-catalogue-service/index.html"><span class="identifier">CatalogueService</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-checkout-builder/index.html">CheckoutBuilder</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CheckoutBuilder</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-general-retrofit-service/index.html">GeneralRetrofitService</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">GeneralRetrofitService</span></code>
+<p>Defines the general interactions to be made with the server</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-general-service/index.html">GeneralService</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">GeneralService</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-general-service-default/index.html">GeneralServiceDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">GeneralServiceDefault</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-general-service/index.html"><span class="identifier">GeneralService</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-item-option-builder/index.html">ItemOptionBuilder</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ItemOptionBuilder</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-promotions-retrofit-service/index.html">PromotionsRetrofitService</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">PromotionsRetrofitService</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-promotions-service/index.html">PromotionsService</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">PromotionsService</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-promotions-service-default/index.html">PromotionsServiceDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">PromotionsServiceDefault</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-promotions-service/index.html"><span class="identifier">PromotionsService</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-registration-builder/index.html">RegistrationBuilder</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">RegistrationBuilder</span></code>
+<p>Registration builder</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-reset-password-builder/index.html">ResetPasswordBuilder</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ResetPasswordBuilder</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-shared-pref-manager/index.html">SharedPrefManager</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">SharedPrefManager</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-social-reg-builder/index.html">SocialRegBuilder</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SocialRegBuilder</span></code>
+<p>A helper class that contains the related api's to register a social login user.
+The api's have to be called in the following order.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-u-p-client/index.html">UPClient</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">UPClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-general-service/index.html"><span class="identifier">GeneralService</span></a><span class="symbol">, </span><a href="-catalogue-service/index.html"><span class="identifier">CatalogueService</span></a><span class="symbol">, </span><a href="-user-service/index.html"><span class="identifier">UserService</span></a><span class="symbol">, </span><a href="-promotions-service/index.html"><span class="identifier">PromotionsService</span></a><span class="symbol">, </span><a href="-cart-service/index.html"><span class="identifier">CartService</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-u-p-client-builder/index.html">UPClientBuilder</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">UPClientBuilder</span></code>
+<p>Written in java for now 
+<p> It would be easier to create the UPClient object if the builder was written in java for third party dev's who might use java to build the android application</p>
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-u-p-client-default/index.html">UPClientDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">UPClientDefault</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-u-p-client/index.html"><span class="identifier">UPClient</span></a></code>
+<p>All methods for the UPSDK are available through
+this class.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-up-client-error/index.html">UpClientError</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">UpClientError</span></code>
+<p>This class returns network errors</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-up-init-content-provider/index.html">UpInitContentProvider</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">UpInitContentProvider</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/ContentProvider.html"><span class="identifier">ContentProvider</span></a></code>
+<p>This is an internal class used to init parts of the SDK</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-user-retrofit-service/index.html">UserRetrofitService</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">UserRetrofitService</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-user-service/index.html">UserService</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">UserService</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-user-service-default/index.html">UserServiceDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">UserServiceDefault</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-user-service/index.html"><span class="identifier">UserService</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

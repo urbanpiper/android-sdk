@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UserRetrofitService.updateUserInfo - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="index.html">UserRetrofitService</a>&nbsp;/&nbsp;<a href="./update-user-info.html">updateUserInfo</a><br/>
+<br/>
+<h1>updateUserInfo</h1>
+<a name="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$updateUserInfo(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.UpdateUserInfoBody)"></a>
+<code><span class="identifier">@PUT</span><span class="symbol">(</span>"/api/v1/user/profile/"<span class="symbol">)</span> <span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">updateUserInfo</span><span class="symbol">(</span><span class="identifier">@Header</span><span class="symbol">(</span>"Authorization"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$updateUserInfo(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.UpdateUserInfoBody)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"customer_phone"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$updateUserInfo(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.UpdateUserInfoBody)/phone">phone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Body</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$updateUserInfo(kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.UpdateUserInfoBody)/body">body</span><span class="symbol">:</span>&nbsp;<a href="../../com.urbanpiper.upsdk.model/-update-user-info-body/index.html"><span class="identifier">UpdateUserInfoBody</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-update-user-info-response/index.html"><span class="identifier">UpdateUserInfoResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Updates the user info</p>
+<h3>Parameters</h3>
+<p><a name="authToken"></a>
+<code>authToken</code> - <ul><li>Authorization token</li>
+</ul>
+</p>
+<p><a name="phone"></a>
+<code>phone</code> - <ul><li>Phone number</li>
+</ul>
+</p>
+<p><a name="body"></a>
+<code>body</code> - <ul><li>Object of type UserInfoUpdateBody</li>
+</ul>
+</p>
+</BODY>
+</HTML>

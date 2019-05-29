@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>GeneralService - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="./index.html">GeneralService</a><br/>
+<br/>
+<h1>GeneralService</h1>
+<code><span class="keyword">interface </span><span class="identifier">GeneralService</span></code>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="check-app-version.html">checkAppVersion</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">checkAppVersion</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$checkAppVersion(kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse)))/username">username</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$checkAppVersion(kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse)))/version">version</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$checkAppVersion(kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.VersionCheckResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-version-check-response/index.html"><span class="identifier">VersionCheckResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">checkAppVersion</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$checkAppVersion(kotlin.String, kotlin.String)/username">username</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$checkAppVersion(kotlin.String, kotlin.String)/version">version</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-version-check-response/index.html"><span class="identifier">VersionCheckResponse</span></a><span class="symbol">&gt;</span></code>
+<p>returns the latest version of the android app as configured on the server</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-all-stores.html">getAllStores</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAllStores</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$getAllStores(com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.StoreListResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-store-list-response/index.html"><span class="identifier">StoreListResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAllStores</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-store-list-response/index.html"><span class="identifier">StoreListResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Returns all the stores for the business</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-nearest-store.html">getNearestStore</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getNearestStore</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$getNearestStore(kotlin.Double, kotlin.Double, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.StoreResponse)))/lat">lat</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$getNearestStore(kotlin.Double, kotlin.Double, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.StoreResponse)))/lng">lng</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$getNearestStore(kotlin.Double, kotlin.Double, com.urbanpiper.upsdk.dataprovider.Callback((com.urbanpiper.upsdk.model.networkresponse.StoreResponse)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-store-response/index.html"><span class="identifier">StoreResponse</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getNearestStore</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$getNearestStore(kotlin.Double, kotlin.Double)/lat">lat</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$getNearestStore(kotlin.Double, kotlin.Double)/lng">lng</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html"><span class="identifier">Double</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-store-response/index.html"><span class="identifier">StoreResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Returns the nearest store based on lat/ lng</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="register-f-c-m-token.html">registerFCMToken</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerFCMToken</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$registerFCMToken(kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((java.lang.Void)))/token">token</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$registerFCMToken(kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((java.lang.Void)))/deviceId">deviceId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$registerFCMToken(kotlin.String, kotlin.String, com.urbanpiper.upsdk.dataprovider.Callback((java.lang.Void)))/callback">callback</span><span class="symbol">:</span>&nbsp;<a href="../-callback/index.html"><span class="identifier">Callback</span></a><span class="symbol">&lt;</span><a href="https://developer.android.com/reference/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-cancellable-task/index.html"><span class="identifier">CancellableTask</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerFCMToken</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$registerFCMToken(kotlin.String, kotlin.String)/token">token</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.GeneralService$registerFCMToken(kotlin.String, kotlin.String)/deviceId">deviceId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="https://developer.android.com/reference/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span></code>
+<p>Register the device for FCM</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-general-service-default/index.html">GeneralServiceDefault</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">GeneralServiceDefault</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">GeneralService</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-u-p-client/index.html">UPClient</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">UPClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">GeneralService</span></a><span class="symbol">, </span><a href="../-catalogue-service/index.html"><span class="identifier">CatalogueService</span></a><span class="symbol">, </span><a href="../-user-service/index.html"><span class="identifier">UserService</span></a><span class="symbol">, </span><a href="../-promotions-service/index.html"><span class="identifier">PromotionsService</span></a><span class="symbol">, </span><a href="../-cart-service/index.html"><span class="identifier">CartService</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CatalogueRetrofitService.getCategories - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="index.html">CatalogueRetrofitService</a>&nbsp;/&nbsp;<a href="./get-categories.html">getCategories</a><br/>
+<br/>
+<h1>getCategories</h1>
+<a name="com.urbanpiper.upsdk.dataprovider.CatalogueRetrofitService$getCategories(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)"></a>
+<code><span class="identifier">@GET</span><span class="symbol">(</span>"/api/v1/order/categories/"<span class="symbol">)</span> <span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getCategories</span><span class="symbol">(</span><span class="identifier">@Header</span><span class="symbol">(</span>"Authorization"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CatalogueRetrofitService$getCategories(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Header</span><span class="symbol">(</span>"cache-control"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CatalogueRetrofitService$getCategories(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/cacheControl">cacheControl</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;"no-cache"<span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"biz_id"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CatalogueRetrofitService$getCategories(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/bizId">bizId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"location_id"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CatalogueRetrofitService$getCategories(kotlin.String, kotlin.String, kotlin.String, kotlin.Int)/locationId">locationId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-categories-response/index.html"><span class="identifier">CategoriesResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Retrieves all the available categories available for
+ordering.</p>
+<h3>Parameters</h3>
+<p><a name="bizId"></a>
+<code>bizId</code> - <ul><li>Id of biz id</li>
+</ul>
+</p>
+<p><a name="locationId"></a>
+<code>locationId</code> - <ul><li>Optional. If present, categories for that location would be fetched.</li>
+</ul>
+</p>
+<p><a name="authToken"></a>
+<code>authToken</code> - <ul><li>Auth token</li>
+</ul>
+</p>
+<p><a name="cacheControl"></a>
+<code>cacheControl</code> - <ul><li>pass null if caching is ok, else, pass "no-cache".</li>
+</ul>
+</p>
+</BODY>
+</HTML>

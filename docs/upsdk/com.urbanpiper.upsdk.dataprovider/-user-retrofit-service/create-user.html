@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UserRetrofitService.createUser - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="index.html">UserRetrofitService</a>&nbsp;/&nbsp;<a href="./create-user.html">createUser</a><br/>
+<br/>
+<h1>createUser</h1>
+<a name="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.networkresponse.AccountRegistrationBody)"></a>
+<code><span class="identifier">@POST</span><span class="symbol">(</span>"/api/v2/card/"<span class="symbol">)</span> <span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">createUser</span><span class="symbol">(</span><span class="identifier">@Header</span><span class="symbol">(</span>"Authorization"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.networkresponse.AccountRegistrationBody)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"customer_phone"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.networkresponse.AccountRegistrationBody)/customerPhone">customerPhone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"email"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.networkresponse.AccountRegistrationBody)/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"password"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.networkresponse.AccountRegistrationBody)/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"customer_name"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.networkresponse.AccountRegistrationBody)/customerName">customerName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"channel"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.networkresponse.AccountRegistrationBody)/channel">channel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Body</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, com.urbanpiper.upsdk.model.networkresponse.AccountRegistrationBody)/body">body</span><span class="symbol">:</span>&nbsp;<a href="../../com.urbanpiper.upsdk.model.networkresponse/-account-registration-body/index.html"><span class="identifier">AccountRegistrationBody</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-registration-response/index.html"><span class="identifier">RegistrationResponse</span></a><span class="symbol">&gt;</span></code>
+<p>For creating a new user account.</p>
+<h3>Parameters</h3>
+<p><a name="authToken"></a>
+<code>authToken</code> - <ul><li>Auth token</li>
+</ul>
+</p>
+<p><a name="customerPhone"></a>
+<code>customerPhone</code> - <ul><li>phone</li>
+</ul>
+</p>
+<p><a name="email"></a>
+<code>email</code> - <ul><li>email</li>
+</ul>
+</p>
+<p><a name="password"></a>
+<code>password</code> - <ul><li>password</li>
+</ul>
+</p>
+<p><a name="customerName"></a>
+<code>customerName</code> - <ul><li>name</li>
+</ul>
+</p>
+<p><a name="channel"></a>
+<code>channel</code> - <ul><li>channel = app_android</li>
+</ul>
+</p>
+</BODY>
+</HTML>

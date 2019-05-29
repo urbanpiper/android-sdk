@@ -45,7 +45,7 @@ ext {
 
 dokka {
     outputFormat = 'html'
-    outputDirectory = "$rootDir/javadoc"
+    outputDirectory = "$rootDir/docs"
 }
 
 dependencies {

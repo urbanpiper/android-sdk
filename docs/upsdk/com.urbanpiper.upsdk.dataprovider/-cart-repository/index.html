@@ -1,0 +1,93 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CartRepository - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="./index.html">CartRepository</a><br/>
+<br/>
+<h1>CartRepository</h1>
+<code><span class="keyword">class </span><span class="identifier">CartRepository</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">CartRepository</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRepository$<init>(com.urbanpiper.upsdk.dataprovider.CartDao)/cartDao">cartDao</span><span class="symbol">:</span>&nbsp;<a href="../-cart-dao/index.html"><span class="identifier">CartDao</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="clear-cart.html">clearCart</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">clearCart</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>This method deletes all the items in the cart</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="delete.html">delete</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">delete</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRepository$delete(com.urbanpiper.upsdk.model.networkresponse.CartItem)/cartItem">cartItem</span><span class="symbol">:</span>&nbsp;<a href="../../com.urbanpiper.upsdk.model.networkresponse/-cart-item/index.html"><span class="identifier">CartItem</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>This method deletes an item from the cart</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-all-cart-items.html">getAllCartItems</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getAllCartItems</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">LiveData</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-cart-item/index.html"><span class="identifier">CartItem</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>This method returns a list of all cart items</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-all-items-for-id.html">getAllItemsForId</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getAllItemsForId</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRepository$getAllItemsForId(kotlin.Int)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-cart-item/index.html"><span class="identifier">CartItem</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Returns a list of all items based on the id</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-all-items-observable.html">getAllItemsObservable</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getAllItemsObservable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-cart-item/index.html"><span class="identifier">CartItem</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Returns a list of all the items as an observable</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="insert.html">insert</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">insert</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRepository$insert(com.urbanpiper.upsdk.model.networkresponse.CartItem)/cartItem">cartItem</span><span class="symbol">:</span>&nbsp;<a href="../../com.urbanpiper.upsdk.model.networkresponse/-cart-item/index.html"><span class="identifier">CartItem</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>This method inserts a cart item into the database</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="update.html">update</a></p>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">update</span><span class="symbol">(</span><span class="identifier" id="com.urbanpiper.upsdk.dataprovider.CartRepository$update(com.urbanpiper.upsdk.model.networkresponse.CartItem)/cartItem">cartItem</span><span class="symbol">:</span>&nbsp;<a href="../../com.urbanpiper.upsdk.model.networkresponse/-cart-item/index.html"><span class="identifier">CartItem</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>This method updates the existing cart item in the database</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

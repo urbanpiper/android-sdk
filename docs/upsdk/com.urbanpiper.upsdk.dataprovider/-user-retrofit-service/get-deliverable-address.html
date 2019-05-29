@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UserRetrofitService.getDeliverableAddress - upsdk</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">upsdk</a>&nbsp;/&nbsp;<a href="../index.html">com.urbanpiper.upsdk.dataprovider</a>&nbsp;/&nbsp;<a href="index.html">UserRetrofitService</a>&nbsp;/&nbsp;<a href="./get-deliverable-address.html">getDeliverableAddress</a><br/>
+<br/>
+<h1>getDeliverableAddress</h1>
+<a name="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$getDeliverableAddress(kotlin.String, kotlin.String)"></a>
+<code><span class="identifier">@GET</span><span class="symbol">(</span>"/api/v1/user/address/"<span class="symbol">)</span> <span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getDeliverableAddress</span><span class="symbol">(</span><span class="identifier">@Header</span><span class="symbol">(</span>"Authorization"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$getDeliverableAddress(kotlin.String, kotlin.String)/authToken">authToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier">@Query</span><span class="symbol">(</span>"location_id"<span class="symbol">)</span> <span class="identifier" id="com.urbanpiper.upsdk.dataprovider.UserRetrofitService$getDeliverableAddress(kotlin.String, kotlin.String)/locationId">locationId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Observable</span><span class="symbol">&lt;</span><a href="../../com.urbanpiper.upsdk.model.networkresponse/-deliverable-address-response/index.html"><span class="identifier">DeliverableAddressResponse</span></a><span class="symbol">&gt;</span></code>
+<p>Gets a list of addresses for the user. Each address has a field deliverable which
+will be true/false based on the current location id.</p>
+<h3>Parameters</h3>
+<p><a name="authToken"></a>
+<code>authToken</code> - <ul><li>It is logged in user auth</li>
+</ul>
+</p>
+<p><a name="location"></a>
+<code>location</code> - <ul><li>Location id of the store</li>
+</ul>
+</p>
+</BODY>
+</HTML>
