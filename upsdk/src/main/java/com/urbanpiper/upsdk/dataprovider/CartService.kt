@@ -101,7 +101,7 @@ interface CartService {
      * redirection flow (i.e - through a webview with a redirection url from the payment init response)
      * This Marks the completion of a transaction.
      *
-     * @param transactionId - Transaction id from payement init
+     * @param transactionId - Transaction id from payment init
      * @param gwTxnId - payment gateway transaction id
      * @param transactionStatus - transaction status, it can have the following values
      * 0 - Transaction success
@@ -120,7 +120,7 @@ interface CartService {
      * redirection flow (i.e - through a webview with a redirection url from the payment init response)
      * This Marks the completion of a transaction.
      *
-     * @param transactionId - Transaction id from payement init
+     * @param transactionId - Transaction id from payment init
      * @param gwTxnId - payment gateway transaction id
      * @param transactionStatus - transaction status, it can have the following values
      * 0 - Transaction success

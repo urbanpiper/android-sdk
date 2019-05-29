@@ -50,7 +50,7 @@ class UPClientDefault(
                 val request: Request = original.newBuilder()
                     .addHeader("X-App-Version", BuildConfig.VERSION_NAME)
                     .addHeader("X-BID", bizId)
-                    .addHeader("X-App-Src", "android-sdk")
+                    .addHeader("X-App-Src", Constants.X_APP_SOURCE)
                     .addHeader("X-Use-Lang", language)
                     .method(original.method(), original.body())
                     .build()
@@ -63,7 +63,7 @@ class UPClientDefault(
             .build()
 
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://api.urbanpiper.com/")
+            .baseUrl(Constants.API_URL)
             .client(client)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
@@ -1226,7 +1226,7 @@ class UPClientDefault(
      * redirection flow (i.e - through a webview with a redirection url from the payment init response)
      * This Marks the completion of a transaction.
      *
-     * @param transactionId - Transaction id from payement init
+     * @param transactionId - Transaction id from payment init
      * @param gwTxnId - payment gateway transaction id
      * @param transactionStatus - transaction status, it can have the following values
      * 0 - Transaction success
@@ -1247,7 +1247,7 @@ class UPClientDefault(
      * redirection flow (i.e - through a webview with a redirection url from the payment init response)
      * This Marks the completion of a transaction.
      *
-     * @param transactionId - Transaction id from payement init
+     * @param transactionId - Transaction id from payment init
      * @param gwTxnId - payment gateway transaction id
      * @param transactionStatus - transaction status, it can have the following values
      * 0 - Transaction success

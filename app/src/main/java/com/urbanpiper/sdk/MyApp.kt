@@ -19,9 +19,9 @@ class MyApp : Application() {
 
     object Singleton {
         val upClient: UPClient = UPClientBuilder()
-            .setBizId("76720224")
-            .setApiUsername("biz_adm_clients_yjXwAgQzHqYM")
-            .setApiKey("5ee66ab0ec691963ebe2e9485ae0fdfe232d8fa8")
+            .setBizId("*** Enter your urbanpiper business id here ***")
+            .setApiUsername("*** Enter your urbanpiper api username here ***")
+            .setApiKey("*** Enter your urbanpiper api key here ***")
             .setLanguage("en")
             .setCallback(object : Callback<UserBizInfoResponse> {
                 override fun success(response: UserBizInfoResponse) {
