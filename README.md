@@ -111,3 +111,8 @@ Eg:
 ```kotlin
 upclient.getBanners(): Observable<BannerResponse>
 ```
+The class documentation is listed below.
+https://urbanpiper.github.io/android-sdk/
+
+For a list of all possible methods,
+https://urbanpiper.github.io/android-sdk/com.urbanpiper.upsdk.dataprovider/-u-p-client-default/
