@@ -1,0 +1,5 @@
+[upsdk](../../index.md) / [com.urbanpiper.upsdk.model.networkresponse](../index.md) / [ReOrderResponse](index.md) / [&lt;init&gt;](./-init-.md)
+
+# &lt;init&gt;
+
+`ReOrderResponse(deliveryCharge: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, itemsAvailable: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`CartItem`](../-cart-item/index.md)`> = ArrayList(), itemsNotAvailable: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`CartItem`](../-cart-item/index.md)`> = ArrayList(), orderItemTaxes: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, orderSubtotal: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, orderTotal: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, packagingCharge: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, store: `[`Store`](../-store/index.md)`)`

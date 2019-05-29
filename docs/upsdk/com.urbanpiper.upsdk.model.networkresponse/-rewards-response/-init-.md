@@ -1,0 +1,5 @@
+[upsdk](../../index.md) / [com.urbanpiper.upsdk.model.networkresponse](../index.md) / [RewardsResponse](index.md) / [&lt;init&gt;](./-init-.md)
+
+# &lt;init&gt;
+
+`RewardsResponse(meta: `[`ResponseMeta`](../-response-meta/index.md)`, inStoreCouponRewards: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Reward`](-reward/index.md)`>, locked: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Reward`](-reward/index.md)`>, unlocked: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Reward`](-reward/index.md)`>, claimed: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Reward`](-reward/index.md)`>, redeemedButNotClaimed: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Reward`](-reward/index.md)`>, allRewards: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Reward`](-reward/index.md)`> = ArrayList())`

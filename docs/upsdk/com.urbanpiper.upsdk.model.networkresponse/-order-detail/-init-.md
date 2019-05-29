@@ -1,0 +1,5 @@
+[upsdk](../../index.md) / [com.urbanpiper.upsdk.model.networkresponse](../index.md) / [OrderDetail](index.md) / [&lt;init&gt;](./-init-.md)
+
+# &lt;init&gt;
+
+`OrderDetail(summary: `[`OrderStatusV2`](../-order-status-v2/index.md)`, items: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`OrderStatusItem`](../-order-status-item/index.md)`> = ArrayList(), nextStates: `[`Array`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>, nextState: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, payment: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`Payment`](-payment/index.md)`>, store: `[`Store`](../-store/index.md)`)`

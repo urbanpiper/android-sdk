@@ -1,0 +1,7 @@
+$dokka.format:gfm
+$dokka.linkExtension:md
+
+com.urbanpiper.upsdk.dataprovider
+com.urbanpiper.upsdk.model
+com.urbanpiper.upsdk.model.entity
+com.urbanpiper.upsdk.model.networkresponse
